@@ -12,8 +12,70 @@
 		80068FCF17272CA800DA1492 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FCE17272CA800DA1492 /* main.m */; };
 		80068FD317272CA900DA1492 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80068FD117272CA900DA1492 /* Credits.rtf */; };
 		80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FD517272CA900DA1492 /* STGAppDelegate.m */; };
-		80068FD917272CA900DA1492 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80068FD717272CA900DA1492 /* MainMenu.xib */; };
+		80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */; };
+		8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328C172966CB006702B9 /* STGDataCaptureEntry.m */; };
+		801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */; };
+		801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */; };
+		801203411732FF9E0003BB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
+		80120345173300C90003BB23 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
+		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
+		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
+		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
+		8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */; };
+		8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */; };
+		8029A49E17283EF000F09884 /* STGOptionsShortcutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */; };
+		8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */; };
+		8029A4A11728427900F09884 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A4A01728427900F09884 /* MainMenu.xib */; };
+		8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */; };
+		8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */; };
+		8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4BD172884AE00F09884 /* STGFileHelper.m */; };
+		803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */; };
+		803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */; };
+		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
+		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
+		8049269E173EED6400C08A7F /* STGPacketUploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269D173EED6400C08A7F /* STGPacketUploadFile.m */; };
+		804926A1173EF80200C08A7F /* STGPacketDeleteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */; };
+		807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A667E172A97B200E0212C /* STGHotkeyHelper.m */; };
+		807A6682172A98AD00E0212C /* STGHotkeyHelperEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A6681172A98AD00E0212C /* STGHotkeyHelperEntry.m */; };
+		807A6689172AC6DF00E0212C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A6688172AC6DF00E0212C /* CoreServices.framework */; };
+		807A668B172AC79900E0212C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A668A172AC79900E0212C /* Security.framework */; };
+		807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A668D172AD23900E0212C /* STGSystemHelper.m */; };
+		807A66F1172AF70E00E0212C /* CocoStorageStatusBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E1172AF70E00E0212C /* CocoStorageStatusBarIcon.png */; };
+		807A66F2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png */; };
+		807A66F3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png */; };
+		807A66F4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png */; };
+		807A66F5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png */; };
+		807A66F6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png */; };
+		807A66F7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png */; };
+		807A66F8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png */; };
+		807A66F9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png */; };
+		807A66FA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png */; };
+		807A66FB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png */; };
+		807A66FC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png */; };
+		807A66FD172AF70E00E0212C /* CocoStorageStatusBarIcon12.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66ED172AF70E00E0212C /* CocoStorageStatusBarIcon12.png */; };
+		807A66FE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png */; };
+		807A66FF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png */; };
+		807A6700172AF70E00E0212C /* CocoStorageStatusBarIcon15.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */; };
+		807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 807A6701172AF86000E0212C /* CocoStorageLogo.icns */; };
+		80CC42631733C3B40068476F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80CC42621733C3B40068476F /* dsa_pub.pem */; };
+		80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */; };
+		80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */; };
+		80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */; };
+		80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		80120343173300690003BB23 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				80120345173300C90003BB23 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		80068FBF17272CA800DA1492 /* Coco Storage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coco Storage.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,7 +90,75 @@
 		80068FD217272CA900DA1492 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		80068FD417272CA900DA1492 /* STGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STGAppDelegate.h; sourceTree = "<group>"; };
 		80068FD517272CA900DA1492 /* STGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STGAppDelegate.m; sourceTree = "<group>"; };
-		80068FD817272CA900DA1492 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		80068FDF17272D9900DA1492 /* STGStorageConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStorageConnectionManager.h; sourceTree = "<group>"; };
+		80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStorageConnectionManager.m; sourceTree = "<group>"; };
+		8011328B172966CB006702B9 /* STGDataCaptureEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGDataCaptureEntry.h; sourceTree = "<group>"; };
+		8011328C172966CB006702B9 /* STGDataCaptureEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGDataCaptureEntry.m; sourceTree = "<group>"; };
+		8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsAboutViewController.h; sourceTree = "<group>"; };
+		8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsAboutViewController.m; sourceTree = "<group>"; };
+		801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsAboutViewController.xib; sourceTree = "<group>"; };
+		801203401732FF9D0003BB23 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
+		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
+		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
+		8029A48C17282CC900F09884 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsGeneralViewController.h; sourceTree = "<group>"; };
+		8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsGeneralViewController.m; sourceTree = "<group>"; };
+		8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsGeneralViewController.xib; sourceTree = "<group>"; };
+		8029A49B17283EEF00F09884 /* STGOptionsShortcutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsShortcutsViewController.h; sourceTree = "<group>"; };
+		8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsShortcutsViewController.m; sourceTree = "<group>"; };
+		8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsShortcutsViewController.xib; sourceTree = "<group>"; };
+		8029A4A01728427900F09884 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		8029A4B4172859C600F09884 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
+		8029A4B717285A1F00F09884 /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
+		8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
+		8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
+		8029A4BC172884AE00F09884 /* STGFileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGFileHelper.h; sourceTree = "<group>"; };
+		8029A4BD172884AE00F09884 /* STGFileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGFileHelper.m; sourceTree = "<group>"; };
+		803C33B5172C780000E8CE3F /* STGDataCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGDataCaptureManager.h; sourceTree = "<group>"; };
+		803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGDataCaptureManager.m; sourceTree = "<group>"; };
+		803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionTextField.h; sourceTree = "<group>"; };
+		803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionTextField.m; sourceTree = "<group>"; };
+		80492696173EEAB100C08A7F /* STGPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketQueue.h; sourceTree = "<group>"; };
+		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
+		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
+		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
+		8049269C173EED6400C08A7F /* STGPacketUploadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketUploadFile.h; sourceTree = "<group>"; };
+		8049269D173EED6400C08A7F /* STGPacketUploadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketUploadFile.m; sourceTree = "<group>"; };
+		8049269F173EF80100C08A7F /* STGPacketDeleteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketDeleteFile.h; sourceTree = "<group>"; };
+		804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketDeleteFile.m; sourceTree = "<group>"; };
+		807A667D172A97B200E0212C /* STGHotkeyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGHotkeyHelper.h; sourceTree = "<group>"; };
+		807A667E172A97B200E0212C /* STGHotkeyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGHotkeyHelper.m; sourceTree = "<group>"; };
+		807A6680172A98AD00E0212C /* STGHotkeyHelperEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGHotkeyHelperEntry.h; sourceTree = "<group>"; };
+		807A6681172A98AD00E0212C /* STGHotkeyHelperEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGHotkeyHelperEntry.m; sourceTree = "<group>"; };
+		807A6688172AC6DF00E0212C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		807A668A172AC79900E0212C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		807A668C172AD23800E0212C /* STGSystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGSystemHelper.h; sourceTree = "<group>"; };
+		807A668D172AD23900E0212C /* STGSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGSystemHelper.m; sourceTree = "<group>"; };
+		807A66E1172AF70E00E0212C /* CocoStorageStatusBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon.png; sourceTree = "<group>"; };
+		807A66E2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon01.png; sourceTree = "<group>"; };
+		807A66E3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon02.png; sourceTree = "<group>"; };
+		807A66E4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon03.png; sourceTree = "<group>"; };
+		807A66E5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon04.png; sourceTree = "<group>"; };
+		807A66E6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon05.png; sourceTree = "<group>"; };
+		807A66E7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon06.png; sourceTree = "<group>"; };
+		807A66E8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon07.png; sourceTree = "<group>"; };
+		807A66E9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon08.png; sourceTree = "<group>"; };
+		807A66EA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon09.png; sourceTree = "<group>"; };
+		807A66EB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon10.png; sourceTree = "<group>"; };
+		807A66EC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon11.png; sourceTree = "<group>"; };
+		807A66ED172AF70E00E0212C /* CocoStorageStatusBarIcon12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon12.png; sourceTree = "<group>"; };
+		807A66EE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon13.png; sourceTree = "<group>"; };
+		807A66EF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon14.png; sourceTree = "<group>"; };
+		807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon15.png; sourceTree = "<group>"; };
+		807A6701172AF86000E0212C /* CocoStorageLogo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CocoStorageLogo.icns; sourceTree = "<group>"; };
+		80CC42621733C3B40068476F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGWelcomeWindowController.h; sourceTree = "<group>"; };
+		80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGWelcomeWindowController.m; sourceTree = "<group>"; };
+		80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGWelcomeWindowController.xib; sourceTree = "<group>"; };
+		80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemManager.h; sourceTree = "<group>"; };
+		80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemManager.m; sourceTree = "<group>"; };
+		80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGStatusItemManager.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +166,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807A668B172AC79900E0212C /* Security.framework in Frameworks */,
+				807A6689172AC6DF00E0212C /* CoreServices.framework in Frameworks */,
 				80068FC317272CA800DA1492 /* Cocoa.framework in Frameworks */,
+				801203411732FF9E0003BB23 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +179,9 @@
 		80068FB617272CA700DA1492 = {
 			isa = PBXGroup;
 			children = (
+				801203401732FF9D0003BB23 /* Sparkle.framework */,
+				807A668A172AC79900E0212C /* Security.framework */,
+				807A6688172AC6DF00E0212C /* CoreServices.framework */,
 				80068FC817272CA800DA1492 /* Coco Storage */,
 				80068FC117272CA800DA1492 /* Frameworks */,
 				80068FC017272CA800DA1492 /* Products */,
@@ -82,9 +218,53 @@
 		80068FC817272CA800DA1492 /* Coco Storage */ = {
 			isa = PBXGroup;
 			children = (
+				8029A4AA172858CA00F09884 /* MASPreferences */,
+				8029A48F172832BF00F09884 /* Resources */,
 				80068FD417272CA900DA1492 /* STGAppDelegate.h */,
 				80068FD517272CA900DA1492 /* STGAppDelegate.m */,
-				80068FD717272CA900DA1492 /* MainMenu.xib */,
+				8029A4A01728427900F09884 /* MainMenu.xib */,
+				80210E50172EC9920056C502 /* STGRecentFileView.xib */,
+				80068FDF17272D9900DA1492 /* STGStorageConnectionManager.h */,
+				80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */,
+				80492696173EEAB100C08A7F /* STGPacketQueue.h */,
+				80492697173EEAB100C08A7F /* STGPacketQueue.m */,
+				80492699173EEAC100C08A7F /* STGPacket.h */,
+				8049269A173EEAC100C08A7F /* STGPacket.m */,
+				8049269C173EED6400C08A7F /* STGPacketUploadFile.h */,
+				8049269D173EED6400C08A7F /* STGPacketUploadFile.m */,
+				8049269F173EF80100C08A7F /* STGPacketDeleteFile.h */,
+				804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */,
+				803C33B5172C780000E8CE3F /* STGDataCaptureManager.h */,
+				803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */,
+				8011328B172966CB006702B9 /* STGDataCaptureEntry.h */,
+				8011328C172966CB006702B9 /* STGDataCaptureEntry.m */,
+				8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */,
+				8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */,
+				8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */,
+				8029A49B17283EEF00F09884 /* STGOptionsShortcutsViewController.h */,
+				8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */,
+				8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */,
+				8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */,
+				8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */,
+				801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */,
+				803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */,
+				803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */,
+				80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */,
+				80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */,
+				80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */,
+				80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */,
+				80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */,
+				80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */,
+				80210E52172EDE050056C502 /* STGRecentUploadView.h */,
+				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
+				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
+				8029A4BD172884AE00F09884 /* STGFileHelper.m */,
+				807A667D172A97B200E0212C /* STGHotkeyHelper.h */,
+				807A667E172A97B200E0212C /* STGHotkeyHelper.m */,
+				807A6680172A98AD00E0212C /* STGHotkeyHelperEntry.h */,
+				807A6681172A98AD00E0212C /* STGHotkeyHelperEntry.m */,
+				807A668C172AD23800E0212C /* STGSystemHelper.h */,
+				807A668D172AD23900E0212C /* STGSystemHelper.m */,
 				80068FC917272CA800DA1492 /* Supporting Files */,
 			);
 			path = "Coco Storage";
@@ -93,6 +273,7 @@
 		80068FC917272CA800DA1492 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8029A48C17282CC900F09884 /* Credits.html */,
 				80068FCA17272CA800DA1492 /* Coco Storage-Info.plist */,
 				80068FCB17272CA800DA1492 /* InfoPlist.strings */,
 				80068FCE17272CA800DA1492 /* main.m */,
@@ -100,6 +281,66 @@
 				80068FD117272CA900DA1492 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8029A48F172832BF00F09884 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80CC42611733C3AA0068476F /* Other */,
+				80CC42601733C3A30068476F /* Sounds */,
+				80CC425F1733C39D0068476F /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8029A4AA172858CA00F09884 /* MASPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				8029A4B4172859C600F09884 /* MASPreferencesViewController.h */,
+				8029A4B717285A1F00F09884 /* MASPreferencesWindowController.h */,
+				8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */,
+				8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */,
+			);
+			name = MASPreferences;
+			sourceTree = "<group>";
+		};
+		80CC425F1733C39D0068476F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				807A6701172AF86000E0212C /* CocoStorageLogo.icns */,
+				807A66E1172AF70E00E0212C /* CocoStorageStatusBarIcon.png */,
+				807A66E2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png */,
+				807A66E3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png */,
+				807A66E4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png */,
+				807A66E5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png */,
+				807A66E6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png */,
+				807A66E7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png */,
+				807A66E8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png */,
+				807A66E9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png */,
+				807A66EA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png */,
+				807A66EB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png */,
+				807A66EC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png */,
+				807A66ED172AF70E00E0212C /* CocoStorageStatusBarIcon12.png */,
+				807A66EE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png */,
+				807A66EF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png */,
+				807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		80CC42601733C3A30068476F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		80CC42611733C3AA0068476F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				80CC42621733C3B40068476F /* dsa_pub.pem */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +353,7 @@
 				80068FBB17272CA700DA1492 /* Sources */,
 				80068FBC17272CA700DA1492 /* Frameworks */,
 				80068FBD17272CA700DA1492 /* Resources */,
+				80120343173300690003BB23 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -156,7 +398,33 @@
 			files = (
 				80068FCD17272CA800DA1492 /* InfoPlist.strings in Resources */,
 				80068FD317272CA900DA1492 /* Credits.rtf in Resources */,
-				80068FD917272CA900DA1492 /* MainMenu.xib in Resources */,
+				8029A48D17282CC900F09884 /* Credits.html in Resources */,
+				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
+				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
+				8029A4A11728427900F09884 /* MainMenu.xib in Resources */,
+				8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */,
+				801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */,
+				807A66F1172AF70E00E0212C /* CocoStorageStatusBarIcon.png in Resources */,
+				807A66F2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png in Resources */,
+				807A66F3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png in Resources */,
+				807A66F4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png in Resources */,
+				807A66F5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png in Resources */,
+				807A66F6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png in Resources */,
+				807A66F7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png in Resources */,
+				807A66F8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png in Resources */,
+				807A66F9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png in Resources */,
+				807A66FA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png in Resources */,
+				807A66FB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png in Resources */,
+				807A66FC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png in Resources */,
+				807A66FD172AF70E00E0212C /* CocoStorageStatusBarIcon12.png in Resources */,
+				807A66FE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png in Resources */,
+				807A66FF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png in Resources */,
+				807A6700172AF70E00E0212C /* CocoStorageStatusBarIcon15.png in Resources */,
+				807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */,
+				80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */,
+				80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */,
+				80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */,
+				80CC42631733C3B40068476F /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +437,25 @@
 			files = (
 				80068FCF17272CA800DA1492 /* main.m in Sources */,
 				80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */,
+				80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */,
+				8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */,
+				8029A49E17283EF000F09884 /* STGOptionsShortcutsViewController.m in Sources */,
+				8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */,
+				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
+				8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */,
+				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
+				807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */,
+				807A6682172A98AD00E0212C /* STGHotkeyHelperEntry.m in Sources */,
+				807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */,
+				803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */,
+				803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */,
+				80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */,
+				80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */,
+				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
+				80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */,
+				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,
+				8049269E173EED6400C08A7F /* STGPacketUploadFile.m in Sources */,
+				804926A1173EF80200C08A7F /* STGPacketDeleteFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,14 +476,6 @@
 				80068FD217272CA900DA1492 /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		80068FD717272CA900DA1492 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80068FD817272CA900DA1492 /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -265,10 +544,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coco Storage/Coco Storage-Prefix.pch";
 				INFOPLIST_FILE = "Coco Storage/Coco Storage-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -277,10 +562,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coco Storage/Coco Storage-Prefix.pch";
 				INFOPLIST_FILE = "Coco Storage/Coco Storage-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -304,6 +595,7 @@
 				80068FDE17272CA900DA1492 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

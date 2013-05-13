@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
+	<data>
+		<int key="IBDocument.SystemTarget">1080</int>
+		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
+			<string key="NS.object.0">3084</string>
+		</object>
+		<array key="IBDocument.IntegratedClassDependencies">
+			<string>NSCustomObject</string>
+			<string>NSMenu</string>
+			<string>NSMenuItem</string>
+		</array>
+		<array key="IBDocument.PluginDependencies">
+			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</array>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
+			<integer value="1" key="NS.object.0"/>
+		</object>
+		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
+			<object class="NSCustomObject" id="1001">
+				<string key="NSClassName">STGStatusItemManager</string>
+			</object>
+			<object class="NSCustomObject" id="1003">
+				<string key="NSClassName">FirstResponder</string>
+			</object>
+			<object class="NSCustomObject" id="1004">
+				<string key="NSClassName">NSApplication</string>
+			</object>
+			<object class="NSMenu" id="570240834">
+				<string key="NSTitle"/>
+				<array class="NSMutableArray" key="NSMenuItems">
+					<object class="NSMenuItem" id="327732262">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Storage account...</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSImage" id="642682012">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSFollowLinkFreestandingTemplate</string>
+						</object>
+						<object class="NSCustomResource" key="NSOnImage" id="884828156">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuCheckmark</string>
+						</object>
+						<object class="NSCustomResource" key="NSMixedImage" id="428326595">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuMixedState</string>
+						</object>
+					</object>
+					<object class="NSMenuItem" id="664881311">
+						<reference key="NSMenu" ref="570240834"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="614906823">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Capture area</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSImage" id="184352843">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSRightFacingTriangleTemplate</string>
+						</object>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="1008162436">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Capture screen</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSImage" ref="184352843"/>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="195840493">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Upload file</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSPathTemplate</string>
+						</object>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="168201048">
+						<reference key="NSMenu" ref="570240834"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="242899360">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">My files...</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSImage" ref="642682012"/>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="114837937">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Recent uploads</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+						<string key="NSAction">submenuAction:</string>
+						<object class="NSMenu" key="NSSubmenu" id="188296520">
+							<string key="NSTitle">Recent uploads</string>
+							<array class="NSMutableArray" key="NSMenuItems">
+								<object class="NSMenuItem" id="277470052">
+									<reference key="NSMenu" ref="188296520"/>
+									<bool key="NSIsDisabled">YES</bool>
+									<string key="NSTitle">No recent uploads :(</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="884828156"/>
+									<reference key="NSMixedImage" ref="428326595"/>
+								</object>
+							</array>
+						</object>
+					</object>
+					<object class="NSMenuItem" id="726784244">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Upload queue</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+						<string key="NSAction">submenuAction:</string>
+						<object class="NSMenu" key="NSSubmenu" id="984008499">
+							<string key="NSTitle">Upload queue</string>
+							<array class="NSMutableArray" key="NSMenuItems">
+								<object class="NSMenuItem" id="484846699">
+									<reference key="NSMenu" ref="984008499"/>
+									<bool key="NSIsDisabled">YES</bool>
+									<string key="NSTitle">No uploads in queue</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="884828156"/>
+									<reference key="NSMixedImage" ref="428326595"/>
+								</object>
+							</array>
+						</object>
+					</object>
+					<object class="NSMenuItem" id="356344882">
+						<reference key="NSMenu" ref="570240834"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="583643540">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Cancel all uploads</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSStopProgressTemplate</string>
+						</object>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="408484606">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Pause uploads</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="1052973257">
+						<reference key="NSMenu" ref="570240834"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="922938190">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Preferences</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSActionTemplate</string>
+						</object>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+					<object class="NSMenuItem" id="462683041">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Quit</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="884828156"/>
+						<reference key="NSMixedImage" ref="428326595"/>
+					</object>
+				</array>
+			</object>
+			<object class="NSMenuItem" id="673117025">
+				<bool key="NSIsDisabled">YES</bool>
+				<string key="NSTitle">...</string>
+				<string key="NSKeyEquiv"/>
+				<int key="NSMnemonicLoc">2147483647</int>
+				<reference key="NSOnImage" ref="884828156"/>
+				<reference key="NSMixedImage" ref="428326595"/>
+			</object>
+		</array>
+		<object class="IBObjectContainer" key="IBDocument.Objects">
+			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">statusMenu</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="570240834"/>
+					</object>
+					<int key="connectionID">21</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">captureAreaMenuItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="614906823"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">captureFullScreenMenuItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1008162436"/>
+					</object>
+					<int key="connectionID">23</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">captureFileMenuItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="195840493"/>
+					</object>
+					<int key="connectionID">24</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">recentFilesItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="114837937"/>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">currentUploadsItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="726784244"/>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">noRecentFilesItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="277470052"/>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">noCurrentUploadItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="484846699"/>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">pauseUploadsItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="408484606"/>
+					</object>
+					<int key="connectionID">29</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openPreferences:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="922938190"/>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">quit:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="462683041"/>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">togglePauseUploads:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="408484606"/>
+					</object>
+					<int key="connectionID">32</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cancelUploads:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="583643540"/>
+					</object>
+					<int key="connectionID">33</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openMyFiles:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="242899360"/>
+					</object>
+					<int key="connectionID">34</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">captureFile:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="195840493"/>
+					</object>
+					<int key="connectionID">35</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">captureFullScreen:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1008162436"/>
+					</object>
+					<int key="connectionID">36</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">captureArea:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="614906823"/>
+					</object>
+					<int key="connectionID">37</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openStorageAccount:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="327732262"/>
+					</object>
+					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">moreCurrentUploadsItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="673117025"/>
+					</object>
+					<int key="connectionID">40</int>
+				</object>
+			</array>
+			<object class="IBMutableOrderedSet" key="objectRecords">
+				<array key="orderedObjects">
+					<object class="IBObjectRecord">
+						<int key="objectID">0</int>
+						<array key="object" id="0"/>
+						<reference key="children" ref="1000"/>
+						<nil key="parent"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-2</int>
+						<reference key="object" ref="1001"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">File's Owner</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-1</int>
+						<reference key="object" ref="1003"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">First Responder</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-3</int>
+						<reference key="object" ref="1004"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Application</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1</int>
+						<reference key="object" ref="570240834"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="726784244"/>
+							<reference ref="168201048"/>
+							<reference ref="356344882"/>
+							<reference ref="408484606"/>
+							<reference ref="583643540"/>
+							<reference ref="195840493"/>
+							<reference ref="1008162436"/>
+							<reference ref="614906823"/>
+							<reference ref="114837937"/>
+							<reference ref="242899360"/>
+							<reference ref="462683041"/>
+							<reference ref="922938190"/>
+							<reference ref="1052973257"/>
+							<reference ref="664881311"/>
+							<reference ref="327732262"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2</int>
+						<reference key="object" ref="726784244"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="984008499"/>
+						</array>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3</int>
+						<reference key="object" ref="168201048"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">4</int>
+						<reference key="object" ref="356344882"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="408484606"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="583643540"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">7</int>
+						<reference key="object" ref="195840493"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">8</int>
+						<reference key="object" ref="1008162436"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">9</int>
+						<reference key="object" ref="614906823"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">10</int>
+						<reference key="object" ref="114837937"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="188296520"/>
+						</array>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11</int>
+						<reference key="object" ref="242899360"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">12</int>
+						<reference key="object" ref="462683041"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">13</int>
+						<reference key="object" ref="922938190"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">14</int>
+						<reference key="object" ref="1052973257"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">15</int>
+						<reference key="object" ref="664881311"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">16</int>
+						<reference key="object" ref="327732262"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">17</int>
+						<reference key="object" ref="188296520"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="277470052"/>
+						</array>
+						<reference key="parent" ref="114837937"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="277470052"/>
+						<reference key="parent" ref="188296520"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">19</int>
+						<reference key="object" ref="984008499"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="484846699"/>
+						</array>
+						<reference key="parent" ref="726784244"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">20</int>
+						<reference key="object" ref="484846699"/>
+						<reference key="parent" ref="984008499"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">39</int>
+						<reference key="object" ref="673117025"/>
+						<reference key="parent" ref="0"/>
+					</object>
+				</array>
+			</object>
+			<dictionary class="NSMutableDictionary" key="flattenedProperties">
+				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="-3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="39.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+			</dictionary>
+			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
+			<nil key="activeLocalization"/>
+			<dictionary class="NSMutableDictionary" key="localizations"/>
+			<nil key="sourceID"/>
+			<int key="maxID">40</int>
+		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">STGStatusItemManager</string>
+					<string key="superclassName">NSObject</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="cancelQueueFile:">id</string>
+						<string key="cancelUploads:">id</string>
+						<string key="captureArea:">id</string>
+						<string key="captureFile:">id</string>
+						<string key="captureFullScreen:">id</string>
+						<string key="copyRecentFileLink:">id</string>
+						<string key="deleteRecentFile:">id</string>
+						<string key="openMyFiles:">id</string>
+						<string key="openPreferences:">id</string>
+						<string key="openRecentFile:">id</string>
+						<string key="openStorageAccount:">id</string>
+						<string key="quit:">id</string>
+						<string key="togglePauseUploads:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="cancelQueueFile:">
+							<string key="name">cancelQueueFile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="cancelUploads:">
+							<string key="name">cancelUploads:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="captureArea:">
+							<string key="name">captureArea:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="captureFile:">
+							<string key="name">captureFile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="captureFullScreen:">
+							<string key="name">captureFullScreen:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="copyRecentFileLink:">
+							<string key="name">copyRecentFileLink:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="deleteRecentFile:">
+							<string key="name">deleteRecentFile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openMyFiles:">
+							<string key="name">openMyFiles:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openPreferences:">
+							<string key="name">openPreferences:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openRecentFile:">
+							<string key="name">openRecentFile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openStorageAccount:">
+							<string key="name">openStorageAccount:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="quit:">
+							<string key="name">quit:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="togglePauseUploads:">
+							<string key="name">togglePauseUploads:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="captureAreaMenuItem">NSMenuItem</string>
+						<string key="captureFileMenuItem">NSMenuItem</string>
+						<string key="captureFullScreenMenuItem">NSMenuItem</string>
+						<string key="currentUploadsItem">NSMenuItem</string>
+						<string key="moreCurrentUploadsItem">NSMenuItem</string>
+						<string key="noCurrentUploadItem">NSMenuItem</string>
+						<string key="noRecentFilesItem">NSMenuItem</string>
+						<string key="pauseUploadsItem">NSMenuItem</string>
+						<string key="recentFilesItem">NSMenuItem</string>
+						<string key="statusMenu">NSMenu</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="captureAreaMenuItem">
+							<string key="name">captureAreaMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="captureFileMenuItem">
+							<string key="name">captureFileMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="captureFullScreenMenuItem">
+							<string key="name">captureFullScreenMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="currentUploadsItem">
+							<string key="name">currentUploadsItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="moreCurrentUploadsItem">
+							<string key="name">moreCurrentUploadsItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="noCurrentUploadItem">
+							<string key="name">noCurrentUploadItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="noRecentFilesItem">
+							<string key="name">noRecentFilesItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pauseUploadsItem">
+							<string key="name">pauseUploadsItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="recentFilesItem">
+							<string key="name">recentFilesItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="statusMenu">
+							<string key="name">statusMenu</string>
+							<string key="candidateClassName">NSMenu</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/STGStatusItemManager.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
+		<int key="IBDocument.localizationMode">0</int>
+		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
+		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NSActionTemplate">{15, 15}</string>
+			<string key="NSFollowLinkFreestandingTemplate">{10, 10}</string>
+			<string key="NSMenuCheckmark">{11, 11}</string>
+			<string key="NSMenuMixedState">{10, 3}</string>
+			<string key="NSPathTemplate">{13, 10}</string>
+			<string key="NSRightFacingTriangleTemplate">{9, 9}</string>
+			<string key="NSStopProgressTemplate">{11, 11}</string>
+		</dictionary>
+		<bool key="IBDocument.UseAutolayout">YES</bool>
+	</data>
+</archive>
