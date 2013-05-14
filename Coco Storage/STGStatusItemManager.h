@@ -10,6 +10,15 @@
 
 #import "STGRecentUploadView.h"
 
+typedef NS_ENUM(NSUInteger, STGServerStatus)
+{
+    STGServerStatusOnline = 0,
+    STGServerStatusServerOffline = 1,
+    STGServerStatusClientOffline = 2,
+    STGServerStatusUnknown = 3,
+    STGServerStatusServerBusy
+};
+
 @class STGPacketQueue;
 @class STGDataCaptureEntry;
 
@@ -32,6 +41,9 @@
 @property (nonatomic, retain) NSStatusItem *statusItem;
 
 @property (nonatomic, retain) IBOutlet NSMenu *statusMenu;
+
+@property (nonatomic, retain) IBOutlet NSMenuItem *serverStatusItem;
+
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureAreaMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFullScreenMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFileMenuItem;
@@ -66,6 +78,7 @@
 - (void)updateRecentFiles:(NSArray *)recentFiles;
 - (void)updateUploadQueue:(STGPacketQueue *)packetQueue currentProgress:(float)currentFileProgress;
 - (void)updatePauseDownloadItem;
+- (void)updateServerStatus:(STGServerStatus)status;
 
 - (void)setStatusItemUploadProgress:(float)progress;
 

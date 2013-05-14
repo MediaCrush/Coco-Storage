@@ -23,6 +23,9 @@
 @synthesize statusItem = _statusItem;
 
 @synthesize statusMenu = _statusMenu;
+
+@synthesize serverStatusItem = _serverStatusItem;
+
 @synthesize captureAreaMenuItem = _captureAreaMenuItem;
 @synthesize captureFullScreenMenuItem = _captureFullScreenMenuItem;
 @synthesize captureFileMenuItem = _captureFileMenuItem;
@@ -107,7 +110,7 @@
     
     for (STGDataCaptureEntry *entry in [packetQueue uploadQueue])
     {
-        if ([entry isKindOfClass:[STGPacket class]])
+        if ([entry isKindOfClass:[STGPacketUploadFile class]])
         {
             [uploadEntries addObject:entry];
         }
@@ -173,6 +176,39 @@
     }
 }
 
+- (void)updateServerStatus:(STGServerStatus)status
+{
+    NSString *tooltipString = @"Unknown";
+    NSString *statusString = @"Unknown";
+    BOOL avaialable = NO;
+    
+    if (status == STGServerStatusOnline)
+    {
+        tooltipString = @"OK";
+        statusString = @"Server: Online";
+        
+        avaialable = YES;
+    }
+    if (status == STGServerStatusServerOffline)
+    {
+        tooltipString = @"Offline";
+        statusString = @"Server: Offline";
+    }
+    if (status == STGServerStatusClientOffline)
+    {
+        tooltipString = @"No internet connection";
+        statusString = @"No internet connection";
+    }
+    if (status == STGServerStatusServerBusy)
+    {
+        tooltipString = @"Busy";
+        statusString = @"Server: Busy";
+    }
+
+    [_serverStatusItem setTitle:statusString];
+    [_serverStatusItem setImage:[NSImage imageNamed:avaialable ? @"ServerStatusOK.png" : @"ServerStatusUnavailable.png"]];
+    [_statusItem setToolTip:[NSString stringWithFormat:@"Coco Storage - Server status: %@", tooltipString]];
+}
 
 - (IBAction)captureArea:(id)sender
 {

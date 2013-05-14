@@ -12,7 +12,7 @@
 
 + (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod contentParts:(NSArray *)parts
 {
-    NSMutableURLRequest *request= [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:100.0];
+    NSMutableURLRequest *request= [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:100.0];
     [request setHTTPMethod:httpMethod];
     
     NSString *boundary = @"---------------------------14737809831466499882746641449";
@@ -22,13 +22,16 @@
     
     NSMutableData *postbody = [NSMutableData data];
     
-    for (NSData *data in parts)
+    if (parts)
     {
-        [postbody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [postbody appendData:data];
-
-        [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        for (NSData *data in parts)
+        {
+            [postbody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            [postbody appendData:data];
+            
+            [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        }        
     }
     
     [request setHTTPBody:postbody];

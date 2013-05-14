@@ -38,15 +38,20 @@
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
 @property (nonatomic, retain) NSTimer *uploadTimer;
+@property (nonatomic, assign) NSUInteger ticksAlive;
 
 @property (nonatomic, retain) MASPreferencesWindowController *prefsController;
 @property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
 
 @property (nonatomic, retain) NSMutableArray *recentFilesArray;
 
-@property (nonatomic, retain) STGPacketQueue *packetQueue;
+@property (nonatomic, retain) STGPacketQueue *packetUploadV1Queue;
+@property (nonatomic, retain) STGPacketQueue *packetUploadV2Queue;
+@property (nonatomic, retain) STGPacketQueue *packetSupportQueue;
 @property (nonatomic, retain) NSString *uploadLink;
 @property (nonatomic, retain) NSString *deletionLink;
+@property (nonatomic, retain) NSString *getAPIStatusLink;
+@property (nonatomic, retain) NSString *getObjectInfoLink;
 
 @property (nonatomic, retain) STGHotkeyHelper *hotkeyHelper;
 

@@ -58,6 +58,12 @@
 		807A6700172AF70E00E0212C /* CocoStorageStatusBarIcon15.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */; };
 		807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 807A6701172AF86000E0212C /* CocoStorageLogo.icns */; };
 		80CC42631733C3B40068476F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80CC42621733C3B40068476F /* dsa_pub.pem */; };
+		80D7F9BB1741687100851DDB /* STGPacketGetAPIStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */; };
+		80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BD1741700400851DDB /* STGNetworkHelper.m */; };
+		80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D7F9BF1741707500851DDB /* SystemConfiguration.framework */; };
+		80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C51741773A00851DDB /* ServerStatusOK.png */; };
+		80D7F9C81741773B00851DDB /* ServerStatusUnavailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */; };
+		80D7F9CB1741923F00851DDB /* STGPacketGetObjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9CA1741923E00851DDB /* STGPacketGetObjectInfo.m */; };
 		80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */; };
 		80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */; };
 		80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */; };
@@ -153,6 +159,15 @@
 		807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon15.png; sourceTree = "<group>"; };
 		807A6701172AF86000E0212C /* CocoStorageLogo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CocoStorageLogo.icns; sourceTree = "<group>"; };
 		80CC42621733C3B40068476F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		80D7F9B91741687100851DDB /* STGPacketGetAPIStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketGetAPIStatus.h; sourceTree = "<group>"; };
+		80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketGetAPIStatus.m; sourceTree = "<group>"; };
+		80D7F9BC1741700400851DDB /* STGNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGNetworkHelper.h; sourceTree = "<group>"; };
+		80D7F9BD1741700400851DDB /* STGNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkHelper.m; sourceTree = "<group>"; };
+		80D7F9BF1741707500851DDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		80D7F9C51741773A00851DDB /* ServerStatusOK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServerStatusOK.png; sourceTree = "<group>"; };
+		80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServerStatusUnavailable.png; sourceTree = "<group>"; };
+		80D7F9C91741923E00851DDB /* STGPacketGetObjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketGetObjectInfo.h; sourceTree = "<group>"; };
+		80D7F9CA1741923E00851DDB /* STGPacketGetObjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketGetObjectInfo.m; sourceTree = "<group>"; };
 		80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGWelcomeWindowController.h; sourceTree = "<group>"; };
 		80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGWelcomeWindowController.m; sourceTree = "<group>"; };
 		80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGWelcomeWindowController.xib; sourceTree = "<group>"; };
@@ -166,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */,
 				807A668B172AC79900E0212C /* Security.framework in Frameworks */,
 				807A6689172AC6DF00E0212C /* CoreServices.framework in Frameworks */,
 				80068FC317272CA800DA1492 /* Cocoa.framework in Frameworks */,
@@ -179,6 +195,7 @@
 		80068FB617272CA700DA1492 = {
 			isa = PBXGroup;
 			children = (
+				80D7F9BF1741707500851DDB /* SystemConfiguration.framework */,
 				801203401732FF9D0003BB23 /* Sparkle.framework */,
 				807A668A172AC79900E0212C /* Security.framework */,
 				807A6688172AC6DF00E0212C /* CoreServices.framework */,
@@ -223,7 +240,6 @@
 				80068FD417272CA900DA1492 /* STGAppDelegate.h */,
 				80068FD517272CA900DA1492 /* STGAppDelegate.m */,
 				8029A4A01728427900F09884 /* MainMenu.xib */,
-				80210E50172EC9920056C502 /* STGRecentFileView.xib */,
 				80068FDF17272D9900DA1492 /* STGStorageConnectionManager.h */,
 				80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */,
 				80492696173EEAB100C08A7F /* STGPacketQueue.h */,
@@ -234,6 +250,10 @@
 				8049269D173EED6400C08A7F /* STGPacketUploadFile.m */,
 				8049269F173EF80100C08A7F /* STGPacketDeleteFile.h */,
 				804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */,
+				80D7F9B91741687100851DDB /* STGPacketGetAPIStatus.h */,
+				80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */,
+				80D7F9C91741923E00851DDB /* STGPacketGetObjectInfo.h */,
+				80D7F9CA1741923E00851DDB /* STGPacketGetObjectInfo.m */,
 				803C33B5172C780000E8CE3F /* STGDataCaptureManager.h */,
 				803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */,
 				8011328B172966CB006702B9 /* STGDataCaptureEntry.h */,
@@ -255,6 +275,7 @@
 				80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */,
 				80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */,
 				80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */,
+				80210E50172EC9920056C502 /* STGRecentFileView.xib */,
 				80210E52172EDE050056C502 /* STGRecentUploadView.h */,
 				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
 				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
@@ -265,6 +286,8 @@
 				807A6681172A98AD00E0212C /* STGHotkeyHelperEntry.m */,
 				807A668C172AD23800E0212C /* STGSystemHelper.h */,
 				807A668D172AD23900E0212C /* STGSystemHelper.m */,
+				80D7F9BC1741700400851DDB /* STGNetworkHelper.h */,
+				80D7F9BD1741700400851DDB /* STGNetworkHelper.m */,
 				80068FC917272CA800DA1492 /* Supporting Files */,
 			);
 			path = "Coco Storage";
@@ -324,6 +347,8 @@
 				807A66EE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png */,
 				807A66EF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png */,
 				807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */,
+				80D7F9C51741773A00851DDB /* ServerStatusOK.png */,
+				80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -425,6 +450,8 @@
 				80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */,
 				80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */,
 				80CC42631733C3B40068476F /* dsa_pub.pem in Resources */,
+				80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */,
+				80D7F9C81741773B00851DDB /* ServerStatusUnavailable.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +483,9 @@
 				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,
 				8049269E173EED6400C08A7F /* STGPacketUploadFile.m in Sources */,
 				804926A1173EF80200C08A7F /* STGPacketDeleteFile.m in Sources */,
+				80D7F9BB1741687100851DDB /* STGPacketGetAPIStatus.m in Sources */,
+				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
+				80D7F9CB1741923F00851DDB /* STGPacketGetObjectInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

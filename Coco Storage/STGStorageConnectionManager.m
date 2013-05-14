@@ -50,8 +50,6 @@
 
     NSURLConnection *myConnection = [[NSURLConnection alloc] initWithRequest:[entry urlRequest] delegate:self startImmediately:YES];
     
-    _activeUploadConnection = myConnection;
-    
     if(myConnection != nil)
     {
         if ([_delegate respondsToSelector:@selector(startUploadingData:entry:)])
@@ -95,11 +93,16 @@
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     NSLog(@"Must authenticate: %@", challenge);
+    
+    [self cancelCurrentRequest];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"Connection failed: %@", error);
+    if ([[error description] rangeOfString:@"The Internet connection appears to be offline."].location == NSNotFound)
+        NSLog(@"Connection failed: %@", error);
+    
+    [self cancelCurrentRequest];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -124,10 +127,10 @@
     if (_activeUploadConnection)
     {
         [_activeUploadConnection cancel];
-        
-        _activeEntry = nil;
-        _activeUploadConnection = nil;
     }
+    
+    _activeEntry = nil;
+    _activeUploadConnection = nil;
 }
 
 @end

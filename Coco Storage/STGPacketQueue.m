@@ -8,6 +8,8 @@
 
 #import "STGPacketQueue.h"
 
+#import "STGNetworkHelper.h"
+
 @implementation STGPacketQueue
 
 @synthesize delegate = _delegate;
@@ -38,7 +40,10 @@
     {
         if ([_uploadQueue count] > 0)
         {
-            [_connectionManager uploadEntry:[_uploadQueue objectAtIndex:0]];
+            BOOL reachingStorage = [STGNetworkHelper isWebsiteReachable:@"stor.ag"];
+
+            if (reachingStorage)
+                [_connectionManager uploadEntry:[_uploadQueue objectAtIndex:0]];
         }
     }
 }
