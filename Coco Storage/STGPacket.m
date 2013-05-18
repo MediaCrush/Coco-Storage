@@ -10,6 +10,35 @@
 
 @implementation STGPacket
 
+@synthesize urlRequest = _urlRequest;
+
+@synthesize packetType = _packetType;
+@synthesize userInfo = _userInfo;
+
+@synthesize inUse = _inUse;
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        [self setUserInfo:[[NSMutableDictionary alloc] init]];
+    }
+    return self;
+}
+
++ (id)genericPacketWithRequest:(NSURLRequest *)request packetType:(NSString *)packetType userInfo:(NSMutableDictionary *)userInfo
+{
+    STGPacket *packet = [[STGPacket alloc] init];
+    
+    [packet setUrlRequest:request];
+    
+    [packet setUserInfo:userInfo];
+    [packet setPacketType:packetType];
+    
+    return packet;
+}
+
 + (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod contentParts:(NSArray *)parts
 {
     NSMutableURLRequest *request= [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:100.0];

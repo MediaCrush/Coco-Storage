@@ -33,6 +33,7 @@
     [args addObject:fileName];
     
     [task setArguments: args];
+
     [task setLaunchPath: @"/usr/sbin/screencapture"];
     [task launch];
     [task waitUntilExit];

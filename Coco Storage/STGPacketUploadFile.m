@@ -12,16 +12,16 @@
 
 @implementation STGPacketUploadFile
 
-@synthesize dataCaptureEntry = _dataCaptureEntry;
-
 - (id)initWithDataCaptureEntry:(STGDataCaptureEntry *)entry uploadLink:(NSString *)link key:(NSString *)key
 {
     self = [super init];
     if (self)
     {
-        [self setDataCaptureEntry:entry];
+        [[self userInfo] setObject:entry forKey:@"dataCaptureEntry"];
         
         [self setUrlRequest:[STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, key] httpMethod:@"POST" fileName:[[entry fileURL] lastPathComponent] mainBodyString:[NSData dataWithContentsOfURL:[entry fileURL]]]];
+        
+        [self setPacketType:@"uploadFile"];
     }
     return self;
 }

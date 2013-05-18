@@ -184,6 +184,25 @@
 						<reference key="NSOnImage" ref="781380661"/>
 						<reference key="NSMixedImage" ref="862824111"/>
 					</object>
+					<object class="NSMenuItem" id="263116197">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Open CFS folder</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSImage" ref="642682012"/>
+						<reference key="NSOnImage" ref="781380661"/>
+						<reference key="NSMixedImage" ref="862824111"/>
+					</object>
+					<object class="NSMenuItem" id="862088870">
+						<reference key="NSMenu" ref="570240834"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="781380661"/>
+						<reference key="NSMixedImage" ref="862824111"/>
+					</object>
 					<object class="NSMenuItem" id="583643540">
 						<reference key="NSMenu" ref="570240834"/>
 						<string key="NSTitle">Cancel all uploads</string>
@@ -198,7 +217,7 @@
 					</object>
 					<object class="NSMenuItem" id="408484606">
 						<reference key="NSMenu" ref="570240834"/>
-						<string key="NSTitle">Pause uploads</string>
+						<string key="NSTitle">Pause Coco Storage</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="781380661"/>
@@ -407,6 +426,14 @@
 					</object>
 					<int key="connectionID">42</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openCFSFolder:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="263116197"/>
+					</object>
+					<int key="connectionID">45</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -454,6 +481,8 @@
 							<reference ref="664881311"/>
 							<reference ref="327732262"/>
 							<reference ref="967399323"/>
+							<reference ref="263116197"/>
+							<reference ref="862088870"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -574,6 +603,16 @@
 						<reference key="object" ref="673117025"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">43</int>
+						<reference key="object" ref="263116197"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">44</int>
+						<reference key="object" ref="862088870"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -597,6 +636,8 @@
 				<string key="39.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -607,7 +648,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">42</int>
+			<int key="maxID">45</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -622,6 +663,7 @@
 						<string key="captureFullScreen:">id</string>
 						<string key="copyRecentFileLink:">id</string>
 						<string key="deleteRecentFile:">id</string>
+						<string key="openCFSFolder:">id</string>
 						<string key="openMyFiles:">id</string>
 						<string key="openPreferences:">id</string>
 						<string key="openRecentFile:">id</string>
@@ -656,6 +698,10 @@
 						</object>
 						<object class="IBActionInfo" key="deleteRecentFile:">
 							<string key="name">deleteRecentFile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openCFSFolder:">
+							<string key="name">openCFSFolder:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="openMyFiles:">

@@ -11,6 +11,7 @@
 @interface STGFileHelper : NSObject
 
 + (NSString *)getApplicationSupportDirectory;
++ (NSString *)getDocumentsDirectory;
 + (BOOL)createFolderIfNonExistent:(NSString *)path;
 
 + (NSString *)storeStringsInString:(NSArray *)array;

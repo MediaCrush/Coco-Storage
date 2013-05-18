@@ -12,8 +12,6 @@
 
 @interface STGPacketDeleteFile : STGPacket
 
-@property (nonatomic, retain) STGDataCaptureEntry *dataCaptureEntry;
-
 - (id)initWithDataCaptureEntry:(STGDataCaptureEntry *)entry deletionLink:(NSString *)link key:(NSString *)key;
 
 @end

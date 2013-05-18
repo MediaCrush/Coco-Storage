@@ -16,6 +16,8 @@
     if (self)
     {
         [self setUrlRequest:[STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, objectID, key] httpMethod:@"GET" contentParts:nil]];
+        
+        [self setPacketType:@"getObjectInfo"];
     }
     return self;
 }

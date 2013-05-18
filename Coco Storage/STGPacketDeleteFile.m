@@ -12,14 +12,12 @@
 
 @implementation STGPacketDeleteFile
 
-@synthesize dataCaptureEntry = _dataCaptureEntry;
-
 - (id)initWithDataCaptureEntry:(STGDataCaptureEntry *)entry deletionLink:(NSString *)link key:(NSString *)key
 {
     self = [super init];
     if (self)
     {
-        [self setDataCaptureEntry:entry];
+        [[self userInfo] setObject:entry forKey:@"dataCaptureEntry"];
         
         NSUInteger entryIDLoc = [[entry onlineLink] rangeOfString:@"/" options:NSBackwardsSearch].location;
         
@@ -32,7 +30,9 @@
             NSString *entryID = [[entry onlineLink] substringFromIndex:entryIDLoc + 1];
             NSString *urlString = [NSString stringWithFormat:link, entryID, key];
             
-            [self setUrlRequest:[STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyString:[NSData dataWithContentsOfURL:[entry fileURL]]]];   
+            [self setUrlRequest:[STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyString:[NSData dataWithContentsOfURL:[entry fileURL]]]];
+            
+            [self setPacketType:@"deleteFile"];
         }
     }
     return self;

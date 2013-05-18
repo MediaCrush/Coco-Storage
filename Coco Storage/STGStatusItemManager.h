@@ -16,7 +16,9 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
     STGServerStatusServerOffline = 1,
     STGServerStatusClientOffline = 2,
     STGServerStatusUnknown = 3,
-    STGServerStatusServerBusy
+    STGServerStatusServerV1Busy = 4,
+    STGServerStatusServerV2Busy = 5,
+    STGServerStatusServerBusy = 6
 };
 
 @class STGPacketQueue;
@@ -39,6 +41,10 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 @property (nonatomic, assign) id<STGStatusItemManagerDelegate> delegate;
 
 @property (nonatomic, retain) NSStatusItem *statusItem;
+
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, assign) BOOL isSyncing;
+@property (nonatomic, assign) int ticks;
 
 @property (nonatomic, retain) IBOutlet NSMenu *statusMenu;
 
@@ -66,6 +72,8 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 - (IBAction)openPreferences:(id)sender;
 - (IBAction)quit:(id)sender;
 
+- (IBAction)openCFSFolder:(id)sender;
+
 - (IBAction)cancelUploads:(id)sender;
 - (IBAction)togglePauseUploads:(id)sender;
 
@@ -74,6 +82,8 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 - (IBAction)copyRecentFileLink:(id)sender;
 
 - (IBAction)cancelQueueFile:(id)sender;
+
+- (void)timerFired:(NSTimer *)timer;
 
 - (void)updateRecentFiles:(NSArray *)recentFiles;
 - (void)updateUploadQueue:(STGPacketQueue *)packetQueue currentProgress:(float)currentFileProgress;

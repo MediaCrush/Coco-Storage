@@ -12,8 +12,6 @@
 
 @interface STGPacketUploadFile : STGPacket
 
-@property (nonatomic, retain) STGDataCaptureEntry *dataCaptureEntry;
-
 - (id)initWithDataCaptureEntry:(STGDataCaptureEntry *)entry uploadLink:(NSString *)link key:(NSString *)key;
 
 @end

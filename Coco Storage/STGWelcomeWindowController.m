@@ -8,6 +8,11 @@
 
 #import "STGWelcomeWindowController.h"
 
+#import "NSButton+TextColor.h"
+
+CGFloat boxOpacityHover = 1.0f;
+CGFloat boxOpacityIdle = 0.0f;
+
 @interface STGWelcomeWindowController ()
 
 - (void)addVersion:(NSString *)version withChanges:(NSArray *)array;
@@ -18,16 +23,29 @@
 
 @synthesize welcomeWCDelegate = _welcomeWCDelegate;
 
-@synthesize changelogTextView = _changelogTextView;
+@synthesize showOnLaunchButton = _showOnLaunchButton;
+
+@synthesize storageKeyBox = _storageKeyBox;
+@synthesize cfsFolderBox = _cfsFolderBox;
+@synthesize accountBox = _accountBox;
 
 - (void)awakeFromNib
 {
-    [_changelogTextView setString:@""];
+//    [_changelogTextView setString:@""];
     
     [self addVersion:@"1.0" withChanges:[NSArray arrayWithObject:@"Main Release!"]];
     [self addVersion:@"1.1" withChanges:[NSArray arrayWithObject:@"Bug fixes"]];
     [self addVersion:@"1.2" withChanges:[NSArray arrayWithObjects:@"Improved recent uploads", @"Added deletion of objects", @"Added Welcome Screen", @"Clicking files queued for upload now cancels them", @"Renamed the App Support and Temp folders", @"Bug Fixes", nil]];
-    [self addVersion:@"1.3" withChanges:[NSArray arrayWithObjects:@"Added server status checks", "Bug Fixes", nil]];
+    [self addVersion:@"1.3" withChanges:[NSArray arrayWithObjects:@"Added server status checks", @"Bug Fixes", nil]];
+    
+    [[self window] setAcceptsMouseMovedEvents:YES];
+    
+    [_showOnLaunchButton setIntegerValue:[[NSUserDefaults standardUserDefaults] integerForKey:@"showWelcomeWindowOnLaunch"]];
+    [_showOnLaunchButton setTextColor:[NSColor whiteColor]];
+    
+    [_storageKeyBox setAlphaValue:boxOpacityIdle];
+    [_cfsFolderBox setAlphaValue:boxOpacityIdle];
+    [_accountBox setAlphaValue:boxOpacityIdle];
 }
 
 - (void)addVersion:(NSString *)version withChanges:(NSArray *)array
@@ -54,20 +72,79 @@
     [attributedString beginEditing];
     [attributedString addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12] range:NSMakeRange(0, versionTitleLength)];
     [attributedString addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:12] range:NSMakeRange(versionTitleLength, [versionString length] - versionTitleLength)];
-    [attributedString appendAttributedString:[_changelogTextView attributedString]];
+//    [attributedString appendAttributedString:[_changelogTextView attributedString]];
     [attributedString endEditing];
     
-    [[_changelogTextView textStorage] setAttributedString:attributedString];
+//    [[_changelogTextView textStorage] setAttributedString:attributedString];
+}
+
++ (void)registerStandardDefaults:(NSMutableDictionary *)defaults
+{
+    [defaults setObject:[NSNumber numberWithInt:1] forKey:@"showWelcomeWindowOnLaunch"];
+}
+
+- (void)saveProperties
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:[_showOnLaunchButton integerValue] forKey:@"showWelcomeWindowOnLaunch"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)checkboxButtonClicked:(id)sender
+{
+    [self saveProperties];
 }
 
 - (IBAction)openPreferences:(id)sender
-{
-    [[self window] performClose:self];
-    
+{    
     if ([_welcomeWCDelegate respondsToSelector:@selector(openPreferences)])
     {
         [_welcomeWCDelegate openPreferences];
     }
+}
+
+- (IBAction)openCFSFolder:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[NSString stringWithFormat:@"file://localhost%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+}
+
+- (IBAction)openStorageAccount:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getstorage.net/panel/user"]];
+}
+
+- (void)mouseMoved:(NSEvent *)theEvent
+{
+    if (NSPointInRect([theEvent locationInWindow], [_storageKeyBox frame]))
+        [_storageKeyBox setAlphaValue:boxOpacityHover];
+    else
+        [_storageKeyBox setAlphaValue:boxOpacityIdle];
+
+    if (NSPointInRect([theEvent locationInWindow], [_cfsFolderBox frame]))
+        [_cfsFolderBox setAlphaValue:boxOpacityHover];
+    else
+        [_cfsFolderBox setAlphaValue:boxOpacityIdle];
+
+    if (NSPointInRect([theEvent locationInWindow], [_accountBox frame]))
+        [_accountBox setAlphaValue:boxOpacityHover];
+    else
+        [_accountBox setAlphaValue:boxOpacityIdle];
+}
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    if (NSPointInRect([theEvent locationInWindow], [_storageKeyBox frame]))
+        [self openPreferences:self];
+    
+    if (NSPointInRect([theEvent locationInWindow], [_cfsFolderBox frame]))
+        [self openCFSFolder:self];
+    
+    if (NSPointInRect([theEvent locationInWindow], [_accountBox frame]))
+        [self openStorageAccount:self];
+    
+    [_storageKeyBox setAlphaValue:boxOpacityIdle];
+    [_cfsFolderBox setAlphaValue:boxOpacityIdle];
+    [_accountBox setAlphaValue:boxOpacityIdle];
 }
 
 @end

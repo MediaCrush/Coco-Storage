@@ -12,8 +12,12 @@
 
 @property (nonatomic, retain) NSURLRequest *urlRequest;
 
+@property (nonatomic, retain) NSString *packetType;
+@property (nonatomic, retain) NSMutableDictionary *userInfo;
+
 @property (nonatomic, assign) BOOL inUse;
 
++ (id)genericPacketWithRequest:(NSURLRequest *)request packetType:(NSString *)packetType userInfo:(NSMutableDictionary *)userInfo;
 + (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod contentParts:(NSArray *)parts;
 + (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod fileName:(NSString *)fileName mainBodyString:(NSData *)bodyData;
 + (NSData *)contentPartWithName:(NSString *)name fileName:(NSString *)fileName content:(NSData *)content;

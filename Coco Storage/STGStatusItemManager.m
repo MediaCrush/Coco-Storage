@@ -16,11 +16,17 @@
 #import "STGPacket.h"
 #import "STGPacketUploadFile.h"
 
+#import "STGStatusItemDrawingHelper.h"
+
 @implementation STGStatusItemManager
 
 @synthesize delegate = _delegate;
 
 @synthesize statusItem = _statusItem;
+
+@synthesize timer = _timer;
+@synthesize isSyncing = _isSyncing;
+@synthesize ticks = _ticks;
 
 @synthesize statusMenu = _statusMenu;
 
@@ -55,11 +61,23 @@
         [_statusItem setTitle:@""];
         [_statusItem setHighlightMode:YES];
         [_statusItem setToolTip:@"Coco Storage"];
-        [_statusItem setImage:[NSImage imageNamed:@"CocoStorageStatusBarIcon.png"]];
+        [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:0.0]];
         [[_statusItem menu] setDelegate:self];
+        
+        [self setTimer:[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
     }
     
     return self;
+}
+
+- (void)timerFired:(NSTimer *)timer
+{
+    if (_isSyncing)
+    {
+        [_statusItem setImage:[STGStatusItemDrawingHelper getSyncingIcon:_ticks]];
+    }
+    
+    [self setTicks:_ticks + 1];
 }
 
 - (void)updateRecentFiles:(NSArray *)recentFiles
@@ -127,7 +145,7 @@
             if (i < 9 || [uploadEntries count] == 10)
             {
                 float progress = i == 0 ? currentFileProgress : 0.0;
-                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%3.0f%%)", [[[[uploadEntries objectAtIndex:i] dataCaptureEntry] fileURL] lastPathComponent], progress] action:@selector(cancelQueueFile:) keyEquivalent:@""];
+                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%3.0f%%)", [[[[[uploadEntries objectAtIndex:i] userInfo] objectForKey:@"dataCaptureEntry"] fileURL] lastPathComponent], progress] action:@selector(cancelQueueFile:) keyEquivalent:@""];
                 [menuItem setTarget:self];
                 [menuItem setImage:[NSImage imageNamed:@"NSStopProgressTemplate"]];
                 [menuItem setTag:i];
@@ -144,11 +162,7 @@
 
 - (void)setStatusItemUploadProgress:(float)progress
 {
-    int imageNumber = progress * 15;
-    if (imageNumber == 0)
-        [_statusItem setImage:[NSImage imageNamed:@"CocoStorageStatusBarIcon.png"]];
-    else
-        [_statusItem setImage:[NSImage imageNamed:[NSString stringWithFormat:@"CocoStorageStatusBarIcon%02i.png", imageNumber]]];
+    [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:progress]];
 }
 
 - (void)menuDidClose:(NSMenu *)menu
@@ -204,6 +218,20 @@
         tooltipString = @"Busy";
         statusString = @"Server: Busy";
     }
+    if (status == STGServerStatusServerV1Busy)
+    {
+        tooltipString = @"No quick uploads";
+        statusString = @"No quick uploads";
+        
+        avaialable = YES;
+    }
+    if (status == STGServerStatusServerV2Busy)
+    {
+        tooltipString = @"No CFS";
+        statusString = @"No CFS";
+        
+        avaialable = YES;
+    }
 
     [_serverStatusItem setTitle:statusString];
     [_serverStatusItem setImage:[NSImage imageNamed:avaialable ? @"ServerStatusOK.png" : @"ServerStatusUnavailable.png"]];
@@ -237,6 +265,11 @@
 - (IBAction)quit:(id)sender
 {
     [NSApp terminate:self];
+}
+
+- (IBAction)openCFSFolder:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[NSString stringWithFormat:@"file://localhost%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 }
 
 - (IBAction)cancelUploads:(id)sender

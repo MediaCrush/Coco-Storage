@@ -31,31 +31,44 @@
 		8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4BD172884AE00F09884 /* STGFileHelper.m */; };
 		803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */; };
 		803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */; };
+		80485FCC1747BF9200CB6226 /* DividerLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FCB1747BF9200CB6226 /* DividerLine.png */; };
+		80485FCE1747E85500CB6226 /* DividerLineM.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FCD1747E85500CB6226 /* DividerLineM.png */; };
+		80485FD51747EC9800CB6226 /* WelcomeWindowBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FD31747EC9800CB6226 /* WelcomeWindowBG.png */; };
+		80485FD61747EC9800CB6226 /* WelcomeWindowBGBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FD41747EC9800CB6226 /* WelcomeWindowBGBottom.png */; };
+		80485FE01747EFF400CB6226 /* CocoStorageLogoText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FDF1747EFF400CB6226 /* CocoStorageLogoText.png */; };
+		80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FE51747F9B200CB6226 /* ButtonRecessed.png */; };
+		80485FE91747FABF00CB6226 /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80485FE81747FABC00CB6226 /* NSButton+TextColor.m */; };
+		80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FF6174802BF00CB6226 /* CocoStorageStatusBarIcon.png */; };
+		80486005174802C000CB6226 /* CocoStorageStatusBarIcon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FF7174802BF00CB6226 /* CocoStorageStatusBarIcon01.png */; };
+		80486006174802C000CB6226 /* CocoStorageStatusBarIcon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FF8174802BF00CB6226 /* CocoStorageStatusBarIcon02.png */; };
+		80486007174802C000CB6226 /* CocoStorageStatusBarIcon03.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FF9174802C000CB6226 /* CocoStorageStatusBarIcon03.png */; };
+		80486008174802C000CB6226 /* CocoStorageStatusBarIcon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FFA174802C000CB6226 /* CocoStorageStatusBarIcon04.png */; };
+		80486009174802C000CB6226 /* CocoStorageStatusBarIcon05.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FFB174802C000CB6226 /* CocoStorageStatusBarIcon05.png */; };
+		8048600A174802C000CB6226 /* CocoStorageStatusBarIcon06.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FFC174802C000CB6226 /* CocoStorageStatusBarIcon06.png */; };
+		8048600B174802C000CB6226 /* CocoStorageStatusBarIcon07.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FFD174802C000CB6226 /* CocoStorageStatusBarIcon07.png */; };
+		8048600C174802C000CB6226 /* CocoStorageStatusBarIcon08.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FFE174802C000CB6226 /* CocoStorageStatusBarIcon08.png */; };
+		8048600D174802C000CB6226 /* CocoStorageStatusBarIcon09.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FFF174802C000CB6226 /* CocoStorageStatusBarIcon09.png */; };
+		8048600E174802C000CB6226 /* CocoStorageStatusBarIcon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486000174802C000CB6226 /* CocoStorageStatusBarIcon10.png */; };
+		8048600F174802C000CB6226 /* CocoStorageStatusBarIcon11.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486001174802C000CB6226 /* CocoStorageStatusBarIcon11.png */; };
+		80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486002174802C000CB6226 /* CocoStorageStatusBarIcon12.png */; };
+		80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486003174802C000CB6226 /* CocoStorageStatusBarIcon13.png */; };
+		804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */; };
+		8048601E1748185F00CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8048601D1748185F00CB6226 /* StatusBarIconUpdateOverlay.png */; };
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
 		8049269E173EED6400C08A7F /* STGPacketUploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269D173EED6400C08A7F /* STGPacketUploadFile.m */; };
 		804926A1173EF80200C08A7F /* STGPacketDeleteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */; };
+		80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B461746899200D0C790 /* STGOptionsCFSViewController.m */; };
+		80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */; };
+		80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */; };
+		80781B4F17469AF300D0C790 /* STGPacketGetFileList.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4E17469AF300D0C790 /* STGPacketGetFileList.m */; };
+		80781B531746B26400D0C790 /* STGOptionsQuickUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B511746B26400D0C790 /* STGOptionsQuickUploadViewController.m */; };
+		80781B541746B26400D0C790 /* STGOptionsQuickUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B521746B26400D0C790 /* STGOptionsQuickUploadViewController.xib */; };
 		807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A667E172A97B200E0212C /* STGHotkeyHelper.m */; };
 		807A6682172A98AD00E0212C /* STGHotkeyHelperEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A6681172A98AD00E0212C /* STGHotkeyHelperEntry.m */; };
 		807A6689172AC6DF00E0212C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A6688172AC6DF00E0212C /* CoreServices.framework */; };
 		807A668B172AC79900E0212C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A668A172AC79900E0212C /* Security.framework */; };
 		807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A668D172AD23900E0212C /* STGSystemHelper.m */; };
-		807A66F1172AF70E00E0212C /* CocoStorageStatusBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E1172AF70E00E0212C /* CocoStorageStatusBarIcon.png */; };
-		807A66F2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png */; };
-		807A66F3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png */; };
-		807A66F4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png */; };
-		807A66F5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png */; };
-		807A66F6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png */; };
-		807A66F7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png */; };
-		807A66F8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png */; };
-		807A66F9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66E9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png */; };
-		807A66FA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png */; };
-		807A66FB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png */; };
-		807A66FC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png */; };
-		807A66FD172AF70E00E0212C /* CocoStorageStatusBarIcon12.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66ED172AF70E00E0212C /* CocoStorageStatusBarIcon12.png */; };
-		807A66FE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png */; };
-		807A66FF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66EF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png */; };
-		807A6700172AF70E00E0212C /* CocoStorageStatusBarIcon15.png in Resources */ = {isa = PBXBuildFile; fileRef = 807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */; };
 		807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 807A6701172AF86000E0212C /* CocoStorageLogo.icns */; };
 		80CC42631733C3B40068476F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80CC42621733C3B40068476F /* dsa_pub.pem */; };
 		80D7F9BB1741687100851DDB /* STGPacketGetAPIStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */; };
@@ -125,6 +138,31 @@
 		803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGDataCaptureManager.m; sourceTree = "<group>"; };
 		803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionTextField.h; sourceTree = "<group>"; };
 		803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionTextField.m; sourceTree = "<group>"; };
+		80485FCB1747BF9200CB6226 /* DividerLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DividerLine.png; sourceTree = "<group>"; };
+		80485FCD1747E85500CB6226 /* DividerLineM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DividerLineM.png; sourceTree = "<group>"; };
+		80485FD31747EC9800CB6226 /* WelcomeWindowBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeWindowBG.png; sourceTree = "<group>"; };
+		80485FD41747EC9800CB6226 /* WelcomeWindowBGBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeWindowBGBottom.png; sourceTree = "<group>"; };
+		80485FDF1747EFF400CB6226 /* CocoStorageLogoText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageLogoText.png; sourceTree = "<group>"; };
+		80485FE51747F9B200CB6226 /* ButtonRecessed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonRecessed.png; sourceTree = "<group>"; };
+		80485FE71747FABB00CB6226 /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
+		80485FE81747FABC00CB6226 /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
+		80485FF6174802BF00CB6226 /* CocoStorageStatusBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon.png; sourceTree = "<group>"; };
+		80485FF7174802BF00CB6226 /* CocoStorageStatusBarIcon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon01.png; sourceTree = "<group>"; };
+		80485FF8174802BF00CB6226 /* CocoStorageStatusBarIcon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon02.png; sourceTree = "<group>"; };
+		80485FF9174802C000CB6226 /* CocoStorageStatusBarIcon03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon03.png; sourceTree = "<group>"; };
+		80485FFA174802C000CB6226 /* CocoStorageStatusBarIcon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon04.png; sourceTree = "<group>"; };
+		80485FFB174802C000CB6226 /* CocoStorageStatusBarIcon05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon05.png; sourceTree = "<group>"; };
+		80485FFC174802C000CB6226 /* CocoStorageStatusBarIcon06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon06.png; sourceTree = "<group>"; };
+		80485FFD174802C000CB6226 /* CocoStorageStatusBarIcon07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon07.png; sourceTree = "<group>"; };
+		80485FFE174802C000CB6226 /* CocoStorageStatusBarIcon08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon08.png; sourceTree = "<group>"; };
+		80485FFF174802C000CB6226 /* CocoStorageStatusBarIcon09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon09.png; sourceTree = "<group>"; };
+		80486000174802C000CB6226 /* CocoStorageStatusBarIcon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon10.png; sourceTree = "<group>"; };
+		80486001174802C000CB6226 /* CocoStorageStatusBarIcon11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon11.png; sourceTree = "<group>"; };
+		80486002174802C000CB6226 /* CocoStorageStatusBarIcon12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon12.png; sourceTree = "<group>"; };
+		80486003174802C000CB6226 /* CocoStorageStatusBarIcon13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon13.png; sourceTree = "<group>"; };
+		804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemDrawingHelper.h; sourceTree = "<group>"; };
+		804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemDrawingHelper.m; sourceTree = "<group>"; };
+		8048601D1748185F00CB6226 /* StatusBarIconUpdateOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusBarIconUpdateOverlay.png; sourceTree = "<group>"; };
 		80492696173EEAB100C08A7F /* STGPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketQueue.h; sourceTree = "<group>"; };
 		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
 		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
@@ -133,6 +171,16 @@
 		8049269D173EED6400C08A7F /* STGPacketUploadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketUploadFile.m; sourceTree = "<group>"; };
 		8049269F173EF80100C08A7F /* STGPacketDeleteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketDeleteFile.h; sourceTree = "<group>"; };
 		804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketDeleteFile.m; sourceTree = "<group>"; };
+		80781B451746899200D0C790 /* STGOptionsCFSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsCFSViewController.h; sourceTree = "<group>"; };
+		80781B461746899200D0C790 /* STGOptionsCFSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsCFSViewController.m; sourceTree = "<group>"; };
+		80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsCFSViewController.xib; sourceTree = "<group>"; };
+		80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfiguration.h; sourceTree = "<group>"; };
+		80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfiguration.m; sourceTree = "<group>"; };
+		80781B4D17469AF300D0C790 /* STGPacketGetFileList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketGetFileList.h; sourceTree = "<group>"; };
+		80781B4E17469AF300D0C790 /* STGPacketGetFileList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketGetFileList.m; sourceTree = "<group>"; };
+		80781B501746B26400D0C790 /* STGOptionsQuickUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsQuickUploadViewController.h; sourceTree = "<group>"; };
+		80781B511746B26400D0C790 /* STGOptionsQuickUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsQuickUploadViewController.m; sourceTree = "<group>"; };
+		80781B521746B26400D0C790 /* STGOptionsQuickUploadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsQuickUploadViewController.xib; sourceTree = "<group>"; };
 		807A667D172A97B200E0212C /* STGHotkeyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGHotkeyHelper.h; sourceTree = "<group>"; };
 		807A667E172A97B200E0212C /* STGHotkeyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGHotkeyHelper.m; sourceTree = "<group>"; };
 		807A6680172A98AD00E0212C /* STGHotkeyHelperEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGHotkeyHelperEntry.h; sourceTree = "<group>"; };
@@ -141,22 +189,6 @@
 		807A668A172AC79900E0212C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		807A668C172AD23800E0212C /* STGSystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGSystemHelper.h; sourceTree = "<group>"; };
 		807A668D172AD23900E0212C /* STGSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGSystemHelper.m; sourceTree = "<group>"; };
-		807A66E1172AF70E00E0212C /* CocoStorageStatusBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon.png; sourceTree = "<group>"; };
-		807A66E2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon01.png; sourceTree = "<group>"; };
-		807A66E3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon02.png; sourceTree = "<group>"; };
-		807A66E4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon03.png; sourceTree = "<group>"; };
-		807A66E5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon04.png; sourceTree = "<group>"; };
-		807A66E6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon05.png; sourceTree = "<group>"; };
-		807A66E7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon06.png; sourceTree = "<group>"; };
-		807A66E8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon07.png; sourceTree = "<group>"; };
-		807A66E9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon08.png; sourceTree = "<group>"; };
-		807A66EA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon09.png; sourceTree = "<group>"; };
-		807A66EB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon10.png; sourceTree = "<group>"; };
-		807A66EC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon11.png; sourceTree = "<group>"; };
-		807A66ED172AF70E00E0212C /* CocoStorageStatusBarIcon12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon12.png; sourceTree = "<group>"; };
-		807A66EE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon13.png; sourceTree = "<group>"; };
-		807A66EF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon14.png; sourceTree = "<group>"; };
-		807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon15.png; sourceTree = "<group>"; };
 		807A6701172AF86000E0212C /* CocoStorageLogo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CocoStorageLogo.icns; sourceTree = "<group>"; };
 		80CC42621733C3B40068476F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		80D7F9B91741687100851DDB /* STGPacketGetAPIStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketGetAPIStatus.h; sourceTree = "<group>"; };
@@ -254,6 +286,8 @@
 				80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */,
 				80D7F9C91741923E00851DDB /* STGPacketGetObjectInfo.h */,
 				80D7F9CA1741923E00851DDB /* STGPacketGetObjectInfo.m */,
+				80781B4D17469AF300D0C790 /* STGPacketGetFileList.h */,
+				80781B4E17469AF300D0C790 /* STGPacketGetFileList.m */,
 				803C33B5172C780000E8CE3F /* STGDataCaptureManager.h */,
 				803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */,
 				8011328B172966CB006702B9 /* STGDataCaptureEntry.h */,
@@ -261,6 +295,12 @@
 				8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */,
 				8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */,
 				8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */,
+				80781B501746B26400D0C790 /* STGOptionsQuickUploadViewController.h */,
+				80781B511746B26400D0C790 /* STGOptionsQuickUploadViewController.m */,
+				80781B521746B26400D0C790 /* STGOptionsQuickUploadViewController.xib */,
+				80781B451746899200D0C790 /* STGOptionsCFSViewController.h */,
+				80781B461746899200D0C790 /* STGOptionsCFSViewController.m */,
+				80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */,
 				8029A49B17283EEF00F09884 /* STGOptionsShortcutsViewController.h */,
 				8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */,
 				8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */,
@@ -278,6 +318,8 @@
 				80210E50172EC9920056C502 /* STGRecentFileView.xib */,
 				80210E52172EDE050056C502 /* STGRecentUploadView.h */,
 				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
+				804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */,
+				804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */,
 				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
 				8029A4BD172884AE00F09884 /* STGFileHelper.m */,
 				807A667D172A97B200E0212C /* STGHotkeyHelper.h */,
@@ -288,6 +330,10 @@
 				807A668D172AD23900E0212C /* STGSystemHelper.m */,
 				80D7F9BC1741700400851DDB /* STGNetworkHelper.h */,
 				80D7F9BD1741700400851DDB /* STGNetworkHelper.m */,
+				80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */,
+				80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */,
+				80485FE71747FABB00CB6226 /* NSButton+TextColor.h */,
+				80485FE81747FABC00CB6226 /* NSButton+TextColor.m */,
 				80068FC917272CA800DA1492 /* Supporting Files */,
 			);
 			path = "Coco Storage";
@@ -330,23 +376,28 @@
 		80CC425F1733C39D0068476F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				80485FE51747F9B200CB6226 /* ButtonRecessed.png */,
+				80485FD31747EC9800CB6226 /* WelcomeWindowBG.png */,
+				80485FD41747EC9800CB6226 /* WelcomeWindowBGBottom.png */,
+				80485FDF1747EFF400CB6226 /* CocoStorageLogoText.png */,
+				80485FCB1747BF9200CB6226 /* DividerLine.png */,
+				80485FCD1747E85500CB6226 /* DividerLineM.png */,
+				80485FF6174802BF00CB6226 /* CocoStorageStatusBarIcon.png */,
+				80485FF7174802BF00CB6226 /* CocoStorageStatusBarIcon01.png */,
+				80485FF8174802BF00CB6226 /* CocoStorageStatusBarIcon02.png */,
+				80485FF9174802C000CB6226 /* CocoStorageStatusBarIcon03.png */,
+				80485FFA174802C000CB6226 /* CocoStorageStatusBarIcon04.png */,
+				80485FFB174802C000CB6226 /* CocoStorageStatusBarIcon05.png */,
+				80485FFC174802C000CB6226 /* CocoStorageStatusBarIcon06.png */,
+				80485FFD174802C000CB6226 /* CocoStorageStatusBarIcon07.png */,
+				80485FFE174802C000CB6226 /* CocoStorageStatusBarIcon08.png */,
+				80485FFF174802C000CB6226 /* CocoStorageStatusBarIcon09.png */,
+				80486000174802C000CB6226 /* CocoStorageStatusBarIcon10.png */,
+				80486001174802C000CB6226 /* CocoStorageStatusBarIcon11.png */,
+				80486002174802C000CB6226 /* CocoStorageStatusBarIcon12.png */,
+				80486003174802C000CB6226 /* CocoStorageStatusBarIcon13.png */,
+				8048601D1748185F00CB6226 /* StatusBarIconUpdateOverlay.png */,
 				807A6701172AF86000E0212C /* CocoStorageLogo.icns */,
-				807A66E1172AF70E00E0212C /* CocoStorageStatusBarIcon.png */,
-				807A66E2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png */,
-				807A66E3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png */,
-				807A66E4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png */,
-				807A66E5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png */,
-				807A66E6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png */,
-				807A66E7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png */,
-				807A66E8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png */,
-				807A66E9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png */,
-				807A66EA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png */,
-				807A66EB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png */,
-				807A66EC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png */,
-				807A66ED172AF70E00E0212C /* CocoStorageStatusBarIcon12.png */,
-				807A66EE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png */,
-				807A66EF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png */,
-				807A66F0172AF70E00E0212C /* CocoStorageStatusBarIcon15.png */,
 				80D7F9C51741773A00851DDB /* ServerStatusOK.png */,
 				80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */,
 			);
@@ -429,22 +480,6 @@
 				8029A4A11728427900F09884 /* MainMenu.xib in Resources */,
 				8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */,
 				801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */,
-				807A66F1172AF70E00E0212C /* CocoStorageStatusBarIcon.png in Resources */,
-				807A66F2172AF70E00E0212C /* CocoStorageStatusBarIcon01.png in Resources */,
-				807A66F3172AF70E00E0212C /* CocoStorageStatusBarIcon02.png in Resources */,
-				807A66F4172AF70E00E0212C /* CocoStorageStatusBarIcon03.png in Resources */,
-				807A66F5172AF70E00E0212C /* CocoStorageStatusBarIcon04.png in Resources */,
-				807A66F6172AF70E00E0212C /* CocoStorageStatusBarIcon05.png in Resources */,
-				807A66F7172AF70E00E0212C /* CocoStorageStatusBarIcon06.png in Resources */,
-				807A66F8172AF70E00E0212C /* CocoStorageStatusBarIcon07.png in Resources */,
-				807A66F9172AF70E00E0212C /* CocoStorageStatusBarIcon08.png in Resources */,
-				807A66FA172AF70E00E0212C /* CocoStorageStatusBarIcon09.png in Resources */,
-				807A66FB172AF70E00E0212C /* CocoStorageStatusBarIcon10.png in Resources */,
-				807A66FC172AF70E00E0212C /* CocoStorageStatusBarIcon11.png in Resources */,
-				807A66FD172AF70E00E0212C /* CocoStorageStatusBarIcon12.png in Resources */,
-				807A66FE172AF70E00E0212C /* CocoStorageStatusBarIcon13.png in Resources */,
-				807A66FF172AF70E00E0212C /* CocoStorageStatusBarIcon14.png in Resources */,
-				807A6700172AF70E00E0212C /* CocoStorageStatusBarIcon15.png in Resources */,
 				807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */,
 				80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */,
 				80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */,
@@ -452,6 +487,29 @@
 				80CC42631733C3B40068476F /* dsa_pub.pem in Resources */,
 				80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */,
 				80D7F9C81741773B00851DDB /* ServerStatusUnavailable.png in Resources */,
+				80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */,
+				80781B541746B26400D0C790 /* STGOptionsQuickUploadViewController.xib in Resources */,
+				80485FCC1747BF9200CB6226 /* DividerLine.png in Resources */,
+				80485FCE1747E85500CB6226 /* DividerLineM.png in Resources */,
+				80485FD51747EC9800CB6226 /* WelcomeWindowBG.png in Resources */,
+				80485FD61747EC9800CB6226 /* WelcomeWindowBGBottom.png in Resources */,
+				80485FE01747EFF400CB6226 /* CocoStorageLogoText.png in Resources */,
+				80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */,
+				80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */,
+				80486005174802C000CB6226 /* CocoStorageStatusBarIcon01.png in Resources */,
+				80486006174802C000CB6226 /* CocoStorageStatusBarIcon02.png in Resources */,
+				80486007174802C000CB6226 /* CocoStorageStatusBarIcon03.png in Resources */,
+				80486008174802C000CB6226 /* CocoStorageStatusBarIcon04.png in Resources */,
+				80486009174802C000CB6226 /* CocoStorageStatusBarIcon05.png in Resources */,
+				8048600A174802C000CB6226 /* CocoStorageStatusBarIcon06.png in Resources */,
+				8048600B174802C000CB6226 /* CocoStorageStatusBarIcon07.png in Resources */,
+				8048600C174802C000CB6226 /* CocoStorageStatusBarIcon08.png in Resources */,
+				8048600D174802C000CB6226 /* CocoStorageStatusBarIcon09.png in Resources */,
+				8048600E174802C000CB6226 /* CocoStorageStatusBarIcon10.png in Resources */,
+				8048600F174802C000CB6226 /* CocoStorageStatusBarIcon11.png in Resources */,
+				80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */,
+				80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */,
+				8048601E1748185F00CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +544,12 @@
 				80D7F9BB1741687100851DDB /* STGPacketGetAPIStatus.m in Sources */,
 				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
 				80D7F9CB1741923F00851DDB /* STGPacketGetObjectInfo.m in Sources */,
+				80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */,
+				80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */,
+				80781B4F17469AF300D0C790 /* STGPacketGetFileList.m in Sources */,
+				80781B531746B26400D0C790 /* STGOptionsQuickUploadViewController.m in Sources */,
+				80485FE91747FABF00CB6226 /* NSButton+TextColor.m in Sources */,
+				804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

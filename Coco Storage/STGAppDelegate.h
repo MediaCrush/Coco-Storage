@@ -25,6 +25,8 @@
 
 @class STGOptionsGeneralViewController;
 @class STGOptionsShortcutsViewController;
+@class STGOptionsQuickUploadViewController;
+@class STGOptionsCFSViewController;
 @class STGOptionsAboutViewController;
 
 @class STGStatusItemManager;
@@ -40,6 +42,9 @@
 @property (nonatomic, retain) NSTimer *uploadTimer;
 @property (nonatomic, assign) NSUInteger ticksAlive;
 
+@property (nonatomic, assign) BOOL apiV1Alive;
+@property (nonatomic, assign) BOOL apiV2Alive;
+
 @property (nonatomic, retain) MASPreferencesWindowController *prefsController;
 @property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
 
@@ -48,20 +53,19 @@
 @property (nonatomic, retain) STGPacketQueue *packetUploadV1Queue;
 @property (nonatomic, retain) STGPacketQueue *packetUploadV2Queue;
 @property (nonatomic, retain) STGPacketQueue *packetSupportQueue;
-@property (nonatomic, retain) NSString *uploadLink;
-@property (nonatomic, retain) NSString *deletionLink;
-@property (nonatomic, retain) NSString *getAPIStatusLink;
-@property (nonatomic, retain) NSString *getObjectInfoLink;
 
 @property (nonatomic, retain) STGHotkeyHelper *hotkeyHelper;
 
 @property (nonatomic, retain) STGOptionsGeneralViewController *optionsGeneralVC;
 @property (nonatomic, retain) STGOptionsShortcutsViewController *optionsShortcutsVC;
+@property (nonatomic, retain) STGOptionsQuickUploadViewController *optionsQuickUploadVC;
+@property (nonatomic, retain) STGOptionsCFSViewController *optionsCFSVC;
 @property (nonatomic, retain) STGOptionsAboutViewController *optionsAboutVC;
 
 @property STGStatusItemManager *statusItemManager;
 
 - (IBAction)openPreferences:(id)sender;
+- (IBAction)openWelcomeWindow:(id)sender;
 
 - (void)readFromUserDefaults;
 

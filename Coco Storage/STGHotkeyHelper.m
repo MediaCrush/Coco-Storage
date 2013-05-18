@@ -29,7 +29,9 @@ CGEventRef copyOrModifyKeyboardEvent(CGEventTapProxy proxy, CGEventType type, CG
 
         if (returnEvent)
         {
-            return [returnEvent CGEvent];
+            CGEventRef eventRef = [returnEvent CGEvent];
+            CFRetain(eventRef);
+            return eventRef;
         }
         else
         {

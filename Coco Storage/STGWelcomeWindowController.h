@@ -18,8 +18,22 @@
 
 @property (nonatomic, assign) id<STGWelcomeWindowControllerDelegate> welcomeWCDelegate;
 
-@property (nonatomic, retain) IBOutlet NSTextView *changelogTextView;
+@property (nonatomic, retain) NSTrackingArea *trackingArea;
+
+@property (nonatomic, retain) IBOutlet NSButton *showOnLaunchButton;
+
+@property (nonatomic, retain) IBOutlet NSBox *storageKeyBox;
+@property (nonatomic, retain) IBOutlet NSBox *cfsFolderBox;
+@property (nonatomic, retain) IBOutlet NSBox *accountBox;
+
++ (void)registerStandardDefaults:(NSMutableDictionary *)defaults;
+- (void)saveProperties;
+
+- (IBAction)checkboxButtonClicked:(id)sender;
 
 - (IBAction)openPreferences:(id)sender;
+- (IBAction)openCFSFolder:(id)sender;
+- (IBAction)openStorageAccount:(id)sender;
+
 
 @end

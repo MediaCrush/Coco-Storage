@@ -88,13 +88,6 @@
         [_delegate updateShortcuts];
 }
 
-- (void)viewDidDisappear
-{
-    [self saveProperties];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 - (void)updateTextFieldString:(NSTextField *)textField
 {
     NSString *userDefaultsKey = nil;

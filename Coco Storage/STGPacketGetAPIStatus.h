@@ -10,6 +10,6 @@
 
 @interface STGPacketGetAPIStatus : STGPacket
 
-- (id)initWithLink:(NSString *)link key:(NSString *)key;
+- (id)initWithLink:(NSString *)link apiInfo:(int)apiInfo key:(NSString *)key;
 
 @end

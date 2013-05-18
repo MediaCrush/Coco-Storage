@@ -41,11 +41,12 @@
         return nil;
     
     // Iterate over the LoginItems.
-    NSArray *loginItems = (__bridge NSArray *)LSSharedFileListCopySnapshot(loginItemsRef, nil);
-    for (int currentIndex = 0; currentIndex < [loginItems count]; currentIndex++)
+    CFArrayRef loginItems = LSSharedFileListCopySnapshot(loginItemsRef, nil);
+    NSArray *loginItemsArray = (__bridge NSArray *)loginItems;
+    for (int currentIndex = 0; currentIndex < [loginItemsArray count]; currentIndex++)
     {
         // Get the current LoginItem and resolve its URL.
-        LSSharedFileListItemRef currentItemRef = (__bridge LSSharedFileListItemRef)[loginItems objectAtIndex:currentIndex];
+        LSSharedFileListItemRef currentItemRef = (__bridge LSSharedFileListItemRef)[loginItemsArray objectAtIndex:currentIndex];
         if (LSSharedFileListItemResolve(currentItemRef, 0, (void *) &itemUrl, NULL) == noErr)
         {
             // Compare the URLs for the current LoginItem and the app.
@@ -60,6 +61,7 @@
     if (itemRef != nil) CFRetain(itemRef);
     // Release the LoginItems lists.
     CFRelease(loginItemsRef);
+    CFRelease(loginItems);
     
     return itemRef;
 }

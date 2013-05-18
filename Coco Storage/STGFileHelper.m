@@ -21,6 +21,12 @@
     return finalPath;
 }
 
++ (NSString *)getDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [paths objectAtIndex:0];
+}
+
 + (BOOL)createFolderIfNonExistent:(NSString *)path
 {
     if(![[NSFileManager defaultManager] fileExistsAtPath:path])
