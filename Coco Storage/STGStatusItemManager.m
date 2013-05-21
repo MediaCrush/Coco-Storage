@@ -14,9 +14,15 @@
 
 #import "STGPacketQueue.h"
 #import "STGPacket.h"
-#import "STGPacketUploadFile.h"
 
 #import "STGStatusItemDrawingHelper.h"
+
+@interface STGStatusItemManager ()
+
+@property (nonatomic, assign) float uploadProgress;
+@property (nonatomic, assign) float isSyncingOpacity;
+
+@end
 
 @implementation STGStatusItemManager
 
@@ -26,6 +32,8 @@
 
 @synthesize timer = _timer;
 @synthesize isSyncing = _isSyncing;
+@synthesize uploadProgress = _uploadProgress;
+@synthesize isSyncingOpacity = _isSyncingOpacity;
 @synthesize ticks = _ticks;
 
 @synthesize statusMenu = _statusMenu;
@@ -61,10 +69,10 @@
         [_statusItem setTitle:@""];
         [_statusItem setHighlightMode:YES];
         [_statusItem setToolTip:@"Coco Storage"];
-        [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:0.0]];
+        [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:0 uploadProgress:0.0 opacity:0.0]];
         [[_statusItem menu] setDelegate:self];
         
-        [self setTimer:[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
+        [self setTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
     }
     
     return self;
@@ -72,9 +80,39 @@
 
 - (void)timerFired:(NSTimer *)timer
 {
-    if (_isSyncing)
+    if (_isSyncing && _uploadProgress == 0.0)
     {
-        [_statusItem setImage:[STGStatusItemDrawingHelper getSyncingIcon:_ticks]];
+        if (_isSyncingOpacity < 1.0)
+            [self setIsSyncingOpacity:_isSyncingOpacity + 0.25];
+    }
+    else if(_isSyncing)
+    {
+        if (_isSyncingOpacity > 0.5)
+            [self setIsSyncingOpacity:_isSyncingOpacity - 0.25];
+    }
+    else
+    {
+        if (_isSyncingOpacity > 0.0)
+            [self setIsSyncingOpacity:_isSyncingOpacity - 0.25];
+    }
+
+    [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:_ticks uploadProgress:_uploadProgress opacity:_isSyncingOpacity]];
+    
+    if (_isSyncingOpacity > 0.0 || _uploadProgress > 0.0)
+    {
+        if ([timer timeInterval] != 0.1)
+        {
+            [timer invalidate];
+            [self setTimer:[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
+        }
+    }
+    else
+    {
+        if ([timer timeInterval] != 1.0)
+        {
+            [timer invalidate];
+            [self setTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
+        }
     }
     
     [self setTicks:_ticks + 1];
@@ -126,9 +164,9 @@
     
     NSMutableArray *uploadEntries = [[NSMutableArray alloc] init];
     
-    for (STGDataCaptureEntry *entry in [packetQueue uploadQueue])
+    for (STGPacket *entry in [packetQueue uploadQueue])
     {
-        if ([entry isKindOfClass:[STGPacketUploadFile class]])
+        if ([[entry packetType] isEqualToString:@"uploadFile"])
         {
             [uploadEntries addObject:entry];
         }
@@ -162,7 +200,7 @@
 
 - (void)setStatusItemUploadProgress:(float)progress
 {
-    [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:progress]];
+    [self setUploadProgress:progress];
 }
 
 - (void)menuDidClose:(NSMenu *)menu

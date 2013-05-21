@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSString *getAPIV1StatusLink;
 @property (nonatomic, retain) NSString *getAPIV2StatusLink;
 
-@property (nonatomic, retain) NSString *getFileListLink;
+@property (nonatomic, retain) NSString *cfsBaseLink;
 
 + (STGAPIConfiguration *)standardConfiguration;
 

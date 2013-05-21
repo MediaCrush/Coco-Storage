@@ -27,9 +27,11 @@
     
     NSMutableArray *args = [[NSMutableArray alloc] init];
     if(!fullscreen)
-        [args addObject:@"-i"];
+        [args addObject:@"-i"]; //Interactive
+    else
+        [args addObject:@"-C"]; //Capture mouse
     if(silent)
-        [args addObject:@"-x"];
+        [args addObject:@"-x"]; //Silent
     [args addObject:fileName];
     
     [task setArguments: args];

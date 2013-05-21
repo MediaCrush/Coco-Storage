@@ -36,7 +36,7 @@ CGFloat boxOpacityIdle = 0.0f;
     [self addVersion:@"1.0" withChanges:[NSArray arrayWithObject:@"Main Release!"]];
     [self addVersion:@"1.1" withChanges:[NSArray arrayWithObject:@"Bug fixes"]];
     [self addVersion:@"1.2" withChanges:[NSArray arrayWithObjects:@"Improved recent uploads", @"Added deletion of objects", @"Added Welcome Screen", @"Clicking files queued for upload now cancels them", @"Renamed the App Support and Temp folders", @"Bug Fixes", nil]];
-    [self addVersion:@"1.3" withChanges:[NSArray arrayWithObjects:@"Added server status checks", @"Bug Fixes", nil]];
+    [self addVersion:@"1.3" withChanges:[NSArray arrayWithObjects:@"Added server status checks", @"Added CFS functionality", "Added auto-updates (Sparkle)", @"Bug Fixes", nil]];
     
     [[self window] setAcceptsMouseMovedEvents:YES];
     

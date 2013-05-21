@@ -20,22 +20,27 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     if (_isHighlighted)
-    {
         [[NSColor selectedMenuItemColor] set];
-        [NSBezierPath fillRect:dirtyRect];
-    }
+    else
+        [[NSColor whiteColor] set];
+    
+    [NSBezierPath fillRect:dirtyRect];
 
     [super drawRect:dirtyRect];
 }
 
 -(void)mouseEntered:(NSEvent *)theEvent
 {
-    [self setIsHighlighted:YES];    
+    [self setIsHighlighted:YES];
+    
+    [self setNeedsDisplay:YES];
 }
 
 -(void)mouseExited:(NSEvent *)theEvent
 {
     [self setIsHighlighted:NO];
+    
+    [self setNeedsDisplay:YES];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent

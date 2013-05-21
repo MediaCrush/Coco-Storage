@@ -35,6 +35,8 @@
 
 @class SUUpdater;
 
+@class STGCFSSyncCheck;
+
 @interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
@@ -54,6 +56,8 @@
 @property (nonatomic, retain) STGPacketQueue *packetUploadV2Queue;
 @property (nonatomic, retain) STGPacketQueue *packetSupportQueue;
 
+@property (nonatomic, retain) STGCFSSyncCheck *cfsSyncCheck;
+
 @property (nonatomic, retain) STGHotkeyHelper *hotkeyHelper;
 
 @property (nonatomic, retain) STGOptionsGeneralViewController *optionsGeneralVC;
@@ -68,10 +72,9 @@
 - (IBAction)openWelcomeWindow:(id)sender;
 
 - (void)readFromUserDefaults;
+- (void)saveProperties;
 
 - (void)uploadTimerFired:(NSTimer*)theTimer;
-
-- (void)saveProperties;
 
 - (void)updateShortcuts;
 

@@ -69,35 +69,54 @@
     return request;
 }
 
-+ (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod fileName:(NSString *)fileName mainBodyString:(NSData *)bodyData
++ (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod fileName:(NSString *)fileName mainBodyData:(NSData *)bodyData
 {
     return [STGPacket defaultRequestWithUrl:urlString httpMethod:httpMethod contentParts:[NSArray arrayWithObject:[STGPacket contentPartWithName:@"file" fileName:fileName content:bodyData]]];
 }
 
 + (NSData *)contentPartWithName:(NSString *)name fileName:(NSString *)fileName content:(NSData *)content
 {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    
+    if (name)
+        [dict setObject:name forKey:@"name"];
+    if (fileName)
+        [dict setObject:name forKey:@"filename"];
+    
+    return [self contentPartObjectsForKeys:dict content:content];
+}
+
++ (NSData *)contentPartObjectsForKeys:(NSDictionary *)dict content:(NSData *)content
+{
     NSMutableData *partData = [[NSMutableData alloc] init];
     NSMutableString *header = [[NSMutableString alloc] init];
     
     [header appendString:@"Content-Disposition: form-data;"];
-    if (name)
-        [header appendFormat:@" name=\"%@\";", name];
-    if (fileName)
-        [header appendFormat:@" filename=\"%@\";", fileName];
+
+    if (dict)
+    {
+        NSArray *keys = [dict allKeys];
+        
+        for(NSString *key in keys)
+        {
+            [header appendFormat:@" %@=\"%@\";", key, [dict objectForKey:key]];
+        }        
+    }
     [header appendString:@"\r\n"];
     
     [header appendString:@"Content-Type: application/octet-stream\r\n"];
     [header appendString:[NSString stringWithFormat:@"Content-Length: %li\r\n", content ? [content length] : 0]];
     [header appendFormat:@"Content-Transfer-Encoding: binary\r\n"];
-
+    
     [header appendString:@"\r\n"];
-
+    
     [partData appendData:[header dataUsingEncoding:NSUTF8StringEncoding]];
     if (content)
         [partData appendData:content];
-
+    
     return partData;
 }
+
 
 + (NSString *)getValueFromJSON:(NSString *)json key:(NSString *)key
 {

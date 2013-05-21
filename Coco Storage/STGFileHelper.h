@@ -17,4 +17,6 @@
 + (NSString *)storeStringsInString:(NSArray *)array;
 + (NSArray *)readStringsFromString:(NSString *)string;
 
+BOOL AddBadgeToItem(NSString* path, NSData* tag);
+
 @end

@@ -10,7 +10,6 @@
 
 @interface STGStatusItemDrawingHelper : NSObject
 
-+ (NSImage *)getIcon:(float)uploadProgress;
-+ (NSImage *)getSyncingIcon:(int)ticks;
++ (NSImage *)getIcon:(int)ticks uploadProgress:(float)uploadProgress opacity:(float)opacity;
 
 @end

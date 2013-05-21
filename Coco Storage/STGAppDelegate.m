@@ -18,6 +18,7 @@
 #import "STGHotkeyHelperEntry.h"
 
 #import "STGSystemHelper.h"
+#import "STGFileHelper.h"
 #import "STGNetworkHelper.h"
 
 #import "STGOptionsGeneralViewController.h"
@@ -32,13 +33,11 @@
 
 #import "STGPacketQueue.h"
 #import "STGPacket.h"
-#import "STGPacketUploadFile.h"
-#import "STGPacketDeleteFile.h"
-#import "STGPacketGetAPIStatus.h"
-#import "STGPacketGetObjectInfo.h"
-#import "STGPacketGetFileList.h"
+#import "STGPacketCreator.h"
 
 #import "STGAPIConfiguration.h"
+
+#import "STGCFSSyncCheck.h"
 
 STGAppDelegate *sharedAppDelegate;
 
@@ -49,6 +48,8 @@ STGAppDelegate *sharedAppDelegate;
 - (BOOL)checkStorageKeyValid;
 
 - (NSString *)getApiKey;
+
+- (NSString *)getCFSFolder;
 
 @end
 
@@ -68,6 +69,8 @@ STGAppDelegate *sharedAppDelegate;
 @synthesize packetUploadV1Queue = _packetUploadV1Queue;
 @synthesize packetUploadV2Queue = _packetUploadV2Queue;
 @synthesize packetSupportQueue = _packetSupportQueue;
+
+@synthesize cfsSyncCheck = _cfsSyncCheck;
 
 @synthesize recentFilesArray = _recentFilesArray;
 
@@ -132,7 +135,7 @@ STGAppDelegate *sharedAppDelegate;
     [[STGAPIConfiguration standardConfiguration] setGetAPIV1StatusLink:@"http://api.stor.ag/v1/status?key=%@"];
     [[STGAPIConfiguration standardConfiguration] setGetAPIV2StatusLink:@"http://api.stor.ag/v2/status?key=%@"];
 
-    [[STGAPIConfiguration standardConfiguration] setGetFileListLink:@"api.stor.ag/v2/cfs%@?key=%@"];
+    [[STGAPIConfiguration standardConfiguration] setCfsBaseLink:@"api.stor.ag/v2/cfs%@?key=%@"];
 
     [self setOptionsGeneralVC:[[STGOptionsGeneralViewController alloc] initWithNibName:@"STGOptionsGeneralViewController" bundle:nil]];
     [self setOptionsShortcutsVC:[[STGOptionsShortcutsViewController alloc] initWithNibName:@"STGOptionsShortcutsViewController" bundle:nil]];
@@ -178,7 +181,7 @@ STGAppDelegate *sharedAppDelegate;
         STGDataCaptureEntry *entry = [STGDataCaptureEntry entryFromString:string];
         
         if(entry)
-            [_packetUploadV1Queue addEntry:[[STGPacketUploadFile alloc] initWithDataCaptureEntry:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
+            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
     }
     [_packetUploadV1Queue setUploadsPaused:[[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"]];
     [_packetUploadV2Queue setUploadsPaused:[[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"]];
@@ -198,6 +201,33 @@ STGAppDelegate *sharedAppDelegate;
         [STGSystemHelper showDockTile];
     
     [sparkleUpdater setAutomaticallyChecksForUpdates:[[NSUserDefaults standardUserDefaults] integerForKey:@"autoUpdate"] == 1];
+    
+    [self setCfsSyncCheck:[[STGCFSSyncCheck alloc] init]];
+    [_cfsSyncCheck readFromFolder:[STGFileHelper getApplicationSupportDirectory]];
+}
+
+- (void)saveProperties
+{
+    NSMutableArray *uploadQueueStringArray = [[NSMutableArray alloc] init];
+    for (STGPacket *entry in [_packetUploadV1Queue uploadQueue])
+    {
+        if ([[entry packetType] isEqualToString:@"uploadFile"])
+            [uploadQueueStringArray addObject:[[[entry userInfo] objectForKey:@"dataCaptureEntry"] storeInfoInString]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:uploadQueueStringArray forKey:@"uploadQueue"];
+    
+    NSMutableArray *recentFilesStringArray = [[NSMutableArray alloc] initWithCapacity:[_recentFilesArray count]];
+    for (STGDataCaptureEntry *entry in _recentFilesArray)
+    {
+        [recentFilesStringArray addObject:[entry storeInfoInString]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:recentFilesStringArray forKey:@"recentEntries"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"lastVersion"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [_cfsSyncCheck saveToFolder:[STGFileHelper getApplicationSupportDirectory]];
 }
 
 -(void)captureScreen:(BOOL)fullScreen;
@@ -207,7 +237,7 @@ STGAppDelegate *sharedAppDelegate;
         STGDataCaptureEntry *entry = [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0];
         
         if(entry)
-            [_packetUploadV1Queue addEntry:[[STGPacketUploadFile alloc] initWithDataCaptureEntry:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
+            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
         
         
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
@@ -223,7 +253,7 @@ STGAppDelegate *sharedAppDelegate;
         if(entries)
         {
             for (STGDataCaptureEntry *entry in entries)
-                [_packetUploadV1Queue addEntry:[[STGPacketUploadFile alloc] initWithDataCaptureEntry:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
+                [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
         }
         
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
@@ -240,7 +270,7 @@ STGAppDelegate *sharedAppDelegate;
 
 -(void)deleteRecentFile:(STGDataCaptureEntry *)entry
 {
-    [_packetSupportQueue addEntry:[[STGPacketDeleteFile alloc] initWithDataCaptureEntry:entry deletionLink:[[STGAPIConfiguration standardConfiguration] deletionLink] key:[self getApiKey]]];
+    [_packetSupportQueue addEntry:[STGPacketCreator deleteFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] deletionLink] key:[self getApiKey]]];
     
     [_recentFilesArray removeObject:entry];
     [_statusItemManager updateRecentFiles:_recentFilesArray];
@@ -305,8 +335,8 @@ STGAppDelegate *sharedAppDelegate;
             [_statusItemManager updateServerStatus:STGServerStatusServerOffline];
         else
         {
-            [_packetSupportQueue addEntry:[[STGPacketGetAPIStatus alloc] initWithLink:[[STGAPIConfiguration standardConfiguration] getAPIV1StatusLink] apiInfo:1 key:[self getApiKey]]];
-            [_packetSupportQueue addEntry:[[STGPacketGetAPIStatus alloc] initWithLink:[[STGAPIConfiguration standardConfiguration] getAPIV2StatusLink] apiInfo:2 key:[self getApiKey]]];
+            [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration standardConfiguration] getAPIV1StatusLink] apiInfo:1 key:[self getApiKey]]];
+            [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration standardConfiguration] getAPIV2StatusLink] apiInfo:2 key:[self getApiKey]]];
 //            [_packetSupportQueue addEntry:[[STGPacketGetFileList alloc] initWithFilePath:@"" link:[[STGAPIConfiguration standardConfiguration] getFileListLink] key:[self getApiKey]]];
             
 /*            if ([_recentFilesArray count] > 0)
@@ -322,29 +352,18 @@ STGAppDelegate *sharedAppDelegate;
         }
     }
     
+    NSArray *changedFiles = [_cfsSyncCheck getModifiedFiles:[self getCFSFolder]];
+    
+    for (NSString *path in changedFiles)
+    {
+        [_cfsSyncCheck updateModificationDate:path];
+        
+        NSLog(@"Upload file: %@", path);
+        
+//        [_statusItemManager setIsSyncing:YES];
+    }
+        
     _ticksAlive ++;
-}
-
-- (void)saveProperties
-{    
-    NSMutableArray *uploadQueueStringArray = [[NSMutableArray alloc] init];
-    for (STGPacket *entry in [_packetUploadV1Queue uploadQueue])
-    {
-        if ([entry isKindOfClass:[STGPacketUploadFile class]])
-            [uploadQueueStringArray addObject:[[[entry userInfo] objectForKey:@"dataCaptureEntry"] storeInfoInString]];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:uploadQueueStringArray forKey:@"uploadQueue"];
-
-    NSMutableArray *recentFilesStringArray = [[NSMutableArray alloc] initWithCapacity:[_recentFilesArray count]];
-    for (STGDataCaptureEntry *entry in _recentFilesArray)
-    {
-        [recentFilesStringArray addObject:[entry storeInfoInString]];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:recentFilesStringArray forKey:@"recentEntries"];
-
-    [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"lastVersion"];
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)updateShortcuts
@@ -423,6 +442,11 @@ STGAppDelegate *sharedAppDelegate;
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"storageKey"];
 }
 
+- (NSString *)getCFSFolder
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"];
+}
+
 - (NSEvent *)keyPressed:(NSEvent *)event entry:(STGHotkeyHelperEntry *)entry userInfo:(NSDictionary *)userInfo
 {
     if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFullScreen"])
@@ -471,7 +495,7 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)startUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry
 {
-    if ([entry isKindOfClass:[STGPacketUploadFile class]])
+    if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
         [_statusItemManager setStatusItemUploadProgress:0.0];        
     }
@@ -479,7 +503,7 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)updateUploadProgress:(STGPacketQueue *)queue entry:(STGPacket *)entry sentData:(NSInteger)sentData totalData:(NSInteger)totalData
 {
-    if ([entry isKindOfClass:[STGPacketUploadFile class]])
+    if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:((double)sentData / (double)totalData)];
         [_statusItemManager setStatusItemUploadProgress:((double)sentData / (double)totalData)];        
@@ -517,15 +541,13 @@ STGAppDelegate *sharedAppDelegate;
 
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
-        STGPacketUploadFile *uploadEntry = (STGPacketUploadFile *)entry;
-        
         NSString *uploadID = [STGPacket getValueFromJSON:response key:@"id"];
         NSString *link = uploadID ? [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID] : nil;
         
         if (link)
         {
-            [[[uploadEntry userInfo] objectForKey:@"dataCaptureEntry"] setOnlineLink:link];
-            [_recentFilesArray addObject:[[uploadEntry userInfo] objectForKey:@"dataCaptureEntry"]];
+            [[[entry userInfo] objectForKey:@"dataCaptureEntry"] setOnlineLink:link];
+            [_recentFilesArray addObject:[[entry userInfo] objectForKey:@"dataCaptureEntry"]];
             
             while (_recentFilesArray.count > 7)
                 [_recentFilesArray removeObjectAtIndex:0];
@@ -562,7 +584,7 @@ STGAppDelegate *sharedAppDelegate;
                 [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:link]];
             }
             
-            [self onUploadComplete:[[uploadEntry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
+            [self onUploadComplete:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
         }
         else
         {
@@ -570,9 +592,9 @@ STGAppDelegate *sharedAppDelegate;
             NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file upload... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
             [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
             
-            NSLog(@"Full response [error encountered?]: \n%@", response);
+            NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
-            [self onUploadComplete:[[uploadEntry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
+            [self onUploadComplete:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
         }
         
         [_statusItemManager setStatusItemUploadProgress:0.0];
@@ -580,8 +602,6 @@ STGAppDelegate *sharedAppDelegate;
     }
     else if ([[entry packetType] isEqualToString:@"deleteFile"])
     {
-//        STGPacketQueueEntryDeleteFile *deleteEntry = (STGPacketQueueEntryDeleteFile *)entry;
-
         NSString *message = [STGPacket getValueFromJSON:response key:@"message"];        
 
         if ([message isEqualToString:@"Object deleted."])
@@ -593,8 +613,9 @@ STGAppDelegate *sharedAppDelegate;
 /*            [[[_statusItemManager statusItem] menu] cancelTracking];
             NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file deletion... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
             [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];*/
-            
-            NSLog(@"Full response [error encountered?]: \n%@", response);
+
+            if (responseCode != 500) //Not found, probably
+                NSLog(@"Delete file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
         }
     }
     else if ([[entry packetType] isEqualToString:@"getAPIStatus"])
@@ -638,11 +659,11 @@ STGAppDelegate *sharedAppDelegate;
     }
     else if ([[entry packetType] isEqualToString:@"cfs:getFileList"])
     {
-        NSLog(@"File list response:\n%@\nStatus:\n%li", response, responseCode);
+        NSLog(@"File list. Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
     }
     else
     {
-        NSLog(@"Unknown packet entry. Response:\n%@\nStatus:\n%li", response, responseCode);
+        NSLog(@"Unknown packet entry. Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
     }
 }
 

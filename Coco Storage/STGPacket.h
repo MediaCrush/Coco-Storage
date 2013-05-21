@@ -19,8 +19,11 @@
 
 + (id)genericPacketWithRequest:(NSURLRequest *)request packetType:(NSString *)packetType userInfo:(NSMutableDictionary *)userInfo;
 + (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod contentParts:(NSArray *)parts;
-+ (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod fileName:(NSString *)fileName mainBodyString:(NSData *)bodyData;
++ (NSMutableURLRequest *)defaultRequestWithUrl:(NSString *)urlString httpMethod:(NSString *)httpMethod fileName:(NSString *)fileName mainBodyData:(NSData *)bodyData;
+
 + (NSData *)contentPartWithName:(NSString *)name fileName:(NSString *)fileName content:(NSData *)content;
++ (NSData *)contentPartObjectsForKeys:(NSDictionary *)dict content:(NSData *)content;
+
 + (NSString *)getValueFromJSON:(NSString *)json key:(NSString *)key;
 
 @end

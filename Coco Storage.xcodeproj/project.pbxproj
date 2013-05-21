@@ -18,6 +18,8 @@
 		801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */; };
 		801203411732FF9E0003BB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
 		80120345173300C90003BB23 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
+		8017CD0F17491C0B000889C5 /* STGPacketCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD0E17491C0B000889C5 /* STGPacketCreator.m */; };
+		8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
 		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
@@ -28,7 +30,7 @@
 		8029A4A11728427900F09884 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A4A01728427900F09884 /* MainMenu.xib */; };
 		8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */; };
 		8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */; };
-		8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4BD172884AE00F09884 /* STGFileHelper.m */; };
+		8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4BD172884AE00F09884 /* STGFileHelper.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated"; }; };
 		803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */; };
 		803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */; };
 		80485FCC1747BF9200CB6226 /* DividerLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FCB1747BF9200CB6226 /* DividerLine.png */; };
@@ -53,15 +55,12 @@
 		80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486002174802C000CB6226 /* CocoStorageStatusBarIcon12.png */; };
 		80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486003174802C000CB6226 /* CocoStorageStatusBarIcon13.png */; };
 		804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */; };
-		8048601E1748185F00CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8048601D1748185F00CB6226 /* StatusBarIconUpdateOverlay.png */; };
+		8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */; };
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
-		8049269E173EED6400C08A7F /* STGPacketUploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269D173EED6400C08A7F /* STGPacketUploadFile.m */; };
-		804926A1173EF80200C08A7F /* STGPacketDeleteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */; };
 		80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B461746899200D0C790 /* STGOptionsCFSViewController.m */; };
 		80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */; };
 		80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */; };
-		80781B4F17469AF300D0C790 /* STGPacketGetFileList.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4E17469AF300D0C790 /* STGPacketGetFileList.m */; };
 		80781B531746B26400D0C790 /* STGOptionsQuickUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B511746B26400D0C790 /* STGOptionsQuickUploadViewController.m */; };
 		80781B541746B26400D0C790 /* STGOptionsQuickUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B521746B26400D0C790 /* STGOptionsQuickUploadViewController.xib */; };
 		807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A667E172A97B200E0212C /* STGHotkeyHelper.m */; };
@@ -71,12 +70,10 @@
 		807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A668D172AD23900E0212C /* STGSystemHelper.m */; };
 		807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 807A6701172AF86000E0212C /* CocoStorageLogo.icns */; };
 		80CC42631733C3B40068476F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80CC42621733C3B40068476F /* dsa_pub.pem */; };
-		80D7F9BB1741687100851DDB /* STGPacketGetAPIStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */; };
 		80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BD1741700400851DDB /* STGNetworkHelper.m */; };
 		80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D7F9BF1741707500851DDB /* SystemConfiguration.framework */; };
 		80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C51741773A00851DDB /* ServerStatusOK.png */; };
 		80D7F9C81741773B00851DDB /* ServerStatusUnavailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */; };
-		80D7F9CB1741923F00851DDB /* STGPacketGetObjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9CA1741923E00851DDB /* STGPacketGetObjectInfo.m */; };
 		80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */; };
 		80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */; };
 		80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */; };
@@ -117,6 +114,10 @@
 		8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsAboutViewController.m; sourceTree = "<group>"; };
 		801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsAboutViewController.xib; sourceTree = "<group>"; };
 		801203401732FF9D0003BB23 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		8017CD0D17491C0B000889C5 /* STGPacketCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketCreator.h; sourceTree = "<group>"; };
+		8017CD0E17491C0B000889C5 /* STGPacketCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketCreator.m; sourceTree = "<group>"; };
+		8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCFSSyncCheck.h; sourceTree = "<group>"; };
+		8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheck.m; sourceTree = "<group>"; };
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
 		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
 		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
@@ -162,22 +163,16 @@
 		80486003174802C000CB6226 /* CocoStorageStatusBarIcon13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageStatusBarIcon13.png; sourceTree = "<group>"; };
 		804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemDrawingHelper.h; sourceTree = "<group>"; };
 		804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemDrawingHelper.m; sourceTree = "<group>"; };
-		8048601D1748185F00CB6226 /* StatusBarIconUpdateOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusBarIconUpdateOverlay.png; sourceTree = "<group>"; };
+		80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusBarIconUpdateOverlay.png; sourceTree = "<group>"; };
 		80492696173EEAB100C08A7F /* STGPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketQueue.h; sourceTree = "<group>"; };
 		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
 		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
 		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
-		8049269C173EED6400C08A7F /* STGPacketUploadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketUploadFile.h; sourceTree = "<group>"; };
-		8049269D173EED6400C08A7F /* STGPacketUploadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketUploadFile.m; sourceTree = "<group>"; };
-		8049269F173EF80100C08A7F /* STGPacketDeleteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketDeleteFile.h; sourceTree = "<group>"; };
-		804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketDeleteFile.m; sourceTree = "<group>"; };
 		80781B451746899200D0C790 /* STGOptionsCFSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsCFSViewController.h; sourceTree = "<group>"; };
 		80781B461746899200D0C790 /* STGOptionsCFSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsCFSViewController.m; sourceTree = "<group>"; };
 		80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsCFSViewController.xib; sourceTree = "<group>"; };
 		80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfiguration.h; sourceTree = "<group>"; };
 		80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfiguration.m; sourceTree = "<group>"; };
-		80781B4D17469AF300D0C790 /* STGPacketGetFileList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketGetFileList.h; sourceTree = "<group>"; };
-		80781B4E17469AF300D0C790 /* STGPacketGetFileList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketGetFileList.m; sourceTree = "<group>"; };
 		80781B501746B26400D0C790 /* STGOptionsQuickUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsQuickUploadViewController.h; sourceTree = "<group>"; };
 		80781B511746B26400D0C790 /* STGOptionsQuickUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsQuickUploadViewController.m; sourceTree = "<group>"; };
 		80781B521746B26400D0C790 /* STGOptionsQuickUploadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsQuickUploadViewController.xib; sourceTree = "<group>"; };
@@ -191,15 +186,11 @@
 		807A668D172AD23900E0212C /* STGSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGSystemHelper.m; sourceTree = "<group>"; };
 		807A6701172AF86000E0212C /* CocoStorageLogo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CocoStorageLogo.icns; sourceTree = "<group>"; };
 		80CC42621733C3B40068476F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		80D7F9B91741687100851DDB /* STGPacketGetAPIStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketGetAPIStatus.h; sourceTree = "<group>"; };
-		80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketGetAPIStatus.m; sourceTree = "<group>"; };
 		80D7F9BC1741700400851DDB /* STGNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGNetworkHelper.h; sourceTree = "<group>"; };
 		80D7F9BD1741700400851DDB /* STGNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkHelper.m; sourceTree = "<group>"; };
 		80D7F9BF1741707500851DDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		80D7F9C51741773A00851DDB /* ServerStatusOK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServerStatusOK.png; sourceTree = "<group>"; };
 		80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServerStatusUnavailable.png; sourceTree = "<group>"; };
-		80D7F9C91741923E00851DDB /* STGPacketGetObjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketGetObjectInfo.h; sourceTree = "<group>"; };
-		80D7F9CA1741923E00851DDB /* STGPacketGetObjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketGetObjectInfo.m; sourceTree = "<group>"; };
 		80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGWelcomeWindowController.h; sourceTree = "<group>"; };
 		80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGWelcomeWindowController.m; sourceTree = "<group>"; };
 		80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGWelcomeWindowController.xib; sourceTree = "<group>"; };
@@ -278,16 +269,10 @@
 				80492697173EEAB100C08A7F /* STGPacketQueue.m */,
 				80492699173EEAC100C08A7F /* STGPacket.h */,
 				8049269A173EEAC100C08A7F /* STGPacket.m */,
-				8049269C173EED6400C08A7F /* STGPacketUploadFile.h */,
-				8049269D173EED6400C08A7F /* STGPacketUploadFile.m */,
-				8049269F173EF80100C08A7F /* STGPacketDeleteFile.h */,
-				804926A0173EF80200C08A7F /* STGPacketDeleteFile.m */,
-				80D7F9B91741687100851DDB /* STGPacketGetAPIStatus.h */,
-				80D7F9BA1741687100851DDB /* STGPacketGetAPIStatus.m */,
-				80D7F9C91741923E00851DDB /* STGPacketGetObjectInfo.h */,
-				80D7F9CA1741923E00851DDB /* STGPacketGetObjectInfo.m */,
-				80781B4D17469AF300D0C790 /* STGPacketGetFileList.h */,
-				80781B4E17469AF300D0C790 /* STGPacketGetFileList.m */,
+				8017CD0D17491C0B000889C5 /* STGPacketCreator.h */,
+				8017CD0E17491C0B000889C5 /* STGPacketCreator.m */,
+				80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */,
+				80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */,
 				803C33B5172C780000E8CE3F /* STGDataCaptureManager.h */,
 				803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */,
 				8011328B172966CB006702B9 /* STGDataCaptureEntry.h */,
@@ -320,6 +305,8 @@
 				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
 				804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */,
 				804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */,
+				8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */,
+				8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */,
 				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
 				8029A4BD172884AE00F09884 /* STGFileHelper.m */,
 				807A667D172A97B200E0212C /* STGHotkeyHelper.h */,
@@ -330,8 +317,6 @@
 				807A668D172AD23900E0212C /* STGSystemHelper.m */,
 				80D7F9BC1741700400851DDB /* STGNetworkHelper.h */,
 				80D7F9BD1741700400851DDB /* STGNetworkHelper.m */,
-				80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */,
-				80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */,
 				80485FE71747FABB00CB6226 /* NSButton+TextColor.h */,
 				80485FE81747FABC00CB6226 /* NSButton+TextColor.m */,
 				80068FC917272CA800DA1492 /* Supporting Files */,
@@ -396,7 +381,7 @@
 				80486001174802C000CB6226 /* CocoStorageStatusBarIcon11.png */,
 				80486002174802C000CB6226 /* CocoStorageStatusBarIcon12.png */,
 				80486003174802C000CB6226 /* CocoStorageStatusBarIcon13.png */,
-				8048601D1748185F00CB6226 /* StatusBarIconUpdateOverlay.png */,
+				80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */,
 				807A6701172AF86000E0212C /* CocoStorageLogo.icns */,
 				80D7F9C51741773A00851DDB /* ServerStatusOK.png */,
 				80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */,
@@ -509,7 +494,7 @@
 				8048600F174802C000CB6226 /* CocoStorageStatusBarIcon11.png in Resources */,
 				80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */,
 				80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */,
-				8048601E1748185F00CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
+				8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,17 +524,14 @@
 				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
 				80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */,
 				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,
-				8049269E173EED6400C08A7F /* STGPacketUploadFile.m in Sources */,
-				804926A1173EF80200C08A7F /* STGPacketDeleteFile.m in Sources */,
-				80D7F9BB1741687100851DDB /* STGPacketGetAPIStatus.m in Sources */,
 				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
-				80D7F9CB1741923F00851DDB /* STGPacketGetObjectInfo.m in Sources */,
 				80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */,
 				80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */,
-				80781B4F17469AF300D0C790 /* STGPacketGetFileList.m in Sources */,
 				80781B531746B26400D0C790 /* STGOptionsQuickUploadViewController.m in Sources */,
 				80485FE91747FABF00CB6226 /* NSButton+TextColor.m in Sources */,
 				804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */,
+				8017CD0F17491C0B000889C5 /* STGPacketCreator.m in Sources */,
+				8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -63,7 +63,8 @@
 
 - (void)addEntry:(STGPacket *)entry
 {
-    [_uploadQueue addObject:entry];
+    if (entry)
+        [_uploadQueue addObject:entry];
     
     [self update];
 }
