@@ -17,6 +17,8 @@
 
 #import "STGStatusItemDrawingHelper.h"
 
+#import "STGFileHelper.h"
+
 @interface STGStatusItemManager ()
 
 @property (nonatomic, assign) float uploadProgress;
@@ -29,14 +31,14 @@
 @synthesize delegate = _delegate;
 
 @synthesize statusItem = _statusItem;
+@synthesize statusMenu = _statusMenu;
+@synthesize statusItemView = _statusItemView;
 
 @synthesize timer = _timer;
 @synthesize isSyncing = _isSyncing;
 @synthesize uploadProgress = _uploadProgress;
 @synthesize isSyncingOpacity = _isSyncingOpacity;
 @synthesize ticks = _ticks;
-
-@synthesize statusMenu = _statusMenu;
 
 @synthesize serverStatusItem = _serverStatusItem;
 
@@ -64,13 +66,19 @@
         NSArray *topLevelObjects;
         [nib instantiateWithOwner:self topLevelObjects:&topLevelObjects];
         
-        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:STGStatusItemWidth];
         [_statusItem setMenu:_statusMenu];
+        
+        [self setStatusItemView:[[STGStatusItemView alloc] initWithFrame:NSMakeRect(0.0, 0.0, [_statusItem length], [[NSStatusBar systemStatusBar] thickness])]];
+        [_statusItemView setStatusItem:_statusItem];
+        [_statusItemView setDelegate:self];
+        [_statusItemView setMenu:[_statusItem menu]];
+        [_statusItem setView:_statusItemView];
+
         [_statusItem setTitle:@""];
         [_statusItem setHighlightMode:YES];
         [_statusItem setToolTip:@"Coco Storage"];
-        [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:0 uploadProgress:0.0 opacity:0.0]];
-        [[_statusItem menu] setDelegate:self];
+        [_statusItemView setImage:[STGStatusItemDrawingHelper getIcon:0 uploadProgress:0.0 opacity:0.0]];
         
         [self setTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
     }
@@ -96,7 +104,7 @@
             [self setIsSyncingOpacity:_isSyncingOpacity - 0.25];
     }
 
-    [_statusItem setImage:[STGStatusItemDrawingHelper getIcon:_ticks uploadProgress:_uploadProgress opacity:_isSyncingOpacity]];
+    [_statusItemView setImage:[STGStatusItemDrawingHelper getIcon:_ticks uploadProgress:_uploadProgress opacity:_isSyncingOpacity]];
     
     if (_isSyncingOpacity > 0.0 || _uploadProgress > 0.0)
     {
@@ -270,6 +278,11 @@
         
         avaialable = YES;
     }
+    if (status == STGServerStatusInvalidKey)
+    {
+        tooltipString = @"Invalid Key";
+        statusString = @"Invalid Key";
+    }
 
     [_serverStatusItem setTitle:statusString];
     [_serverStatusItem setImage:[NSImage imageNamed:avaialable ? @"ServerStatusOK.png" : @"ServerStatusUnavailable.png"]];
@@ -307,7 +320,7 @@
 
 - (IBAction)openCFSFolder:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[NSString stringWithFormat:@"file://localhost%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]]];
 }
 
 - (IBAction)cancelUploads:(id)sender
@@ -386,6 +399,14 @@
     if ([_delegate respondsToSelector:@selector(openPreferences)])
     {
         [_delegate openPreferences];
+    }
+}
+
+- (void)uploadFile:(NSURL *)url
+{
+    if ([_delegate respondsToSelector:@selector(captureFile:)])
+    {
+        [_delegate captureFile:url];
     }
 }
 

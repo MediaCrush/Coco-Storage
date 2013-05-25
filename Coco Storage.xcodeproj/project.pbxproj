@@ -16,6 +16,7 @@
 		8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328C172966CB006702B9 /* STGDataCaptureEntry.m */; };
 		801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */; };
 		801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */; };
+		8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011CA3E174FE9860021249F /* STGStatusItemView.m */; };
 		801203411732FF9E0003BB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
 		80120345173300C90003BB23 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
 		8017CD0F17491C0B000889C5 /* STGPacketCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD0E17491C0B000889C5 /* STGPacketCreator.m */; };
@@ -69,6 +70,9 @@
 		807A668B172AC79900E0212C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A668A172AC79900E0212C /* Security.framework */; };
 		807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A668D172AD23900E0212C /* STGSystemHelper.m */; };
 		807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 807A6701172AF86000E0212C /* CocoStorageLogo.icns */; };
+		809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C0174D6C930016A391 /* License_Sparkle.txt */; };
+		809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C2174D6D330016A391 /* License_MASPreferences.txt */; };
+		809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */; };
 		80CC42631733C3B40068476F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80CC42621733C3B40068476F /* dsa_pub.pem */; };
 		80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BD1741700400851DDB /* STGNetworkHelper.m */; };
 		80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D7F9BF1741707500851DDB /* SystemConfiguration.framework */; };
@@ -113,6 +117,8 @@
 		8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsAboutViewController.h; sourceTree = "<group>"; };
 		8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsAboutViewController.m; sourceTree = "<group>"; };
 		801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsAboutViewController.xib; sourceTree = "<group>"; };
+		8011CA3D174FE9860021249F /* STGStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemView.h; sourceTree = "<group>"; };
+		8011CA3E174FE9860021249F /* STGStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemView.m; sourceTree = "<group>"; };
 		801203401732FF9D0003BB23 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		8017CD0D17491C0B000889C5 /* STGPacketCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketCreator.h; sourceTree = "<group>"; };
 		8017CD0E17491C0B000889C5 /* STGPacketCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketCreator.m; sourceTree = "<group>"; };
@@ -185,6 +191,10 @@
 		807A668C172AD23800E0212C /* STGSystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGSystemHelper.h; sourceTree = "<group>"; };
 		807A668D172AD23900E0212C /* STGSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGSystemHelper.m; sourceTree = "<group>"; };
 		807A6701172AF86000E0212C /* CocoStorageLogo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CocoStorageLogo.icns; sourceTree = "<group>"; };
+		809A10C0174D6C930016A391 /* License_Sparkle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License_Sparkle.txt; sourceTree = "<group>"; };
+		809A10C2174D6D330016A391 /* License_MASPreferences.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License_MASPreferences.txt; sourceTree = "<group>"; };
+		809A10C4174D6F5B0016A391 /* STGCFSSyncCheckEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCFSSyncCheckEntry.h; sourceTree = "<group>"; };
+		809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheckEntry.m; sourceTree = "<group>"; };
 		80CC42621733C3B40068476F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		80D7F9BC1741700400851DDB /* STGNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGNetworkHelper.h; sourceTree = "<group>"; };
 		80D7F9BD1741700400851DDB /* STGNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkHelper.m; sourceTree = "<group>"; };
@@ -301,12 +311,16 @@
 				80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */,
 				80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */,
 				80210E50172EC9920056C502 /* STGRecentFileView.xib */,
+				8011CA3D174FE9860021249F /* STGStatusItemView.h */,
+				8011CA3E174FE9860021249F /* STGStatusItemView.m */,
 				80210E52172EDE050056C502 /* STGRecentUploadView.h */,
 				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
 				804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */,
 				804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */,
 				8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */,
 				8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */,
+				809A10C4174D6F5B0016A391 /* STGCFSSyncCheckEntry.h */,
+				809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */,
 				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
 				8029A4BD172884AE00F09884 /* STGFileHelper.m */,
 				807A667D172A97B200E0212C /* STGHotkeyHelper.h */,
@@ -340,6 +354,7 @@
 		8029A48F172832BF00F09884 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				809A10BF174D6C880016A391 /* Licenses */,
 				80CC42611733C3AA0068476F /* Other */,
 				80CC42601733C3A30068476F /* Sounds */,
 				80CC425F1733C39D0068476F /* Images */,
@@ -356,6 +371,15 @@
 				8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */,
 			);
 			name = MASPreferences;
+			sourceTree = "<group>";
+		};
+		809A10BF174D6C880016A391 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				809A10C0174D6C930016A391 /* License_Sparkle.txt */,
+				809A10C2174D6D330016A391 /* License_MASPreferences.txt */,
+			);
+			name = Licenses;
 			sourceTree = "<group>";
 		};
 		80CC425F1733C39D0068476F /* Images */ = {
@@ -495,6 +519,8 @@
 				80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */,
 				80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */,
 				8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
+				809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */,
+				809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +558,8 @@
 				804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */,
 				8017CD0F17491C0B000889C5 /* STGPacketCreator.m in Sources */,
 				8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */,
+				809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */,
+				8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

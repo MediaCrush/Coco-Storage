@@ -8,20 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+#import "STGCFSSyncCheckEntry.h"
+
 @interface STGCFSSyncCheck : NSObject
 
-@property (nonatomic, retain) NSMutableDictionary *lastModifiedDict;
+@property (nonatomic, retain) NSMutableDictionary *serverFileDict;
 
-- (NSArray *)getModifiedFiles:(NSString *)path;
+@property (nonatomic, retain) NSString *basePath;
+
+- (STGCFSSyncCheckEntry *)getFirstModifiedFile:(NSString *)file;
 
 - (NSTimeInterval)getFileModificationDate:(NSString *)path;
-- (BOOL)wasFileModified:(NSString *)path;
-
-- (void)saveToFolder:(NSString *)path;
-- (void)readFromFolder:(NSString *)path;
+- (STGCFSSyncCheckEntryType)getFileModification:(NSString *)path;
+- (void)updateServerModificationDate:(NSString *)path;
 
 - (NSMutableDictionary *)getFolderRepresentation:(NSString *)path file:(BOOL *)isFile;
-- (NSTimeInterval)getCachedModificationDate:(NSString *)path;
-- (void)updateModificationDate:(NSString *)path;
+- (NSTimeInterval)getServerModificationDate:(NSString *)path;
 
 @end

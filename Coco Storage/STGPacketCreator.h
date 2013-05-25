@@ -20,7 +20,7 @@
 + (STGPacket *)objectInfoPacket:(NSString *)objectID link:(NSString *)link key:(NSString *)key;
 
 + (STGPacket *)cfsGenericPacket:(NSString *)httpMethod path:(NSString *)filePath link:(NSString *)link key:(NSString *)key;
-+ (STGPacket *)cfsFileListPacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key;
++ (STGPacket *)cfsFileListPacket:(NSString *)filePath link:(NSString *)link recursive:(BOOL)recursive key:(NSString *)key;
 + (STGPacket *)cfsFileInfoPacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key;
 + (STGPacket *)cfsPostFilePacket:(NSString *)filePath fileURL:(NSURL *)fileURL link:(NSString *)link key:(NSString *)key;
 + (STGPacket *)cfsUpdateFilePacket:(NSString *)filePath fileURL:(NSURL *)fileURL link:(NSString *)link key:(NSString *)key;

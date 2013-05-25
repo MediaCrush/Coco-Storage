@@ -116,7 +116,7 @@
     [self update];
 }
 
-- (void)finishUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry fullResponse:(NSString *)response urlResponse:(NSURLResponse *)urlResponse
+- (void)finishUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse
 {
     [self cancelEntry:entry];
     

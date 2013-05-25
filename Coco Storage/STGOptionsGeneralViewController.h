@@ -12,13 +12,13 @@
 
 #import "STGOptionTextField.h"
 
-@interface STGOptionsGeneralViewController : NSViewController <MASPreferencesViewController, STGOptionTextFieldDelegate>
+@interface STGOptionsGeneralViewController : NSViewController <MASPreferencesViewController, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, retain) IBOutlet NSButton *launchOnStartupButton;
 @property (nonatomic, retain) IBOutlet NSButton *showDockIconButton;
 @property (nonatomic, retain) IBOutlet NSButton *autoUpdateButton;
 
-@property (nonatomic, retain) IBOutlet NSTextField *keyTextField;
+@property (nonatomic, retain) IBOutlet NSTableView *storageKeyTable;
 
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults;
 - (void)saveProperties;

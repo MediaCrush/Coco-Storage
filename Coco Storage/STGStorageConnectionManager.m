@@ -74,11 +74,9 @@
     _activeEntry = nil;
     _activeUploadConnection = nil;
 
-    NSString *response = _responseData ? [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding] : nil;
-
     if ([_delegate respondsToSelector:@selector(finishUploadingData:entry:fullResponse:urlResponse:)])
     {
-        [_delegate finishUploadingData:self entry:cachedEntry fullResponse:response urlResponse:_urlResponse];
+        [_delegate finishUploadingData:self entry:cachedEntry fullResponse:_responseData urlResponse:_urlResponse];
     }
 }
 

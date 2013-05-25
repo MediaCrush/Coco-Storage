@@ -63,9 +63,13 @@
     return packet;
 }
 
-+ (STGPacket *)cfsFileListPacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key
++ (STGPacket *)cfsFileListPacket:(NSString *)filePath link:(NSString *)link recursive:(BOOL)recursive key:(NSString *)key
 {
-    return [self cfsGenericPacket:@"GET" path:filePath link:link key:key];
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, filePath, key] httpMethod:@"GET" contentParts:nil];
+    
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:getFileList" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+    
+    return packet;
 }
 
 + (STGPacket *)cfsFileInfoPacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key

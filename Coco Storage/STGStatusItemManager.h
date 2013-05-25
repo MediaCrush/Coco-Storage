@@ -10,6 +10,10 @@
 
 #import "STGRecentUploadView.h"
 
+#import "STGStatusItemView.h"
+
+#define STGStatusItemWidth 24.0
+
 typedef NS_ENUM(NSUInteger, STGServerStatus)
 {
     STGServerStatusOnline = 0,
@@ -18,7 +22,8 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
     STGServerStatusUnknown = 3,
     STGServerStatusServerV1Busy = 4,
     STGServerStatusServerV2Busy = 5,
-    STGServerStatusServerBusy = 6
+    STGServerStatusServerBusy = 6,
+    STGServerStatusInvalidKey = 7
 };
 
 @class STGPacketQueue;
@@ -28,6 +33,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 -(void)captureScreen:(BOOL)fullScreen;
 -(void)captureFile;
+-(void)captureFile:(NSURL *)url;
 -(void)cancelAllUploads;
 -(void)togglePauseUploads;
 -(void)deleteRecentFile:(STGDataCaptureEntry *)entry;
@@ -36,17 +42,17 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @end
 
-@interface STGStatusItemManager : NSObject <NSMenuDelegate, STGRecentUploadDelegate>
+@interface STGStatusItemManager : NSObject <STGRecentUploadDelegate, STGStatusItemViewDelegate>
 
 @property (nonatomic, assign) id<STGStatusItemManagerDelegate> delegate;
 
 @property (nonatomic, retain) NSStatusItem *statusItem;
+@property (nonatomic, retain) IBOutlet NSMenu *statusMenu;
+@property (nonatomic, retain) IBOutlet STGStatusItemView *statusItemView;
 
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, assign) BOOL isSyncing;
 @property (nonatomic, assign) int ticks;
-
-@property (nonatomic, retain) IBOutlet NSMenu *statusMenu;
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *serverStatusItem;
 

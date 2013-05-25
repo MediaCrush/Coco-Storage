@@ -69,6 +69,12 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/shpakovski/MASPreferences"]];
 }
 
+- (IBAction)openSparkleLink:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://sparkle.andymatuschak.org"]];
+}
+
+
 - (NSString *)identifier
 {
     return @"optionsAbout";

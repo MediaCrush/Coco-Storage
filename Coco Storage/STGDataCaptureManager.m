@@ -10,6 +10,8 @@
 
 #import "STGDataCaptureEntry.h"
 
+#import "STGFileHelper.h"
+
 @interface STGDataCaptureManager ()
 
 + (NSString *)getCurrentFileName;
@@ -45,7 +47,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"file://localhost%@", fileName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
 + (NSArray *)startFileCaptureWithTempFolder:(NSString *)tempFolder

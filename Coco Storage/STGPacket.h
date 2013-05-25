@@ -24,6 +24,4 @@
 + (NSData *)contentPartWithName:(NSString *)name fileName:(NSString *)fileName content:(NSData *)content;
 + (NSData *)contentPartObjectsForKeys:(NSDictionary *)dict content:(NSData *)content;
 
-+ (NSString *)getValueFromJSON:(NSString *)json key:(NSString *)key;
-
 @end

@@ -39,6 +39,6 @@
 
 - (void)startUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry;
 - (void)updateUploadProgress:(STGPacketQueue *)queue entry:(STGPacket *)entry sentData:(NSInteger)sentData totalData:(NSInteger)totalData;
-- (void)finishUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry fullResponse:(NSString *)response urlResponse:(NSURLResponse *)urlResponse;
+- (void)finishUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
 
 @end

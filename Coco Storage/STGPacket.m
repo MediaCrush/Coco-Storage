@@ -117,29 +117,4 @@
     return partData;
 }
 
-
-+ (NSString *)getValueFromJSON:(NSString *)json key:(NSString *)key
-{
-    NSRange idRange = [json rangeOfString:[NSString stringWithFormat:@"\"%@\"", key]];
-    if (idRange.location != NSNotFound)
-    {
-        NSString *keySubstring = [json substringFromIndex:idRange.location + idRange.length];
-        
-        NSRange firstValueRange = [keySubstring rangeOfString:@"\""];
-        if (firstValueRange.location != NSNotFound)
-        {
-            NSString *valueSubstring = [keySubstring substringFromIndex:firstValueRange.location + firstValueRange.length];
-            
-            NSRange endRange = [valueSubstring rangeOfString:@"\""];
-            
-            if (endRange.location != NSNotFound)
-            {
-                return [valueSubstring substringToIndex:endRange.location];
-            }
-        }
-    }
-    
-    return nil;
-}
-
 @end

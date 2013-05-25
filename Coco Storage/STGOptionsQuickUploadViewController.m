@@ -155,7 +155,7 @@
     [filePanel setCanChooseDirectories:YES];
     [filePanel setCanChooseFiles:NO];
     [filePanel setAllowsMultipleSelection:NO];
-    [filePanel setDirectoryURL:[NSURL URLWithString:[[NSString stringWithFormat:@"file://localhost%@", [_tempFolderTextField stringValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    [filePanel setDirectoryURL:[STGFileHelper urlFromStandardPath:[_tempFolderTextField stringValue]]];
     [filePanel setFloatingPanel:NO];
     [filePanel setCanSelectHiddenExtension:YES];
     [filePanel setTitle:@"Select Temp Folder Path"];
@@ -173,7 +173,7 @@
 
 - (IBAction)openTempFolderInFinder:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[NSString stringWithFormat:@"file://localhost%@", [_tempFolderTextField stringValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[_tempFolderTextField stringValue]]];
 }
 
 - (NSString *)identifier

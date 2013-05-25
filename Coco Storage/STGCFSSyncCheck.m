@@ -10,26 +10,31 @@
 
 @implementation STGCFSSyncCheck
 
-@synthesize lastModifiedDict = _lastModifiedDict;
+@synthesize serverFileDict = _serverFileDict;
+@synthesize basePath = _basePath;
 
 - (id)init
 {
     self = [super init];
     if (self)
     {
-        [self setLastModifiedDict:[[NSMutableDictionary alloc] init]];
+        [self setServerFileDict:[NSMutableDictionary dictionary]];
     }
     return self;
 }
 
-- (NSArray *)getModifiedFiles:(NSString *)path
+- (STGCFSSyncCheckEntry *)getFirstModifiedFile:(NSString *)file
 {
+    /*
     NSMutableArray *modifiedDirectories = [[NSMutableArray alloc] init];
     NSMutableArray *modifiedFiles = [[NSMutableArray alloc] init];
     
     if ([self wasFileModified:path])
     {
-        [modifiedDirectories addObject:path];
+        NSString *fullPath = path ? [_basePath stringByAppendingPathComponent:path] : _basePath;
+
+        [modifiedDirectories addObject:fullPath];
+        
         BOOL directory;
         BOOL exists;
         NSError *error;
@@ -37,33 +42,38 @@
         while ([modifiedDirectories count] > 0)
         {
             NSString *filePath = [modifiedDirectories objectAtIndex:0];
+            NSString *filePathFull = filePath ? [_basePath stringByAppendingPathComponent:filePath] : _basePath;
             
-            NSArray *newFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filePath error:&error];
+            NSArray *newFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filePathFull error:&error];
             
             if (!error)
             {
                 for (NSString *newFile in newFiles)
                 {
-                    NSString *newFileFullPath = [filePath stringByAppendingPathComponent:newFile];
+                    NSString *newFilePath = [filePath stringByAppendingPathComponent:newFile];
                     
-                    if ([self wasFileModified:newFileFullPath])
+                    if ([self wasFileModified:newFilePath])
                     {
-                        exists = [[NSFileManager defaultManager] fileExistsAtPath:newFileFullPath isDirectory:&directory];
+                        NSString *newFilePathFull = [_basePath stringByAppendingPathComponent:filePath];
+
+                        exists = [[NSFileManager defaultManager] fileExistsAtPath:newFilePath isDirectory:&directory];
                         
                         if (directory)
-                            [modifiedDirectories addObject:newFileFullPath];
+                            [modifiedDirectories addObject:newFilePathFull];
                         else
-                            [modifiedFiles addObject:newFileFullPath];
+                            [modifiedFiles addObject:[STGCFSSyncCheckEntry syncCheckEntryWithPath:newFilePathFull innerPath:newFilePath modificationType:STGSyncCheckEntryStatusUpdate : STGSyncCheckEntryCreate]];
                     }
                 }
             }
             
-            [modifiedFiles addObject:filePath];
+            [modifiedFiles addObject:[STGCFSSyncCheckEntry syncCheckEntryWithPath:filePathFull innerPath:filePath modificationType:directoryExists ? STGSyncCheckEntryStatusUpdate : STGSyncCheckEntryCreate]];
             [modifiedDirectories removeObjectAtIndex:0];
         }
     }
     
-    return modifiedFiles;
+    return modifiedFiles;*/
+    
+    return nil;
 }
 
 - (NSTimeInterval)getFileModificationDate:(NSString *)path
@@ -86,29 +96,50 @@
     return [date timeIntervalSince1970];
 }
 
-- (BOOL)wasFileModified:(NSString *)path
+- (STGCFSSyncCheckEntryType)getFileModification:(NSString *)path
 {
-    return [self getFileModificationDate:path] > [self getCachedModificationDate:path];
-}
-
-- (void)saveToFolder:(NSString *)folder
-{
-    [_lastModifiedDict writeToFile:[folder stringByAppendingPathComponent:@".cocoStorageCache.plist"] atomically:YES];
-}
-
-- (void)readFromFolder:(NSString *)folder
-{
-    NSString *filePath = [folder stringByAppendingPathComponent:@".cocoStorageCache.plist"];
+    NSString *fullPath = path ? [_basePath stringByAppendingPathComponent:path] : _basePath;
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath])
-    [self setLastModifiedDict:[NSMutableDictionary dictionaryWithContentsOfFile:filePath]];
+    NSTimeInterval serverInterval = [self getServerModificationDate:path];
+    NSTimeInterval fileSystemInterval = [self getFileModificationDate:fullPath];
+    
+    if ((serverInterval - fileSystemInterval) * (serverInterval - fileSystemInterval) > 2.0 * 2.0)
+    {
+        if (serverInterval > fileSystemInterval)
+        {
+            if (fileSystemInterval < 0)
+                return STGSyncCheckEntryServerCreate;
+
+            return STGSyncCheckEntryServerUpdate;
+        }
+        else
+        {
+            if (serverInterval < 0)
+                return STGSyncCheckEntryServerCreate;
+            
+            return STGSyncCheckEntryClientUpdate;
+        }
+    }
+    
+    return 0;
+}
+
+- (void)updateServerModificationDate:(NSString *)path
+{
+    BOOL isFile;
+    NSMutableDictionary *pathDictionary = [self getFolderRepresentation:path file:&isFile];
+    
+    if (isFile)
+        return [pathDictionary setObject:[NSNumber numberWithDouble:[self getFileModificationDate:path]] forKey:[path lastPathComponent]];
+    else
+        return [pathDictionary setObject:[NSNumber numberWithDouble:[self getFileModificationDate:path]] forKey:[NSNumber numberWithInt:0]];
 }
 
 - (NSMutableDictionary *)getFolderRepresentation:(NSString *)path file:(BOOL *)isFile
 {
     NSArray *components = [path pathComponents];
     
-    NSMutableDictionary *lastDict = _lastModifiedDict;
+    NSMutableDictionary *lastDict = _serverFileDict;
     
     for (NSString *string in components)
     {
@@ -129,7 +160,7 @@
     return lastDict;
 }
 
-- (NSTimeInterval)getCachedModificationDate:(NSString *)path
+- (NSTimeInterval)getServerModificationDate:(NSString *)path
 {
     BOOL isFile;
     NSMutableDictionary *pathDictionary = [self getFolderRepresentation:path file:&isFile];
@@ -145,17 +176,6 @@
         return [object doubleValue];
     
     return -1.0;
-}
-
-- (void)updateModificationDate:(NSString *)path
-{
-    BOOL isFile;
-    NSMutableDictionary *pathDictionary = [self getFolderRepresentation:path file:&isFile];
-    
-    if (isFile)
-        return [pathDictionary setObject:[NSNumber numberWithDouble:[self getFileModificationDate:path]] forKey:[path lastPathComponent]];
-    else
-        return [pathDictionary setObject:[NSNumber numberWithDouble:[self getFileModificationDate:path]] forKey:[NSNumber numberWithInt:0]];
 }
 
 @end

@@ -31,6 +31,6 @@
 
 - (void)startUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry;
 - (void)updateUploadProgress:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry sentData:(NSInteger)sentData totalData:(NSInteger)totalData;
-- (void)finishUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry fullResponse:(NSString *)response urlResponse:(NSURLResponse *)urlResponse;
+- (void)finishUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
 
 @end

@@ -82,4 +82,9 @@
     return mutableArray;
 }
 
++ (NSURL *)urlFromStandardPath:(NSString *)path
+{
+    return [NSURL URLWithString:[[NSString stringWithFormat:@"file://localhost%@", path] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+}
+
 @end

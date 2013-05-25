@@ -20,5 +20,6 @@
 - (IBAction)openStorageLink:(id)sender;
 
 - (IBAction)openMASPreferencesLink:(id)sender;
+- (IBAction)openSparkleLink:(id)sender;
 
 @end
