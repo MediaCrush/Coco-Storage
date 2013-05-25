@@ -16,6 +16,7 @@
 
 @property (nonatomic, assign) NSStatusItem *statusItem;
 @property (nonatomic, assign) BOOL highlight;
+@property (nonatomic, assign) BOOL onDragging;
 
 @property (nonatomic, retain) NSImage *image;
 @property (nonatomic, retain) NSImageCell *imageViewCell; //For highlights :<
@@ -25,7 +26,7 @@
 @protocol STGStatusItemViewDelegate <NSObject>
 @optional
 
-- (void)uploadFile:(NSURL *)url;
+-(void)uploadEntries:(NSArray *)entries;
 - (void)menuWillOpen:(NSMenu *)menu;
 - (void)menuDidClose:(NSMenu *)menu;
 

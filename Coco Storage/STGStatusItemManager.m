@@ -286,7 +286,7 @@
 
     [_serverStatusItem setTitle:statusString];
     [_serverStatusItem setImage:[NSImage imageNamed:avaialable ? @"ServerStatusOK.png" : @"ServerStatusUnavailable.png"]];
-    [_statusItem setToolTip:[NSString stringWithFormat:@"Coco Storage - Server status: %@", tooltipString]];
+    [_statusItemView setToolTip:[NSString stringWithFormat:@"Coco Storage - Server status: %@\nDrag and drop anything here to upload it!", tooltipString]];
 }
 
 - (IBAction)captureArea:(id)sender
@@ -402,11 +402,11 @@
     }
 }
 
-- (void)uploadFile:(NSURL *)url
+-(void)uploadEntries:(NSArray *)entries
 {
-    if ([_delegate respondsToSelector:@selector(captureFile:)])
+    if ([_delegate respondsToSelector:@selector(uploadEntries:)])
     {
-        [_delegate captureFile:url];
+        [_delegate uploadEntries:entries];
     }
 }
 

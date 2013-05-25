@@ -10,12 +10,15 @@
 
 #import "STGFileHelper.h"
 
+#import "STGDataCaptureManager.h"
+
 @implementation STGStatusItemView
 
 @synthesize delegate = _delegate;
 
 @synthesize statusItem = _statusItem;
 @synthesize highlight = _highlight;
+@synthesize onDragging = _onDragging;
 
 @synthesize image = _image;
 @synthesize imageViewCell = _imageViewCell;
@@ -25,7 +28,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        [self registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, nil]];
+        [self registerForDraggedTypes:[STGDataCaptureManager getSupportedPasteboardContentTypes]];
         
         [self setImageViewCell:[[NSImageCell alloc] initImageCell:nil]];
     }
@@ -80,9 +83,13 @@
 	[self.statusItem drawStatusBarBackgroundInRect:rect withHighlight:_highlight];
     NSPoint iconPoint = NSMakePoint(rect.origin.x + (rect.size.width - _image.size.width) / 2, rect.origin.y + (rect.size.height - _image.size.height) / 2 + 1);
     
-    if (_highlight) //Makes templates gray in non-highlight :/
+    if (_highlight || _onDragging) //Makes templates gray in non-highlight :/
     {
-        if (_highlight)
+        if (_onDragging)
+        {
+            [_imageViewCell setBackgroundStyle:NSBackgroundStyleLowered];
+        }
+        else if (_highlight)
         {
             [_imageViewCell setBackgroundStyle:NSBackgroundStyleDark];
         }
@@ -111,23 +118,34 @@
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {
+    [self setOnDragging:YES];
+    [self setNeedsDisplay:YES];
+    
     return NSDragOperationCopy;
+}
+
+- (void)draggingExited:(id<NSDraggingInfo>)sender
+{
+    [self setOnDragging:NO];
+    [self setNeedsDisplay:YES];
 }
 
 -(BOOL)performDragOperation:(id <NSDraggingInfo>)sender
 {
     NSPasteboard *pBoard = [sender draggingPasteboard];
 
-    if ([[pBoard types] containsObject:NSURLPboardType])
+    NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard];
+    
+    if (entries && [entries count] > 0)
     {
-        if ([_delegate respondsToSelector:@selector(uploadFile:)])
+        if ([_delegate respondsToSelector:@selector(uploadEntries:)])
         {
-            [_delegate uploadFile:[NSURL URLFromPasteboard:pBoard]];
+            [_delegate uploadEntries:entries];
             
             return YES;
         }
     }
-    
+        
     return NO;
 }
 

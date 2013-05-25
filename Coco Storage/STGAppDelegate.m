@@ -259,18 +259,17 @@ STGAppDelegate *sharedAppDelegate;
     }
 }
 
--(void)captureFile:(NSURL *)url
+-(void)uploadEntries:(NSArray *)entries
 {
-    if (url && [url isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[url path]])
+    if (entries && [entries count] > 0)
     {
-        NSLog(@"Upload");
-
-        STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO];
+        for (STGDataCaptureEntry *entry in entries)
+        {
+            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
+        }
         
-        [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
-    }
-    
-    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+    }    
 }
 
 - (void)cancelAllUploads

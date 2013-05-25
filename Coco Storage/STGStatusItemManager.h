@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 -(void)captureScreen:(BOOL)fullScreen;
 -(void)captureFile;
--(void)captureFile:(NSURL *)url;
+-(void)uploadEntries:(NSArray *)entries;
 -(void)cancelAllUploads;
 -(void)togglePauseUploads;
 -(void)deleteRecentFile:(STGDataCaptureEntry *)entry;

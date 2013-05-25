@@ -14,16 +14,48 @@
 
 @interface STGDataCaptureManager ()
 
-+ (NSString *)getCurrentFileName;
++ (NSString *)getCurrentScreenshotFileName;
++ (NSString *)getCurrentTextFileName;
 + (NSString *)getDateAsString;
 
 @end
 
 @implementation STGDataCaptureManager
 
++ (NSArray *)getSupportedPasteboardContentTypes
+{
+    return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, nil];
+}
+
++ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard
+{
+    if ([[pasteboard types] containsObject:NSURLPboardType])
+    {
+        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+        
+        if (url)
+        {
+            if ([url isFileURL])
+            {
+                return [NSArray arrayWithObject:[STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO]];
+            }
+            else if([[url scheme] isEqualToString:@"http"])
+            {
+                return [NSArray arrayWithObject:[self captureLinkAsRedirectFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+            }
+        }
+    }
+    else if ([[pasteboard types] containsObject:NSPasteboardTypeString])
+    {
+        return [NSArray arrayWithObject:[self captureTextAsFile:[pasteboard stringForType:NSPasteboardTypeString] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+    }
+    
+    return nil;
+}
+
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent
 {
-    NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [self getCurrentFileName]];
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [self getCurrentScreenshotFileName]];
     
     NSTask *task = [[NSTask alloc] init];
     
@@ -47,6 +79,35 @@
         return nil;
     }
     
+    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+}
+
++ (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder
+{
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [self getCurrentTextFileName]];
+    
+    [[NSFileManager defaultManager] createFileAtPath:fileName contents:[text dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
+    {
+        return nil;
+    }
+    
+    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+}
+
++ (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder
+{
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [NSString stringWithFormat:@"Link_%@_%@.html", [link host], [self getDateAsString]]];
+    
+    [[NSFileManager defaultManager] createFileAtPath:fileName contents:[[NSString stringWithFormat:@"<html>\n<head>\n<meta http-equiv=\"refresh\" content=\"0; url=%@\">\n</head>\n<body></body></html>", [link absoluteString]] dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
+    {
+        return nil;
+    }
+    
+    NSLog(@"%@", fileName);
     return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
@@ -75,9 +136,14 @@
     return nil;
 }
 
-+ (NSString *)getCurrentFileName
++ (NSString *)getCurrentScreenshotFileName
 {
     return [NSString stringWithFormat:@"Screenshot_%@.png", [self getDateAsString]];
+}
+
++ (NSString *)getCurrentTextFileName
+{
+    return [NSString stringWithFormat:@"Text_%@.png", [self getDateAsString]];
 }
 
 + (NSString *)getDateAsString

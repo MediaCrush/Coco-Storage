@@ -12,7 +12,12 @@
 
 @interface STGDataCaptureManager : NSObject
 
++ (NSArray *)getSupportedPasteboardContentTypes;
++ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard;
+
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent;
++ (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;
++ (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
 + (NSArray *)startFileCaptureWithTempFolder:(NSString *)tempFolder;
 
 @end
