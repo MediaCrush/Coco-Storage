@@ -14,7 +14,7 @@
 
 @property (nonatomic, assign) id<STGStatusItemViewDelegate> delegate;
 
-@property (nonatomic, assign) NSStatusItem *statusItem;
+@property (nonatomic, retain) NSStatusItem *statusItem;
 @property (nonatomic, assign) BOOL highlight;
 @property (nonatomic, assign) BOOL onDragging;
 
