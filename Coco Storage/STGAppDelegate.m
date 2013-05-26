@@ -48,6 +48,7 @@ STGAppDelegate *sharedAppDelegate;
 - (NSString *)getApiKey;
 - (BOOL)isAPIKeyValid:(BOOL)output;
 - (NSString *)getCFSFolder;
+- (NSString *)getTempFolder;
 
 - (NSDictionary *)getJSONFromData:(NSData *)data;
 
@@ -233,7 +234,7 @@ STGAppDelegate *sharedAppDelegate;
 {
     if ([self isAPIKeyValid:YES])
     {
-        STGDataCaptureEntry *entry = [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0];
+        STGDataCaptureEntry *entry = [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[self getTempFolder] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0];
         
         if(entry)
             [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
@@ -247,7 +248,7 @@ STGAppDelegate *sharedAppDelegate;
 {
     if ([self isAPIKeyValid:YES])
     {
-        NSArray *entries = [STGDataCaptureManager startFileCaptureWithTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        NSArray *entries = [STGDataCaptureManager startFileCaptureWithTempFolder:[self getTempFolder]];
         
         if(entries)
         {
@@ -450,6 +451,11 @@ STGAppDelegate *sharedAppDelegate;
 - (NSString *)getCFSFolder
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"];
+}
+
+- (NSString *)getTempFolder
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"];
 }
 
 - (NSEvent *)keyPressed:(NSEvent *)event entry:(STGHotkeyHelperEntry *)entry userInfo:(NSDictionary *)userInfo
@@ -742,7 +748,7 @@ STGAppDelegate *sharedAppDelegate;
         
         if (url && [url isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[url path]])
         {
-            STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO];
+            STGDataCaptureEntry *entry = [STGDataCaptureManager captureFile:url tempFolder:[self getTempFolder]];
             
             [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
         }
@@ -765,7 +771,7 @@ STGAppDelegate *sharedAppDelegate;
             
             if (url && [url isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[url path]])
             {
-                STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO];
+                STGDataCaptureEntry *entry = [STGDataCaptureManager captureFile:url tempFolder:[self getTempFolder]];
                 
                 [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey]]];
             }

@@ -14,8 +14,6 @@
 
 @interface STGDataCaptureManager ()
 
-+ (NSString *)getCurrentScreenshotFileName;
-+ (NSString *)getCurrentTextFileName;
 + (NSString *)getDateAsString;
 
 @end
@@ -29,37 +27,95 @@
 
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard
 {
-    if ([[pasteboard types] containsObject:NSURLPboardType])
+    STGDropAction action = [self getActionFromPasteboard:pasteboard];
+    
+    if (action == STGDropActionUploadFile)
     {
         NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+
+        return [NSArray arrayWithObject:[self captureFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+    }
+    else if (action == STGDropActionUploadDirectoryZip)
+    {
+        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+
+        return [NSArray arrayWithObject:[self captureFilesAsZip:[NSArray arrayWithObject:url] withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+    }
+    else if (action == STGDropActionUploadZip)
+    {
+        NSData *data = [pasteboard dataForType:NSFilenamesPboardType];
+        NSError *error;
         
-        if (url)
+        NSArray *filenames = [NSPropertyListSerialization propertyListWithData:data options:kCFPropertyListImmutable format:nil error:&error];
+        
+        if (error)
+            NSLog(@"%@", error);
+        else if (filenames && [filenames count] > 1)
         {
-            if ([url isFileURL])
+            NSMutableArray *validURLS = [[NSMutableArray alloc] initWithCapacity:[filenames count]];
+            
+            for (NSString *filename in filenames)
             {
-                BOOL isDirectory;
-                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+                NSURL *url = [STGFileHelper urlFromStandardPath:filename];
                 
-                if (exists && !isDirectory)
-                    return [NSArray arrayWithObject:[STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO]];
+                if (url && [url isFileURL])
+                {
+                    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path]];
+                    
+                    if (exists)
+                        [validURLS addObject:url];
+                }
             }
-            else if([[url scheme] isEqualToString:@"http"])
-            {
-                return [NSArray arrayWithObject:[self captureLinkAsRedirectFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
-            }
+            
+            return [NSArray arrayWithObject:[self captureFilesAsZip:validURLS withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
         }
     }
-    else if ([[pasteboard types] containsObject:NSPasteboardTypeString])
+    else if (action == STGDropActionUploadText)
     {
         return [NSArray arrayWithObject:[self captureTextAsFile:[pasteboard stringForType:NSPasteboardTypeString] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+    }
+    else if (action == STGDropActionUploadLinkRedirect)
+    {
+        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+
+        return [NSArray arrayWithObject:[self captureLinkAsRedirectFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
     }
     
     return nil;
 }
 
-+ (NSString *)getActionFromPasteboard:(NSPasteboard *)pasteboard
++ (STGDropAction)getActionFromPasteboard:(NSPasteboard *)pasteboard
 {
-    if ([[pasteboard types] containsObject:NSURLPboardType])
+    if ([[pasteboard types] containsObject:NSFilenamesPboardType])
+    {
+        NSData *data = [pasteboard dataForType:NSFilenamesPboardType];
+        NSError *error;
+        
+        NSArray *filenames = [NSPropertyListSerialization propertyListWithData:data options:kCFPropertyListImmutable format:nil error:&error];
+        
+        if (error)
+            NSLog(@"%@", error);
+        else if (filenames && [filenames count] > 1)
+        {
+            return STGDropActionUploadZip;
+        }
+        else if (filenames)
+        {
+            NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+            
+            if (url && [url isFileURL])
+            {
+                BOOL isDirectory;
+                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+                
+                if (exists && !isDirectory)
+                    return STGDropActionUploadFile;
+                else if (exists)
+                    return STGDropActionUploadDirectoryZip;
+            }
+        }
+    }
+    else if ([[pasteboard types] containsObject:NSURLPboardType])
     {
         NSURL *url = [NSURL URLFromPasteboard:pasteboard];
         
@@ -71,25 +127,45 @@
                 BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
                 
                 if (exists && !isDirectory)
-                    return @"Upload File";
+                    return STGDropActionUploadFile;
+                else if (exists)
+                    return STGDropActionUploadDirectoryZip;
             }
             else if([[url scheme] isEqualToString:@"http"])
             {
-                return @"Shorten Link";
+                return STGDropActionUploadLinkRedirect;
             }
         }
     }
     else if ([[pasteboard types] containsObject:NSPasteboardTypeString])
     {
-        return @"Upload Text";
+        return STGDropActionUploadText;
     }
+    
+    return STGDropActionNone;
+}
+
++ (NSString *)getReadableActionFromPasteboard:(NSPasteboard *)pasteboard
+{
+    STGDropAction action = [self getActionFromPasteboard:pasteboard];
+    
+    if (action == STGDropActionUploadFile)
+        return @"Upload File";
+    else if (action == STGDropActionUploadDirectoryZip)
+        return @"Upload as zip";
+    else if (action == STGDropActionUploadZip)
+        return @"Upload as zip";
+    else if (action == STGDropActionUploadText)
+        return @"Upload Text";
+    else if (action == STGDropActionUploadLinkRedirect)
+        return @"Shorten Link";
     
     return nil;
 }
 
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent
 {
-    NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [self getCurrentScreenshotFileName]];
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Screenshot_%@.png", [self getDateAsString]];
     
     NSTask *task = [[NSTask alloc] init];
     
@@ -118,7 +194,7 @@
 
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder
 {
-    NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [self getCurrentTextFileName]];
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Text_%@.txt", [self getDateAsString]];
     
     [[NSFileManager defaultManager] createFileAtPath:fileName contents:[text dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
     
@@ -144,6 +220,73 @@
     return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
++ (STGDataCaptureEntry *)captureFile:(NSURL *)link tempFolder:(NSString *)tempFolder
+{
+    return [STGDataCaptureEntry entryWithURL:link deleteOnCompletion:NO];
+}
+
++ (STGDataCaptureEntry *)captureFilesAsZip:(NSArray *)links withTempFolder:(NSString *)tempFolder
+{
+    if (links && [links count] > 0)
+    {
+        NSString *fileName = [tempFolder stringByAppendingFormat:@"/Archive_%@.zip", [self getDateAsString]];
+                
+        NSURL *baseURL = nil;
+        for (NSURL *url in links)
+        {
+            if (!baseURL)
+                baseURL = url;
+            
+            while ([[url path] rangeOfString:[baseURL path]].location == NSNotFound || [[url path] isEqualToString:[baseURL path]])
+            {
+                baseURL = [baseURL URLByDeletingLastPathComponent];
+            }
+        }
+        
+        NSMutableArray *relativeLinks = [[NSMutableArray alloc] initWithCapacity:[links count]];
+        
+        NSLog(@"%@", baseURL);
+        for (NSURL *link in links)
+        {
+            NSString *absolute = [link absoluteString];
+            NSRange range = [absolute rangeOfString:[baseURL absoluteString]];
+            NSString *relativePath = [absolute substringFromIndex:range.location + range.length];
+            
+            [relativeLinks addObject:[[NSURL alloc] initWithString:relativePath]];
+        }
+        NSLog(@"%@", relativeLinks);
+
+        NSTask *task = [[NSTask alloc] init];
+        
+        NSMutableArray *args = [[NSMutableArray alloc] init];
+
+        [args addObject:@"-r"];
+        
+        [args addObject:fileName];
+        
+        for (NSURL *url in relativeLinks)
+        {
+            [args addObject:[url path]];
+        }
+        
+        [task setArguments: args];
+        
+        [task setLaunchPath: @"/usr/bin/zip"];
+        [task setCurrentDirectoryPath:[baseURL path]];
+        [task launch];
+        [task waitUntilExit];
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
+        {
+            return nil;
+        }
+        
+        return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    }
+    
+    return nil;
+}
+
 + (NSArray *)startFileCaptureWithTempFolder:(NSString *)tempFolder
 {
     NSOpenPanel *filePanel = [[NSOpenPanel alloc] init];
@@ -167,16 +310,6 @@
     }
     
     return nil;
-}
-
-+ (NSString *)getCurrentScreenshotFileName
-{
-    return [NSString stringWithFormat:@"Screenshot_%@.png", [self getDateAsString]];
-}
-
-+ (NSString *)getCurrentTextFileName
-{
-    return [NSString stringWithFormat:@"Text_%@.png", [self getDateAsString]];
 }
 
 + (NSString *)getDateAsString

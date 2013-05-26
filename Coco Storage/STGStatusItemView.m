@@ -149,7 +149,7 @@
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {    
-    NSString *displayString = [STGDataCaptureManager getActionFromPasteboard:[sender draggingPasteboard]];
+    NSString *displayString = [STGDataCaptureManager getReadableActionFromPasteboard:[sender draggingPasteboard]];
     
     if (displayString)
     {
