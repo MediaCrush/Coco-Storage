@@ -37,7 +37,11 @@
         {
             if ([url isFileURL])
             {
-                return [NSArray arrayWithObject:[STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO]];
+                BOOL isDirectory;
+                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+                
+                if (exists && !isDirectory)
+                    return [NSArray arrayWithObject:[STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO]];
             }
             else if([[url scheme] isEqualToString:@"http"])
             {
@@ -63,7 +67,11 @@
         {
             if ([url isFileURL])
             {
-                return @"Upload File";
+                BOOL isDirectory;
+                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+                
+                if (exists && !isDirectory)
+                    return @"Upload File";
             }
             else if([[url scheme] isEqualToString:@"http"])
             {

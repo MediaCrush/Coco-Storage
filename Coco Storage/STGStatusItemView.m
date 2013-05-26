@@ -148,10 +148,7 @@
 }
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
-{
-    [self setOnDragging:YES];
-    [self setNeedsDisplay:YES];
-    
+{    
     NSString *displayString = [STGDataCaptureManager getActionFromPasteboard:[sender draggingPasteboard]];
     
     if (displayString)
@@ -178,24 +175,51 @@
         [animation setDuration:0.2];
         
         [animation startAnimation];
+        
+        [self setOnDragging:YES];
+        [self setNeedsDisplay:YES];
+
+        return NSDragOperationCopy;
     }
     
-    return NSDragOperationCopy;
+    return NSDragOperationNone;
 }
 
 - (void)draggingExited:(id<NSDraggingInfo>)sender
 {
-    [self setOnDragging:NO];
-    [self setNeedsDisplay:YES];
-    
-    if ([_overlayWindow isVisible])
+    if (_onDragging)
     {
-        NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:_overlayWindow, NSViewAnimationTargetKey, NSViewAnimationFadeOutEffect, NSViewAnimationEffectKey, nil]]];
+        [self setOnDragging:NO];
+        [self setNeedsDisplay:YES];
         
-        [animation setAnimationBlockingMode: NSAnimationNonblockingThreaded];
-        [animation setDuration:0.2];
+        if ([_overlayWindow isVisible])
+        {
+            NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:_overlayWindow, NSViewAnimationTargetKey, NSViewAnimationFadeOutEffect, NSViewAnimationEffectKey, nil]]];
+            
+            [animation setAnimationBlockingMode: NSAnimationNonblockingThreaded];
+            [animation setDuration:0.2];
+            
+            [animation startAnimation];
+        }        
+    }
+}
 
-        [animation startAnimation];
+- (void)draggingEnded:(id<NSDraggingInfo>)sender
+{
+    if (_onDragging)
+    {
+        [self setOnDragging:NO];
+        [self setNeedsDisplay:YES];
+        
+        if ([_overlayWindow isVisible])
+        {
+            NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:_overlayWindow, NSViewAnimationTargetKey, NSViewAnimationFadeOutEffect, NSViewAnimationEffectKey, nil]]];
+            
+            [animation setAnimationBlockingMode: NSAnimationNonblockingThreaded];
+            [animation setDuration:0.2];
+            
+            [animation startAnimation];
+        }
     }
 }
 
@@ -214,7 +238,7 @@
             return YES;
         }
     }
-        
+    
     return NO;
 }
 
