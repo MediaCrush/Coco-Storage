@@ -70,15 +70,20 @@
             return [NSArray arrayWithObject:[self captureFilesAsZip:validURLS withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
         }
     }
-    else if (action == STGDropActionUploadRtfdText || action == STGDropActionUploadRtfText)
+    else if (action == STGDropActionUploadRtfText)
     {
-        NSString *type = action == STGDropActionUploadRtfdText ? NSRTFDPboardType : NSRTFPboardType;
-        
-        return [NSArray arrayWithObject:[self captureAttributedTextAsFile:[[NSAttributedString alloc] initWithRTF:[pasteboard dataForType:type] documentAttributes:nil] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        return [NSArray arrayWithObject:[self captureAttributedTextAsFile:[[NSAttributedString alloc] initWithRTF:[pasteboard dataForType:NSPasteboardTypeRTF] documentAttributes:nil] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
     }
     else if (action == STGDropActionUploadText)
     {
         return [NSArray arrayWithObject:[self captureTextAsFile:[pasteboard stringForType:NSPasteboardTypeString] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+    }
+    else if (action == STGDropActionUploadImage)
+    {
+        NSArray *objectsToPaste = [pasteboard readObjectsForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil];
+        NSImage *image = [objectsToPaste objectAtIndex:0];
+        
+        return [NSArray arrayWithObject:[self captureImageAsFile:image tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
     }
     else if (action == STGDropActionUploadLinkRedirect)
     {
@@ -121,7 +126,11 @@
             }
         }
     }
-    else if ([[pasteboard types] containsObject:NSURLPboardType])
+    if ([pasteboard canReadObjectForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil])
+    {
+        return STGDropActionUploadImage;
+    }
+    if ([[pasteboard types] containsObject:NSURLPboardType])
     {
         NSURL *url = [NSURL URLFromPasteboard:pasteboard];
         
@@ -143,17 +152,14 @@
             }
         }
     }
-    else if ([[pasteboard types] containsObject:NSRTFDPboardType])
-    {
-        return STGDropActionUploadRtfdText;
-    }
-    else if ([[pasteboard types] containsObject:NSRTFPboardType])
+    if ([[pasteboard types] containsObject:NSPasteboardTypeRTF])
     {
         return STGDropActionUploadRtfText;
     }
-    else if ([[pasteboard types] containsObject:NSPasteboardTypeString])
+    if ([[pasteboard types] containsObject:NSPasteboardTypeString])
     {
-        return STGDropActionUploadText;
+        if ([[pasteboard dataForType:NSPasteboardTypeString] length] > 0)
+            return STGDropActionUploadText;
     }
     
     return STGDropActionNone;
@@ -171,10 +177,10 @@
         return @"Upload as zip";
     else if (action == STGDropActionUploadText)
         return @"Upload Text";
-    else if (action == STGDropActionUploadRtfdText)
-        return @"Upload Attributed Text";
     else if (action == STGDropActionUploadRtfText)
         return @"Upload Attributed Text";
+    else if (action == STGDropActionUploadImage)
+        return @"Upload Image";
     else if (action == STGDropActionUploadLinkRedirect)
         return @"Shorten Link";
     
@@ -243,9 +249,26 @@
 
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder
 {
-    NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [NSString stringWithFormat:@"Link_%@_%@.html", [link host], [self getDateAsString]]];
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Link_%@_%@", [link host], [self getDateAsString]];
     
     [[NSFileManager defaultManager] createFileAtPath:fileName contents:[[NSString stringWithFormat:@"<html>\n<head>\n<meta http-equiv=\"refresh\" content=\"0; url=%@\">\n</head>\n<body></body></html>", [link absoluteString]] dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
+    {
+        return nil;
+    }
+    
+    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+}
+
++ (STGDataCaptureEntry *)captureImageAsFile:(NSImage *)image tempFolder:(NSString *)tempFolder
+{
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Image_%@.png", [self getDateAsString]];
+
+    NSBitmapImageRep *imgRep = [[image representations] objectAtIndex: 0];
+    
+    NSData *data = [imgRep representationUsingType:NSPNGFileType properties:nil];
+    [data writeToFile:fileName atomically: NO];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
     {
