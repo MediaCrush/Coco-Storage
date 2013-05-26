@@ -14,6 +14,7 @@
 
 + (NSArray *)getSupportedPasteboardContentTypes;
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard;
++ (NSString *)getActionFromPasteboard:(NSPasteboard *)pasteboard;
 
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent;
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;

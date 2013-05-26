@@ -21,6 +21,9 @@
 @property (nonatomic, retain) NSImage *image;
 @property (nonatomic, retain) NSImageCell *imageViewCell; //For highlights :<
 
+@property (nonatomic, retain) NSWindow *overlayWindow;
+@property (nonatomic, retain) NSTextField *overlayWindowLabel;
+
 @end
 
 @protocol STGStatusItemViewDelegate <NSObject>

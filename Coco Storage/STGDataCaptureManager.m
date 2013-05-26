@@ -53,6 +53,32 @@
     return nil;
 }
 
++ (NSString *)getActionFromPasteboard:(NSPasteboard *)pasteboard
+{
+    if ([[pasteboard types] containsObject:NSURLPboardType])
+    {
+        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+        
+        if (url)
+        {
+            if ([url isFileURL])
+            {
+                return @"Upload File";
+            }
+            else if([[url scheme] isEqualToString:@"http"])
+            {
+                return @"Shorten Link";
+            }
+        }
+    }
+    else if ([[pasteboard types] containsObject:NSPasteboardTypeString])
+    {
+        return @"Upload Text";
+    }
+    
+    return nil;
+}
+
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent
 {
     NSString *fileName = [tempFolder stringByAppendingFormat:@"/%@", [self getCurrentScreenshotFileName]];
@@ -107,7 +133,6 @@
         return nil;
     }
     
-    NSLog(@"%@", fileName);
     return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
