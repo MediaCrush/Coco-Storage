@@ -17,7 +17,8 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
     STGDropActionUploadText = 4,
     STGDropActionUploadRtfText = 5,
     STGDropActionUploadImage = 6,
-    STGDropActionUploadLinkRedirect = 7
+    STGDropActionUploadLinkRedirect = 7,
+    STGDropActionUploadColor = 8
 };
 
 @class STGDataCaptureEntry;
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 + (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureImageAsFile:(NSImage *)image tempFolder:(NSString *)tempFolder;
++ (STGDataCaptureEntry *)captureColorAsFile:(NSColor *)color tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureFilesAsZip:(NSArray *)links withTempFolder:(NSString *)tempFolder;
 + (NSArray *)startFileCaptureWithTempFolder:(NSString *)tempFolder;

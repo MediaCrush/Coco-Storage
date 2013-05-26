@@ -22,7 +22,7 @@
 
 + (NSArray *)getSupportedPasteboardContentTypes
 {
-    return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, nil];
+    return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, NSPasteboardTypeColor, NSPasteboardTypeRTF, NSPasteboardTypePNG, NSPasteboardTypeTIFF, nil];
 }
 
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard
@@ -88,8 +88,12 @@
     else if (action == STGDropActionUploadLinkRedirect)
     {
         NSURL *url = [NSURL URLFromPasteboard:pasteboard];
-
+        
         return [NSArray arrayWithObject:[self captureLinkAsRedirectFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+    }
+    else if (action == STGDropActionUploadColor)
+    {
+        return [NSArray arrayWithObject:[self captureColorAsFile:[NSColor colorFromPasteboard:pasteboard] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
     }
     
     return nil;
@@ -158,8 +162,12 @@
     }
     if ([[pasteboard types] containsObject:NSPasteboardTypeString])
     {
-        if ([[pasteboard dataForType:NSPasteboardTypeString] length] > 0)
-            return STGDropActionUploadText;
+        return STGDropActionUploadText;
+    }
+
+    if ([[pasteboard types] containsObject:NSPasteboardTypeColor])
+    {
+        return STGDropActionUploadColor;
     }
     
     return STGDropActionNone;
@@ -183,6 +191,8 @@
         return @"Upload Image";
     else if (action == STGDropActionUploadLinkRedirect)
         return @"Shorten Link";
+    else if (action == STGDropActionUploadColor)
+        return @"Upload Color";
     
     return nil;
 }
@@ -269,6 +279,22 @@
     
     NSData *data = [imgRep representationUsingType:NSPNGFileType properties:nil];
     [data writeToFile:fileName atomically: NO];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
+    {
+        return nil;
+    }
+    
+    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+}
+
++ (STGDataCaptureEntry *)captureColorAsFile:(NSColor *)color tempFolder:(NSString *)tempFolder
+{
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Color_%@.html", [self getDateAsString]];
+    
+    NSColor *convColor = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    
+    [[NSFileManager defaultManager] createFileAtPath:fileName contents:[[NSString stringWithFormat:@"<html>\n<head></head>\n<body bgcolor=\"#%X%X%X\"></body></html>", (unsigned)([convColor redComponent] * 255.0), (unsigned)([convColor greenComponent] * 255.0), (unsigned)([convColor blueComponent] * 255.0)] dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
     {
