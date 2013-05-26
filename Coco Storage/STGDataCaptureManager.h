@@ -15,7 +15,9 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
     STGDropActionUploadDirectoryZip = 2,
     STGDropActionUploadZip = 3,
     STGDropActionUploadText = 4,
-    STGDropActionUploadLinkRedirect = 5
+    STGDropActionUploadRtfText = 5,
+    STGDropActionUploadRtfdText = 6,
+    STGDropActionUploadLinkRedirect = 7
 };
 
 @class STGDataCaptureEntry;
@@ -29,6 +31,7 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent;
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;
++ (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureFilesAsZip:(NSArray *)links withTempFolder:(NSString *)tempFolder;

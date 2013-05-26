@@ -70,6 +70,12 @@
             return [NSArray arrayWithObject:[self captureFilesAsZip:validURLS withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
         }
     }
+    else if (action == STGDropActionUploadRtfdText || action == STGDropActionUploadRtfText)
+    {
+        NSString *type = action == STGDropActionUploadRtfdText ? NSRTFDPboardType : NSRTFPboardType;
+        
+        return [NSArray arrayWithObject:[self captureAttributedTextAsFile:[[NSAttributedString alloc] initWithRTF:[pasteboard dataForType:type] documentAttributes:nil] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+    }
     else if (action == STGDropActionUploadText)
     {
         return [NSArray arrayWithObject:[self captureTextAsFile:[pasteboard stringForType:NSPasteboardTypeString] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
@@ -137,6 +143,14 @@
             }
         }
     }
+    else if ([[pasteboard types] containsObject:NSRTFDPboardType])
+    {
+        return STGDropActionUploadRtfdText;
+    }
+    else if ([[pasteboard types] containsObject:NSRTFPboardType])
+    {
+        return STGDropActionUploadRtfText;
+    }
     else if ([[pasteboard types] containsObject:NSPasteboardTypeString])
     {
         return STGDropActionUploadText;
@@ -157,6 +171,10 @@
         return @"Upload as zip";
     else if (action == STGDropActionUploadText)
         return @"Upload Text";
+    else if (action == STGDropActionUploadRtfdText)
+        return @"Upload Attributed Text";
+    else if (action == STGDropActionUploadRtfText)
+        return @"Upload Attributed Text";
     else if (action == STGDropActionUploadLinkRedirect)
         return @"Shorten Link";
     
@@ -197,6 +215,23 @@
     NSString *fileName = [tempFolder stringByAppendingFormat:@"/Text_%@.txt", [self getDateAsString]];
     
     [[NSFileManager defaultManager] createFileAtPath:fileName contents:[text dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
+    {
+        return nil;
+    }
+    
+    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+}
+
++ (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder
+{
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Text_%@.html", [self getDateAsString]];
+    
+    NSDictionary *documentAttributes = [NSDictionary dictionaryWithObjectsAndKeys:NSHTMLTextDocumentType, NSDocumentTypeDocumentAttribute, nil];
+    NSData *htmlData = [text dataFromRange:NSMakeRange(0, text.length) documentAttributes:documentAttributes error:NULL];
+
+    [[NSFileManager defaultManager] createFileAtPath:fileName contents:htmlData attributes:nil];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
     {
