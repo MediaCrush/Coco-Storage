@@ -14,8 +14,6 @@
 
 @implementation STGOptionsAboutViewController
 
-@synthesize versionLabel = _versionLabel;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

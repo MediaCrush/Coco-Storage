@@ -10,8 +10,6 @@
 
 @implementation STGOptionTextField
 
-@synthesize optionDelegate = _optionDelegate;
-
 - (void)textDidChange:(NSNotification *)notification
 {
     if ([_optionDelegate respondsToSelector:@selector(textChanged:)])

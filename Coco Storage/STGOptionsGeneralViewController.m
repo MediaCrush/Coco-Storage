@@ -21,12 +21,6 @@
 
 @implementation STGOptionsGeneralViewController
 
-@synthesize launchOnStartupButton = _launchOnStartupButton;
-@synthesize showDockIconButton = _showDockIconButton;
-@synthesize autoUpdateButton = _autoUpdateButton;
-
-@synthesize storageKeyTable = _storageKeyTable;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -350,10 +344,16 @@
 
 - (BOOL)validateUserInterfaceItem:(id )anItem
 {
-    if ([anItem action] == @selector(copy:)) {
+    if ([anItem action] == @selector(copy:))
 		return YES;
-	}
-    return YES;
+
+    if ([anItem action] == @selector(cut:))
+		return YES;
+
+    if ([anItem action] == @selector(paste:))
+		return YES;
+
+    return NO;
 }
 
 @end

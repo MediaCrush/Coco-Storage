@@ -12,11 +12,6 @@
 
 @implementation STGDataCaptureEntry
 
-@synthesize fileURL = _fileURL;
-@synthesize deleteOnCompletetion = _deleteOnCompletetion;
-
-@synthesize onlineLink = _onlineLink;
-
 + (STGDataCaptureEntry *)entryWithURL:(NSURL *)url deleteOnCompletion:(BOOL)del
 {
     STGDataCaptureEntry *entry = [[STGDataCaptureEntry alloc] init];

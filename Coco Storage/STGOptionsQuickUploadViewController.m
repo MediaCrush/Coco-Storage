@@ -16,17 +16,6 @@
 
 @implementation STGOptionsQuickUploadViewController
 
-@synthesize tempFolderTextField = _tempFolderTextField;
-@synthesize keepFailedScreenshotsButton = _keepFailedScreenshotsButton;
-@synthesize keepAllScreenshotsButton = _keepAllScreenshotsButton;
-
-@synthesize playSoundButton = _playSoundButton;
-@synthesize selectSoundButton = _selectSoundButton;
-@synthesize linkCopyToPasteboardButton = _linkCopyToPasteboardButton;
-@synthesize openLinkInBrowserButton = _openLinkInBrowserButton;
-@synthesize displayNotificationButton = _displayNotificationButton;
-@synthesize playScreenshotSoundButton = _playScreenshotSoundButton;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

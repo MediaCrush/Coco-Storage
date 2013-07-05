@@ -25,21 +25,32 @@
     return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, NSPasteboardTypeColor, NSPasteboardTypeRTF, NSPasteboardTypePNG, NSPasteboardTypeTIFF, nil];
 }
 
-+ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard
++ (NSArray *)captureFirstDataFromPasteboard:(NSPasteboard *)pasteboard
 {
-    STGDropAction action = [self getActionFromPasteboard:pasteboard];
+    STGDropAction action = [[[self getActionsFromPasteboard:pasteboard] objectAtIndex:0] integerValue];
     
+    return [self captureDataFromPasteboard:pasteboard withAction:action];
+}
+
++ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGDropAction)action
+{
     if (action == STGDropActionUploadFile)
     {
         NSURL *url = [NSURL URLFromPasteboard:pasteboard];
 
-        return [NSArray arrayWithObject:[self captureFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        STGDataCaptureEntry *entry = [self captureFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
     }
     else if (action == STGDropActionUploadDirectoryZip)
     {
         NSURL *url = [NSURL URLFromPasteboard:pasteboard];
 
-        return [NSArray arrayWithObject:[self captureFilesAsZip:[NSArray arrayWithObject:url] withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        STGDataCaptureEntry *entry = [self captureFilesAsZip:[NSArray arrayWithObject:url] withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
     }
     else if (action == STGDropActionUploadZip)
     {
@@ -67,40 +78,60 @@
                 }
             }
             
-            return [NSArray arrayWithObject:[self captureFilesAsZip:validURLS withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+            STGDataCaptureEntry *entry = [self captureFilesAsZip:validURLS withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+            
+            if (entry)
+                return [NSArray arrayWithObject:entry];
         }
     }
     else if (action == STGDropActionUploadRtfText)
     {
-        return [NSArray arrayWithObject:[self captureAttributedTextAsFile:[[NSAttributedString alloc] initWithRTF:[pasteboard dataForType:NSPasteboardTypeRTF] documentAttributes:nil] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        STGDataCaptureEntry *entry = [self captureAttributedTextAsFile:[[NSAttributedString alloc] initWithRTF:[pasteboard dataForType:NSPasteboardTypeRTF] documentAttributes:nil] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
     }
     else if (action == STGDropActionUploadText)
     {
-        return [NSArray arrayWithObject:[self captureTextAsFile:[pasteboard stringForType:NSPasteboardTypeString] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        STGDataCaptureEntry *entry = [self captureTextAsFile:[pasteboard stringForType:NSPasteboardTypeString] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
     }
     else if (action == STGDropActionUploadImage)
     {
         NSArray *objectsToPaste = [pasteboard readObjectsForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil];
         NSImage *image = [objectsToPaste objectAtIndex:0];
         
-        return [NSArray arrayWithObject:[self captureImageAsFile:image tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        STGDataCaptureEntry *entry = [self captureImageAsFile:image tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
     }
     else if (action == STGDropActionUploadLinkRedirect)
     {
         NSURL *url = [NSURL URLFromPasteboard:pasteboard];
         
-        return [NSArray arrayWithObject:[self captureLinkAsRedirectFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        STGDataCaptureEntry *entry = [self captureLinkAsRedirectFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
     }
     else if (action == STGDropActionUploadColor)
     {
-        return [NSArray arrayWithObject:[self captureColorAsFile:[NSColor colorFromPasteboard:pasteboard] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]]];
+        STGDataCaptureEntry *entry = [self captureColorAsFile:[NSColor colorFromPasteboard:pasteboard] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
     }
     
     return nil;
 }
 
-+ (STGDropAction)getActionFromPasteboard:(NSPasteboard *)pasteboard
++ (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard
 {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+
     if ([[pasteboard types] containsObject:NSFilenamesPboardType])
     {
         NSData *data = [pasteboard dataForType:NSFilenamesPboardType];
@@ -112,9 +143,9 @@
             NSLog(@"%@", error);
         else if (filenames && [filenames count] > 1)
         {
-            return STGDropActionUploadZip;
+            [array addObject:[NSNumber numberWithInteger:STGDropActionUploadZip]];
         }
-        else if (filenames)
+        else if (filenames && ![[pasteboard types] containsObject:NSURLPboardType])
         {
             NSURL *url = [NSURL URLFromPasteboard:pasteboard];
             
@@ -124,15 +155,15 @@
                 BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
                 
                 if (exists && !isDirectory)
-                    return STGDropActionUploadFile;
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadFile]];
                 else if (exists)
-                    return STGDropActionUploadDirectoryZip;
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadDirectoryZip]];
             }
         }
     }
     if ([pasteboard canReadObjectForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil])
     {
-        return STGDropActionUploadImage;
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadImage]];
     }
     if ([[pasteboard types] containsObject:NSURLPboardType])
     {
@@ -146,37 +177,35 @@
                 BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
                 
                 if (exists && !isDirectory)
-                    return STGDropActionUploadFile;
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadFile]];
                 else if (exists)
-                    return STGDropActionUploadDirectoryZip;
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadDirectoryZip]];
             }
             else if([[url scheme] isEqualToString:@"http"])
             {
-                return STGDropActionUploadLinkRedirect;
+                [array addObject:[NSNumber numberWithInteger:STGDropActionUploadLinkRedirect]];
             }
         }
     }
     if ([[pasteboard types] containsObject:NSPasteboardTypeRTF])
     {
-        return STGDropActionUploadRtfText;
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadRtfText]];
     }
     if ([[pasteboard types] containsObject:NSPasteboardTypeString])
     {
-        return STGDropActionUploadText;
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadText]];
     }
 
     if ([[pasteboard types] containsObject:NSPasteboardTypeColor])
     {
-        return STGDropActionUploadColor;
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadColor]];
     }
     
-    return STGDropActionNone;
+    return array;
 }
 
-+ (NSString *)getReadableActionFromPasteboard:(NSPasteboard *)pasteboard
++ (NSString *)getNameForAction:(STGDropAction)action
 {
-    STGDropAction action = [self getActionFromPasteboard:pasteboard];
-    
     if (action == STGDropActionUploadFile)
         return @"Upload File";
     else if (action == STGDropActionUploadDirectoryZip)
@@ -195,6 +224,23 @@
         return @"Upload Color";
     
     return nil;
+}
+
++ (NSArray *)getReadableActionsFromPasteboard:(NSPasteboard *)pasteboard
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    NSArray *actions = [self getActionsFromPasteboard:pasteboard];
+
+    for (NSNumber *number in actions)
+    {
+        NSString *name = [self getNameForAction:[number integerValue]];
+        
+        if (name)
+            [array addObject:name];
+    }
+    
+    return array;
 }
 
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent
@@ -231,7 +277,7 @@
     NSString *fileName = [tempFolder stringByAppendingFormat:@"/Text_%@.txt", [self getDateAsString]];
     
     [[NSFileManager defaultManager] createFileAtPath:fileName contents:[text dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
-    
+
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
     {
         return nil;
@@ -329,7 +375,6 @@
         
         NSMutableArray *relativeLinks = [[NSMutableArray alloc] initWithCapacity:[links count]];
         
-        NSLog(@"%@", baseURL);
         for (NSURL *link in links)
         {
             NSString *absolute = [link absoluteString];
@@ -338,7 +383,6 @@
             
             [relativeLinks addObject:[[NSURL alloc] initWithString:relativePath]];
         }
-        NSLog(@"%@", relativeLinks);
 
         NSTask *task = [[NSTask alloc] init];
         

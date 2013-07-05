@@ -10,15 +10,14 @@
 
 typedef NS_ENUM(NSUInteger, STGDropAction)
 {
-    STGDropActionNone = 0,
-    STGDropActionUploadFile = 1,
-    STGDropActionUploadDirectoryZip = 2,
-    STGDropActionUploadZip = 3,
-    STGDropActionUploadText = 4,
-    STGDropActionUploadRtfText = 5,
-    STGDropActionUploadImage = 6,
-    STGDropActionUploadLinkRedirect = 7,
-    STGDropActionUploadColor = 8
+    STGDropActionUploadFile = 0,
+    STGDropActionUploadDirectoryZip = 1,
+    STGDropActionUploadZip = 2,
+    STGDropActionUploadText = 3,
+    STGDropActionUploadRtfText = 4,
+    STGDropActionUploadImage = 5,
+    STGDropActionUploadLinkRedirect = 6,
+    STGDropActionUploadColor = 7
 };
 
 @class STGDataCaptureEntry;
@@ -26,9 +25,11 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 @interface STGDataCaptureManager : NSObject
 
 + (NSArray *)getSupportedPasteboardContentTypes;
-+ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard;
-+ (STGDropAction)getActionFromPasteboard:(NSPasteboard *)pasteboard;
-+ (NSString *)getReadableActionFromPasteboard:(NSPasteboard *)pasteboard;
++ (NSArray *)captureFirstDataFromPasteboard:(NSPasteboard *)pasteboard;
++ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGDropAction)action;
++ (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard;
++ (NSString *)getNameForAction:(STGDropAction)action;
++ (NSArray *)getReadableActionsFromPasteboard:(NSPasteboard *)pasteboard;
 
 + (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent;
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;

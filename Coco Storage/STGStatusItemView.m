@@ -14,18 +14,6 @@
 
 @implementation STGStatusItemView
 
-@synthesize delegate = _delegate;
-
-@synthesize statusItem = _statusItem;
-@synthesize highlight = _highlight;
-@synthesize onDragging = _onDragging;
-
-@synthesize image = _image;
-@synthesize imageViewCell = _imageViewCell;
-
-@synthesize overlayWindow = _overlayWindow;
-@synthesize overlayWindowLabel = _overlayWindowLabel;
-
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -53,7 +41,7 @@
         [[[_overlayWindow contentView] layer] setBackgroundColor:[[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.5] CGColor]];
 
         [self setOverlayWindowLabel:[[NSTextField alloc] init]];
-        [_overlayWindowLabel setStringValue:@"This is a test"];
+        [_overlayWindowLabel setStringValue:@"Upload (Unknown)"];
         [_overlayWindowLabel setSelectable:NO];
         [_overlayWindowLabel setEditable:NO];
         [_overlayWindowLabel setBezeled:NO];
@@ -149,7 +137,7 @@
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {    
-    NSString *displayString = [STGDataCaptureManager getReadableActionFromPasteboard:[sender draggingPasteboard]];
+    NSString *displayString = [[STGDataCaptureManager getReadableActionsFromPasteboard:[sender draggingPasteboard]] objectAtIndex:0];
     
     if (displayString)
     {
@@ -168,7 +156,7 @@
         [_overlayWindow orderFront:self];
         [_overlayWindowLabel setFrame:contentRect];
         [_overlayWindowLabel setStringValue:displayString];
-        
+                
         NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:_overlayWindow, NSViewAnimationTargetKey, NSViewAnimationFadeInEffect, NSViewAnimationEffectKey, nil]]];
         
         [animation setAnimationBlockingMode: NSAnimationNonblockingThreaded];
@@ -227,7 +215,7 @@
 {
     NSPasteboard *pBoard = [sender draggingPasteboard];
 
-    NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard];
+    NSArray *entries = [STGDataCaptureManager captureFirstDataFromPasteboard:pBoard];
     
     if (entries && [entries count] > 0)
     {

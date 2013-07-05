@@ -16,13 +16,6 @@
 
 @implementation STGOptionsCFSViewController
 
-@synthesize cfsFolderTextField = _cfsFolderTextField;
-
-@synthesize playSoundButton = _playSoundButton;
-@synthesize selectSoundButton = _selectSoundButton;
-
-@synthesize displayNotificationButton = _displayNotificationButton;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -15,11 +15,11 @@
 
 + (STGPacket *)getFilePacket:(NSString *)link key:(NSString *)key;
 
-+ (STGPacket *)uploadFilePacket:(STGDataCaptureEntry *)entry uploadLink:(NSString *)link key:(NSString *)key;
++ (STGPacket *)uploadFilePacket:(STGDataCaptureEntry *)entry uploadLink:(NSString *)link key:(NSString *)key isPublic:(BOOL)isPublic;
 + (STGPacket *)deleteFilePacket:(STGDataCaptureEntry *)entry uploadLink:(NSString *)link key:(NSString *)key;
 + (STGPacket *)objectInfoPacket:(NSString *)objectID link:(NSString *)link key:(NSString *)key;
 
-+ (STGPacket *)cfsGenericPacket:(NSString *)httpMethod path:(NSString *)filePath link:(NSString *)link key:(NSString *)key;
++ (STGPacket *)cfsGenericPacket:(NSString *)httpMethod path:(NSString *)filePath link:(NSString *)link key:(NSString *)key packetType:(NSString *)packetType;
 + (STGPacket *)cfsFileListPacket:(NSString *)filePath link:(NSString *)link recursive:(BOOL)recursive key:(NSString *)key;
 + (STGPacket *)cfsFileInfoPacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key;
 + (STGPacket *)cfsPostFilePacket:(NSString *)filePath fileURL:(NSURL *)fileURL link:(NSString *)link key:(NSString *)key;

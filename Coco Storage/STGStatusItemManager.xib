@@ -78,13 +78,22 @@
 					</object>
 					<object class="NSMenuItem" id="614906823">
 						<reference key="NSMenu" ref="570240834"/>
-						<string key="NSTitle">Capture area</string>
+						<string key="NSTitle">Capture...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSImage" id="184352843">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">NSRightFacingTriangleTemplate</string>
 						</object>
+						<reference key="NSOnImage" ref="781380661"/>
+						<reference key="NSMixedImage" ref="862824111"/>
+					</object>
+					<object class="NSMenuItem" id="223265084">
+						<reference key="NSMenu" ref="570240834"/>
+						<string key="NSTitle">Capture area</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSImage" ref="184352843"/>
 						<reference key="NSOnImage" ref="781380661"/>
 						<reference key="NSMixedImage" ref="862824111"/>
 					</object>
@@ -276,14 +285,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">captureAreaMenuItem</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="614906823"/>
-					</object>
-					<int key="connectionID">22</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">captureFullScreenMenuItem</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="1008162436"/>
@@ -396,14 +397,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">captureArea:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="614906823"/>
-					</object>
-					<int key="connectionID">37</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">openStorageAccount:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="327732262"/>
@@ -433,6 +426,38 @@
 						<reference key="destination" ref="263116197"/>
 					</object>
 					<int key="connectionID">45</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">captureArea:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="223265084"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">captureAreaMenuItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="223265084"/>
+					</object>
+					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openQuickUploadWindow:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="614906823"/>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">quickCaptureMenuItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="614906823"/>
+					</object>
+					<int key="connectionID">50</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -483,6 +508,7 @@
 							<reference ref="967399323"/>
 							<reference ref="263116197"/>
 							<reference ref="862088870"/>
+							<reference ref="223265084"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -613,6 +639,11 @@
 						<reference key="object" ref="862088870"/>
 						<reference key="parent" ref="570240834"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">46</int>
+						<reference key="object" ref="223265084"/>
+						<reference key="parent" ref="570240834"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -638,6 +669,7 @@
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -648,7 +680,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">45</int>
+			<int key="maxID">50</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -666,6 +698,7 @@
 						<string key="openCFSFolder:">id</string>
 						<string key="openMyFiles:">id</string>
 						<string key="openPreferences:">id</string>
+						<string key="openQuickUploadWindow:">id</string>
 						<string key="openRecentFile:">id</string>
 						<string key="openStorageAccount:">id</string>
 						<string key="quit:">id</string>
@@ -712,6 +745,10 @@
 							<string key="name">openPreferences:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="openQuickUploadWindow:">
+							<string key="name">openQuickUploadWindow:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="openRecentFile:">
 							<string key="name">openRecentFile:</string>
 							<string key="candidateClassName">id</string>
@@ -738,8 +775,10 @@
 						<string key="noCurrentUploadItem">NSMenuItem</string>
 						<string key="noRecentFilesItem">NSMenuItem</string>
 						<string key="pauseUploadsItem">NSMenuItem</string>
+						<string key="quickCaptureMenuItem">NSMenuItem</string>
 						<string key="recentFilesItem">NSMenuItem</string>
 						<string key="serverStatusItem">NSMenuItem</string>
+						<string key="statusItemView">STGStatusItemView</string>
 						<string key="statusMenu">NSMenu</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -775,6 +814,10 @@
 							<string key="name">pauseUploadsItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="quickCaptureMenuItem">
+							<string key="name">quickCaptureMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="recentFilesItem">
 							<string key="name">recentFilesItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
@@ -782,6 +825,10 @@
 						<object class="IBToOneOutletInfo" key="serverStatusItem">
 							<string key="name">serverStatusItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="statusItemView">
+							<string key="name">statusItemView</string>
+							<string key="candidateClassName">STGStatusItemView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="statusMenu">
 							<string key="name">statusMenu</string>
@@ -791,6 +838,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/STGStatusItemManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">STGStatusItemView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/STGStatusItemView.h</string>
 					</object>
 				</object>
 			</array>

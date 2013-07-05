@@ -28,33 +28,6 @@
 
 @implementation STGStatusItemManager
 
-@synthesize delegate = _delegate;
-
-@synthesize statusItem = _statusItem;
-@synthesize statusMenu = _statusMenu;
-@synthesize statusItemView = _statusItemView;
-
-@synthesize timer = _timer;
-@synthesize isSyncing = _isSyncing;
-@synthesize uploadProgress = _uploadProgress;
-@synthesize isSyncingOpacity = _isSyncingOpacity;
-@synthesize ticks = _ticks;
-
-@synthesize serverStatusItem = _serverStatusItem;
-
-@synthesize captureAreaMenuItem = _captureAreaMenuItem;
-@synthesize captureFullScreenMenuItem = _captureFullScreenMenuItem;
-@synthesize captureFileMenuItem = _captureFileMenuItem;
-
-@synthesize recentFilesItem = _recentFilesItem;
-@synthesize noRecentFilesItem = _noRecentFilesItem;
-
-@synthesize currentUploadsItem = _currentUploadsItem;
-@synthesize noCurrentUploadItem = _noCurrentUploadItem;
-@synthesize moreCurrentUploadsItem = _moreCurrentUploadsItem;
-
-@synthesize pauseUploadsItem = _pauseUploadsItem;
-
 - (id)init
 {
     self = [super init];
@@ -287,6 +260,14 @@
     [_serverStatusItem setTitle:statusString];
     [_serverStatusItem setImage:[NSImage imageNamed:avaialable ? @"ServerStatusOK.png" : @"ServerStatusUnavailable.png"]];
     [_statusItemView setToolTip:[NSString stringWithFormat:@"Coco Storage - Server status: %@\nDrag and drop anything here to upload it!", tooltipString]];
+}
+
+- (IBAction)openQuickUploadWindow:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(openQuickUploadWindow)])
+    {
+        [_delegate openQuickUploadWindow];
+    }
 }
 
 - (IBAction)captureArea:(id)sender

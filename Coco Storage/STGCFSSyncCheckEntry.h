@@ -21,11 +21,10 @@ typedef NS_ENUM(NSUInteger, STGCFSSyncCheckEntryType)
 
 @interface STGCFSSyncCheckEntry : NSObject
 
-@property (nonatomic, retain) NSString *filePath;
 @property (nonatomic, retain) NSString *innerPath;
 
 @property (nonatomic, assign) STGCFSSyncCheckEntryType modificationType;
 
-+ (id)syncCheckEntryWithPath:(NSString *)path innerPath:(NSString *)innerPath modificationType:(STGCFSSyncCheckEntryType)type;
++ (id)syncCheckEntryWithPath:(NSString *)innerPath modificationType:(STGCFSSyncCheckEntryType)type;
 
 @end

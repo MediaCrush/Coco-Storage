@@ -10,11 +10,6 @@
 
 @implementation STGHotkeyHelperEntry
 
-@synthesize character = _character;
-@synthesize modifiers = _modifiers;
-
-@synthesize userInfo = _userInfo;
-
 + (id)entryWithCharacter:(NSString *)character modifiers:(NSUInteger)modifiers userInfo:(NSDictionary *)userInfo
 {
     STGHotkeyHelperEntry *entry = [[STGHotkeyHelperEntry alloc] init];

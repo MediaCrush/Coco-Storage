@@ -12,13 +12,6 @@
 
 @implementation STGPacketQueue
 
-@synthesize delegate = _delegate;
-
-@synthesize uploadQueue = _uploadQueue;
-@synthesize connectionManager = _connectionManager;
-
-@synthesize uploadsPaused = _uploadsPaused;
-
 - (id)init
 {
     self = [super init];

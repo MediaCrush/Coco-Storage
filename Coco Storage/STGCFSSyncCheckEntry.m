@@ -10,16 +10,10 @@
 
 @implementation STGCFSSyncCheckEntry
 
-@synthesize filePath = _filePath;
-@synthesize innerPath = _innerPath;
-
-@synthesize modificationType = _modificationType;
-
-+ (id)syncCheckEntryWithPath:(NSString *)path innerPath:(NSString *)innerPath modificationType:(STGCFSSyncCheckEntryType)type
++ (id)syncCheckEntryWithPath:(NSString *)innerPath modificationType:(STGCFSSyncCheckEntryType)type
 {
     STGCFSSyncCheckEntry *entry = [[STGCFSSyncCheckEntry alloc] init];
     
-    [entry setFilePath:path];
     [entry setInnerPath:innerPath];
     [entry setModificationType:type];
     

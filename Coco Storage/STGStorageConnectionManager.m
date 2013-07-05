@@ -19,14 +19,6 @@
 
 @implementation STGStorageConnectionManager
 
-@synthesize delegate = _delegate;
-
-@synthesize activeUploadConnection = _activeUploadConnection;
-@synthesize activeEntry = _activeEntry;
-
-@synthesize responseData = _responseData;
-@synthesize urlResponse = _urlResponse;
-
 - (id)init
 {
     self = [super init];

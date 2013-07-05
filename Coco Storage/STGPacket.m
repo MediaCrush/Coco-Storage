@@ -10,13 +10,6 @@
 
 @implementation STGPacket
 
-@synthesize urlRequest = _urlRequest;
-
-@synthesize packetType = _packetType;
-@synthesize userInfo = _userInfo;
-
-@synthesize inUse = _inUse;
-
 - (id)init
 {
     self = [super init];
@@ -81,7 +74,7 @@
     if (name)
         [dict setObject:name forKey:@"name"];
     if (fileName)
-        [dict setObject:name forKey:@"filename"];
+        [dict setObject:fileName forKey:@"filename"];
     
     return [self contentPartObjectsForKeys:dict content:content];
 }

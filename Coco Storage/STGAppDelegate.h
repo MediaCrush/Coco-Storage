@@ -16,6 +16,7 @@
 #import "STGRecentUploadView.h"
 
 #import "STGWelcomeWindowController.h"
+#import "STGQuickUploadWindowController.h"
 
 #import "STGStatusItemManager.h"
 
@@ -37,7 +38,7 @@
 
 @class STGCFSSyncCheck;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGQuickUploadWindowControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
@@ -49,6 +50,7 @@
 
 @property (nonatomic, retain) MASPreferencesWindowController *prefsController;
 @property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
+@property (nonatomic, retain) STGQuickUploadWindowController *quickUploadWC;
 
 @property (nonatomic, retain) NSMutableArray *recentFilesArray;
 
@@ -77,7 +79,5 @@
 - (void)uploadTimerFired:(NSTimer*)theTimer;
 
 - (void)updateShortcuts;
-
-- (void)keyMissingSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 
 @end

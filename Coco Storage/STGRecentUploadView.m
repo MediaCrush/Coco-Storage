@@ -10,13 +10,6 @@
 
 @implementation STGRecentUploadView
 
-@synthesize recentUploadDelegate = _recentUploadDelegate;
-
-@synthesize captureEntry = _captureEntry;
-
-@synthesize trackingArea = _trackingArea;
-@synthesize isHighlighted = _isHighlighted;
-
 - (void)drawRect:(NSRect)dirtyRect
 {
     if (_isHighlighted)

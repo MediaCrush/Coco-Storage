@@ -29,18 +29,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 @class STGPacketQueue;
 @class STGDataCaptureEntry;
 
-@protocol STGStatusItemManagerDelegate <NSObject>
-
--(void)captureScreen:(BOOL)fullScreen;
--(void)captureFile;
--(void)uploadEntries:(NSArray *)entries;
--(void)cancelAllUploads;
--(void)togglePauseUploads;
--(void)deleteRecentFile:(STGDataCaptureEntry *)entry;
--(void)cancelQueueFile:(int)index;
--(void)openPreferences;
-
-@end
+@protocol STGStatusItemManagerDelegate;
 
 @interface STGStatusItemManager : NSObject <STGRecentUploadDelegate, STGStatusItemViewDelegate>
 
@@ -56,6 +45,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *serverStatusItem;
 
+@property (nonatomic, retain) IBOutlet NSMenuItem *quickCaptureMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureAreaMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFullScreenMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFileMenuItem;
@@ -69,6 +59,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *pauseUploadsItem;
 
+- (IBAction)openQuickUploadWindow:(id)sender;
 - (IBAction)captureArea:(id)sender;
 - (IBAction)captureFullScreen:(id)sender;
 - (IBAction)captureFile:(id)sender;
@@ -97,5 +88,19 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 - (void)updateServerStatus:(STGServerStatus)status;
 
 - (void)setStatusItemUploadProgress:(float)progress;
+
+@end
+
+@protocol STGStatusItemManagerDelegate <NSObject>
+
+-(void)openQuickUploadWindow;
+-(void)captureScreen:(BOOL)fullScreen;
+-(void)captureFile;
+-(void)uploadEntries:(NSArray *)entries;
+-(void)cancelAllUploads;
+-(void)togglePauseUploads;
+-(void)deleteRecentFile:(STGDataCaptureEntry *)entry;
+-(void)cancelQueueFile:(int)index;
+-(void)openPreferences;
 
 @end

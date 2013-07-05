@@ -19,9 +19,16 @@
     return nil;
 }
 
-+ (STGPacket *)uploadFilePacket:(STGDataCaptureEntry *)entry uploadLink:(NSString *)link key:(NSString *)key
++ (STGPacket *)uploadFilePacket:(STGDataCaptureEntry *)entry uploadLink:(NSString *)link key:(NSString *)key isPublic:(BOOL)isPublic
 {
-    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, key] httpMethod:@"POST" fileName:[[entry fileURL] lastPathComponent] mainBodyData:[NSData dataWithContentsOfURL:[entry fileURL]]];
+    NSData *contentPart = [STGPacket contentPartObjectsForKeys:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                @"file", @"name",
+                                                                [[entry fileURL] lastPathComponent], @"filename",
+                                                                isPublic ? @"false" : @"true", @"private",
+                                                                nil] content:[NSData dataWithContentsOfURL:[entry fileURL]]];
+    NSArray *requestParts = [NSArray arrayWithObject:contentPart];
+    
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, key] httpMethod:@"POST" contentParts:requestParts];
     
     STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"uploadFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
     
@@ -54,11 +61,11 @@
     return packet;
 }
 
-+ (STGPacket *)cfsGenericPacket:(NSString *)httpMethod path:(NSString *)filePath link:(NSString *)link key:(NSString *)key
++ (STGPacket *)cfsGenericPacket:(NSString *)httpMethod path:(NSString *)filePath link:(NSString *)link key:(NSString *)key packetType:(NSString *)packetType
 {
     NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, filePath, key] httpMethod:httpMethod contentParts:nil];
     
-    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:getFileList" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:packetType userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
     
     return packet;
 }
@@ -74,19 +81,19 @@
 
 + (STGPacket *)cfsFileInfoPacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key
 {
-    return [self cfsGenericPacket:@"HEAD" path:filePath link:link key:key];
+    return [self cfsGenericPacket:@"HEAD" path:filePath link:link key:key packetType:@"cfs:getFileInfo"];
 }
 
 + (STGPacket *)cfsPostFilePacket:(NSString *)filePath fileURL:(NSURL *)fileURL link:(NSString *)link key:(NSString *)key
 {
     NSURL *innerURL = [NSURL URLWithString:filePath];
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[innerURL lastPathComponent], @"filename", [innerURL path], @"folder", nil];
-    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"file", @"name", [innerURL lastPathComponent], @"filename", [[innerURL URLByDeletingLastPathComponent] path], @"folder", nil];
+
     NSData *contentPart = [STGPacket contentPartObjectsForKeys:dict content:[NSData dataWithContentsOfURL:fileURL]];
     
-    NSMutableURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, "", key] httpMethod:@"POST" contentParts:[NSArray arrayWithObject:contentPart]];
+    NSMutableURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, @"", key] httpMethod:@"POST" contentParts:[NSArray arrayWithObject:contentPart]];
         
-    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:getFileList" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:postFile" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
     
     return packet;
 }
@@ -95,14 +102,14 @@
 {
     NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, filePath, key] httpMethod:@"PUT" fileName:nil mainBodyData:[NSData dataWithContentsOfURL:fileURL]];
     
-    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:getFileList" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:updateFile" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
     
     return packet;
 }
 
 + (STGPacket *)cfsDeleteFilePacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key
 {
-    return [self cfsGenericPacket:@"DELETE" path:filePath link:link key:key];
+    return [self cfsGenericPacket:@"DELETE" path:filePath link:link key:key packetType:@"cfs:deleteFile"];
 }
 
 + (STGPacket *)apiStatusPacket:(NSString *)link apiInfo:(int)apiInfo key:(NSString *)key

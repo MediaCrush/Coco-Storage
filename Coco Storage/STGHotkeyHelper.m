@@ -12,13 +12,6 @@
 
 @implementation STGHotkeyHelper
 
-@synthesize machPortRef = _machPortRef;
-@synthesize machPortWrapper = _machPortWrapper;
-
-@synthesize entries = _entries;
-
-@synthesize delegate = _delegate;
-
 CGEventRef copyOrModifyKeyboardEvent(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
 {
     STGHotkeyHelper *hotkeyHelper = (__bridge STGHotkeyHelper *)refcon;

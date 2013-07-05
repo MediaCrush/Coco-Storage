@@ -13,16 +13,11 @@
 @interface STGCFSSyncCheck : NSObject
 
 @property (nonatomic, retain) NSMutableDictionary *serverFileDict;
+@property (nonatomic, retain) NSMutableDictionary *cachedServerFileDict;
 
 @property (nonatomic, retain) NSString *basePath;
 
 - (STGCFSSyncCheckEntry *)getFirstModifiedFile:(NSString *)file;
-
-- (NSTimeInterval)getFileModificationDate:(NSString *)path;
-- (STGCFSSyncCheckEntryType)getFileModification:(NSString *)path;
-- (void)updateServerModificationDate:(NSString *)path;
-
-- (NSMutableDictionary *)getFolderRepresentation:(NSString *)path file:(BOOL *)isFile;
-- (NSTimeInterval)getServerModificationDate:(NSString *)path;
+- (NSArray *)getServerStyleDictionary:(NSString *)file;
 
 @end
