@@ -47,6 +47,11 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (IBAction)openIvoriusLink:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://lukas.axxim.net"]];
+}
+
 - (IBAction)sendEmailToIvorius:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:lukastenbrink@gmail.com"]];
@@ -55,6 +60,11 @@
 - (IBAction)sendEmailToClone:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:help@getstorage.net"]];
+}
+
+- (IBAction)openCloneLink:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://axxim.net"]];
 }
 
 - (IBAction)openStorageLink:(id)sender

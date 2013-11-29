@@ -54,7 +54,12 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)keyMissingSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 
+- (void)assistiveDeviceFailedSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
+- (void)assistiveDevicePromptSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
+
 - (void)tryAddingStandardShortcut:(NSString *)charsDefaultsKey action:(NSString *)action menuItem:(NSMenuItem *)menuItem;
+
+- (void)promptAssistiveDeviceRegister;
 
 @end
 
@@ -82,6 +87,11 @@ STGAppDelegate *sharedAppDelegate;
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (![STGSystemHelper isAssistiveDevice])
+    {
+        [self promptAssistiveDeviceRegister];
+    }
 
     NSMutableDictionary *standardDefaults = [[NSMutableDictionary alloc] init];
     [STGOptionsGeneralViewController registerStandardDefaults:standardDefaults];
@@ -105,6 +115,7 @@ STGAppDelegate *sharedAppDelegate;
     [_packetSupportQueue setDelegate:self];
     
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
+    [[self hotkeyHelper] linkToSystem];
     
     [[STGAPIConfiguration standardConfiguration] setUploadLink:@"https://api.stor.ag/v1/object?key=%@"];
     [[STGAPIConfiguration standardConfiguration] setDeletionLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
@@ -757,6 +768,60 @@ STGAppDelegate *sharedAppDelegate;
 {
     if (returnCode == 1)
         [self performSelectorOnMainThread:@selector(openPreferences:) withObject:self waitUntilDone:NO];
+}
+
+- (void)assistiveDeviceFailedSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    if (returnCode == 1)
+        [[NSWorkspace sharedWorkspace] openURL:
+         [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/Security.prefPane"]];
+}
+
+- (void)promptAssistiveDeviceRegister
+{
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage" defaultButton:@"Register as an assistive device" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"To make use of hotkeys, Coco Storage requires access as an assistive device. This requires administrative rights. "];
+    [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(assistiveDevicePromptSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+
+    [NSApp  activateIgnoringOtherApps:YES];
+}
+
+- (void)assistiveDevicePromptSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    if (returnCode == 1)
+        [self registerAsAssistiveDevice];
+}
+
+- (void)registerAsAssistiveDevice
+{
+    NSString *error;
+    NSString *output;
+    BOOL success = [STGSystemHelper registerAsAssistiveDevice:[[NSBundle mainBundle] bundleIdentifier] error:&error output:&output];
+    if (!success)
+    {
+        if (error != nil)
+            NSLog(@"Assistive Device error: %@", error);
+        if (error != nil)
+            NSLog(@"Assistive Device log: %@", output);
+
+        if (error == nil)
+            error = @"Unknown error";
+        if ([error isEqualToString:@"Error: columns service, client, client_type are not unique"])
+            error = @"Coco Storage is already registered (We're sorry!)";
+        
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Error" defaultButton:@"Open System Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Error while registering for administrative rights: %@\nYou can still use hotkeys by manually adding Coco Storage to the assistive devices.", error];
+        [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(assistiveDeviceFailedSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+
+        [NSApp  activateIgnoringOtherApps:YES];
+    }
+    else
+    {
+        [[self hotkeyHelper] linkToSystem];
+    }
+}
+
+- (BOOL)hotkeysEnabled
+{
+    return [[self hotkeyHelper] hotkeyStatus] == STGHotkeyStatusOkay;
 }
 
 - (NSString *)getApiKey

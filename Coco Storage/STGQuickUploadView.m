@@ -52,9 +52,10 @@
     CGContextSetLineWidth( currentContext, 8.0 );
     CGFloat dashLengths[] = { 30.0f, 15.0f };
     CGContextSetLineDash( currentContext, _dashPhase, dashLengths, sizeof( dashLengths ) / sizeof( CGFloat ) );
-    CGPathCreateWithRect(innerRect, NULL);
+    CGPathRef pathRef = CGPathCreateWithRect(innerRect, NULL);
     CGContextStrokeRect(currentContext, innerRect);
     CGContextStrokePath( currentContext );
+    CGPathRelease(pathRef);
     
     CGContextSetLineDash( currentContext, 0, NULL, 0);
 
@@ -78,9 +79,10 @@
                 [_lineColor set];
                 
                 CGContextSetLineWidth( currentContext, 4.0 );
-                CGPathCreateWithRect(partRect, NULL);
+                pathRef = CGPathCreateWithRect(partRect, NULL);
                 CGContextStrokeRect(currentContext, partRect);
                 CGContextStrokePath( currentContext );
+                CGPathRelease(pathRef);
             }
             
             CGContextSaveGState(currentContext);
@@ -115,9 +117,10 @@
             [_lineColor set];
             
             CGContextSetLineWidth( currentContext, 4.0 );
-            CGPathCreateWithRect(singlePartRect, NULL);
+            pathRef = CGPathCreateWithRect(singlePartRect, NULL);
             CGContextStrokeRect(currentContext, singlePartRect);
             CGContextStrokePath( currentContext );
+            CGPathRelease(pathRef);
         }
 
         for (int i = 0; i < 2; i++)

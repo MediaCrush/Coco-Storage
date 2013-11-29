@@ -15,7 +15,9 @@
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults;
 - (void)saveProperties;
 
+- (IBAction)openIvoriusLink:(id)sender;
 - (IBAction)sendEmailToIvorius:(id)sender;
+- (IBAction)openCloneLink:(id)sender;
 - (IBAction)sendEmailToClone:(id)sender;
 - (IBAction)openStorageLink:(id)sender;
 

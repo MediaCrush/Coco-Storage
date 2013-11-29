@@ -32,6 +32,8 @@
 		8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */; };
 		8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */; };
 		8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4BD172884AE00F09884 /* STGFileHelper.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated"; }; };
+		80369DD41847A27D00349068 /* STGQuickUploadWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80369DD21847A27D00349068 /* STGQuickUploadWindowController.m */; };
+		80369DD51847A27D00349068 /* STGQuickUploadWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */; };
 		803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */; };
 		803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */; };
 		80485FCC1747BF9200CB6226 /* DividerLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FCB1747BF9200CB6226 /* DividerLine.png */; };
@@ -59,8 +61,6 @@
 		8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */; };
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
-		806B60E61752C054005AC6B5 /* STGQuickUploadWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806B60E41752C053005AC6B5 /* STGQuickUploadWindowController.m */; };
-		806B60E71752C054005AC6B5 /* STGQuickUploadWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 806B60E51752C053005AC6B5 /* STGQuickUploadWindowController.xib */; };
 		80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B461746899200D0C790 /* STGOptionsCFSViewController.m */; };
 		80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */; };
 		80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */; };
@@ -145,6 +145,9 @@
 		8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
 		8029A4BC172884AE00F09884 /* STGFileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGFileHelper.h; sourceTree = "<group>"; };
 		8029A4BD172884AE00F09884 /* STGFileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGFileHelper.m; sourceTree = "<group>"; };
+		80369DD11847A27D00349068 /* STGQuickUploadWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGQuickUploadWindowController.h; sourceTree = "<group>"; };
+		80369DD21847A27D00349068 /* STGQuickUploadWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGQuickUploadWindowController.m; sourceTree = "<group>"; };
+		80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGQuickUploadWindowController.xib; sourceTree = "<group>"; };
 		803C33B5172C780000E8CE3F /* STGDataCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGDataCaptureManager.h; sourceTree = "<group>"; };
 		803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGDataCaptureManager.m; sourceTree = "<group>"; };
 		803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionTextField.h; sourceTree = "<group>"; };
@@ -178,9 +181,6 @@
 		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
 		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
 		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
-		806B60E31752C052005AC6B5 /* STGQuickUploadWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGQuickUploadWindowController.h; sourceTree = "<group>"; };
-		806B60E41752C053005AC6B5 /* STGQuickUploadWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGQuickUploadWindowController.m; sourceTree = "<group>"; };
-		806B60E51752C053005AC6B5 /* STGQuickUploadWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGQuickUploadWindowController.xib; sourceTree = "<group>"; };
 		80781B451746899200D0C790 /* STGOptionsCFSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsCFSViewController.h; sourceTree = "<group>"; };
 		80781B461746899200D0C790 /* STGOptionsCFSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsCFSViewController.m; sourceTree = "<group>"; };
 		80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsCFSViewController.xib; sourceTree = "<group>"; };
@@ -332,9 +332,9 @@
 				8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */,
 				809A10C4174D6F5B0016A391 /* STGCFSSyncCheckEntry.h */,
 				809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */,
-				806B60E31752C052005AC6B5 /* STGQuickUploadWindowController.h */,
-				806B60E41752C053005AC6B5 /* STGQuickUploadWindowController.m */,
-				806B60E51752C053005AC6B5 /* STGQuickUploadWindowController.xib */,
+				80369DD11847A27D00349068 /* STGQuickUploadWindowController.h */,
+				80369DD21847A27D00349068 /* STGQuickUploadWindowController.m */,
+				80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */,
 				808A9A1717538EBC0058235D /* STGQuickUploadView.h */,
 				808A9A1817538EBC0058235D /* STGQuickUploadView.m */,
 				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
@@ -474,7 +474,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = STG;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Lukas Tenbrink";
 			};
 			buildConfigurationList = 80068FBA17272CA700DA1492 /* Build configuration list for PBXProject "Coco Storage" */;
@@ -521,6 +521,7 @@
 				80485FD51747EC9800CB6226 /* WelcomeWindowBG.png in Resources */,
 				80485FD61747EC9800CB6226 /* WelcomeWindowBGBottom.png in Resources */,
 				80485FE01747EFF400CB6226 /* CocoStorageLogoText.png in Resources */,
+				80369DD51847A27D00349068 /* STGQuickUploadWindowController.xib in Resources */,
 				80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */,
 				80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */,
 				80486005174802C000CB6226 /* CocoStorageStatusBarIcon01.png in Resources */,
@@ -539,7 +540,6 @@
 				8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
 				809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */,
 				809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */,
-				806B60E71752C054005AC6B5 /* STGQuickUploadWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +564,7 @@
 				807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */,
 				803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */,
 				803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */,
+				80369DD41847A27D00349068 /* STGQuickUploadWindowController.m in Sources */,
 				80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */,
 				80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */,
 				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
@@ -579,7 +580,6 @@
 				8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */,
 				809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */,
 				8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */,
-				806B60E61752C054005AC6B5 /* STGQuickUploadWindowController.m in Sources */,
 				808A9A1917538EBC0058235D /* STGQuickUploadView.m in Sources */,
 				809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */,
 			);
@@ -611,7 +611,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -644,7 +643,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;

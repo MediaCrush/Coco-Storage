@@ -12,6 +12,13 @@
 
 @protocol STGHotkeyHelperDelegate;
 
+typedef NS_ENUM(NSUInteger, STGHotkeyHelperStatus)
+{
+    STGHotkeyStatusNotSetUp = 0,
+    STGHotkeyStatusOkay = 1,
+    STGHotkeyStatusFailed = 2
+};
+
 @interface STGHotkeyHelper : NSObject
 
 @property (nonatomic, assign) CFMachPortRef machPortRef;
@@ -22,6 +29,11 @@
 @property (nonatomic, weak) id<STGHotkeyHelperDelegate> delegate;
 
 - (id)initWithDelegate:(id<STGHotkeyHelperDelegate>)delegate;
+
+- (STGHotkeyHelperStatus)hotkeyStatus;
+
+- (BOOL)linkToSystem;
+- (void)unlinkFromSystem;
 
 - (void)addShortcutEntry:(STGHotkeyHelperEntry *)entry;
 - (void)removeShortcutEntry:(STGHotkeyHelperEntry *)entry;

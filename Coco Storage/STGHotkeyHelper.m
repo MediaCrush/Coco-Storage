@@ -10,6 +10,15 @@
 
 #import "STGHotkeyHelperEntry.h"
 
+#import "STGSystemHelper.h"
+
+@interface STGHotkeyHelper ()
+
+@property (nonatomic, assign) BOOL failed;
+@property (nonatomic, assign) BOOL setUp;
+
+@end
+
 @implementation STGHotkeyHelper
 
 CGEventRef copyOrModifyKeyboardEvent(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
@@ -55,23 +64,61 @@ CGEventRef copyOrModifyKeyboardEvent(CGEventTapProxy proxy, CGEventType type, CG
     self = [super init];
     if (self)
     {
+        [self setFailed:NO];
+        [self setSetUp:NO];
         [self setEntries:[[NSMutableArray alloc] init]];
         
-        [self setMachPortRef:CGEventTapCreate(kCGSessionEventTap, kCGTailAppendEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown), (CGEventTapCallBack)copyOrModifyKeyboardEvent, (__bridge void *)(self))];
-        
-        if (_machPortRef == NULL)
-        {
-            NSLog(@"CGEventTapCreate failed!\n");
-        }
-        else
-        {
-            [self setMachPortWrapper:[[NSMachPort alloc]  initWithMachPort:CFMachPortGetPort(_machPortRef) options:NSMachPortDeallocateNone]];
-            
-            NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-            [runLoop addPort:_machPortWrapper forMode:NSDefaultRunLoopMode];
-        }
     }
     return self;
+}
+
+- (STGHotkeyHelperStatus)hotkeyStatus
+{
+    return [self failed] ? STGHotkeyStatusFailed : (![self setUp] ? STGHotkeyStatusNotSetUp : STGHotkeyStatusOkay);
+}
+
+- (BOOL)linkToSystem
+{
+    [self unlinkFromSystem];
+    
+    [self setMachPortRef:CGEventTapCreate(kCGSessionEventTap, kCGTailAppendEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown), (CGEventTapCallBack)copyOrModifyKeyboardEvent, (__bridge void *)(self))];
+    
+    if (_machPortRef == NULL)
+    {
+        NSLog(@"CGEventTapCreate failed!\n");
+        [self setFailed:YES];
+        [self setSetUp:NO];
+
+        return NO;
+    }
+    else
+    {
+        [self setMachPortWrapper:[[NSMachPort alloc] initWithMachPort:CFMachPortGetPort(_machPortRef) options:NSMachPortDeallocateNone]];
+        
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        [runLoop addPort:_machPortWrapper forMode:NSDefaultRunLoopMode];
+        [self setFailed:NO];
+        [self setSetUp:YES];
+        
+        return YES;
+    }
+}
+
+- (void)unlinkFromSystem
+{
+    if (_machPortWrapper)
+    {
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        [runLoop removePort:_machPortWrapper forMode:NSDefaultRunLoopMode];
+        [self setMachPortWrapper:NULL];
+    }
+    if (_machPortRef)
+    {
+        CFRelease(_machPortRef);
+        [self setMachPortRef:NULL];
+    }
+    
+    [self setSetUp:NO];
 }
 
 - (void)addShortcutEntry:(STGHotkeyHelperEntry *)entry
@@ -109,17 +156,7 @@ CGEventRef copyOrModifyKeyboardEvent(CGEventTapProxy proxy, CGEventType type, CG
 
 - (void)dealloc
 {
-    if (_machPortWrapper)
-    {
-        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-        [runLoop removePort:_machPortWrapper forMode:NSDefaultRunLoopMode];
-        [self setMachPortWrapper:NULL];
-    }
-    if (_machPortRef)
-    {
-        CFRelease(_machPortRef);
-        [self setMachPortRef:NULL];
-    }
+    [self unlinkFromSystem];
 }
 
 @end

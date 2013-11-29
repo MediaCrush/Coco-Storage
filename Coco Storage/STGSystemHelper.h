@@ -15,4 +15,14 @@
 
 + (void)showDockTile;
 
++ (BOOL)registerAsAssistiveDevice:(NSString *)programID error:(NSString **)error output:(NSString **)output;
++ (BOOL)deleteFromAssistiveDevices:(NSString *)programID error:(NSString **)error output:(NSString **)output;
++ (BOOL)isAssistiveDevice;
+
++ (BOOL)runProcessAsAdministrator:(NSString*)scriptPath
+                     withArguments:(NSArray *)arguments
+                            output:(NSString **)output
+                  errorDescription:(NSString **)errorDescription;
+
+
 @end

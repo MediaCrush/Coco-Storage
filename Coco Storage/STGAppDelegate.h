@@ -79,5 +79,6 @@
 - (void)uploadTimerFired:(NSTimer*)theTimer;
 
 - (void)updateShortcuts;
+- (void)registerAsAssistiveDevice;
 
 @end

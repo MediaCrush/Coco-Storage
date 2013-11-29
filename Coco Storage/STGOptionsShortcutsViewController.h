@@ -13,10 +13,15 @@
 @protocol STGOptionsShortcutsDelegate <NSObject>
 
 - (void)updateShortcuts;
+- (void)registerAsAssistiveDevice;
+- (BOOL)hotkeysEnabled;
 
 @end
 
 @interface STGOptionsShortcutsViewController : NSViewController <MASPreferencesViewController>
+
+@property (nonatomic, retain) IBOutlet NSTextField *hotkeyStatusTextField;
+@property (nonatomic, retain) IBOutlet NSButton *assistiveDeviceRegisterButton;
 
 @property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureAreaTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureFullScreenTextField;
@@ -27,6 +32,9 @@
 
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults;
 - (void)saveProperties;
+
+- (void)updateHotkeyStatus;
+- (IBAction)registerAsAssistiveDevice:(id)sender;
 
 - (IBAction)resetHotkeyCaptureArea:(id)sender;
 - (IBAction)resetHotkeyCaptureFullScreen:(id)sender;

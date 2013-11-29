@@ -8,6 +8,8 @@
 
 #import "STGOptionsShortcutsViewController.h"
 
+#import "STGSystemHelper.h"
+
 @interface STGOptionsShortcutsViewController ()
 
 @end
@@ -33,23 +35,53 @@
     [self updateTextFieldString:_hotkeyShowQuickCaptureTextField];
     
     [[self view] setNextResponder:nil];
+    [self updateHotkeyStatus];
 }
 
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults
 {
-    [defaults setObject:@"2" forKey:@"hotkeyCaptureArea"];
+    [defaults setObject:@"6" forKey:@"hotkeyCaptureArea"];
     [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureAreaModifiers"];
-    [defaults setObject:@"3" forKey:@"hotkeyCaptureFullScreen"];
+    [defaults setObject:@"7" forKey:@"hotkeyCaptureFullScreen"];
     [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFullScreenModifiers"];
-    [defaults setObject:@"4" forKey:@"hotkeyCaptureFile"];
+    [defaults setObject:@"u" forKey:@"hotkeyCaptureFile"];
     [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFileModifiers"];
-    [defaults setObject:@"1" forKey:@"hotkeyQuickCapture"];
+    [defaults setObject:@"5" forKey:@"hotkeyQuickCapture"];
     [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyQuickCaptureModifiers"];
 }
 
 - (void)saveProperties
 {
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)updateHotkeyStatus
+{
+    BOOL hotkeysEnabled = NO;
+    if ([_delegate respondsToSelector:@selector(hotkeysEnabled)])
+        hotkeysEnabled = [_delegate hotkeysEnabled];
+    
+    if (![STGSystemHelper isAssistiveDevice])
+    {
+        [_hotkeyStatusTextField setStringValue:@"Not an assistive device"];
+        [_assistiveDeviceRegisterButton setEnabled:YES];
+    }
+    else if (!hotkeysEnabled)
+    {
+        [_hotkeyStatusTextField setStringValue:@"Failed to register shortcuts"];
+        [_assistiveDeviceRegisterButton setEnabled:NO];
+    }
+    else
+    {
+        [_hotkeyStatusTextField setStringValue:@"Okay"];
+        [_assistiveDeviceRegisterButton setEnabled:NO];
+    }
+}
+
+- (void)registerAsAssistiveDevice:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(registerAsAssistiveDevice)])
+        [_delegate registerAsAssistiveDevice];
 }
 
 - (IBAction)resetHotkeyCaptureArea:(id)sender
