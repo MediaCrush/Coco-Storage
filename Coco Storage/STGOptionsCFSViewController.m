@@ -136,7 +136,7 @@
 
 - (NSImage *)toolbarItemImage
 {
-    return [NSImage imageNamed:@"NSMultipleDocuments"];
+    return [NSImage imageNamed:@"NSFolder"];
 }
 
 - (NSString *)toolbarItemLabel

@@ -163,8 +163,8 @@
         {
             if (i < 9 || [uploadEntries count] == 10)
             {
-                float progress = i == 0 ? currentFileProgress : 0.0;
-                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%3.0f%%)", [[[[[uploadEntries objectAtIndex:i] userInfo] objectForKey:@"dataCaptureEntry"] fileURL] lastPathComponent], progress] action:@selector(cancelQueueFile:) keyEquivalent:@""];
+                float progress = (i == 0) ? currentFileProgress : 0.0;
+                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%3.0f%%)", [[[[[uploadEntries objectAtIndex:i] userInfo] objectForKey:@"dataCaptureEntry"] fileURL] lastPathComponent], progress * 100] action:@selector(cancelQueueFile:) keyEquivalent:@""];
                 [menuItem setTarget:self];
                 [menuItem setImage:[NSImage imageNamed:@"NSStopProgressTemplate"]];
                 [menuItem setTag:i];
@@ -213,14 +213,14 @@
 {
     NSString *tooltipString = @"Unknown";
     NSString *statusString = @"Unknown";
-    BOOL avaialable = NO;
+    NSInteger availability = 0;
     
     if (status == STGServerStatusOnline)
     {
         tooltipString = @"OK";
         statusString = @"Server: Online";
         
-        avaialable = YES;
+        availability = 2;
     }
     if (status == STGServerStatusServerOffline)
     {
@@ -242,14 +242,14 @@
         tooltipString = @"No quick uploads";
         statusString = @"No quick uploads";
         
-        avaialable = YES;
+        availability = 1;
     }
     if (status == STGServerStatusServerV2Busy)
     {
         tooltipString = @"No CFS";
         statusString = @"No CFS";
         
-        avaialable = YES;
+        availability = 1;
     }
     if (status == STGServerStatusInvalidKey)
     {
@@ -258,16 +258,8 @@
     }
 
     [_serverStatusItem setTitle:statusString];
-    [_serverStatusItem setImage:[NSImage imageNamed:avaialable ? @"ServerStatusOK.png" : @"ServerStatusUnavailable.png"]];
+    [_serverStatusItem setImage:[NSImage imageNamed:availability == 2 ? @"NSStatusAvailable" : (availability == 1 ? @"NSStatusPartiallyAvailable" : @"NSStatusUnavailable")]];
     [_statusItemView setToolTip:[NSString stringWithFormat:@"Coco Storage - Server status: %@\nDrag and drop anything here to upload it!", tooltipString]];
-}
-
-- (IBAction)openQuickUploadWindow:(id)sender
-{
-    if ([_delegate respondsToSelector:@selector(openQuickUploadWindow)])
-    {
-        [_delegate openQuickUploadWindow];
-    }
 }
 
 - (IBAction)captureArea:(id)sender
@@ -292,6 +284,11 @@
     {
         [_delegate captureFile];
     }
+}
+
+- (void)captureClipboard:(id)sender
+{
+    [[self statusItemView] displayClipboardCaptureWindow];
 }
 
 - (IBAction)quit:(id)sender

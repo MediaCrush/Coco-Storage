@@ -61,6 +61,8 @@
 		8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */; };
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
+		8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453B18492A17007F1EA1 /* STGTypeChooserView.m */; };
+		8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */; };
 		80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B461746899200D0C790 /* STGOptionsCFSViewController.m */; };
 		80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */; };
 		80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */; };
@@ -86,6 +88,8 @@
 		80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */; };
 		80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */; };
 		80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */; };
+		80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */; };
+		80E12CAC184A99E70093CA6C /* STGUploadTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -181,6 +185,10 @@
 		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
 		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
 		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
+		8071453A18492A17007F1EA1 /* STGTypeChooserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGTypeChooserView.h; sourceTree = "<group>"; };
+		8071453B18492A17007F1EA1 /* STGTypeChooserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGTypeChooserView.m; sourceTree = "<group>"; };
+		8071453D18492A56007F1EA1 /* STGTypeChooserViewType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGTypeChooserViewType.h; sourceTree = "<group>"; };
+		8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGTypeChooserViewType.m; sourceTree = "<group>"; };
 		80781B451746899200D0C790 /* STGOptionsCFSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsCFSViewController.h; sourceTree = "<group>"; };
 		80781B461746899200D0C790 /* STGOptionsCFSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsCFSViewController.m; sourceTree = "<group>"; };
 		80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsCFSViewController.xib; sourceTree = "<group>"; };
@@ -218,6 +226,9 @@
 		80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemManager.h; sourceTree = "<group>"; };
 		80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemManager.m; sourceTree = "<group>"; };
 		80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGStatusItemManager.xib; sourceTree = "<group>"; };
+		80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadTypeViewController.h; sourceTree = "<group>"; };
+		80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadTypeViewController.m; sourceTree = "<group>"; };
+		80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGUploadTypeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +339,13 @@
 				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
 				804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */,
 				804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */,
+				80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */,
+				80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */,
+				80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */,
+				8071453A18492A17007F1EA1 /* STGTypeChooserView.h */,
+				8071453B18492A17007F1EA1 /* STGTypeChooserView.m */,
+				8071453D18492A56007F1EA1 /* STGTypeChooserViewType.h */,
+				8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */,
 				8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */,
 				8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */,
 				809A10C4174D6F5B0016A391 /* STGCFSSyncCheckEntry.h */,
@@ -528,6 +546,7 @@
 				80486006174802C000CB6226 /* CocoStorageStatusBarIcon02.png in Resources */,
 				80486007174802C000CB6226 /* CocoStorageStatusBarIcon03.png in Resources */,
 				80486008174802C000CB6226 /* CocoStorageStatusBarIcon04.png in Resources */,
+				80E12CAC184A99E70093CA6C /* STGUploadTypeViewController.xib in Resources */,
 				80486009174802C000CB6226 /* CocoStorageStatusBarIcon05.png in Resources */,
 				8048600A174802C000CB6226 /* CocoStorageStatusBarIcon06.png in Resources */,
 				8048600B174802C000CB6226 /* CocoStorageStatusBarIcon07.png in Resources */,
@@ -557,6 +576,7 @@
 				8029A49E17283EF000F09884 /* STGOptionsShortcutsViewController.m in Sources */,
 				8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */,
 				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
+				8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */,
 				8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */,
 				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
 				807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */,
@@ -570,6 +590,7 @@
 				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
 				80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */,
 				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,
+				8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */,
 				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
 				80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */,
 				80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */,
@@ -578,6 +599,7 @@
 				804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */,
 				8017CD0F17491C0B000889C5 /* STGPacketCreator.m in Sources */,
 				8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */,
+				80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */,
 				809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */,
 				8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */,
 				808A9A1917538EBC0058235D /* STGQuickUploadView.m in Sources */,

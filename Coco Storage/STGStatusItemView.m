@@ -50,6 +50,10 @@
         [_overlayWindowLabel setTextColor:[NSColor whiteColor]];
         [_overlayWindowLabel setFont:[NSFont boldSystemFontOfSize:screenRect.size.height / 25]];
         [[_overlayWindow contentView] addSubview:_overlayWindowLabel];
+        
+        [self setUploadTypeVC:[[STGUploadTypeViewController alloc] initWithNibName:@"STGUploadTypeViewController" bundle:nil]];
+        [[self uploadTypeVC] setDelegate:self];
+        [[self uploadTypeVC] view]; // Load if not loaded
     }
     
     return self;
@@ -136,8 +140,9 @@
 }
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
-{    
-    NSString *displayString = [[STGDataCaptureManager getReadableActionsFromPasteboard:[sender draggingPasteboard]] objectAtIndex:0];
+{
+    NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:[sender draggingPasteboard]];
+    NSString *displayString = [STGDataCaptureManager getNameForAction:[[actions objectAtIndex:0] integerValue]];
     
     if (displayString)
     {
@@ -166,6 +171,9 @@
         
         [self setOnDragging:YES];
         [self setNeedsDisplay:YES];
+        
+        [[self uploadTypeVC] setUploadTypes:actions fromDragging:YES];
+        [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
 
         return NSDragOperationCopy;
     }
@@ -189,6 +197,8 @@
             
             [animation startAnimation];
         }        
+
+//        [[self uploadTypeVC] hide];
     }
 }
 
@@ -208,6 +218,8 @@
             
             [animation startAnimation];
         }
+
+        [[self uploadTypeVC] hide];
     }
 }
 
@@ -228,6 +240,58 @@
     }
     
     return NO;
+}
+
+- (void)displayClipboardCaptureWindow
+{
+    NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]];
+
+    [[self uploadTypeVC] setUploadTypes:actions fromDragging:NO];
+    [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
+}
+
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGDropAction)action
+{
+    NSPasteboard *pBoard = [NSPasteboard generalPasteboard];
+    
+    NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard withAction:action];
+    
+    if (entries && [entries count] > 0)
+    {
+        if ([_delegate respondsToSelector:@selector(uploadEntries:)])
+        {
+            [_delegate uploadEntries:entries];
+        }
+    }
+    
+    [[self uploadTypeVC] hide];
+}
+
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGDropAction)action whileDragging:(id<NSDraggingInfo>)sender
+{
+    NSPasteboard *pBoard = [sender draggingPasteboard];
+    
+    NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard withAction:action];
+    
+    if (entries && [entries count] > 0)
+    {
+        if ([_delegate respondsToSelector:@selector(uploadEntries:)])
+        {
+            [_delegate uploadEntries:entries];
+        }
+    }
+    
+    [[self uploadTypeVC] hide];
+}
+
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController draggingEnded:(id<NSDraggingInfo>)sender
+{
+    [[self uploadTypeVC] hide];
+}
+
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController draggingExited:(id<NSDraggingInfo>)sender
+{
+    [[self uploadTypeVC] hide];
 }
 
 @end

@@ -88,11 +88,6 @@ STGAppDelegate *sharedAppDelegate;
 {
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if (![STGSystemHelper isAssistiveDevice])
-    {
-        [self promptAssistiveDeviceRegister];
-    }
-
     NSMutableDictionary *standardDefaults = [[NSMutableDictionary alloc] init];
     [STGOptionsGeneralViewController registerStandardDefaults:standardDefaults];
     [STGOptionsShortcutsViewController registerStandardDefaults:standardDefaults];
@@ -147,9 +142,6 @@ STGAppDelegate *sharedAppDelegate;
         [self openWelcomeWindow:self];
     }
     
-    [self setQuickUploadWC:[[STGQuickUploadWindowController alloc] initWithWindowNibName:@"STGQuickUploadWindowController"]];
-    [_quickUploadWC setDelegate:self];
-    
     [self setStatusItemManager:[[STGStatusItemManager alloc] init]];
     [_statusItemManager setDelegate:self];
     
@@ -202,6 +194,12 @@ STGAppDelegate *sharedAppDelegate;
     [_sparkleUpdater setAutomaticallyChecksForUpdates:[[NSUserDefaults standardUserDefaults] integerForKey:@"autoUpdate"] == 1];
     
     [_cfsSyncCheck setBasePath:[self getCFSFolder]];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"promptedAssistiveDeviceRegister"] && ![STGSystemHelper isAssistiveDevice])
+    {
+        [self promptAssistiveDeviceRegister];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"promptedAssistiveDeviceRegister"];
+    }
 }
 
 - (void)saveProperties
@@ -586,13 +584,6 @@ STGAppDelegate *sharedAppDelegate;
     [NSApp  activateIgnoringOtherApps:YES];
 }
 
--(void)openQuickUploadWindow
-{
-    [_quickUploadWC showWindow:self];
-    
-    [NSApp  activateIgnoringOtherApps:YES];
-}
-
 #pragma mark - Shortcuts
 
 - (void)updateShortcuts
@@ -606,7 +597,6 @@ STGAppDelegate *sharedAppDelegate;
     [self tryAddingStandardShortcut:@"hotkeyCaptureArea" action:@"captureArea" menuItem:[_statusItemManager captureAreaMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFullScreen" action:@"captureFullScreen" menuItem:[_statusItemManager captureFullScreenMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFile" action:@"captureFile" menuItem:[_statusItemManager captureFileMenuItem]];
-    [self tryAddingStandardShortcut:@"hotkeyQuickCapture" action:@"showQuickCapture" menuItem:[_statusItemManager quickCaptureMenuItem]];
 }
 
 - (void)tryAddingStandardShortcut:(NSString *)charsDefaultsKey action:(NSString *)action menuItem:(NSMenuItem *)menuItem
@@ -629,43 +619,37 @@ STGAppDelegate *sharedAppDelegate;
 
 - (NSEvent *)keyPressed:(NSEvent *)event entry:(STGHotkeyHelperEntry *)entry userInfo:(NSDictionary *)userInfo
 {
-    if ([[userInfo objectForKey:@"action"] isEqualToString:@"hotkeyChange"])
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"])
     {
-        NSEvent *hotkeyReturnEvent = [_optionsShortcutsVC keyPressed:event];
-        
-        if (hotkeyReturnEvent != event)
+        if ([[userInfo objectForKey:@"action"] isEqualToString:@"hotkeyChange"])
         {
-            [self performSelectorOnMainThread:@selector(updateShortcuts) withObject:nil waitUntilDone:NO];
+            NSEvent *hotkeyReturnEvent = [_optionsShortcutsVC keyPressed:event];
+            
+            if (hotkeyReturnEvent != event)
+            {
+                [self performSelectorOnMainThread:@selector(updateShortcuts) withObject:nil waitUntilDone:NO];
+            }
+            
+            event = hotkeyReturnEvent;
         }
-        
-        event = hotkeyReturnEvent;
-    }
-    if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFullScreen"])
-    {
-        [self captureScreen:YES];
-        
-        return nil;
-    }
-    if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureArea"])
-    {
-        [self captureScreen:NO];
-        
-        return nil;
-    }
-    if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFile"])
-    {
-        [self captureFile];
-        
-        return nil;
-    }
-    if ([[userInfo objectForKey:@"action"] isEqualToString:@"showQuickCapture"])
-    {
-        if (![[_quickUploadWC window] isVisible])
-            [self openQuickUploadWindow];
-        else
-            [[_quickUploadWC window] close];
-        
-        return nil;
+        if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFullScreen"])
+        {
+            [self captureScreen:YES];
+            
+            return nil;
+        }
+        if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureArea"])
+        {
+            [self captureScreen:NO];
+            
+            return nil;
+        }
+        if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFile"])
+        {
+            [self captureFile];
+            
+            return nil;
+        }        
     }
     
     return event;
@@ -806,9 +790,9 @@ STGAppDelegate *sharedAppDelegate;
         if (error == nil)
             error = @"Unknown error";
         if ([error isEqualToString:@"Error: columns service, client, client_type are not unique"])
-            error = @"Coco Storage is already registered (We're sorry!)";
+            error = @"Coco Storage is already registered, but most likely not enabled. You can change that in the system preferences.";
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Error" defaultButton:@"Open System Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Error while registering for administrative rights: %@\nYou can still use hotkeys by manually adding Coco Storage to the assistive devices.", error];
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Error" defaultButton:@"Open System Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Error while registering for administrative rights: %@\n", error];
         [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(assistiveDeviceFailedSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
 
         [NSApp  activateIgnoringOtherApps:YES];
@@ -817,6 +801,8 @@ STGAppDelegate *sharedAppDelegate;
     {
         [[self hotkeyHelper] linkToSystem];
     }
+
+    [[self optionsShortcutsVC] updateHotkeyStatus];
 }
 
 - (BOOL)hotkeysEnabled

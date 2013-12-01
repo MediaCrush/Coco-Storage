@@ -22,7 +22,7 @@
 
 + (NSArray *)getSupportedPasteboardContentTypes
 {
-    return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, NSPasteboardTypeColor, NSPasteboardTypeRTF, NSPasteboardTypePNG, NSPasteboardTypeTIFF, nil];
+    return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, NSPasteboardTypeColor, NSPasteboardTypeRTF, NSPasteboardTypePNG, NSPasteboardTypeTIFF, NSTIFFPboardType, nil];
 }
 
 + (NSArray *)captureFirstDataFromPasteboard:(NSPasteboard *)pasteboard

@@ -32,7 +32,6 @@
     [self updateTextFieldString:_hotkeyCaptureAreaTextField];
     [self updateTextFieldString:_hotkeyCaptureFullScreenTextField];
     [self updateTextFieldString:_hotkeyCaptureFileTextField];
-    [self updateTextFieldString:_hotkeyShowQuickCaptureTextField];
     
     [[self view] setNextResponder:nil];
     [self updateHotkeyStatus];
@@ -40,14 +39,12 @@
 
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults
 {
-    [defaults setObject:@"6" forKey:@"hotkeyCaptureArea"];
+    [defaults setObject:@"5" forKey:@"hotkeyCaptureArea"];
     [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureAreaModifiers"];
-    [defaults setObject:@"7" forKey:@"hotkeyCaptureFullScreen"];
+    [defaults setObject:@"6" forKey:@"hotkeyCaptureFullScreen"];
     [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFullScreenModifiers"];
     [defaults setObject:@"u" forKey:@"hotkeyCaptureFile"];
     [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFileModifiers"];
-    [defaults setObject:@"5" forKey:@"hotkeyQuickCapture"];
-    [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyQuickCaptureModifiers"];
 }
 
 - (void)saveProperties
@@ -86,7 +83,7 @@
 
 - (IBAction)resetHotkeyCaptureArea:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:@"hotkeyCaptureArea"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"6" forKey:@"hotkeyCaptureArea"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureAreaModifiers"];
     
     [self updateTextFieldString:_hotkeyCaptureAreaTextField];
@@ -97,7 +94,7 @@
 
 - (IBAction)resetHotkeyCaptureFullScreen:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"3" forKey:@"hotkeyCaptureFullScreen"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"7" forKey:@"hotkeyCaptureFullScreen"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFullScreenModifiers"];
     
     [self updateTextFieldString:_hotkeyCaptureFullScreenTextField];
@@ -108,21 +105,10 @@
 
 - (IBAction)resetHotkeyCaptureFile:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"4" forKey:@"hotkeyCaptureFile"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"u" forKey:@"hotkeyCaptureFile"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFileModifiers"];
     
     [self updateTextFieldString:_hotkeyCaptureFileTextField];
-    
-    if ([_delegate respondsToSelector:@selector(updateShortcuts)])
-        [_delegate updateShortcuts];
-}
-
-- (IBAction)resetHotkeyShowQuickCapture:(id)sender
-{
-    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"hotkeyQuickCapture"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyQuickCaptureModifiers"];
-    
-    [self updateTextFieldString:_hotkeyShowQuickCaptureTextField];
     
     if ([_delegate respondsToSelector:@selector(updateShortcuts)])
         [_delegate updateShortcuts];
@@ -158,16 +144,6 @@
         [_delegate updateShortcuts];
 }
 
-- (IBAction)disableHotkeyShowQuickCapture:(id)sender
-{
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"hotkeyQuickCapture"];
-    
-    [self updateTextFieldString:_hotkeyShowQuickCaptureTextField];
-    
-    if ([_delegate respondsToSelector:@selector(updateShortcuts)])
-        [_delegate updateShortcuts];
-}
-
 - (void)updateTextFieldString:(NSTextField *)textField
 {
     NSString *userDefaultsKey = nil;
@@ -177,8 +153,6 @@
         userDefaultsKey = @"hotkeyCaptureFullScreen";
     if (textField == _hotkeyCaptureFileTextField)
         userDefaultsKey = @"hotkeyCaptureFile";
-    if (textField == _hotkeyShowQuickCaptureTextField)
-        userDefaultsKey = @"hotkeyQuickCapture";
     
     NSString *key = [[NSUserDefaults standardUserDefaults] stringForKey:userDefaultsKey];
     
@@ -234,11 +208,6 @@
     {
         userDefaultsKey = @"hotkeyCaptureFile";
         textField = _hotkeyCaptureFileTextField;
-    }
-    if ([_hotkeyShowQuickCaptureTextField currentEditor])
-    {
-        userDefaultsKey = @"hotkeyQuickCapture";
-        textField = _hotkeyShowQuickCaptureTextField;
     }
     
     if (userDefaultsKey)

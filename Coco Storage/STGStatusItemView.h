@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "STGUploadTypeViewController.h"
+
 @protocol STGStatusItemViewDelegate;
 
-@interface STGStatusItemView : NSView <NSMenuDelegate>
+@interface STGStatusItemView : NSView <NSMenuDelegate, STGUploadTypeViewControllerDelegate>
 
 @property (nonatomic, assign) id<STGStatusItemViewDelegate> delegate;
 
@@ -23,6 +25,10 @@
 
 @property (nonatomic, retain) NSWindow *overlayWindow;
 @property (nonatomic, retain) NSTextField *overlayWindowLabel;
+
+@property (nonatomic, retain) STGUploadTypeViewController *uploadTypeVC;
+
+- (void)displayClipboardCaptureWindow;
 
 @end
 

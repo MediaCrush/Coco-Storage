@@ -49,6 +49,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureAreaMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFullScreenMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFileMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *captureClipboardMenuItem;
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *recentFilesItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *noRecentFilesItem;
@@ -59,10 +60,10 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *pauseUploadsItem;
 
-- (IBAction)openQuickUploadWindow:(id)sender;
 - (IBAction)captureArea:(id)sender;
 - (IBAction)captureFullScreen:(id)sender;
 - (IBAction)captureFile:(id)sender;
+- (IBAction)captureClipboard:(id)sender;
 
 - (IBAction)openStorageAccount:(id)sender;
 - (IBAction)openMyFiles:(id)sender;
@@ -93,7 +94,6 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @protocol STGStatusItemManagerDelegate <NSObject>
 
--(void)openQuickUploadWindow;
 -(void)captureScreen:(BOOL)fullScreen;
 -(void)captureFile;
 -(void)uploadEntries:(NSArray *)entries;

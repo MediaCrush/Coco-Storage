@@ -26,7 +26,6 @@
 @property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureAreaTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureFullScreenTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureFileTextField;
-@property (nonatomic, retain) IBOutlet NSTextField *hotkeyShowQuickCaptureTextField;
 
 @property (nonatomic, assign) id<STGOptionsShortcutsDelegate> delegate;
 
@@ -39,12 +38,10 @@
 - (IBAction)resetHotkeyCaptureArea:(id)sender;
 - (IBAction)resetHotkeyCaptureFullScreen:(id)sender;
 - (IBAction)resetHotkeyCaptureFile:(id)sender;
-- (IBAction)resetHotkeyShowQuickCapture:(id)sender;
 
 - (IBAction)disableHotkeyCaptureArea:(id)sender;
 - (IBAction)disableHotkeyCaptureFullScreen:(id)sender;
 - (IBAction)disableHotkeyCaptureFile:(id)sender;
-- (IBAction)disableHotkeyShowQuickCapture:(id)sender;
 
 - (NSEvent *)keyPressed:(NSEvent *)event;
 
