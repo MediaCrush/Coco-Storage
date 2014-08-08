@@ -59,18 +59,31 @@
     return NO;
 }
 
-- (void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     STGPacket *cachedEntry = _activeEntry;
     
     _activeEntry = nil;
     _activeUploadConnection = nil;
-
+    
     if ([_delegate respondsToSelector:@selector(finishUploadingData:entry:fullResponse:urlResponse:)])
     {
         [_delegate finishUploadingData:self entry:cachedEntry fullResponse:_responseData urlResponse:_urlResponse];
     }
 }
+//
+//- (void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL
+//{
+//    STGPacket *cachedEntry = _activeEntry;
+//    
+//    _activeEntry = nil;
+//    _activeUploadConnection = nil;
+//
+//    if ([_delegate respondsToSelector:@selector(finishUploadingData:entry:fullResponse:urlResponse:)])
+//    {
+//        [_delegate finishUploadingData:self entry:cachedEntry fullResponse:_responseData urlResponse:_urlResponse];
+//    }
+//}
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
@@ -100,16 +113,16 @@
     [self setUrlResponse:response];
 }
 
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
-{
-    [_responseData appendData:[cachedResponse data]];
-    
-    return cachedResponse;
-}
+//- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
+//{
+//    [_responseData appendData:[cachedResponse data]];
+//    
+//    return cachedResponse;
+//}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"Connection response data: %@", data);
+    [_responseData appendData:data];
 }
 
 - (void)cancelCurrentRequest
