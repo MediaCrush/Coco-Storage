@@ -33,7 +33,6 @@
 
 #import "STGPacketQueue.h"
 #import "STGPacket.h"
-#import "STGPacketCreator.h"
 
 #import "STGAPIConfiguration.h"
 #import "STGAPIConfigurationStorage.h"

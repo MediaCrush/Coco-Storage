@@ -13,8 +13,6 @@
 #import "STGJSONHelper.h"
 #import "STGPacketQueue.h"
 
-#import "STGPacketCreator.h"
-
 #import "STGDataCaptureEntry.h"
 
 STGAPIConfigurationStorage *standardConfiguration;
@@ -194,18 +192,108 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 - (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey
 {
-    [packetQueue addEntry:[STGPacketCreator apiStatusPacket:@"https://api.stor.ag/v1/status?key=%@" apiInfo:1 key:apiKey]];
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://api.stor.ag/v1/status?key=%@", apiKey] httpMethod:@"GET" contentParts:nil];
+    
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"getAPIStatus" userInfo:[NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"apiVersion"]];
+
+    [packetQueue addEntry:packet];
+    
 //    [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:@"https://api.stor.ag/v2/status?key=%@" apiInfo:2 key:[self getApiKey]]];
 }
 
 - (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile
 {
-    [packetQueue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:@"https://api.stor.ag/v1/object?key=%@" key:apiKey isPublic:publicFile]];
+    NSData *contentPart = [STGPacket contentPartObjectsForKeys:
+                           [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"file", @"name",
+                            [[entry fileURL] lastPathComponent], @"filename",
+                            publicFile ? @"false" : @"true", @"private",
+                            nil] content:[NSData dataWithContentsOfURL:[entry fileURL]]];
+    NSArray *requestParts = [NSArray arrayWithObject:contentPart];
+    
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://api.stor.ag/v1/object?key=%@", apiKey] httpMethod:@"POST" contentParts:requestParts];
+    
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"uploadFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
+    
+    [packetQueue addEntry:packet];
 }
 
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry
 {
-    [packetQueue addEntry:[STGPacketCreator deleteFilePacket:entry uploadLink:@"https://api.stor.ag/v1/object/%@?key=%@" key:apiKey]];
+    NSUInteger entryIDLoc = [[entry onlineLink] rangeOfString:@"/" options:NSBackwardsSearch].location;
+    
+    if (entryIDLoc == NSNotFound)
+        NSLog(@"Could not find ID in online link!");
+    
+    NSString *entryID = [[entry onlineLink] substringFromIndex:entryIDLoc + 1];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.stor.ag/v1/object/%@?key=%@", entryID, apiKey];
+    
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyData:[NSData dataWithContentsOfURL:[entry fileURL]]];
+    
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"deleteFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
+
+    [packetQueue addEntry:packet];
 }
+
+//+ (STGPacket *)objectInfoPacket:(NSString *)objectID link:(NSString *)link key:(NSString *)key
+//{
+//    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, objectID, key] httpMethod:@"GET" contentParts:nil];
+//    
+//    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"getObjectInfo" userInfo:[NSMutableDictionary dictionary]];
+//    
+//    return packet;
+//}
+//
+//+ (STGPacket *)cfsGenericPacket:(NSString *)httpMethod path:(NSString *)filePath link:(NSString *)link key:(NSString *)key packetType:(NSString *)packetType
+//{
+//    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, filePath, key] httpMethod:httpMethod contentParts:nil];
+//    
+//    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:packetType userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+//    
+//    return packet;
+//}
+//
+//+ (STGPacket *)cfsFileListPacket:(NSString *)filePath link:(NSString *)link recursive:(BOOL)recursive key:(NSString *)key
+//{
+//    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, filePath, key] httpMethod:@"GET" contentParts:nil];
+//    
+//    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:getFileList" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+//    
+//    return packet;
+//}
+//
+//+ (STGPacket *)cfsFileInfoPacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key
+//{
+//    return [self cfsGenericPacket:@"HEAD" path:filePath link:link key:key packetType:@"cfs:getFileInfo"];
+//}
+//
+//+ (STGPacket *)cfsPostFilePacket:(NSString *)filePath fileURL:(NSURL *)fileURL link:(NSString *)link key:(NSString *)key
+//{
+//    NSURL *innerURL = [NSURL URLWithString:filePath];
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"file", @"name", [innerURL lastPathComponent], @"filename", [[innerURL URLByDeletingLastPathComponent] path], @"folder", nil];
+//    
+//    NSData *contentPart = [STGPacket contentPartObjectsForKeys:dict content:[NSData dataWithContentsOfURL:fileURL]];
+//    
+//    NSMutableURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, @"", key] httpMethod:@"POST" contentParts:[NSArray arrayWithObject:contentPart]];
+//    
+//    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:postFile" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+//    
+//    return packet;
+//}
+//
+//+ (STGPacket *)cfsUpdateFilePacket:(NSString *)filePath fileURL:(NSURL *)fileURL link:(NSString *)link key:(NSString *)key
+//{
+//    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:link, filePath, key] httpMethod:@"PUT" fileName:nil mainBodyData:[NSData dataWithContentsOfURL:fileURL]];
+//    
+//    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"cfs:updateFile" userInfo:[NSMutableDictionary dictionaryWithObject:filePath forKey:@"filePath"]];
+//    
+//    return packet;
+//}
+//
+//+ (STGPacket *)cfsDeleteFilePacket:(NSString *)filePath link:(NSString *)link key:(NSString *)key
+//{
+//    return [self cfsGenericPacket:@"DELETE" path:filePath link:link key:key packetType:@"cfs:deleteFile"];
+//}
+
 
 @end

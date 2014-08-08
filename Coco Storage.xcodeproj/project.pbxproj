@@ -19,7 +19,6 @@
 		8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011CA3E174FE9860021249F /* STGStatusItemView.m */; };
 		801203411732FF9E0003BB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
 		80120345173300C90003BB23 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
-		8017CD0F17491C0B000889C5 /* STGPacketCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD0E17491C0B000889C5 /* STGPacketCreator.m */; };
 		8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
@@ -130,8 +129,6 @@
 		8011CA3D174FE9860021249F /* STGStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemView.h; sourceTree = "<group>"; };
 		8011CA3E174FE9860021249F /* STGStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemView.m; sourceTree = "<group>"; };
 		801203401732FF9D0003BB23 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		8017CD0D17491C0B000889C5 /* STGPacketCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacketCreator.h; sourceTree = "<group>"; };
-		8017CD0E17491C0B000889C5 /* STGPacketCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketCreator.m; sourceTree = "<group>"; };
 		8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCFSSyncCheck.h; sourceTree = "<group>"; };
 		8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheck.m; sourceTree = "<group>"; };
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
@@ -355,8 +352,6 @@
 		80659844199562BB00EF0E34 /* Getstorage */ = {
 			isa = PBXGroup;
 			children = (
-				8017CD0D17491C0B000889C5 /* STGPacketCreator.h */,
-				8017CD0E17491C0B000889C5 /* STGPacketCreator.m */,
 				80659846199565FE00EF0E34 /* STGAPIConfigurationStorage.h */,
 				80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */,
 			);
@@ -648,7 +643,6 @@
 				80781B531746B26400D0C790 /* STGOptionsQuickUploadViewController.m in Sources */,
 				80485FE91747FABF00CB6226 /* NSButton+TextColor.m in Sources */,
 				804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */,
-				8017CD0F17491C0B000889C5 /* STGPacketCreator.m in Sources */,
 				8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */,
 				80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */,
 				809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */,
