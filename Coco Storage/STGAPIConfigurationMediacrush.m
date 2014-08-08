@@ -65,6 +65,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 //        }
     }
     
+    NSLog(@"%@", [entry packetType]);
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
         NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
@@ -72,6 +73,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         NSString *uploadID = [dictionary objectForKey:@"hash"];
         NSString *link = uploadID ? [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID] : nil;
         
+        NSLog(@"%@", link);
         if (link)
         {
             [[[entry userInfo] objectForKey:@"dataCaptureEntry"] setOnlineLink:link];
@@ -107,7 +109,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
                 [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:link]];
             }
             
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
+            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
             {
                 [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
             }
@@ -119,7 +121,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
             
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
+            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
             {
                 [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
             }
@@ -169,7 +171,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 {
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
-        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
+        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
         {
             [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
         }

@@ -112,6 +112,7 @@ STGAppDelegate *sharedAppDelegate;
     [[self hotkeyHelper] linkToSystem];
     
     [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
+    [[STGAPIConfiguration currentConfiguration] setDelegate:self];
     
     [self setOptionsGeneralVC:[[STGOptionsGeneralViewController alloc] initWithNibName:@"STGOptionsGeneralViewController" bundle:nil]];
     [self setOptionsShortcutsVC:[[STGOptionsShortcutsViewController alloc] initWithNibName:@"STGOptionsShortcutsViewController" bundle:nil]];
@@ -682,7 +683,7 @@ STGAppDelegate *sharedAppDelegate;
 
 #pragma mark API Configuration delegate
 
-- (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success
+- (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success 
 {
     [[[_statusItemManager statusItem] menu] cancelTracking];
     [_statusItemManager setStatusItemUploadProgress:0.0];
