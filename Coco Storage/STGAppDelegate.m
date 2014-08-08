@@ -381,7 +381,7 @@ STGAppDelegate *sharedAppDelegate;
 
 -(void)deleteRecentFile:(STGDataCaptureEntry *)entry
 {
-    [_packetSupportQueue addEntry:[STGPacketCreator deleteFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] deletionLink] key:[self getApiKey]]];
+    [[STGAPIConfiguration currentConfiguration] sendFileDeletePacket:_packetSupportQueue apiKey:[self getApiKey] entry:entry];
     
     [_recentFilesArray removeObject:entry];
     [_statusItemManager updateRecentFiles:_recentFilesArray];

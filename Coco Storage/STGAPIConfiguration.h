@@ -24,7 +24,6 @@
 
 @property (nonatomic, assign) NSObject<STGAPIConfigurationDelegate> *delegate;
 
-@property (nonatomic, retain) NSString *deletionLink;
 @property (nonatomic, retain) NSString *getObjectInfoLink;
 
 @property (nonatomic, retain) NSString *cfsBaseLink;
@@ -35,6 +34,7 @@
 
 - (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey;
 - (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile;
+- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry;
 
 @end
 

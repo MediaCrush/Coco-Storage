@@ -12,7 +12,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 @implementation STGAPIConfigurationMediacrush
 
-@synthesize delegate, cfsBaseLink, deletionLink, getObjectInfoLink;
+@synthesize delegate, cfsBaseLink, getObjectInfoLink;
 
 + (STGAPIConfigurationMediacrush *)standardConfiguration
 {
@@ -20,7 +20,6 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     {
         standardConfiguration = [[STGAPIConfigurationMediacrush alloc] init];
         
-        [standardConfiguration setDeletionLink:@"https://mediacru.sh/v1/object/%@?key=%@"];
         [standardConfiguration setGetObjectInfoLink:@"https://mediacru.sh/v1/object/%@?key=%@"];
         
         [standardConfiguration setCfsBaseLink:@"https://mediacru.sh/v2/cfs%@?key=%@"];
