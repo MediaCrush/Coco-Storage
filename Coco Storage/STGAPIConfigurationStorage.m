@@ -21,7 +21,7 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 @implementation STGAPIConfigurationStorage
 
-@synthesize delegate, cfsBaseLink, getObjectInfoLink;
+@synthesize delegate;
 
 + (STGAPIConfigurationStorage *)standardConfiguration
 {
@@ -29,9 +29,8 @@ STGAPIConfigurationStorage *standardConfiguration;
     {
         standardConfiguration = [[STGAPIConfigurationStorage alloc] init];
         
-        [standardConfiguration setGetObjectInfoLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
-        
-        [standardConfiguration setCfsBaseLink:@"https://api.stor.ag/v2/cfs%@?key=%@"];
+//        [standardConfiguration setGetObjectInfoLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
+//        [standardConfiguration setCfsBaseLink:@"https://api.stor.ag/v2/cfs%@?key=%@"];
     }
     
     return standardConfiguration;

@@ -24,10 +24,6 @@
 
 @property (nonatomic, assign) NSObject<STGAPIConfigurationDelegate> *delegate;
 
-@property (nonatomic, retain) NSString *getObjectInfoLink;
-
-@property (nonatomic, retain) NSString *cfsBaseLink;
-
 - (BOOL)canReachServer;
 - (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
 - (void)cancelPacketUpload:(STGPacket *)entry;

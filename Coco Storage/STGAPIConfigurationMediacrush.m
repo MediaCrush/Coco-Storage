@@ -12,17 +12,13 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 @implementation STGAPIConfigurationMediacrush
 
-@synthesize delegate, cfsBaseLink, getObjectInfoLink;
+@synthesize delegate;
 
 + (STGAPIConfigurationMediacrush *)standardConfiguration
 {
     if (!standardConfiguration)
     {
         standardConfiguration = [[STGAPIConfigurationMediacrush alloc] init];
-        
-        [standardConfiguration setGetObjectInfoLink:@"https://mediacru.sh/v1/object/%@?key=%@"];
-        
-        [standardConfiguration setCfsBaseLink:@"https://mediacru.sh/v2/cfs%@?key=%@"];
     }
     
     return standardConfiguration;
