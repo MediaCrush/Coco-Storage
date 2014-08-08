@@ -1,5 +1,5 @@
 //
-//  STGAPIConfigurationStorage.h
+//  STGAPIConfigurationMediacrush.h
 //  Coco Storage
 //
 //  Created by Lukas Tenbrink on 08.08.14.
@@ -8,8 +8,8 @@
 
 #import "STGAPIConfiguration.h"
 
-@interface STGAPIConfigurationStorage : STGAPIConfiguration
+@interface STGAPIConfigurationMediacrush : STGAPIConfiguration
 
-+ (STGAPIConfigurationStorage *)standardConfiguration;
++ (STGAPIConfigurationMediacrush *)standardConfiguration;
 
 @end
