@@ -36,6 +36,7 @@
 
 #import "STGAPIConfiguration.h"
 #import "STGAPIConfigurationStorage.h"
+#import "STGAPIConfigurationMediacrush.h"
 
 #import "STGCFSSyncCheck.h"
 
@@ -110,7 +111,7 @@ STGAppDelegate *sharedAppDelegate;
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
     [[self hotkeyHelper] linkToSystem];
     
-    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStorage standardConfiguration]];
+    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
     
     [self setOptionsGeneralVC:[[STGOptionsGeneralViewController alloc] initWithNibName:@"STGOptionsGeneralViewController" bundle:nil]];
     [self setOptionsShortcutsVC:[[STGOptionsShortcutsViewController alloc] initWithNibName:@"STGOptionsShortcutsViewController" bundle:nil]];
@@ -227,9 +228,9 @@ STGAppDelegate *sharedAppDelegate;
     
     if (_ticksAlive % 5 == 0)
     {
-        BOOL reachingStorage = [[STGAPIConfiguration currentConfiguration] canReachServer];
+        BOOL reachingServer = [[STGAPIConfiguration currentConfiguration] canReachServer];
         
-        if (reachingStorage)
+        if (reachingServer)
         {
             if ([self isAPIKeyValid:NO])
             {
@@ -363,6 +364,8 @@ STGAppDelegate *sharedAppDelegate;
             }
         }
     }
+    
+    [[STGAPIConfiguration currentConfiguration] handlePacket:entry fullResponse:response urlResponse:urlResponse];
 }
 
 - (void)packetQueue:(STGPacketQueue *)queue cancelledEntry:(STGPacket *)entry
@@ -728,12 +731,12 @@ STGAppDelegate *sharedAppDelegate;
         status = STGServerStatusInvalidKey;
     else
     {
-        BOOL reachingStorage = [[STGAPIConfiguration currentConfiguration] canReachServer];
+        BOOL reachingServer = [[STGAPIConfiguration currentConfiguration] canReachServer];
         BOOL reachingApple = [STGNetworkHelper isWebsiteReachable:@"www.apple.com"];
         
-        if (!reachingApple && !reachingStorage)
+        if (!reachingApple && !reachingServer)
             status = STGServerStatusClientOffline;
-        else if (!reachingStorage)
+        else if (!reachingServer)
             status = STGServerStatusServerOffline;
         else if (!_apiV1Alive/* && !_apiV2Alive*/)
             status = STGServerStatusServerBusy;
