@@ -567,32 +567,37 @@ STGAppDelegate *sharedAppDelegate;
 
 - (BOOL)isAPIKeyValid:(BOOL)output
 {
-    NSString *key = [self getApiKey];
-    
-    int error = -1;
-    
-    if (!key || [key length] == 0)
-        error = 1;
-    else if ([key length] < 40)
-        error = 2;
-    
-    if (error > 0 && output)
-    {
-        if (error == 1)
-        {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"You have entered no Storage key! This is required as identification for stor.ag. Please move to the preferences to enter / create one."];
-            [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-        }
-        else if (error == 2)
-        {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Your storage key is too short [invalid]. This is required as identification for stor.ag. Please move to the preferences to enter / create one."];
-            [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-        }
-        
-        return NO;
-    }
-    else
+    if (![[STGAPIConfiguration currentConfiguration] hasAPIKeys])
         return YES;
+    else
+    {
+        NSString *key = [self getApiKey];
+        
+        int error = -1;
+        
+        if (!key || [key length] == 0)
+            error = 1;
+        else if ([key length] < 40)
+            error = 2;
+        
+        if (error > 0 && output)
+        {
+            if (error == 1)
+            {
+                NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"You have entered no Storage key! This is required as identification for %@. Please move to the preferences to enter / create one.", [[STGAPIConfiguration currentConfiguration] apiHostName]];
+                [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+            }
+            else if (error == 2)
+            {
+                NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Your storage key is too short [invalid]. This is required as identification for %@. Please move to the preferences to enter / create one.", [[STGAPIConfiguration currentConfiguration] apiHostName]];
+                [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+            }
+            
+            return NO;
+        }
+        else
+            return YES;
+    }
 }
 
 - (void)keyMissingSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo

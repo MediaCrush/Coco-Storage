@@ -36,6 +36,16 @@ STGAPIConfigurationStorage *standardConfiguration;
     return standardConfiguration;
 }
 
+- (NSString *)apiHostName
+{
+    return @"stor.ag";
+}
+
+- (BOOL)hasAPIKeys
+{
+    return NO;
+}
+
 - (BOOL)canReachServer
 {
     return [STGNetworkHelper isWebsiteReachable:@"stor.ag"];

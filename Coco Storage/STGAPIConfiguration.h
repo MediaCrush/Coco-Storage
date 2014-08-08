@@ -24,6 +24,9 @@
 
 @property (nonatomic, assign) NSObject<STGAPIConfigurationDelegate> *delegate;
 
+- (NSString *)apiHostName;
+- (BOOL)hasAPIKeys;
+
 - (BOOL)canReachServer;
 - (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
 - (void)cancelPacketUpload:(STGPacket *)entry;

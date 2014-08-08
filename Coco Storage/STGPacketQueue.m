@@ -8,7 +8,7 @@
 
 #import "STGPacketQueue.h"
 
-#import "STGNetworkHelper.h"
+#import "STGAPIConfiguration.h"
 
 @implementation STGPacketQueue
 
@@ -33,9 +33,9 @@
     {
         if ([_uploadQueue count] > 0)
         {
-            BOOL reachingStorage = [STGNetworkHelper isWebsiteReachable:@"stor.ag"];
+            BOOL reachingAPI = [[STGAPIConfiguration currentConfiguration] canReachServer];
 
-            if (reachingStorage)
+            if (reachingAPI)
                 [_connectionManager uploadEntry:[_uploadQueue objectAtIndex:0]];
         }
     }
