@@ -41,7 +41,7 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 - (BOOL)hasAPIKeys
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)canReachServer
