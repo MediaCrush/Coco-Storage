@@ -39,6 +39,7 @@
         NSArray *topLevelObjects;
         [nib instantiateWithOwner:self topLevelObjects:&topLevelObjects];
         
+        [_statusMenu setAutoenablesItems:NO];
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:STGStatusItemWidth];
         [_statusItem setMenu:_statusMenu];
         
@@ -182,6 +183,12 @@
 - (void)setStatusItemUploadProgress:(float)progress
 {
     [self setUploadProgress:progress];
+}
+
+- (void)menuWillOpen:(NSMenu *)menu
+{
+    NSArray *clipboardCapturableItems = [STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]];
+    [[self captureClipboardMenuItem] setEnabled:[clipboardCapturableItems count] > 0];
 }
 
 - (void)menuDidClose:(NSMenu *)menu

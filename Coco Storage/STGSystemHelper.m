@@ -8,6 +8,8 @@
 
 #import "STGSystemHelper.h"
 
+#import <Sparkle/Sparkle.h>
+
 @interface STGSystemHelper ()
 
 + (LSSharedFileListItemRef)itemRefInLoginItems;
@@ -96,7 +98,7 @@
     CFRelease(loginItemsRef);
 }
 
-+ (void)showDockTile
++ (void)createDockTile
 {
     ProcessSerialNumber psn = { 0, kCurrentProcess };
     
@@ -107,6 +109,14 @@
     }
 }
 
++ (void)setDockTileVisible:(BOOL)visible
+{
+    if (visible)
+        [NSApp setActivationPolicy: NSApplicationActivationPolicyRegular];
+    else
+        [NSApp setActivationPolicy: NSApplicationActivationPolicyAccessory];
+}
+
 /*
  From http://stackoverflow.com/questions/17693408/enable-access-for-assistive-devices-programmatically-on-10-9
 */
@@ -115,7 +125,7 @@
     NSMutableArray *args = [[NSMutableArray alloc] init];
     
     [args addObject:@"\\\"/Library/Application Support/com.apple.TCC/TCC.db\\\""];
-    [args addObject:[NSString stringWithFormat:@"\\\"INSERT INTO access VALUES('kTCCServiceAccessibility','%@',0,1,1,NULL);\\\"", programID]];
+    [args addObject:[NSString stringWithFormat:@"\\\"INSERT OR REPLACE INTO access (client, service, client_type, allowed, prompt_count) VALUES('%@', 'kTCCServiceAccessibility',0,1,1);\\\"", programID]];
     
     NSString *output = nil;
     NSString *errorDescription = nil;
@@ -175,7 +185,6 @@
     
     NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
     NSAppleEventDescriptor * eventResult = [appleScript executeAndReturnError:&errorInfo];
-    NSLog(@"%@", appleScript);
     
     // Check errorInfo
     if (! eventResult)
@@ -205,6 +214,20 @@
         
         return YES;
     }
+}
+
++ (void)restartUsingSparkle
+{
+    NSString *launcherSource = [[NSBundle bundleForClass:[SUUpdater class]]  pathForResource:@"relaunch" ofType:@""];
+    NSString *launcherTarget = [NSTemporaryDirectory() stringByAppendingPathComponent:[launcherSource lastPathComponent]];
+    NSString *appPath = [[NSBundle mainBundle] bundlePath];
+    NSString *processID = [NSString stringWithFormat:@"%d", [[NSProcessInfo processInfo] processIdentifier]];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:launcherTarget error:NULL];
+    [[NSFileManager defaultManager] copyItemAtPath:launcherSource toPath:launcherTarget error:NULL];
+	
+    [NSTask launchedTaskWithLaunchPath:launcherTarget arguments:[NSArray arrayWithObjects:appPath, processID, nil]];
+    [NSApp terminate:self];
 }
 
 @end

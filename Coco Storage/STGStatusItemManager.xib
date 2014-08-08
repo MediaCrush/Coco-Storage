@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="STGStatusItemManager">
             <connections>
                 <outlet property="captureAreaMenuItem" destination="46" id="48"/>
+                <outlet property="captureClipboardMenuItem" destination="2k3-Wa-v5p" id="mhS-tm-ywF"/>
                 <outlet property="captureFileMenuItem" destination="7" id="24"/>
                 <outlet property="captureFullScreenMenuItem" destination="8" id="23"/>
                 <outlet property="currentUploadsItem" destination="2" id="26"/>

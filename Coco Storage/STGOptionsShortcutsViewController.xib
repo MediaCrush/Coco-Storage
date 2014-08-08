@@ -11,6 +11,7 @@
                 <outlet property="hotkeyCaptureAreaTextField" destination="157" id="222"/>
                 <outlet property="hotkeyCaptureFileTextField" destination="213" id="224"/>
                 <outlet property="hotkeyCaptureFullScreenTextField" destination="184" id="223"/>
+                <outlet property="hotkeyStatusTextField" destination="9aL-DK-gBv" id="KMv-Ej-2ZO"/>
                 <outlet property="view" destination="3" id="65"/>
             </connections>
         </customObject>

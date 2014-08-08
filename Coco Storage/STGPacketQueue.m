@@ -77,16 +77,17 @@
         [_connectionManager cancelCurrentRequest];
     
     [self update];
+    
+    if ([_delegate respondsToSelector:@selector(packetQueue:cancelledEntry:)])
+        [_delegate packetQueue:self cancelledEntry:entry];
 }
 
 - (void)cancelAllEntries
 {
-    [_uploadQueue removeAllObjects];
-    
-    if ([_connectionManager activeEntry])
-        [_connectionManager cancelCurrentRequest];
-    
-    [self update];
+    while ([_uploadQueue count] > 0)
+    {
+        [self cancelEntry:[_uploadQueue objectAtIndex:0]];
+    }
 }
 
 - (void)startUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry

@@ -72,15 +72,8 @@
     
     if (sender == _showDockIconButton)
     {
-        if ([_showDockIconButton integerValue] == 0)
-        {
-            //Restart app
-        }
-        else
-        {
-            [STGSystemHelper showDockTile];
-        }
-    }    
+        [STGSystemHelper setDockTileVisible:([_showDockIconButton integerValue] == 1)];
+    }
 }
 
 - (void)textChanged:(STGOptionTextField *)textField

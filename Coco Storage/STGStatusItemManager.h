@@ -45,7 +45,6 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *serverStatusItem;
 
-@property (nonatomic, retain) IBOutlet NSMenuItem *quickCaptureMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureAreaMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFullScreenMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFileMenuItem;

@@ -292,6 +292,7 @@
 			children = (
 				8029A4AA172858CA00F09884 /* MASPreferences */,
 				8029A48F172832BF00F09884 /* Resources */,
+				80659844199562BB00EF0E34 /* Getstorage */,
 				80068FD417272CA900DA1492 /* STGAppDelegate.h */,
 				80068FD517272CA900DA1492 /* STGAppDelegate.m */,
 				8029A4A01728427900F09884 /* MainMenu.xib */,
@@ -407,6 +408,13 @@
 				8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */,
 			);
 			name = MASPreferences;
+			sourceTree = "<group>";
+		};
+		80659844199562BB00EF0E34 /* Getstorage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Getstorage;
 			sourceTree = "<group>";
 		};
 		809A10BF174D6C880016A391 /* Licenses */ = {

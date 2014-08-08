@@ -188,8 +188,8 @@ STGAppDelegate *sharedAppDelegate;
     
     [STGSystemHelper setStartOnSystemLaunch:[[NSUserDefaults standardUserDefaults] integerForKey:@"startAtLogin"] == 1];
     
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"showDockIcon"] == 1)
-        [STGSystemHelper showDockTile];
+    [STGSystemHelper createDockTile];
+    [STGSystemHelper setDockTileVisible:([[NSUserDefaults standardUserDefaults] integerForKey:@"showDockIcon"] == 1)];
     
     [_sparkleUpdater setAutomaticallyChecksForUpdates:[[NSUserDefaults standardUserDefaults] integerForKey:@"autoUpdate"] == 1];
     
@@ -257,6 +257,17 @@ STGAppDelegate *sharedAppDelegate;
             else
                 [_statusItemManager updateServerStatus:STGServerStatusServerOffline];
         }
+        
+        if ([[self hotkeyHelper] hotkeyStatus] != STGHotkeyStatusOkay)
+        {
+            if ([STGSystemHelper isAssistiveDevice])
+            {
+                if (![[self hotkeyHelper] linkToSystem])
+                    [STGSystemHelper restartUsingSparkle];
+            }
+
+            [[self optionsShortcutsVC] updateHotkeyStatus];
+        }
     }
     
     _ticksAlive ++;
@@ -313,10 +324,10 @@ STGAppDelegate *sharedAppDelegate;
 {
     if ([entry deleteOnCompletetion] && ((success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepAllScreenshots"] == 0) || (!success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"] == 0)))
     {
-        NSError *error = nil;
-        
         if ([entry fileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[[entry fileURL] path]])
         {
+            NSError *error = nil;
+
             [[NSFileManager defaultManager] removeItemAtURL:[entry fileURL] error:&error];
             
             if (error)
@@ -520,7 +531,15 @@ STGAppDelegate *sharedAppDelegate;
     }
     else
     {
-        NSLog(@"Unknown packet entry. Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
+        NSLog(@"Unknown packet entry. Entry: \"%@\"\nResponse:\n%@\nStatus: %li (%@)", [entry packetType], response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
+    }
+}
+
+- (void)packetQueue:(STGPacketQueue *)queue cancelledEntry:(STGPacket *)entry
+{
+    if ([[entry packetType] isEqualToString:@"uploadFile"])
+    {
+        [self onUploadComplete:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
     }
 }
 
@@ -799,7 +818,8 @@ STGAppDelegate *sharedAppDelegate;
     }
     else
     {
-        [[self hotkeyHelper] linkToSystem];
+        if (![[self hotkeyHelper] linkToSystem])
+            [STGSystemHelper restartUsingSparkle];
     }
 
     [[self optionsShortcutsVC] updateHotkeyStatus];
