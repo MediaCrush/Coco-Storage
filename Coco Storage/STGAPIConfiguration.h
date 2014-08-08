@@ -10,6 +10,7 @@
 
 @class STGPacket;
 @class STGDataCaptureEntry;
+@class STGPacketQueue;
 
 @protocol STGAPIConfigurationDelegate
 
@@ -27,14 +28,13 @@
 @property (nonatomic, retain) NSString *deletionLink;
 @property (nonatomic, retain) NSString *getObjectInfoLink;
 
-@property (nonatomic, retain) NSString *getAPIV1StatusLink;
-@property (nonatomic, retain) NSString *getAPIV2StatusLink;
-
 @property (nonatomic, retain) NSString *cfsBaseLink;
 
 - (BOOL)canReachServer;
 - (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
 - (void)cancelPacketUpload:(STGPacket *)entry;
+
+- (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey;
 
 @end
 

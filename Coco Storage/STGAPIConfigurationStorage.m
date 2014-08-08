@@ -11,6 +11,9 @@
 #import "STGNetworkHelper.h"
 #import "STGPacket.h"
 #import "STGJSONHelper.h"
+#import "STGPacketQueue.h"
+
+#import "STGPacketCreator.h"
 
 #import "STGDataCaptureEntry.h"
 
@@ -18,7 +21,7 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 @implementation STGAPIConfigurationStorage
 
-@synthesize delegate, cfsBaseLink, deletionLink, getAPIV1StatusLink, getAPIV2StatusLink, getObjectInfoLink, uploadLink;
+@synthesize delegate, cfsBaseLink, deletionLink, getObjectInfoLink, uploadLink;
 
 + (STGAPIConfigurationStorage *)standardConfiguration
 {
@@ -29,9 +32,6 @@ STGAPIConfigurationStorage *standardConfiguration;
         [standardConfiguration setUploadLink:@"https://api.stor.ag/v1/object?key=%@"];
         [standardConfiguration setDeletionLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
         [standardConfiguration setGetObjectInfoLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
-        
-        [standardConfiguration setGetAPIV1StatusLink:@"https://api.stor.ag/v1/status?key=%@"];
-        [standardConfiguration setGetAPIV2StatusLink:@"https://api.stor.ag/v2/status?key=%@"];
         
         [standardConfiguration setCfsBaseLink:@"https://api.stor.ag/v2/cfs%@?key=%@"];
     }
@@ -183,6 +183,12 @@ STGAPIConfigurationStorage *standardConfiguration;
             [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];            
         }
     }
+}
+
+- (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey
+{
+    [packetQueue addEntry:[STGPacketCreator apiStatusPacket:@"https://api.stor.ag/v1/status?key=%@" apiInfo:1 key:apiKey]];
+//    [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:@"https://api.stor.ag/v2/status?key=%@" apiInfo:2 key:[self getApiKey]]];
 }
 
 @end

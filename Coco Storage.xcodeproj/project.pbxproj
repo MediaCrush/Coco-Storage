@@ -355,6 +355,8 @@
 		80659844199562BB00EF0E34 /* Getstorage */ = {
 			isa = PBXGroup;
 			children = (
+				8017CD0D17491C0B000889C5 /* STGPacketCreator.h */,
+				8017CD0E17491C0B000889C5 /* STGPacketCreator.m */,
 				80659846199565FE00EF0E34 /* STGAPIConfigurationStorage.h */,
 				80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */,
 			);
@@ -372,8 +374,6 @@
 				80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */,
 				80492699173EEAC100C08A7F /* STGPacket.h */,
 				8049269A173EEAC100C08A7F /* STGPacket.m */,
-				8017CD0D17491C0B000889C5 /* STGPacketCreator.h */,
-				8017CD0E17491C0B000889C5 /* STGPacketCreator.m */,
 				8065984A1995688200EF0E34 /* Mediacrush */,
 				80659844199562BB00EF0E34 /* Getstorage */,
 			);

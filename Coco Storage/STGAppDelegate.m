@@ -232,8 +232,7 @@ STGAppDelegate *sharedAppDelegate;
         {
             if ([self isAPIKeyValid:NO])
             {
-                [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration currentConfiguration] getAPIV1StatusLink] apiInfo:1 key:[self getApiKey]]];
-                [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration currentConfiguration] getAPIV2StatusLink] apiInfo:2 key:[self getApiKey]]];
+                [[STGAPIConfiguration currentConfiguration] sendStatusPacket:_packetSupportQueue apiKey:[self getApiKey]];
                 
                 //                [_packetSupportQueue addEntry:[STGPacketCreator cfsFileListPacket:@"" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] recursive:YES key:[self getApiKey]]];
                 
