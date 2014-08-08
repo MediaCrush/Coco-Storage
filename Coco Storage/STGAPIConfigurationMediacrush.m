@@ -64,9 +64,6 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 //            NSLog(@"\"%@\" : \"%@\"", key, [headerFields objectForKey:key]);
 //        }
     }
-    NSLog(@"RECEIVE %@", [entry packetType]);
-    NSLog(@"CODE %lu", (unsigned long)responseCode);
-    NSLog(@"RESPONSE %lu", (unsigned long)[response length]);
     
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
@@ -191,7 +188,6 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 - (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile
 {
-    NSLog(@"SEND %@", [entry fileURL]);
     NSData *contentPart = [STGPacket contentPartObjectsForKeys:
                            [NSDictionary dictionaryWithObjectsAndKeys:
                             @"file", @"name",
