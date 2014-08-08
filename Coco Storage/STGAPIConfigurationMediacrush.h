@@ -8,7 +8,7 @@
 
 #import "STGAPIConfiguration.h"
 
-@interface STGAPIConfigurationMediacrush : STGAPIConfiguration
+@interface STGAPIConfigurationMediacrush : NSObject <STGAPIConfiguration>
 
 + (STGAPIConfigurationMediacrush *)standardConfiguration;
 

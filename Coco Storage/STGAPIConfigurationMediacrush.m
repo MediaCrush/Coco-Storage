@@ -8,15 +8,17 @@
 
 #import "STGAPIConfigurationMediacrush.h"
 
-STGAPIConfiguration *standardConfiguration;
+STGAPIConfigurationMediacrush *standardConfiguration;
 
 @implementation STGAPIConfigurationMediacrush
 
-+ (STGAPIConfiguration *)standardConfiguration
+@synthesize delegate, cfsBaseLink, deletionLink, getAPIV1StatusLink, getAPIV2StatusLink, getObjectInfoLink, uploadLink;
+
++ (STGAPIConfigurationMediacrush *)standardConfiguration
 {
     if (!standardConfiguration)
     {
-        standardConfiguration = [[STGAPIConfiguration alloc] init];
+        standardConfiguration = [[STGAPIConfigurationMediacrush alloc] init];
         
         [standardConfiguration setUploadLink:@"https://mediacru.sh/v1/object?key=%@"];
         [standardConfiguration setDeletionLink:@"https://mediacru.sh/v1/object/%@?key=%@"];

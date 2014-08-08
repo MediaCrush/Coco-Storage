@@ -8,7 +8,7 @@
 
 #import "STGAPIConfiguration.h"
 
-@interface STGAPIConfigurationStorage : STGAPIConfiguration
+@interface STGAPIConfigurationStorage : NSObject <STGAPIConfiguration>
 
 + (STGAPIConfigurationStorage *)standardConfiguration;
 

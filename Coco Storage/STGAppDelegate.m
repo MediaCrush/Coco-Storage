@@ -46,8 +46,6 @@ STGAppDelegate *sharedAppDelegate;
 
 @interface STGAppDelegate ()
 
-- (void) onUploadComplete:(STGDataCaptureEntry *)entry success:(BOOL)success;
-
 - (NSString *)getApiKey;
 - (BOOL)isAPIKeyValid:(BOOL)output;
 - (NSString *)getCFSFolder;
@@ -228,7 +226,7 @@ STGAppDelegate *sharedAppDelegate;
     
     if (_ticksAlive % 5 == 0)
     {
-        BOOL reachingStorage = [STGNetworkHelper isWebsiteReachable:@"stor.ag"];
+        BOOL reachingStorage = [[STGAPIConfiguration currentConfiguration] canReachServer];
         
         if (reachingStorage)
         {
@@ -314,26 +312,6 @@ STGAppDelegate *sharedAppDelegate;
     }    
 }
 
-- (void) onUploadComplete:(STGDataCaptureEntry *)entry success:(BOOL)success
-{
-    if ([entry deleteOnCompletetion] && ((success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepAllScreenshots"] == 0) || (!success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"] == 0)))
-    {
-        if ([entry fileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[[entry fileURL] path]])
-        {
-            NSError *error = nil;
-
-            [[NSFileManager defaultManager] removeItemAtURL:[entry fileURL] error:&error];
-            
-            if (error)
-                NSLog(@"%@", error);
-        }
-        else
-        {
-            NSLog(@"Problem: Trying to delete entry without URL!");
-        }
-    }
-}
-
 - (void)startUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry
 {
     if ([[entry packetType] isEqualToString:@"uploadFile"])
@@ -379,162 +357,11 @@ STGAppDelegate *sharedAppDelegate;
             }
         }
     }
-    
-    if ([[entry packetType] isEqualToString:@"uploadFile"])
-    {
-        NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
-        
-        NSString *uploadID = [dictionary objectForKey:@"id"];
-        NSString *link = uploadID ? [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID] : nil;
-        
-        if (link)
-        {
-            [[[entry userInfo] objectForKey:@"dataCaptureEntry"] setOnlineLink:link];
-            [_recentFilesArray addObject:[[entry userInfo] objectForKey:@"dataCaptureEntry"]];
-            
-            while (_recentFilesArray.count > 7)
-                [_recentFilesArray removeObjectAtIndex:0];
-            
-            [_statusItemManager updateRecentFiles:_recentFilesArray];
-            
-            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"displayNotification"] == 1)
-            {
-                NSUserNotification *notification = [[NSUserNotification alloc] init];
-                
-                [notification setTitle:[NSString stringWithFormat:@"Coco Storage Upload complete: %@!", link]];
-                [notification setInformativeText:@"Click to view the uploaded file"];
-                [notification setSoundName:nil];
-                [notification setUserInfo:[NSDictionary dictionaryWithObject:link forKey:@"uploadLink"]];
-                
-                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-            }
-            
-            if (![[[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"] isEqualToString:@"noSound"])
-            {
-                NSSound *sound = [NSSound soundNamed:[[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"]];
-                
-                if (sound)
-                    [sound play];
-            }
-            
-            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkCopyToPasteboard"] == 1)
-            {
-                [[NSPasteboard generalPasteboard] clearContents];
-                [[NSPasteboard generalPasteboard] setString:link forType:NSPasteboardTypeString];
-            }
-            
-            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkOpenInBrowser"] == 1)
-            {
-                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:link]];
-            }
-            
-            [self onUploadComplete:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
-        }
-        else
-        {
-            [[[_statusItemManager statusItem] menu] cancelTracking];
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file upload... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
-            [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-            
-            NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
-            
-            [self onUploadComplete:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
-        }
-        
-        [_statusItemManager setStatusItemUploadProgress:0.0];
-        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
-    }
-    else if ([[entry packetType] isEqualToString:@"deleteFile"])
-    {
-        NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
-        
-        NSString *message = [dictionary objectForKey:@"message"];
-        
-        if ([message isEqualToString:@"Object deleted."])
-        {
-            
-        }
-        else
-        {
-            /*            [[[_statusItemManager statusItem] menu] cancelTracking];
-             NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file deletion... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
-             [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];*/
-            
-            if (responseCode != 500) //Not found, probably
-                NSLog(@"Delete file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
-        }
-    }
-    else if ([[entry packetType] isEqualToString:@"getAPIStatus"])
-    {
-        NSDictionary *dictionary = nil;
-        if ([response length] > 0)
-            dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
-        
-        STGServerStatus status = STGServerStatusUnknown;
-        NSString *stringStatus = dictionary ? [dictionary objectForKey:@"status"] : nil;
-        
-        if ([stringStatus isEqualToString:@"ok"])
-        {
-            if ([[[entry userInfo] objectForKey:@"apiVersion"] integerValue] == 1)
-                [self setApiV1Alive:YES];
-            else if ([[[entry userInfo] objectForKey:@"apiVersion"] integerValue] == 2)
-                [self setApiV2Alive:YES];
-        }
-        else
-        {
-            if ([[[entry userInfo] objectForKey:@"apiVersion"] integerValue] == 1)
-                [self setApiV1Alive:NO];
-            else if ([[[entry userInfo] objectForKey:@"apiVersion"] integerValue] == 2)
-                [self setApiV2Alive:NO];
-        }
-        
-        if (_apiV1Alive && _apiV2Alive)
-            status = STGServerStatusOnline;
-        else if (responseCode == 401)
-            status = STGServerStatusInvalidKey;
-        else
-        {
-            BOOL reachingStorage = [STGNetworkHelper isWebsiteReachable:@"stor.ag"];
-            BOOL reachingApple = [STGNetworkHelper isWebsiteReachable:@"www.apple.com"];
-            
-            if (!reachingApple && !reachingStorage)
-                status = STGServerStatusClientOffline;
-            else if (!reachingStorage)
-                status = STGServerStatusServerOffline;
-            else if (!_apiV1Alive && !_apiV2Alive)
-                status = STGServerStatusServerBusy;
-            else if (!_apiV1Alive)
-                status = STGServerStatusServerV1Busy;
-            else if (!_apiV2Alive)
-                status = STGServerStatusServerV2Busy;
-            else status = STGServerStatusUnknown;
-        }
-        
-        [_statusItemManager updateServerStatus:status];
-    }
-    else if ([[entry packetType] isEqualToString:@"cfs:getFileList"])
-    {
-        NSArray *filesRoot = [STGJSONHelper getArrayJSONFromData:response];
-        
-        NSLog(@"Files: %@", filesRoot);
-    }
-    else if ([[entry packetType] isEqualToString:@"cfs:deleteFile"])
-    {
-        if (responseCode != 200)
-            NSLog(@"File deletion failed: %@. Response:\n%@\nStatus: %li (%@)", [[entry urlRequest] URL], response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
-    }
-    else
-    {
-        NSLog(@"Unknown packet entry. Entry: \"%@\"\nResponse:\n%@\nStatus: %li (%@)", [entry packetType], response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
-    }
 }
 
 - (void)packetQueue:(STGPacketQueue *)queue cancelledEntry:(STGPacket *)entry
 {
-    if ([[entry packetType] isEqualToString:@"uploadFile"])
-    {
-        [self onUploadComplete:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
-    }
+    [[STGAPIConfiguration currentConfiguration] cancelPacketUpload:entry];
 }
 
 - (void)cancelAllUploads
@@ -839,4 +666,76 @@ STGAppDelegate *sharedAppDelegate;
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"];
 }
 
+#pragma mark API Configuration delegate
+
+- (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success
+{
+    [[[_statusItemManager statusItem] menu] cancelTracking];
+    [_statusItemManager setStatusItemUploadProgress:0.0];
+    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+
+    if (success)
+    {
+        [_recentFilesArray addObject:entry];
+        
+        while (_recentFilesArray.count > 7)
+            [_recentFilesArray removeObjectAtIndex:0];
+        
+        [_statusItemManager updateRecentFiles:_recentFilesArray];
+    }
+    
+    if ([entry deleteOnCompletetion] &&
+        ((success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepAllScreenshots"] == 0)
+         || (!success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"] == 0)))
+    {
+        if ([entry fileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[[entry fileURL] path]])
+        {
+            NSError *error = nil;
+            
+            [[NSFileManager defaultManager] removeItemAtURL:[entry fileURL] error:&error];
+            
+            if (error)
+                NSLog(@"%@", error);
+        }
+        else
+        {
+            NSLog(@"Problem: Trying to delete entry without URL!");
+        }
+    }
+}
+
+-(void)updateAPIStatus:(BOOL)active validKey:(BOOL)validKey
+{
+    [self setApiV1Alive:active];
+//    [self setApiV2Alive:alive];
+    
+    STGServerStatus status;
+    
+    if (_apiV1Alive/* && _apiV2Alive*/)
+        status = STGServerStatusOnline;
+    else if (!validKey)
+        status = STGServerStatusInvalidKey;
+    else
+    {
+        BOOL reachingStorage = [[STGAPIConfiguration currentConfiguration] canReachServer];
+        BOOL reachingApple = [STGNetworkHelper isWebsiteReachable:@"www.apple.com"];
+        
+        if (!reachingApple && !reachingStorage)
+            status = STGServerStatusClientOffline;
+        else if (!reachingStorage)
+            status = STGServerStatusServerOffline;
+        else if (!_apiV1Alive/* && !_apiV2Alive*/)
+            status = STGServerStatusServerBusy;
+        else if (!_apiV1Alive)
+            status = STGServerStatusServerV1Busy;
+//        else if (!_apiV2Alive)
+//            status = STGServerStatusServerV2Busy;
+        else
+            status = STGServerStatusUnknown;
+    }
+    
+    [_statusItemManager updateServerStatus:status];
+}
+
 @end
+

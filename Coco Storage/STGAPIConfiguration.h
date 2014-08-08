@@ -8,7 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface STGAPIConfiguration : NSObject
+@class STGPacket;
+@class STGDataCaptureEntry;
+
+@protocol STGAPIConfigurationDelegate
+
+@optional
+- (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success;
+- (void)updateAPIStatus:(BOOL)active validKey:(BOOL)validKey;
+
+@end
+
+@protocol STGAPIConfiguration
+
+@property (nonatomic, assign) NSObject<STGAPIConfigurationDelegate> *delegate;
 
 @property (nonatomic, retain) NSString *uploadLink;
 @property (nonatomic, retain) NSString *deletionLink;
@@ -19,7 +32,15 @@
 
 @property (nonatomic, retain) NSString *cfsBaseLink;
 
-+ (void)setCurrentConfiguration:(STGAPIConfiguration *)configuration;
-+ (STGAPIConfiguration *)currentConfiguration;
+- (BOOL)canReachServer;
+- (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
+- (void)cancelPacketUpload:(STGPacket *)entry;
+
+@end
+
+@interface STGAPIConfiguration : NSObject
+
++ (void)setCurrentConfiguration:(NSObject<STGAPIConfiguration> *)configuration;
++ (NSObject<STGAPIConfiguration> *)currentConfiguration;
 
 @end

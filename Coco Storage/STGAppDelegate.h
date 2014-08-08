@@ -19,6 +19,8 @@
 
 #import "STGStatusItemManager.h"
 
+#import "STGAPIConfiguration.h"
+
 @class STGPacketQueue;
 
 @class MASPreferencesWindowController;
@@ -37,7 +39,7 @@
 
 @class STGCFSSyncCheck;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
