@@ -36,6 +36,7 @@
 #import "STGPacketCreator.h"
 
 #import "STGAPIConfiguration.h"
+#import "STGAPIConfigurationStorage.h"
 
 #import "STGCFSSyncCheck.h"
 
@@ -112,15 +113,8 @@ STGAppDelegate *sharedAppDelegate;
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
     [[self hotkeyHelper] linkToSystem];
     
-    [[STGAPIConfiguration standardConfiguration] setUploadLink:@"https://api.stor.ag/v1/object?key=%@"];
-    [[STGAPIConfiguration standardConfiguration] setDeletionLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
-    [[STGAPIConfiguration standardConfiguration] setGetObjectInfoLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
-
-    [[STGAPIConfiguration standardConfiguration] setGetAPIV1StatusLink:@"https://api.stor.ag/v1/status?key=%@"];
-    [[STGAPIConfiguration standardConfiguration] setGetAPIV2StatusLink:@"https://api.stor.ag/v2/status?key=%@"];
-
-    [[STGAPIConfiguration standardConfiguration] setCfsBaseLink:@"https://api.stor.ag/v2/cfs%@?key=%@"];
-
+    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStorage standardConfiguration]];
+    
     [self setOptionsGeneralVC:[[STGOptionsGeneralViewController alloc] initWithNibName:@"STGOptionsGeneralViewController" bundle:nil]];
     [self setOptionsShortcutsVC:[[STGOptionsShortcutsViewController alloc] initWithNibName:@"STGOptionsShortcutsViewController" bundle:nil]];
     [_optionsShortcutsVC setDelegate:self];
@@ -172,7 +166,7 @@ STGAppDelegate *sharedAppDelegate;
         STGDataCaptureEntry *entry = [STGDataCaptureEntry entryFromString:string];
         
         if(entry)
-            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
+            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
     }
     [_packetUploadV1Queue setUploadsPaused:[[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"]];
     [_packetUploadV2Queue setUploadsPaused:[[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"]];
@@ -240,8 +234,8 @@ STGAppDelegate *sharedAppDelegate;
         {
             if ([self isAPIKeyValid:NO])
             {
-                [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration standardConfiguration] getAPIV1StatusLink] apiInfo:1 key:[self getApiKey]]];
-                [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration standardConfiguration] getAPIV2StatusLink] apiInfo:2 key:[self getApiKey]]];
+                [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration currentConfiguration] getAPIV1StatusLink] apiInfo:1 key:[self getApiKey]]];
+                [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:[[STGAPIConfiguration currentConfiguration] getAPIV2StatusLink] apiInfo:2 key:[self getApiKey]]];
                 
                 //                [_packetSupportQueue addEntry:[STGPacketCreator cfsFileListPacket:@"" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] recursive:YES key:[self getApiKey]]];
                 
@@ -282,7 +276,7 @@ STGAppDelegate *sharedAppDelegate;
         STGDataCaptureEntry *entry = [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[self getTempFolder] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0];
         
         if(entry)
-            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
+            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
         
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
     }
@@ -297,7 +291,7 @@ STGAppDelegate *sharedAppDelegate;
         if(entries)
         {
             for (STGDataCaptureEntry *entry in entries)
-                [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
+                [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
         }
         
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
@@ -313,7 +307,7 @@ STGAppDelegate *sharedAppDelegate;
         for (STGDataCaptureEntry *entry in entries)
         {
             if (entry)
-                [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
+                [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
         }
         
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
@@ -553,7 +547,7 @@ STGAppDelegate *sharedAppDelegate;
 
 -(void)deleteRecentFile:(STGDataCaptureEntry *)entry
 {
-    [_packetSupportQueue addEntry:[STGPacketCreator deleteFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] deletionLink] key:[self getApiKey]]];
+    [_packetSupportQueue addEntry:[STGPacketCreator deleteFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] deletionLink] key:[self getApiKey]]];
     
     [_recentFilesArray removeObject:entry];
     [_statusItemManager updateRecentFiles:_recentFilesArray];
@@ -704,7 +698,7 @@ STGAppDelegate *sharedAppDelegate;
         {
             STGDataCaptureEntry *entry = [STGDataCaptureManager captureFile:url tempFolder:[self getTempFolder]];
             
-            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
+            [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
         }
         
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
@@ -727,7 +721,7 @@ STGAppDelegate *sharedAppDelegate;
             {
                 STGDataCaptureEntry *entry = [STGDataCaptureManager captureFile:url tempFolder:[self getTempFolder]];
                 
-                [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration standardConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
+                [_packetUploadV1Queue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:[[STGAPIConfiguration currentConfiguration] uploadLink] key:[self getApiKey] isPublic:YES]];
             }
         }
         

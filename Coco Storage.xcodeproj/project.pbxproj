@@ -61,6 +61,7 @@
 		8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */; };
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
+		80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */; };
 		8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453B18492A17007F1EA1 /* STGTypeChooserView.m */; };
 		8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */; };
 		80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B461746899200D0C790 /* STGOptionsCFSViewController.m */; };
@@ -185,6 +186,8 @@
 		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
 		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
 		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
+		80659846199565FE00EF0E34 /* STGAPIConfigurationStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationStorage.h; sourceTree = "<group>"; };
+		80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfigurationStorage.m; sourceTree = "<group>"; };
 		8071453A18492A17007F1EA1 /* STGTypeChooserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGTypeChooserView.h; sourceTree = "<group>"; };
 		8071453B18492A17007F1EA1 /* STGTypeChooserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGTypeChooserView.m; sourceTree = "<group>"; };
 		8071453D18492A56007F1EA1 /* STGTypeChooserViewType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGTypeChooserViewType.h; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 		80659844199562BB00EF0E34 /* Getstorage */ = {
 			isa = PBXGroup;
 			children = (
+				80659846199565FE00EF0E34 /* STGAPIConfigurationStorage.h */,
+				80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */,
 			);
 			name = Getstorage;
 			sourceTree = "<group>";
@@ -585,6 +590,7 @@
 				8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */,
 				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
 				8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */,
+				80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */,
 				8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */,
 				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
 				807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */,

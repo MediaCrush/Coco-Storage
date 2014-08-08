@@ -19,6 +19,7 @@
 
 @property (nonatomic, retain) NSString *cfsBaseLink;
 
-+ (STGAPIConfiguration *)standardConfiguration;
++ (void)setCurrentConfiguration:(STGAPIConfiguration *)configuration;
++ (STGAPIConfiguration *)currentConfiguration;
 
 @end

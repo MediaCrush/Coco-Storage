@@ -8,16 +8,18 @@
 
 #import "STGAPIConfiguration.h"
 
-STGAPIConfiguration *standardConfiguration;
+STGAPIConfiguration *currentConfiguration;
 
 @implementation STGAPIConfiguration
 
-+ (STGAPIConfiguration *)standardConfiguration
++ (void)setCurrentConfiguration:(STGAPIConfiguration *)configuration
 {
-    if (!standardConfiguration)
-        standardConfiguration = [[STGAPIConfiguration alloc] init];
-    
-    return standardConfiguration;
+    currentConfiguration = configuration;
+}
+
++ (STGAPIConfiguration *)currentConfiguration
+{
+    return currentConfiguration;
 }
 
 @end
