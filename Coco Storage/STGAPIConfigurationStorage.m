@@ -21,7 +21,7 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 @implementation STGAPIConfigurationStorage
 
-@synthesize delegate, cfsBaseLink, deletionLink, getObjectInfoLink, uploadLink;
+@synthesize delegate, cfsBaseLink, deletionLink, getObjectInfoLink;
 
 + (STGAPIConfigurationStorage *)standardConfiguration
 {
@@ -29,7 +29,6 @@ STGAPIConfigurationStorage *standardConfiguration;
     {
         standardConfiguration = [[STGAPIConfigurationStorage alloc] init];
         
-        [standardConfiguration setUploadLink:@"https://api.stor.ag/v1/object?key=%@"];
         [standardConfiguration setDeletionLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
         [standardConfiguration setGetObjectInfoLink:@"https://api.stor.ag/v1/object/%@?key=%@"];
         
@@ -189,6 +188,11 @@ STGAPIConfigurationStorage *standardConfiguration;
 {
     [packetQueue addEntry:[STGPacketCreator apiStatusPacket:@"https://api.stor.ag/v1/status?key=%@" apiInfo:1 key:apiKey]];
 //    [_packetSupportQueue addEntry:[STGPacketCreator apiStatusPacket:@"https://api.stor.ag/v2/status?key=%@" apiInfo:2 key:[self getApiKey]]];
+}
+
+- (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile
+{
+    [packetQueue addEntry:[STGPacketCreator uploadFilePacket:entry uploadLink:@"https://api.stor.ag/v1/object?key=%@" key:apiKey isPublic:publicFile]];
 }
 
 @end
