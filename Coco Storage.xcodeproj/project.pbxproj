@@ -301,6 +301,9 @@
 				806598491995686F00EF0E34 /* Web-API */,
 				8065984E1995694400EF0E34 /* Interface */,
 				8065984F1995695300EF0E34 /* Data-Capture */,
+				80B0A1801996C88A00A93C3B /* Hotkeys */,
+				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
+				8029A4BD172884AE00F09884 /* STGFileHelper.m */,
 				807A668C172AD23800E0212C /* STGSystemHelper.h */,
 				807A668D172AD23900E0212C /* STGSystemHelper.m */,
 				80D7F9BC1741700400851DDB /* STGNetworkHelper.h */,
@@ -433,12 +436,6 @@
 				80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */,
 				808A9A1717538EBC0058235D /* STGQuickUploadView.h */,
 				808A9A1817538EBC0058235D /* STGQuickUploadView.m */,
-				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
-				8029A4BD172884AE00F09884 /* STGFileHelper.m */,
-				807A667D172A97B200E0212C /* STGHotkeyHelper.h */,
-				807A667E172A97B200E0212C /* STGHotkeyHelper.m */,
-				807A6680172A98AD00E0212C /* STGHotkeyHelperEntry.h */,
-				807A6681172A98AD00E0212C /* STGHotkeyHelperEntry.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -461,6 +458,17 @@
 				809A10C2174D6D330016A391 /* License_MASPreferences.txt */,
 			);
 			name = Licenses;
+			sourceTree = "<group>";
+		};
+		80B0A1801996C88A00A93C3B /* Hotkeys */ = {
+			isa = PBXGroup;
+			children = (
+				807A667D172A97B200E0212C /* STGHotkeyHelper.h */,
+				807A667E172A97B200E0212C /* STGHotkeyHelper.m */,
+				807A6680172A98AD00E0212C /* STGHotkeyHelperEntry.h */,
+				807A6681172A98AD00E0212C /* STGHotkeyHelperEntry.m */,
+			);
+			name = Hotkeys;
 			sourceTree = "<group>";
 		};
 		80CC425F1733C39D0068476F /* Images */ = {
