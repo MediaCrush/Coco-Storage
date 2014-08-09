@@ -7,7 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="STGOptionsGeneralViewController">
             <connections>
+                <outlet property="apiKeyView" destination="114" id="9i1-K9-WTD"/>
                 <outlet property="autoUpdateButton" destination="669" id="692"/>
+                <outlet property="generalView" destination="176" id="qGr-T6-huz"/>
                 <outlet property="launchOnStartupButton" destination="184" id="328"/>
                 <outlet property="showDockIconButton" destination="188" id="329"/>
                 <outlet property="storageKeyTable" destination="728" id="782"/>
@@ -85,6 +87,7 @@
                         <constraint firstItem="184" firstAttribute="top" secondItem="669" secondAttribute="bottom" constant="6" symbolic="YES" id="q6u-iI-kpr"/>
                         <constraint firstAttribute="trailing" secondItem="673" secondAttribute="trailing" constant="16" id="uAr-0J-AuI"/>
                         <constraint firstItem="673" firstAttribute="top" secondItem="176" secondAttribute="top" constant="25" id="uvE-AZ-7IK"/>
+                        <constraint firstAttribute="height" constant="93" id="wja-CE-37J"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

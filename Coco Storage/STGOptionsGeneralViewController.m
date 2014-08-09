@@ -13,6 +13,8 @@
 
 #import <Sparkle/Sparkle.h>
 
+#import "STGAPIConfiguration.h"
+
 @interface STGOptionsGeneralViewController ()
 
 - (void)deleteCurrentRows;
@@ -41,6 +43,12 @@
     [_autoUpdateButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"autoUpdate"]];
     
     [_storageKeyTable registerForDraggedTypes:[NSArray arrayWithObject:NSPasteboardTypeString]];
+    
+    if (![[STGAPIConfiguration currentConfiguration] hasAPIKeys])
+    {
+        [[self apiKeyView] removeFromSuperview];
+        [[self view] setFrameSize:NSMakeSize([[self view] bounds].size.width, 40 + 97)];
+    }
 }
 
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults
@@ -113,7 +121,7 @@
 
 - (BOOL)hasResizableHeight
 {
-    return YES;
+    return [[STGAPIConfiguration currentConfiguration] hasAPIKeys];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView

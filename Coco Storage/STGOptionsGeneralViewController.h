@@ -20,6 +20,9 @@
 
 @property (nonatomic, retain) IBOutlet NSTableView *storageKeyTable;
 
+@property (nonatomic, retain) IBOutlet NSView *apiKeyView;
+@property (nonatomic, retain) IBOutlet NSView *generalView;
+
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults;
 - (void)saveProperties;
 
