@@ -108,13 +108,15 @@ STGAPIConfigurationStorage *standardConfiguration;
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
         NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
+        STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
         
         NSString *uploadID = [dictionary objectForKey:@"id"];
-        NSString *link = uploadID ? [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID] : nil;
         
-        if (link)
+        if (uploadID)
         {
-            [[[entry userInfo] objectForKey:@"dataCaptureEntry"] setOnlineLink:link];
+            [dataCaptureEntry setOnlineID:uploadID];
+            NSString *link = [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID];
+            [dataCaptureEntry setOnlineLink:link];
             
             if ([[NSUserDefaults standardUserDefaults] integerForKey:@"displayNotification"] == 1)
             {
@@ -257,12 +259,7 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry
 {
-    NSUInteger entryIDLoc = [[entry onlineLink] rangeOfString:@"/" options:NSBackwardsSearch].location;
-    
-    if (entryIDLoc == NSNotFound)
-        NSLog(@"Could not find ID in online link!");
-    
-    NSString *entryID = [[entry onlineLink] substringFromIndex:entryIDLoc + 1];
+    NSString *entryID = [entry onlineID];
     NSString *urlString = [NSString stringWithFormat:@"https://api.stor.ag/v1/object/%@?key=%@", entryID, apiKey];
     
     NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyData:[NSData dataWithContentsOfURL:[entry fileURL]]];

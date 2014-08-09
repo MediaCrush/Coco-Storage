@@ -88,13 +88,15 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
         NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
+        STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
         
         NSString *uploadID = [dictionary objectForKey:@"hash"];
-        NSString *link = uploadID ? [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID] : nil;
         
-        if (link)
+        if (uploadID)
         {
-            [[[entry userInfo] objectForKey:@"dataCaptureEntry"] setOnlineLink:link];
+            [dataCaptureEntry setOnlineID:uploadID];
+            NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
+            [dataCaptureEntry setOnlineLink:link];
             
             if ([[NSUserDefaults standardUserDefaults] integerForKey:@"displayNotification"] == 1)
             {
@@ -225,12 +227,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry
 {
-    NSUInteger entryIDLoc = [[entry onlineLink] rangeOfString:@"/" options:NSBackwardsSearch].location;
-    
-    if (entryIDLoc == NSNotFound)
-        NSLog(@"Could not find ID in online link!");
-    
-    NSString *entryID = [[entry onlineLink] substringFromIndex:entryIDLoc + 1];
+    NSString *entryID = [entry onlineID];
     NSString *urlString = [NSString stringWithFormat:@"https://mediacru.sh/api/%@", entryID];
     
     NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyData:[NSData dataWithContentsOfURL:[entry fileURL]]];

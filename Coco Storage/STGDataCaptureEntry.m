@@ -18,6 +18,7 @@
     [entry setFileURL:url];
     [entry setDeleteOnCompletetion:del];
     [entry setOnlineLink:@""];
+    [entry setOnlineID:@""];
     
     return entry;
 }
@@ -42,13 +43,18 @@
         [entry setOnlineLink:[stringArray objectAtIndex:2]];
     else
         [entry setOnlineLink:@""];
-    
+
+    if ([stringArray count] > 3)
+        [entry setOnlineID:[stringArray objectAtIndex:2]];
+    else
+        [entry setOnlineID:@""];
+
     return entry;
 }
 
 - (NSString *)storeInfoInString
 {
-    return [STGFileHelper storeStringsInString:[NSArray arrayWithObjects:[_fileURL absoluteString], [NSString stringWithFormat:@"%i", _deleteOnCompletetion], _onlineLink, nil]];
+    return [STGFileHelper storeStringsInString:[NSArray arrayWithObjects:[_fileURL absoluteString], [NSString stringWithFormat:@"%i", _deleteOnCompletetion], _onlineLink, _onlineID, nil]];
 }
 
 @end
