@@ -91,7 +91,8 @@ STGAppDelegate *sharedAppDelegate;
     [STGOptionsGeneralViewController registerStandardDefaults:standardDefaults];
     [STGOptionsShortcutsViewController registerStandardDefaults:standardDefaults];
     [STGOptionsQuickUploadViewController registerStandardDefaults:standardDefaults];
-    [STGOptionsCFSViewController registerStandardDefaults:standardDefaults];
+    if ([[STGAPIConfiguration currentConfiguration] hasCFS])
+        [STGOptionsCFSViewController registerStandardDefaults:standardDefaults];
     [STGOptionsAboutViewController registerStandardDefaults:standardDefaults];
     [STGWelcomeWindowController registerStandardDefaults:standardDefaults];
     [standardDefaults setObject:[NSArray array] forKey:@"recentEntries"];
