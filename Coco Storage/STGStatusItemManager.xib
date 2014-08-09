@@ -12,6 +12,8 @@
                 <outlet property="captureClipboardMenuItem" destination="2k3-Wa-v5p" id="mhS-tm-ywF"/>
                 <outlet property="captureFileMenuItem" destination="7" id="24"/>
                 <outlet property="captureFullScreenMenuItem" destination="8" id="23"/>
+                <outlet property="cfsLinkItem" destination="43" id="iCl-p8-bg9"/>
+                <outlet property="cfsSectionSeparatorItem" destination="4" id="Yt8-Uo-qnm"/>
                 <outlet property="currentUploadsItem" destination="2" id="26"/>
                 <outlet property="fileListLinkItem" destination="11" id="AQx-k2-61u"/>
                 <outlet property="moreCurrentUploadsItem" destination="39" id="40"/>

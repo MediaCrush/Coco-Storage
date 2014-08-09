@@ -61,6 +61,8 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *accountLinkItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *fileListLinkItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *cfsLinkItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *cfsSectionSeparatorItem;
 
 - (IBAction)captureArea:(id)sender;
 - (IBAction)captureFullScreen:(id)sender;

@@ -108,6 +108,12 @@
 
 - (void)updateGUIElements
 {
+    NSString *cfsLinkTitle = [[STGAPIConfiguration currentConfiguration] hasCFS] ? [[STGAPIConfiguration currentConfiguration] cfsLinkTitle] : nil;
+    [[self cfsLinkItem] setHidden:cfsLinkTitle == nil];
+    [[self cfsSectionSeparatorItem] setHidden:cfsLinkTitle == nil];
+    if (cfsLinkTitle)
+        [[self fileListLinkItem] setTitle:cfsLinkTitle];
+
     NSString *accountLinkTitle = [[STGAPIConfiguration currentConfiguration] accountLinkTitle];
     [[self accountLinkItem] setHidden:accountLinkTitle == nil];
     if (accountLinkTitle)
@@ -324,7 +330,7 @@
 
 - (IBAction)openCFSFolder:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]]];
+    [[STGAPIConfiguration currentConfiguration] openCFSLink];
 }
 
 - (IBAction)cancelUploads:(id)sender

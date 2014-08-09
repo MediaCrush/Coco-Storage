@@ -41,6 +41,11 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     return NO;
 }
 
+- (BOOL)hasCFS
+{
+    return NO;
+}
+
 - (NSString *)accountLinkTitle
 {
     return @"Mediacru.sh";

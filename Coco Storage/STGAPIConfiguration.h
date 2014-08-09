@@ -26,6 +26,7 @@
 
 - (NSString *)apiHostName;
 - (BOOL)hasAPIKeys;
+- (BOOL)hasCFS;
 - (NSString *)accountLinkTitle;
 - (NSString *)fileListLinkTitle;
 
@@ -38,6 +39,8 @@
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry;
 
 @optional
+- (NSString *)cfsLinkTitle;
+- (void)openCFSLink;
 - (void)openAccountLink;
 - (void)openFileListLink;
 @end

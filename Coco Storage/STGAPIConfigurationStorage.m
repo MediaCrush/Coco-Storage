@@ -15,6 +15,8 @@
 
 #import "STGDataCaptureEntry.h"
 
+#import "STGFileHelper.h"
+
 STGAPIConfigurationStorage *standardConfiguration;
 
 @implementation STGAPIConfigurationStorage
@@ -42,6 +44,21 @@ STGAPIConfigurationStorage *standardConfiguration;
 - (BOOL)hasAPIKeys
 {
     return YES;
+}
+
+- (BOOL)hasCFS
+{
+    return YES;
+}
+
+- (NSString *)cfsLinkTitle
+{
+    return @"Open CFS Folder";
+}
+
+- (void)openCFSLink
+{
+    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]]];
 }
 
 - (NSString *)accountLinkTitle
