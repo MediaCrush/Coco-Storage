@@ -231,7 +231,7 @@
 
 - (NSImage *)toolbarItemImage
 {
-    return [NSImage imageNamed:@"NSUserGroup"];
+    return [NSImage imageNamed:@"NSComputer"];
 }
 
 - (NSString *)toolbarItemLabel
