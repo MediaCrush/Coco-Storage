@@ -121,7 +121,14 @@ STGAppDelegate *sharedAppDelegate;
     [self setOptionsCFSVC:[[STGOptionsCFSViewController alloc] initWithNibName:@"STGOptionsCFSViewController" bundle:nil]];
     [self setOptionsAboutVC:[[STGOptionsAboutViewController alloc] initWithNibName:@"STGOptionsAboutViewController" bundle:nil]];
     
-    [self setPrefsController:[[MASPreferencesWindowController alloc] initWithViewControllers:[NSArray arrayWithObjects:_optionsGeneralVC, _optionsQuickUploadVC, _optionsCFSVC, _optionsShortcutsVC, _optionsAboutVC, nil] title:@"Coco Storage Preferences"]];
+    NSMutableArray *optionsArray = [[NSMutableArray alloc] init];
+    [optionsArray addObject:_optionsGeneralVC];
+    [optionsArray addObject:_optionsQuickUploadVC];
+    if ([[STGAPIConfiguration currentConfiguration] hasCFS])
+        [optionsArray addObject:_optionsCFSVC];
+    [optionsArray addObject:_optionsShortcutsVC];
+    [optionsArray addObject:_optionsAboutVC];
+    [self setPrefsController:[[MASPreferencesWindowController alloc] initWithViewControllers:optionsArray title:@"Coco Storage Preferences"]];
     
     [self setWelcomeWC:[[STGWelcomeWindowController alloc] initWithWindowNibName:@"STGWelcomeWindowController"]];
     [_welcomeWC setWelcomeWCDelegate:self];
