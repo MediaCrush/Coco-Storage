@@ -108,8 +108,15 @@
 
 - (void)updateGUIElements
 {
-    [[self accountLinkItem] setHidden:[[STGAPIConfiguration currentConfiguration] accountLinkTitle] == nil];
-    [[self fileListLinkItem] setHidden:[[STGAPIConfiguration currentConfiguration] fileListLinkTitle] == nil];
+    NSString *accountLinkTitle = [[STGAPIConfiguration currentConfiguration] accountLinkTitle];
+    [[self accountLinkItem] setHidden:accountLinkTitle == nil];
+    if (accountLinkTitle)
+        [[self accountLinkItem] setTitle:accountLinkTitle];
+    
+    NSString *fileListLinkTitle = [[STGAPIConfiguration currentConfiguration] fileListLinkTitle];
+    [[self fileListLinkItem] setHidden:fileListLinkTitle == nil];
+    if (fileListLinkTitle)
+        [[self fileListLinkItem] setTitle:fileListLinkTitle];
 }
 
 - (void)updateRecentFiles:(NSArray *)recentFiles
