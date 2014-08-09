@@ -8,6 +8,8 @@
 
 #import "STGStatusItemManager.h"
 
+#import "STGAPIConfiguration.h"
+
 #import "STGRecentUploadView.h"
 
 #import "STGDataCaptureEntry.h"
@@ -23,6 +25,8 @@
 
 @property (nonatomic, assign) float uploadProgress;
 @property (nonatomic, assign) float isSyncingOpacity;
+
+- (void)updateGUIElements;
 
 @end
 
@@ -53,6 +57,8 @@
         [_statusItem setHighlightMode:YES];
         [_statusItem setToolTip:@"Coco Storage"];
         [_statusItemView setImage:[STGStatusItemDrawingHelper getIcon:0 uploadProgress:0.0 opacity:0.0]];
+        
+        [self updateGUIElements];
         
         [self setTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
     }
@@ -98,6 +104,12 @@
     }
     
     [self setTicks:_ticks + 1];
+}
+
+- (void)updateGUIElements
+{
+    [[self accountLinkItem] setHidden:[[STGAPIConfiguration currentConfiguration] accountLinkTitle] == nil];
+    [[self fileListLinkItem] setHidden:[[STGAPIConfiguration currentConfiguration] fileListLinkTitle] == nil];
 }
 
 - (void)updateRecentFiles:(NSArray *)recentFiles
@@ -371,7 +383,7 @@
 
 - (IBAction)openStorageAccount:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getstorage.net/panel/user"]];
+    [[STGAPIConfiguration currentConfiguration] openAccountLink];
 }
 
 - (IBAction)openMyFiles:(id)sender

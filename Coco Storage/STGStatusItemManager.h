@@ -59,6 +59,9 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *pauseUploadsItem;
 
+@property (nonatomic, retain) IBOutlet NSMenuItem *accountLinkItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *fileListLinkItem;
+
 - (IBAction)captureArea:(id)sender;
 - (IBAction)captureFullScreen:(id)sender;
 - (IBAction)captureFile:(id)sender;

@@ -26,6 +26,8 @@
 
 - (NSString *)apiHostName;
 - (BOOL)hasAPIKeys;
+- (NSString *)accountLinkTitle;
+- (NSString *)fileListLinkTitle;
 
 - (BOOL)canReachServer;
 - (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
@@ -35,6 +37,9 @@
 - (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile;
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry;
 
+@optional
+- (void)openAccountLink;
+- (void)openFileListLink;
 @end
 
 @interface STGAPIConfiguration : NSObject

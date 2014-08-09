@@ -44,6 +44,26 @@ STGAPIConfigurationStorage *standardConfiguration;
     return YES;
 }
 
+- (NSString *)accountLinkTitle
+{
+    return @"Storage Account";
+}
+
+- (void)openAccountLink
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getstorage.net/panel/user"]];
+}
+
+- (NSString *)fileListLinkTitle
+{
+    return @"My Files...";
+}
+
+- (void)openFileListLink
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getstorage.net/panel/object"]];
+}
+
 - (BOOL)canReachServer
 {
     return [STGNetworkHelper isWebsiteReachable:@"stor.ag"];

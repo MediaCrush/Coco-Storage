@@ -41,6 +41,21 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     return NO;
 }
 
+- (NSString *)accountLinkTitle
+{
+    return @"Mediacru.sh";
+}
+
+- (void)openAccountLink
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://mediacru.sh"]];
+}
+
+- (NSString *)fileListLinkTitle
+{
+    return nil;
+}
+
 - (BOOL)canReachServer
 {
     return [STGNetworkHelper isWebsiteReachable:@"mediacru.sh"];
@@ -65,7 +80,6 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 //        }
     }
     
-    NSLog(@"%@", [entry packetType]);
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
         NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
@@ -73,7 +87,6 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         NSString *uploadID = [dictionary objectForKey:@"hash"];
         NSString *link = uploadID ? [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID] : nil;
         
-        NSLog(@"%@", link);
         if (link)
         {
             [[[entry userInfo] objectForKey:@"dataCaptureEntry"] setOnlineLink:link];
@@ -213,7 +226,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         NSLog(@"Could not find ID in online link!");
     
     NSString *entryID = [[entry onlineLink] substringFromIndex:entryIDLoc + 1];
-    NSString *urlString = [NSString stringWithFormat:@"/api/%@", entryID];
+    NSString *urlString = [NSString stringWithFormat:@"https://mediacru.sh/api/%@", entryID];
     
     NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyData:[NSData dataWithContentsOfURL:[entry fileURL]]];
     
