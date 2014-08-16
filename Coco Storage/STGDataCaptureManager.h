@@ -22,6 +22,11 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 
 @class STGDataCaptureEntry;
 
+@protocol STGDataCaptureDelegate <NSObject>
+@optional
+- (void)dataCaptureCompleted:(STGDataCaptureEntry *)entry sender:(id)sender;
+@end
+
 @interface STGDataCaptureManager : NSObject
 
 + (NSArray *)getSupportedPasteboardContentTypes;
@@ -30,7 +35,10 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 + (NSString *)getNameForAction:(STGDropAction)action;
 + (NSArray *)getReadableActionsFromPasteboard:(NSPasteboard *)pasteboard;
 
-+ (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent;
++ (void)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
+
++ (void)startFileCaptureWithTempFolder:(NSString *)tempFolder delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
+
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
@@ -38,6 +46,5 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 + (STGDataCaptureEntry *)captureColorAsFile:(NSColor *)color tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureFilesAsZip:(NSArray *)links withTempFolder:(NSString *)tempFolder;
-+ (NSArray *)startFileCaptureWithTempFolder:(NSString *)tempFolder;
 
 @end

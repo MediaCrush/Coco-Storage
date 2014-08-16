@@ -63,6 +63,7 @@
 		8060C341199FB1FE001282CF /* STGCreateAlbumWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */; };
 		8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */; };
 		8060C345199FC8D3001282CF /* STGUploadedFileToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8060C344199FC8D3001282CF /* STGUploadedFileToken.m */; };
+		8060C347199FE174001282CF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8060C346199FE174001282CF /* AVFoundation.framework */; };
 		80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */; };
 		8065984D199568A700EF0E34 /* STGAPIConfigurationMediacrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 8065984C199568A700EF0E34 /* STGAPIConfigurationMediacrush.m */; };
 		8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453B18492A17007F1EA1 /* STGTypeChooserView.m */; };
@@ -192,6 +193,8 @@
 		8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGCreateAlbumWindowController.xib; sourceTree = "<group>"; };
 		8060C343199FC8D3001282CF /* STGUploadedFileToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedFileToken.h; sourceTree = "<group>"; };
 		8060C344199FC8D3001282CF /* STGUploadedFileToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedFileToken.m; sourceTree = "<group>"; };
+		8060C346199FE174001282CF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8060C348199FE18A001282CF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		80659846199565FE00EF0E34 /* STGAPIConfigurationStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationStorage.h; sourceTree = "<group>"; };
 		80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfigurationStorage.m; sourceTree = "<group>"; };
 		8065984B199568A700EF0E34 /* STGAPIConfigurationMediacrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationMediacrush.h; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8060C347199FE174001282CF /* AVFoundation.framework in Frameworks */,
 				80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */,
 				807A668B172AC79900E0212C /* Security.framework in Frameworks */,
 				807A6689172AC6DF00E0212C /* CoreServices.framework in Frameworks */,
@@ -261,6 +265,7 @@
 		80068FB617272CA700DA1492 = {
 			isa = PBXGroup;
 			children = (
+				8060C348199FE18A001282CF /* AVFoundation.framework */,
 				80D7F9BF1741707500851DDB /* SystemConfiguration.framework */,
 				801203401732FF9D0003BB23 /* Sparkle.framework */,
 				807A668A172AC79900E0212C /* Security.framework */,
@@ -282,6 +287,7 @@
 		80068FC117272CA800DA1492 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8060C346199FE174001282CF /* AVFoundation.framework */,
 				80068FC217272CA800DA1492 /* Cocoa.framework */,
 				80068FC417272CA800DA1492 /* Other Frameworks */,
 			);

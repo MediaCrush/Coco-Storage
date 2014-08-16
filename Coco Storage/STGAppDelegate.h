@@ -11,6 +11,8 @@
 #import "STGPacketQueue.h"
 #import "STGHotkeyHelper.h"
 
+#import "STGDataCaptureManager.h"
+
 #import "STGOptionsShortcutsViewController.h"
 
 #import "STGRecentUploadView.h"
@@ -41,7 +43,7 @@
 
 @class STGCFSSyncCheck;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate, STGDataCaptureDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 

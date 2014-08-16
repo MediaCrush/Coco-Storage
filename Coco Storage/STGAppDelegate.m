@@ -286,14 +286,7 @@ STGAppDelegate *sharedAppDelegate;
 {
     if ([self isAPIKeyValid:YES])
     {
-        STGDataCaptureEntry *entry = [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[self getTempFolder] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0];
-        
-        if(entry)
-        {
-            [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
-        }
-        
-        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+        [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[self getTempFolder] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0 delegate:self];
     }
 }
 
@@ -301,17 +294,7 @@ STGAppDelegate *sharedAppDelegate;
 {
     if ([self isAPIKeyValid:YES])
     {
-        NSArray *entries = [STGDataCaptureManager startFileCaptureWithTempFolder:[self getTempFolder]];
-        
-        if(entries)
-        {
-            for (STGDataCaptureEntry *entry in entries)
-            {
-                [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
-            }
-        }
-        
-        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+        [STGDataCaptureManager startFileCaptureWithTempFolder:[self getTempFolder] delegate:self];
     }
 }
 
@@ -785,6 +768,15 @@ STGAppDelegate *sharedAppDelegate;
 - (void)createAlbumWithIDs:(NSArray *)entryIDs
 {
     [[STGAPIConfiguration currentConfiguration] sendAlbumCreatePacket:_packetUploadV1Queue apiKey:[self getApiKey] entries:entryIDs];
+}
+
+#pragma mark Data Capture Manager Melegate
+
+- (void)dataCaptureCompleted:(STGDataCaptureEntry *)entry sender:(id)sender
+{
+    [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
+    
+    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
 }
 
 @end

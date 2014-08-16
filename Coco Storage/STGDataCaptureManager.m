@@ -8,6 +8,8 @@
 
 #import "STGDataCaptureManager.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "STGDataCaptureEntry.h"
 
 #import "STGFileHelper.h"
@@ -236,7 +238,7 @@
     return array;
 }
 
-+ (STGDataCaptureEntry *)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent
++ (void)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent delegate:(NSObject<STGDataCaptureDelegate> *)delegate
 {
     NSString *fileName = [tempFolder stringByAppendingFormat:@"/Screenshot_%@.png", [self getDateAsString]];
     
@@ -254,15 +256,16 @@
     [task setArguments: args];
 
     [task setLaunchPath: @"/usr/sbin/screencapture"];
-    [task launch];
-    [task waitUntilExit];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
-    {
-        return nil;
-    }
-    
-    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+
+    dispatch_async(dispatch_get_current_queue(), ^{
+        [task launch];
+        [task waitUntilExit];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:fileName])
+        {
+            [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES] sender:nil];
+        }
+    });
 }
 
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder
@@ -408,7 +411,7 @@
     return nil;
 }
 
-+ (NSArray *)startFileCaptureWithTempFolder:(NSString *)tempFolder
++ (void)startFileCaptureWithTempFolder:(NSString *)tempFolder delegate:(NSObject<STGDataCaptureDelegate> *)delegate
 {
     NSOpenPanel *filePanel = [[NSOpenPanel alloc] init];
     [filePanel setCanChooseDirectories:NO];
@@ -417,21 +420,67 @@
     [filePanel setFloatingPanel:NO];
     [filePanel setTitle:@"Select file to upload"];
     [filePanel setPrompt:@"Upload"];
-    
-    if ([filePanel runModal] == NSOKButton)
-    {
-        NSArray *urls = [filePanel URLs];
-        
-        NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[urls count]];
-        
-        for (NSURL *url in urls)
-            [returnArray addObject:[STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO]];
-        
-        return returnArray;
-    }
-    
-    return nil;
+
+    dispatch_async(dispatch_get_current_queue(), ^{
+        if ([filePanel runModal] == NSOKButton)
+        {
+            NSArray *urls = [filePanel URLs];
+            
+            for (NSURL *url in urls)
+                [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO] sender:nil];
+        }
+    });
 }
+
+//+ (void)startScreenMovieCapture:(NSRect)capturedRect tempFolder:(NSString *)tempFolder delegate:(NSObject<STGDataCaptureDelegate> *)delegate
+//{
+//    // Create a capture session
+//    AVCaptureSession *mSession = [[AVCaptureSession alloc] init];
+//    
+//    // Set the session preset as you wish
+//    mSession.sessionPreset = AVCaptureSessionPresetMedium;
+//    
+//    // If you're on a multi-display system and you want to capture a secondary display,
+//    // you can call CGGetActiveDisplayList() to get the list of all active displays.
+//    // For this example, we just specify the main display.
+//    CGDirectDisplayID displayId = kCGDirectMainDisplay;
+//    
+//    // Create a ScreenInput with the display and add it to the session
+//    AVCaptureScreenInput *input = [[AVCaptureScreenInput alloc] initWithDisplayID:displayId];
+//    if (!input)
+//    {
+//        mSession = nil;
+//        return;
+//    }
+//    if ([mSession canAddInput:input])
+//        [mSession addInput:input];
+//    
+//    // Create a MovieFileOutput and add it to the session
+//    AVCaptureMovieFileOutput *mMovieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
+//    if ([mSession canAddOutput:mMovieFileOutput])
+//        [mSession addOutput:mMovieFileOutput];
+//    
+//    // Start running the session
+//    [mSession startRunning];
+//    
+//    // Delete any existing movie file first
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:tempFolder])
+//    {
+//        NSError *err;
+//        if (![[NSFileManager defaultManager] removeItemAtPath:tempFolder error:&err])
+//        {
+//            NSLog(@"Error deleting existing movie %@",[err localizedDescription]);
+//        }
+//    }
+//    
+//    // Start recording to the destination movie file
+//    // The destination path is assumed to end with ".mov", for example, @"/users/master/desktop/capture.mov"
+//    // Set the recording delegate to self
+//    [mMovieFileOutput startRecordingToOutputFileURL:[STGFileHelper urlFromStandardPath:tempFolder] recordingDelegate:self];
+//    
+//    // Fire a timer in 5 seconds
+//    NSTimer *mTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(finishRecord:) userInfo:nil repeats:NO];
+//}
 
 + (NSString *)getDateAsString
 {
