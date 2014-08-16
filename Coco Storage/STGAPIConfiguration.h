@@ -28,9 +28,12 @@
 - (NSString *)apiHostName;
 - (BOOL)hasAPIKeys;
 - (BOOL)hasCFS;
+- (BOOL)hasAlbums;
 - (NSString *)accountLinkTitle;
 - (NSString *)fileListLinkTitle;
 - (NSSet *)supportedUploadTypes;
+
+- (NSString *)objectIDFromString:(NSString *)string;
 
 - (BOOL)canReachServer;
 - (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
@@ -45,6 +48,7 @@
 - (void)openCFSLink;
 - (void)openAccountLink;
 - (void)openFileListLink;
+- (void)sendAlbumCreatePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entries:(NSArray *)entries;
 @end
 
 @interface STGAPIConfiguration : NSObject

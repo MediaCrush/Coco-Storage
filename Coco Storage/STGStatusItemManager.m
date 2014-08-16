@@ -11,6 +11,7 @@
 #import "STGAPIConfiguration.h"
 
 #import "STGRecentUploadView.h"
+#import "STGCreateAlbumWindowController.h"
 
 #import "STGDataCaptureEntry.h"
 
@@ -57,7 +58,7 @@
         [_statusItem setHighlightMode:YES];
         [_statusItem setToolTip:@"Coco Storage"];
         [_statusItemView setImage:[STGStatusItemDrawingHelper getIcon:0 uploadProgress:0.0 opacity:0.0]];
-        
+                
         [self updateGUIElements];
         
         [self setTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES]];
@@ -123,6 +124,8 @@
     [[self fileListLinkItem] setHidden:fileListLinkTitle == nil];
     if (fileListLinkTitle)
         [[self fileListLinkItem] setTitle:fileListLinkTitle];
+    
+    [_createAlbumMenuItem setHidden:![[STGAPIConfiguration currentConfiguration] hasAlbums]];
 }
 
 - (void)updateRecentFiles:(NSArray *)recentFiles
@@ -323,6 +326,14 @@
 - (void)captureClipboard:(id)sender
 {
     [[self statusItemView] displayClipboardCaptureWindow];
+}
+
+- (void)createAlbum:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(createAlbum)])
+    {
+        [_delegate createAlbum];
+    }
 }
 
 - (IBAction)quit:(id)sender

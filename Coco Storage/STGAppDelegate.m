@@ -42,6 +42,8 @@
 
 #import "STGJSONHelper.h"
 
+#import "STGCreateAlbumWindowController.h"
+
 STGAppDelegate *sharedAppDelegate;
 
 @interface STGAppDelegate ()
@@ -147,6 +149,9 @@ STGAppDelegate *sharedAppDelegate;
     [_statusItemManager setDelegate:self];
     
     [self setCfsSyncCheck:[[STGCFSSyncCheck alloc] init]];
+
+    [self setCreateAlbumWC:[[STGCreateAlbumWindowController alloc] initWithWindowNibName:@"STGCreateAlbumWindowController"]];
+    [_createAlbumWC setDelegate:self];
 
     [self readFromUserDefaults];
 
@@ -308,6 +313,21 @@ STGAppDelegate *sharedAppDelegate;
         
         [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
     }
+}
+
+- (void)createAlbum
+{
+    NSMutableArray *uploadIDList = [[NSMutableArray alloc] initWithCapacity:[_recentFilesArray count]];
+    
+    for (STGDataCaptureEntry *entry in _recentFilesArray)
+    {
+        [uploadIDList addObject:[entry onlineID]];
+    }
+    
+    [_createAlbumWC setUploadIDList:uploadIDList];
+    [_createAlbumWC showWindow:self];
+    
+    [NSApp  activateIgnoringOtherApps:YES];
 }
 
 #pragma mark - Uploading
@@ -758,6 +778,13 @@ STGAppDelegate *sharedAppDelegate;
     }
     
     [_statusItemManager updateServerStatus:status];
+}
+
+#pragma mark Album Controller Delegate
+
+- (void)createAlbumWithIDs:(NSArray *)entryIDs
+{
+    [[STGAPIConfiguration currentConfiguration] sendAlbumCreatePacket:_packetUploadV1Queue apiKey:[self getApiKey] entries:entryIDs];
 }
 
 @end

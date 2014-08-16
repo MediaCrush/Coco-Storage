@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @class STGPacketQueue;
 @class STGDataCaptureEntry;
+@class STGCreateAlbumWindowController;
 
 @protocol STGStatusItemManagerDelegate;
 
@@ -49,6 +50,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFullScreenMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFileMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureClipboardMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *createAlbumMenuItem;
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *recentFilesItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *noRecentFilesItem;
@@ -68,6 +70,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 - (IBAction)captureFullScreen:(id)sender;
 - (IBAction)captureFile:(id)sender;
 - (IBAction)captureClipboard:(id)sender;
+- (IBAction)createAlbum:(id)sender;
 
 - (IBAction)openStorageAccount:(id)sender;
 - (IBAction)openMyFiles:(id)sender;
@@ -100,6 +103,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 -(void)captureScreen:(BOOL)fullScreen;
 -(void)captureFile;
+-(void)createAlbum;
 -(void)uploadEntries:(NSArray *)entries;
 -(void)cancelAllUploads;
 -(void)togglePauseUploads;

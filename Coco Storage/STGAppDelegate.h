@@ -21,6 +21,8 @@
 
 #import "STGAPIConfiguration.h"
 
+#import "STGCreateAlbumWindowController.h"
+
 @class STGPacketQueue;
 
 @class MASPreferencesWindowController;
@@ -39,7 +41,7 @@
 
 @class STGCFSSyncCheck;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
@@ -51,6 +53,8 @@
 
 @property (nonatomic, retain) MASPreferencesWindowController *prefsController;
 @property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
+
+@property (nonatomic, retain) STGCreateAlbumWindowController *createAlbumWC;
 
 @property (nonatomic, retain) NSMutableArray *recentFilesArray;
 

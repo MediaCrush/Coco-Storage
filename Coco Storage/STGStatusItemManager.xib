@@ -14,6 +14,7 @@
                 <outlet property="captureFullScreenMenuItem" destination="8" id="23"/>
                 <outlet property="cfsLinkItem" destination="43" id="iCl-p8-bg9"/>
                 <outlet property="cfsSectionSeparatorItem" destination="4" id="Yt8-Uo-qnm"/>
+                <outlet property="createAlbumMenuItem" destination="gea-n1-pdY" id="UMS-Qs-Ukg"/>
                 <outlet property="currentUploadsItem" destination="2" id="26"/>
                 <outlet property="fileListLinkItem" destination="11" id="AQx-k2-61u"/>
                 <outlet property="moreCurrentUploadsItem" destination="39" id="40"/>
@@ -51,16 +52,22 @@
                         <action selector="captureFullScreen:" target="-2" id="36"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Capture Clipboard..." image="NSRightFacingTriangleTemplate" id="2k3-Wa-v5p">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="captureClipboard:" target="-2" id="Dsw-g8-Sul"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Upload file" image="NSPathTemplate" id="7">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="captureFile:" target="-2" id="35"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Capture Clipboard..." image="NSIconViewTemplate" id="2k3-Wa-v5p">
+                <menuItem title="Create Album" image="NSIconViewTemplate" id="gea-n1-pdY">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="captureClipboard:" target="-2" id="Dsw-g8-Sul"/>
+                        <action selector="createAlbum:" target="-2" id="u1p-98-Blw"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="3"/>

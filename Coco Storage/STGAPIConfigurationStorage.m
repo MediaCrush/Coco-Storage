@@ -51,6 +51,11 @@ STGAPIConfigurationStorage *standardConfiguration;
     return YES;
 }
 
+- (BOOL)hasAlbums
+{
+    return NO;
+}
+
 - (NSString *)cfsLinkTitle
 {
     return @"Open CFS Folder";
@@ -88,6 +93,19 @@ STGAPIConfigurationStorage *standardConfiguration;
             [NSNumber numberWithUnsignedInteger:STGDropActionUploadDirectoryZip],
             [NSNumber numberWithUnsignedInteger:STGDropActionUploadLinkRedirect],
             nil];
+}
+
+- (NSString *)objectIDFromString:(NSString *)string
+{
+    NSRange linkRange = [string rangeOfString:@"stor.ag/e/"];
+    if (linkRange.location != NSNotFound)
+    {
+        NSString *startCut = [string substringFromIndex:linkRange.location + linkRange.length];
+        NSRange nextSlash = [startCut rangeOfString:@"/"];
+        return nextSlash.location != NSNotFound ? [startCut substringToIndex:nextSlash.location] : startCut;
+    }
+    
+    return nil;
 }
 
 - (void)openFileListLink

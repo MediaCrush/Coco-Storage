@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1080" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="STGCreateAlbumWindowController">
+            <connections>
+                <outlet property="tokenField" destination="siS-89-nkf" id="Zn2-Kw-cud"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Create Album" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="123"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <value key="maxSize" type="size" width="480" height="123"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="123"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="siS-89-nkf">
+                        <rect key="frame" x="20" y="57" width="440" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <tokenFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="Example: LxqXxVPAvqqB,tVWMM_ziA3nm" drawsBackground="YES" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="pXl-an-agg">
+                            <font key="font" metaFont="titleBar" size="12"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </tokenFieldCell>
+                        <connections>
+                            <action selector="createAlbum:" target="-2" id="p2A-6D-ndn"/>
+                            <outlet property="delegate" destination="-2" id="MAn-KU-05K"/>
+                        </connections>
+                    </tokenField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aKF-tb-QQu">
+                        <rect key="frame" x="18" y="86" width="69" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Object IDs" id="uun-cp-BwB">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3GP-Ix-eoX">
+                        <rect key="frame" x="14" y="9" width="452" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6hQ-0Y-GPl">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="createAlbum:" target="-2" id="HPx-He-h1X"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aKF-tb-QQu" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="1jh-SR-7aj"/>
+                    <constraint firstItem="siS-89-nkf" firstAttribute="top" secondItem="aKF-tb-QQu" secondAttribute="bottom" constant="8" symbolic="YES" id="78R-o8-Wut"/>
+                    <constraint firstItem="3GP-Ix-eoX" firstAttribute="leading" secondItem="siS-89-nkf" secondAttribute="leading" id="BwJ-J6-nBi"/>
+                    <constraint firstItem="siS-89-nkf" firstAttribute="trailing" secondItem="3GP-Ix-eoX" secondAttribute="trailing" id="JsP-7y-fna"/>
+                    <constraint firstItem="3GP-Ix-eoX" firstAttribute="top" secondItem="siS-89-nkf" secondAttribute="bottom" constant="20" symbolic="YES" id="N46-wa-Sni"/>
+                    <constraint firstItem="aKF-tb-QQu" firstAttribute="leading" secondItem="siS-89-nkf" secondAttribute="leading" id="R23-gn-ghO"/>
+                    <constraint firstAttribute="bottom" secondItem="3GP-Ix-eoX" secondAttribute="bottom" constant="16" id="aSD-Ry-W1P"/>
+                    <constraint firstAttribute="trailing" secondItem="siS-89-nkf" secondAttribute="trailing" constant="20" symbolic="YES" id="iTW-QW-MPg"/>
+                    <constraint firstItem="aKF-tb-QQu" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="jNw-VL-Yod"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+        </window>
+    </objects>
+</document>

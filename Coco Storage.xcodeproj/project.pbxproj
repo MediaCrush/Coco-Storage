@@ -60,6 +60,9 @@
 		8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */; };
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
+		8060C341199FB1FE001282CF /* STGCreateAlbumWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */; };
+		8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */; };
+		8060C345199FC8D3001282CF /* STGUploadedFileToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8060C344199FC8D3001282CF /* STGUploadedFileToken.m */; };
 		80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */; };
 		8065984D199568A700EF0E34 /* STGAPIConfigurationMediacrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 8065984C199568A700EF0E34 /* STGAPIConfigurationMediacrush.m */; };
 		8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453B18492A17007F1EA1 /* STGTypeChooserView.m */; };
@@ -184,6 +187,11 @@
 		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
 		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
 		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
+		8060C33E199FB1FE001282CF /* STGCreateAlbumWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCreateAlbumWindowController.h; sourceTree = "<group>"; };
+		8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCreateAlbumWindowController.m; sourceTree = "<group>"; };
+		8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGCreateAlbumWindowController.xib; sourceTree = "<group>"; };
+		8060C343199FC8D3001282CF /* STGUploadedFileToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedFileToken.h; sourceTree = "<group>"; };
+		8060C344199FC8D3001282CF /* STGUploadedFileToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedFileToken.m; sourceTree = "<group>"; };
 		80659846199565FE00EF0E34 /* STGAPIConfigurationStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationStorage.h; sourceTree = "<group>"; };
 		80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfigurationStorage.m; sourceTree = "<group>"; };
 		8065984B199568A700EF0E34 /* STGAPIConfigurationMediacrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationMediacrush.h; sourceTree = "<group>"; };
@@ -436,6 +444,11 @@
 				80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */,
 				808A9A1717538EBC0058235D /* STGQuickUploadView.h */,
 				808A9A1817538EBC0058235D /* STGQuickUploadView.m */,
+				8060C33E199FB1FE001282CF /* STGCreateAlbumWindowController.h */,
+				8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */,
+				8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */,
+				8060C343199FC8D3001282CF /* STGUploadedFileToken.h */,
+				8060C344199FC8D3001282CF /* STGUploadedFileToken.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -596,6 +609,7 @@
 				80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */,
 				80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */,
 				80486005174802C000CB6226 /* CocoStorageStatusBarIcon01.png in Resources */,
+				8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */,
 				80486006174802C000CB6226 /* CocoStorageStatusBarIcon02.png in Resources */,
 				80486007174802C000CB6226 /* CocoStorageStatusBarIcon03.png in Resources */,
 				80486008174802C000CB6226 /* CocoStorageStatusBarIcon04.png in Resources */,
@@ -652,9 +666,11 @@
 				80485FE91747FABF00CB6226 /* NSButton+TextColor.m in Sources */,
 				804860161748051400CB6226 /* STGStatusItemDrawingHelper.m in Sources */,
 				8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */,
+				8060C341199FB1FE001282CF /* STGCreateAlbumWindowController.m in Sources */,
 				80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */,
 				809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */,
 				8065984D199568A700EF0E34 /* STGAPIConfigurationMediacrush.m in Sources */,
+				8060C345199FC8D3001282CF /* STGUploadedFileToken.m in Sources */,
 				8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */,
 				808A9A1917538EBC0058235D /* STGQuickUploadView.m in Sources */,
 				809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */,
