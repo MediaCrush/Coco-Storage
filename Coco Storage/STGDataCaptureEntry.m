@@ -45,7 +45,7 @@
         [entry setOnlineLink:@""];
 
     if ([stringArray count] > 3)
-        [entry setOnlineID:[stringArray objectAtIndex:2]];
+        [entry setOnlineID:[stringArray objectAtIndex:3]];
     else
         [entry setOnlineID:@""];
 
