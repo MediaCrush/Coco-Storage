@@ -10,6 +10,8 @@
 
 #import "STGDataCaptureManager.h"
 
+#import "STGAPIConfiguration.h"
+
 @interface STGQuickUploadView ()
 
 - (NSRect)getRectAtPosition:(NSInteger)pos withActions:(NSInteger)actionCount;
@@ -147,7 +149,7 @@
 
 - (void)timerFired:(NSTimer *)theTimer
 {
-    [self setPasteActionArray:[STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]]];
+    [self setPasteActionArray:[STGAPIConfiguration validUploadActions:[STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]] forConfiguration:[STGAPIConfiguration currentConfiguration]]];
     
     if (_onDragging || (([[self window] isKeyWindow] || [self isMouseInRect:0 withActions:1]) && _pasteActionArray && [_pasteActionArray count] > 0))
         _dashPhase += 1.0;
@@ -202,16 +204,19 @@
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {
-    [self setDropActionArray:[STGDataCaptureManager getActionsFromPasteboard:[sender draggingPasteboard]]];
+    [self setDropActionArray:[STGAPIConfiguration validUploadActions:[STGDataCaptureManager getActionsFromPasteboard:[sender draggingPasteboard]] forConfiguration:[STGAPIConfiguration currentConfiguration]]];
     
-    NSString *displayString = [_dropActionArray objectAtIndex:0];
-    
-    if (displayString)
+    if ([_dropActionArray count] > 0)
     {
-        [self setOnDragging:YES];
-        [self setNeedsDisplay:YES];
+        NSString *displayString = [_dropActionArray objectAtIndex:0];
         
-        return NSDragOperationCopy;
+        if (displayString)
+        {
+            [self setOnDragging:YES];
+            [self setNeedsDisplay:YES];
+            
+            return NSDragOperationCopy;
+        }
     }
     
     return NSDragOperationNone;

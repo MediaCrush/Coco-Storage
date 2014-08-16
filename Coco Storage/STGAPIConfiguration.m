@@ -22,4 +22,12 @@ STGAPIConfiguration *currentConfiguration;
     return currentConfiguration;
 }
 
++ (NSArray *)validUploadActions:(NSArray *)actions forConfiguration:(id<STGAPIConfiguration>) configuration
+{
+    NSMutableSet *intersection = [NSMutableSet setWithArray:actions];
+    [intersection intersectSet:[configuration supportedUploadTypes]];
+    
+    return [intersection allObjects];
+}
+
 @end

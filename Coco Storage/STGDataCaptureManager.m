@@ -25,13 +25,6 @@
     return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, NSPasteboardTypeColor, NSPasteboardTypeRTF, NSPasteboardTypePNG, NSPasteboardTypeTIFF, NSTIFFPboardType, nil];
 }
 
-+ (NSArray *)captureFirstDataFromPasteboard:(NSPasteboard *)pasteboard
-{
-    STGDropAction action = [[[self getActionsFromPasteboard:pasteboard] objectAtIndex:0] integerValue];
-    
-    return [self captureDataFromPasteboard:pasteboard withAction:action];
-}
-
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGDropAction)action
 {
     if (action == STGDropActionUploadFile)

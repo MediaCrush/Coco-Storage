@@ -214,7 +214,7 @@
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    NSArray *clipboardCapturableItems = [STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]];
+    NSArray *clipboardCapturableItems = [STGAPIConfiguration validUploadActions:[STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]] forConfiguration:[STGAPIConfiguration currentConfiguration]];
     [[self captureClipboardMenuItem] setEnabled:[clipboardCapturableItems count] > 0];
 }
 

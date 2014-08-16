@@ -61,6 +61,15 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     return nil;
 }
 
+- (NSSet *)supportedUploadTypes
+{
+    return [NSSet setWithObjects:
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadFile],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadImage],
+//            [NSNumber numberWithUnsignedInteger:STGDropActionUploadText],
+            nil];
+}
+
 - (BOOL)canReachServer
 {
     return [STGNetworkHelper isWebsiteReachable:@"mediacru.sh"];

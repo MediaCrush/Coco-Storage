@@ -76,6 +76,20 @@ STGAPIConfigurationStorage *standardConfiguration;
     return @"My Files...";
 }
 
+- (NSSet *)supportedUploadTypes
+{
+    return [NSSet setWithObjects:
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadFile],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadImage],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadText],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadRtfText],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadColor],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadZip],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadDirectoryZip],
+            [NSNumber numberWithUnsignedInteger:STGDropActionUploadLinkRedirect],
+            nil];
+}
+
 - (void)openFileListLink
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://getstorage.net/panel/object"]];

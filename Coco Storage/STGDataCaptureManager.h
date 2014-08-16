@@ -25,7 +25,6 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 @interface STGDataCaptureManager : NSObject
 
 + (NSArray *)getSupportedPasteboardContentTypes;
-+ (NSArray *)captureFirstDataFromPasteboard:(NSPasteboard *)pasteboard;
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGDropAction)action;
 + (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard;
 + (NSString *)getNameForAction:(STGDropAction)action;

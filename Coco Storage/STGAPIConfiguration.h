@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "STGDataCaptureManager.h"
+
 @class STGPacket;
-@class STGDataCaptureEntry;
 @class STGPacketQueue;
 
 @protocol STGAPIConfigurationDelegate
@@ -29,6 +30,7 @@
 - (BOOL)hasCFS;
 - (NSString *)accountLinkTitle;
 - (NSString *)fileListLinkTitle;
+- (NSSet *)supportedUploadTypes;
 
 - (BOOL)canReachServer;
 - (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
@@ -49,5 +51,7 @@
 
 + (void)setCurrentConfiguration:(NSObject<STGAPIConfiguration> *)configuration;
 + (NSObject<STGAPIConfiguration> *)currentConfiguration;
+
++ (NSArray *)validUploadActions:(NSArray *)actions forConfiguration:(id<STGAPIConfiguration>) configuration;
 
 @end

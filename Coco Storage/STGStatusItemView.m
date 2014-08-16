@@ -12,6 +12,8 @@
 
 #import "STGDataCaptureManager.h"
 
+#import "STGAPIConfiguration.h"
+
 @implementation STGStatusItemView
 
 - (id)initWithFrame:(NSRect)frame
@@ -142,40 +144,45 @@
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {
     NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:[sender draggingPasteboard]];
-    NSString *displayString = [STGDataCaptureManager getNameForAction:[[actions objectAtIndex:0] integerValue]];
+    actions = [STGAPIConfiguration validUploadActions:actions forConfiguration:[STGAPIConfiguration currentConfiguration]];
     
-    if (displayString)
+    if ([actions count] > 0)
     {
-        NSRect screenRect = [[NSScreen mainScreen] frame];
-
-        if (screenRect.size.height / 25 != [[[[_overlayWindowLabel font] fontDescriptor] objectForKey:NSFontSizeAttribute] floatValue])
-            [_overlayWindowLabel setFont:[NSFont boldSystemFontOfSize:screenRect.size.height / 25]];
-
-        CGSize textSize = NSSizeToCGSize([displayString sizeWithAttributes:[NSDictionary dictionaryWithObject:[_overlayWindowLabel font] forKey:NSFontAttributeName]]);
+        NSString *displayString = [STGDataCaptureManager getNameForAction:[[actions objectAtIndex:0] integerValue]];
         
-        NSRect windowRect = NSMakeRect(screenRect.origin.x + (screenRect.size.width - textSize.width * 1.2) / 2, screenRect.origin.y + (screenRect.size.height - textSize.height * 1.2) / 2, textSize.width * 1.2, textSize.height * 1.2);
-        NSRect contentRect = NSMakeRect(0, 0, windowRect.size.width, windowRect.size.height);
-        
-        [_overlayWindow setFrame:windowRect display:NO];
-        [_overlayWindow setAlphaValue:0.0];
-        [_overlayWindow orderFront:self];
-        [_overlayWindowLabel setFrame:contentRect];
-        [_overlayWindowLabel setStringValue:displayString];
-                
-        NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:_overlayWindow, NSViewAnimationTargetKey, NSViewAnimationFadeInEffect, NSViewAnimationEffectKey, nil]]];
-        
-        [animation setAnimationBlockingMode: NSAnimationNonblockingThreaded];
-        [animation setDuration:0.2];
-        
-        [animation startAnimation];
-        
-        [self setOnDragging:YES];
-        [self setNeedsDisplay:YES];
-        
-        [[self uploadTypeVC] setUploadTypes:actions fromDragging:YES];
-        [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
-
-        return NSDragOperationCopy;
+        if (displayString)
+        {
+            NSRect screenRect = [[NSScreen mainScreen] frame];
+            
+            if (screenRect.size.height / 25 != [[[[_overlayWindowLabel font] fontDescriptor] objectForKey:NSFontSizeAttribute] floatValue])
+                [_overlayWindowLabel setFont:[NSFont boldSystemFontOfSize:screenRect.size.height / 25]];
+            
+            CGSize textSize = NSSizeToCGSize([displayString sizeWithAttributes:[NSDictionary dictionaryWithObject:[_overlayWindowLabel font] forKey:NSFontAttributeName]]);
+            
+            NSRect windowRect = NSMakeRect(screenRect.origin.x + (screenRect.size.width - textSize.width * 1.2) / 2, screenRect.origin.y + (screenRect.size.height - textSize.height * 1.2) / 2, textSize.width * 1.2, textSize.height * 1.2);
+            NSRect contentRect = NSMakeRect(0, 0, windowRect.size.width, windowRect.size.height);
+            
+            [_overlayWindow setFrame:windowRect display:NO];
+            [_overlayWindow setAlphaValue:0.0];
+            [_overlayWindow orderFront:self];
+            [_overlayWindowLabel setFrame:contentRect];
+            [_overlayWindowLabel setStringValue:displayString];
+            
+            NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:_overlayWindow, NSViewAnimationTargetKey, NSViewAnimationFadeInEffect, NSViewAnimationEffectKey, nil]]];
+            
+            [animation setAnimationBlockingMode: NSAnimationNonblockingThreaded];
+            [animation setDuration:0.2];
+            
+            [animation startAnimation];
+            
+            [self setOnDragging:YES];
+            [self setNeedsDisplay:YES];
+            
+            [[self uploadTypeVC] setUploadTypes:actions fromDragging:YES];
+            [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
+            
+            return NSDragOperationCopy;
+        }
     }
     
     return NSDragOperationNone;
@@ -227,15 +234,22 @@
 {
     NSPasteboard *pBoard = [sender draggingPasteboard];
 
-    NSArray *entries = [STGDataCaptureManager captureFirstDataFromPasteboard:pBoard];
+    NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:pBoard];
+    actions = [STGAPIConfiguration validUploadActions:actions forConfiguration:[STGAPIConfiguration currentConfiguration]];
     
-    if (entries && [entries count] > 0)
+    if ([actions count] > 0)
     {
-        if ([_delegate respondsToSelector:@selector(uploadEntries:)])
+        NSUInteger action = [[actions objectAtIndex:0] unsignedIntegerValue];
+        NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard withAction:action];
+        
+        if (entries && [entries count] > 0)
         {
-            [_delegate uploadEntries:entries];
-            
-            return YES;
+            if ([_delegate respondsToSelector:@selector(uploadEntries:)])
+            {
+                [_delegate uploadEntries:entries];
+                
+                return YES;
+            }
         }
     }
     
@@ -245,6 +259,7 @@
 - (void)displayClipboardCaptureWindow
 {
     NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]];
+    actions = [STGAPIConfiguration validUploadActions:actions forConfiguration:[STGAPIConfiguration currentConfiguration]];
 
     [[self uploadTypeVC] setUploadTypes:actions fromDragging:NO];
     [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
@@ -255,6 +270,7 @@
     NSPasteboard *pBoard = [NSPasteboard generalPasteboard];
     
     NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard withAction:action];
+    entries = [STGAPIConfiguration validUploadActions:entries forConfiguration:[STGAPIConfiguration currentConfiguration]];
     
     if (entries && [entries count] > 0)
     {
@@ -272,7 +288,8 @@
     NSPasteboard *pBoard = [sender draggingPasteboard];
     
     NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard withAction:action];
-    
+    entries = [STGAPIConfiguration validUploadActions:entries forConfiguration:[STGAPIConfiguration currentConfiguration]];
+
     if (entries && [entries count] > 0)
     {
         if ([_delegate respondsToSelector:@selector(uploadEntries:)])
