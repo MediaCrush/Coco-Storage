@@ -701,7 +701,7 @@ STGAppDelegate *sharedAppDelegate;
     {
         [_recentFilesArray addObject:entry];
         
-        while (_recentFilesArray.count > 7)
+        while (_recentFilesArray.count > 100)
             [_recentFilesArray removeObjectAtIndex:0];
         
         [_statusItemManager updateRecentFiles:_recentFilesArray];

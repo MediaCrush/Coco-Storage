@@ -135,26 +135,28 @@
     }
     else
     {
-        for (int i = (int)[recentFiles count] - 1; i >= 0; i--)
+        for (int i = 0; i < [recentFiles count] && i < 10; i++)
         {
+            int index = (int)[recentFiles count] - i - 1;
+            
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Recent upload" action:@selector(openRecentFile:) keyEquivalent:@""];
             [menuItem setTarget:self];
-            [menuItem setTag:i];
+            [menuItem setTag:index];
             
             NSViewController *tempController = [[NSViewController alloc] initWithNibName:@"STGRecentFileView" bundle:nil];
             
             STGRecentUploadView *itemView = (STGRecentUploadView *)[tempController view];
             [menuItem setView:itemView];
-            [itemView setCaptureEntry:[recentFiles objectAtIndex:i]];
+            [itemView setCaptureEntry:[recentFiles objectAtIndex:index]];
             [itemView setRecentUploadDelegate:self];
             
-            NSString *fileName = [[[recentFiles objectAtIndex:i] fileURL] lastPathComponent];
+            NSString *fileName = [[[recentFiles objectAtIndex:index] fileURL] lastPathComponent];
             NSInteger pointLoc = [fileName rangeOfString:@"." options:NSBackwardsSearch].location;
             NSString *fileType = pointLoc != NSNotFound ? [fileName substringFromIndex:pointLoc] : @"";
             
             [[[menuItem view] viewWithTag:10] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:fileType]];
-            [[itemView viewWithTag:11] setStringValue:[[[recentFiles objectAtIndex:i] fileURL] lastPathComponent]];
-            [[itemView viewWithTag:12] setStringValue:[[recentFiles objectAtIndex:i] onlineLink]];
+            [[itemView viewWithTag:11] setStringValue:[[[recentFiles objectAtIndex:index] fileURL] lastPathComponent]];
+            [[itemView viewWithTag:12] setStringValue:[[recentFiles objectAtIndex:index] onlineLink]];
             [[itemView viewWithTag:13] setAction:@selector(deleteRecentFile:)];
             [[itemView viewWithTag:13] setTarget:self];
             [[itemView viewWithTag:14] setAction:@selector(copyRecentFileLink:)];
