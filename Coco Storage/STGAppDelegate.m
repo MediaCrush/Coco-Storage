@@ -21,12 +21,6 @@
 #import "STGFileHelper.h"
 #import "STGNetworkHelper.h"
 
-#import "STGOptionsGeneralViewController.h"
-#import "STGOptionsShortcutsViewController.h"
-#import "STGOptionsQuickUploadViewController.h"
-#import "STGOptionsCFSViewController.h"
-#import "STGOptionsAboutViewController.h"
-
 #import "MASPreferencesWindowController.h"
 
 #import "STGStatusItemManager.h"
@@ -92,12 +86,7 @@ STGAppDelegate *sharedAppDelegate;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSMutableDictionary *standardDefaults = [[NSMutableDictionary alloc] init];
-    [STGOptionsGeneralViewController registerStandardDefaults:standardDefaults];
-    [STGOptionsShortcutsViewController registerStandardDefaults:standardDefaults];
-    [STGOptionsQuickUploadViewController registerStandardDefaults:standardDefaults];
-    if ([[STGAPIConfiguration currentConfiguration] hasCFS])
-        [STGOptionsCFSViewController registerStandardDefaults:standardDefaults];
-    [STGOptionsAboutViewController registerStandardDefaults:standardDefaults];
+    [STGOptionsManager registerDefaults:standardDefaults];
     [STGWelcomeWindowController registerStandardDefaults:standardDefaults];
     [standardDefaults setObject:[NSArray array] forKey:@"recentEntries"];
     [standardDefaults setObject:[NSArray array] forKey:@"uploadQueue"];

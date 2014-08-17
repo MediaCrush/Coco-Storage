@@ -36,6 +36,8 @@
 @property (nonatomic, retain) STGOptionsCFSViewController *optionsCFSVC;
 @property (nonatomic, retain) STGOptionsAboutViewController *optionsAboutVC;
 
++ (void)registerDefaults:(NSMutableDictionary *)userDefaults;
+
 - (void)updateHotkeyStatus;
 - (NSEvent *)keyPressed:(NSEvent *)event;
 

@@ -18,6 +18,16 @@
 
 @implementation STGOptionsManager
 
++ (void)registerDefaults:(NSMutableDictionary *)userDefaults
+{
+    [STGOptionsGeneralViewController registerStandardDefaults:userDefaults];
+    [STGOptionsShortcutsViewController registerStandardDefaults:userDefaults];
+    [STGOptionsQuickUploadViewController registerStandardDefaults:userDefaults];
+    if ([[STGAPIConfiguration currentConfiguration] hasCFS])
+        [STGOptionsCFSViewController registerStandardDefaults:userDefaults];
+    [STGOptionsAboutViewController registerStandardDefaults:userDefaults];
+}
+
 - (instancetype)init
 {
     self = [super init];
