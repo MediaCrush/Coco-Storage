@@ -44,6 +44,8 @@
 
 #import "STGCreateAlbumWindowController.h"
 
+#import "STGMovieCaptureSession.h"
+
 STGAppDelegate *sharedAppDelegate;
 
 @interface STGAppDelegate ()
@@ -152,6 +154,8 @@ STGAppDelegate *sharedAppDelegate;
 
     [self setCreateAlbumWC:[[STGCreateAlbumWindowController alloc] initWithWindowNibName:@"STGCreateAlbumWindowController"]];
     [_createAlbumWC setDelegate:self];
+    [self setCaptureMovieWC:[[STGMovieCaptureWindowController alloc] initWithWindowNibName:@"STGMovieCaptureWindowController"]];
+    [_captureMovieWC setDelegate:self];
 
     [self readFromUserDefaults];
 
@@ -290,6 +294,12 @@ STGAppDelegate *sharedAppDelegate;
     }
 }
 
+- (void)captureMovie
+{
+    [_captureMovieWC showWindow:self];
+    [NSApp  activateIgnoringOtherApps:YES];
+}
+
 - (void)captureFile
 {
     if ([self isAPIKeyValid:YES])
@@ -308,8 +318,8 @@ STGAppDelegate *sharedAppDelegate;
     }
     
     [_createAlbumWC setUploadIDList:uploadIDList];
-    [_createAlbumWC showWindow:self];
     
+    [_createAlbumWC showWindow:self];
     [NSApp  activateIgnoringOtherApps:YES];
 }
 
@@ -768,6 +778,23 @@ STGAppDelegate *sharedAppDelegate;
 - (void)createAlbumWithIDs:(NSArray *)entryIDs
 {
     [[STGAPIConfiguration currentConfiguration] sendAlbumCreatePacket:_packetUploadV1Queue apiKey:[self getApiKey] entries:entryIDs];
+}
+
+#pragma mark Movie Controller Delegate
+
+- (void)startMovieCapture:(STGMovieCaptureWindowController *)movieCaptureWC
+{
+    if ([self isAPIKeyValid:YES] && (_currentMovieCapture == nil || ![_currentMovieCapture isRecording]))
+    {
+        [self performSelector:@selector(startMovieCaptureIgnoringDelay:) withObject:movieCaptureWC afterDelay:[[movieCaptureWC recordDelay] doubleValue]];
+    }
+}
+
+- (void)startMovieCaptureIgnoringDelay:(STGMovieCaptureWindowController *)movieCaptureWC
+{
+    STGMovieCaptureSession *session = [STGDataCaptureManager startScreenMovieCapture:[movieCaptureWC recordRect] display:[[movieCaptureWC recordDisplayID] unsignedIntValue] length:[[movieCaptureWC recordDuration] doubleValue] tempFolder:[self getTempFolder] recordVideo:[movieCaptureWC recordsVideo] recordComputerAudio:[movieCaptureWC recordsComputerAudio] recordMicrophoneAudio:[movieCaptureWC recordsMicrophoneAudio] quality:[movieCaptureWC quality] delegate:self];
+    
+    [self setCurrentMovieCapture:session];
 }
 
 #pragma mark Data Capture Manager Melegate

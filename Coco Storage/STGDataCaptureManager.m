@@ -14,6 +14,8 @@
 
 #import "STGFileHelper.h"
 
+#import "STGMovieCaptureSession.h"
+
 @interface STGDataCaptureManager ()
 
 + (NSString *)getDateAsString;
@@ -432,55 +434,29 @@
     });
 }
 
-//+ (void)startScreenMovieCapture:(NSRect)capturedRect tempFolder:(NSString *)tempFolder delegate:(NSObject<STGDataCaptureDelegate> *)delegate
-//{
-//    // Create a capture session
-//    AVCaptureSession *mSession = [[AVCaptureSession alloc] init];
-//    
-//    // Set the session preset as you wish
-//    mSession.sessionPreset = AVCaptureSessionPresetMedium;
-//    
-//    // If you're on a multi-display system and you want to capture a secondary display,
-//    // you can call CGGetActiveDisplayList() to get the list of all active displays.
-//    // For this example, we just specify the main display.
-//    CGDirectDisplayID displayId = kCGDirectMainDisplay;
-//    
-//    // Create a ScreenInput with the display and add it to the session
-//    AVCaptureScreenInput *input = [[AVCaptureScreenInput alloc] initWithDisplayID:displayId];
-//    if (!input)
-//    {
-//        mSession = nil;
-//        return;
-//    }
-//    if ([mSession canAddInput:input])
-//        [mSession addInput:input];
-//    
-//    // Create a MovieFileOutput and add it to the session
-//    AVCaptureMovieFileOutput *mMovieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
-//    if ([mSession canAddOutput:mMovieFileOutput])
-//        [mSession addOutput:mMovieFileOutput];
-//    
-//    // Start running the session
-//    [mSession startRunning];
-//    
-//    // Delete any existing movie file first
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:tempFolder])
-//    {
-//        NSError *err;
-//        if (![[NSFileManager defaultManager] removeItemAtPath:tempFolder error:&err])
-//        {
-//            NSLog(@"Error deleting existing movie %@",[err localizedDescription]);
-//        }
-//    }
-//    
-//    // Start recording to the destination movie file
-//    // The destination path is assumed to end with ".mov", for example, @"/users/master/desktop/capture.mov"
-//    // Set the recording delegate to self
-//    [mMovieFileOutput startRecordingToOutputFileURL:[STGFileHelper urlFromStandardPath:tempFolder] recordingDelegate:self];
-//    
-//    // Fire a timer in 5 seconds
-//    NSTimer *mTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(finishRecord:) userInfo:nil repeats:NO];
-//}
++ (STGMovieCaptureSession *)startScreenMovieCapture:(NSRect)capturedRect display:(CGDirectDisplayID)displayID length:(NSTimeInterval)length tempFolder:(NSString *)tempFolder recordVideo:(BOOL)recordVideo recordComputerAudio:(BOOL)recordComputerAudio recordMicrophoneAudio:(BOOL)recordMicrophoneAudio quality:(NSString *)qualityPreset delegate:(NSObject<STGDataCaptureDelegate> *)delegate
+{
+    STGMovieCaptureSession *session = [[STGMovieCaptureSession alloc] init];
+    [session setDelegate:delegate];
+    
+    [session setDisplayID:displayID];
+    [session setRecordRect:capturedRect];
+    
+    [session setRecordType:recordVideo ? STGMovieCaptureTypeScreenMovie : STGMovieCaptureTypeAudio];
+    if (recordVideo)
+        [session setDestURL:[STGFileHelper urlFromStandardPath:[tempFolder stringByAppendingFormat:@"/Movie_%@.mov", [self getDateAsString]]]];
+    else
+        [session setDestURL:[STGFileHelper urlFromStandardPath:[tempFolder stringByAppendingFormat:@"/Audio_%@.m4a", [self getDateAsString]]]];
+    
+    [session setQualityPreset:qualityPreset];
+
+    [session setRecordComputerAudio:recordComputerAudio];
+    [session setRecordMicrophoneAudio:recordMicrophoneAudio];
+    
+    [session setRecordTime:length];
+    
+    return [session beginRecording] ? session : nil;
+}
 
 + (NSString *)getDateAsString
 {

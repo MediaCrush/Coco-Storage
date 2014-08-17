@@ -12,6 +12,7 @@
                 <outlet property="captureClipboardMenuItem" destination="2k3-Wa-v5p" id="mhS-tm-ywF"/>
                 <outlet property="captureFileMenuItem" destination="7" id="24"/>
                 <outlet property="captureFullScreenMenuItem" destination="8" id="23"/>
+                <outlet property="captureMovieMenuItem" destination="sY8-Xr-PKr" id="0aA-BB-FZf"/>
                 <outlet property="cfsLinkItem" destination="43" id="iCl-p8-bg9"/>
                 <outlet property="cfsSectionSeparatorItem" destination="4" id="Yt8-Uo-qnm"/>
                 <outlet property="createAlbumMenuItem" destination="gea-n1-pdY" id="UMS-Qs-Ukg"/>
@@ -50,6 +51,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="captureFullScreen:" target="-2" id="36"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Capture movie" image="NSRightFacingTriangleTemplate" id="sY8-Xr-PKr">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="captureMovie:" target="-2" id="oGZ-ed-NnX"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Capture Clipboard..." image="NSRightFacingTriangleTemplate" id="2k3-Wa-v5p">

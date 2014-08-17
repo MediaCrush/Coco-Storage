@@ -95,6 +95,10 @@
 		80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */; };
 		80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */; };
 		80E12CAC184A99E70093CA6C /* STGUploadTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */; };
+		80F7697519A0C3AE000DC74D /* STGMovieCaptureSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */; };
+		80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */; };
+		80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */; };
+		80F7698219A1207A000DC74D /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80F7698119A1207A000DC74D /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -243,6 +247,12 @@
 		80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadTypeViewController.h; sourceTree = "<group>"; };
 		80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadTypeViewController.m; sourceTree = "<group>"; };
 		80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGUploadTypeViewController.xib; sourceTree = "<group>"; };
+		80F7697319A0C3AE000DC74D /* STGMovieCaptureSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGMovieCaptureSession.h; sourceTree = "<group>"; };
+		80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGMovieCaptureSession.m; sourceTree = "<group>"; };
+		80F7697C19A0E77B000DC74D /* STGMovieCaptureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGMovieCaptureWindowController.h; sourceTree = "<group>"; };
+		80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGMovieCaptureWindowController.m; sourceTree = "<group>"; };
+		80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGMovieCaptureWindowController.xib; sourceTree = "<group>"; };
+		80F7698119A1207A000DC74D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F7698219A1207A000DC74D /* IOKit.framework in Frameworks */,
 				8060C347199FE174001282CF /* AVFoundation.framework in Frameworks */,
 				80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */,
 				807A668B172AC79900E0212C /* Security.framework in Frameworks */,
@@ -287,6 +298,7 @@
 		80068FC117272CA800DA1492 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80F7698119A1207A000DC74D /* IOKit.framework */,
 				8060C346199FE174001282CF /* AVFoundation.framework */,
 				80068FC217272CA800DA1492 /* Cocoa.framework */,
 				80068FC417272CA800DA1492 /* Other Frameworks */,
@@ -386,6 +398,7 @@
 				80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */,
 				80492699173EEAC100C08A7F /* STGPacket.h */,
 				8049269A173EEAC100C08A7F /* STGPacket.m */,
+				80F7697A19A0E61A000DC74D /* CFS */,
 				8065984A1995688200EF0E34 /* Mediacrush */,
 				80659844199562BB00EF0E34 /* Getstorage */,
 			);
@@ -404,57 +417,14 @@
 		8065984E1995694400EF0E34 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */,
-				8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */,
-				8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */,
-				80781B501746B26400D0C790 /* STGOptionsQuickUploadViewController.h */,
-				80781B511746B26400D0C790 /* STGOptionsQuickUploadViewController.m */,
-				80781B521746B26400D0C790 /* STGOptionsQuickUploadViewController.xib */,
-				80781B451746899200D0C790 /* STGOptionsCFSViewController.h */,
-				80781B461746899200D0C790 /* STGOptionsCFSViewController.m */,
-				80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */,
-				8029A49B17283EEF00F09884 /* STGOptionsShortcutsViewController.h */,
-				8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */,
-				8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */,
-				8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */,
-				8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */,
-				801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */,
-				803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */,
-				803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */,
+				80F7697819A0E5EE000DC74D /* Options */,
 				80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */,
 				80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */,
 				80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */,
-				80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */,
-				80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */,
-				80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */,
-				80210E50172EC9920056C502 /* STGRecentFileView.xib */,
-				8011CA3D174FE9860021249F /* STGStatusItemView.h */,
-				8011CA3E174FE9860021249F /* STGStatusItemView.m */,
-				80210E52172EDE050056C502 /* STGRecentUploadView.h */,
-				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
-				804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */,
-				804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */,
-				80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */,
-				80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */,
-				80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */,
-				8071453A18492A17007F1EA1 /* STGTypeChooserView.h */,
-				8071453B18492A17007F1EA1 /* STGTypeChooserView.m */,
-				8071453D18492A56007F1EA1 /* STGTypeChooserViewType.h */,
-				8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */,
-				8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */,
-				8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */,
-				809A10C4174D6F5B0016A391 /* STGCFSSyncCheckEntry.h */,
-				809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */,
-				80369DD11847A27D00349068 /* STGQuickUploadWindowController.h */,
-				80369DD21847A27D00349068 /* STGQuickUploadWindowController.m */,
-				80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */,
-				808A9A1717538EBC0058235D /* STGQuickUploadView.h */,
-				808A9A1817538EBC0058235D /* STGQuickUploadView.m */,
-				8060C33E199FB1FE001282CF /* STGCreateAlbumWindowController.h */,
-				8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */,
-				8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */,
-				8060C343199FC8D3001282CF /* STGUploadedFileToken.h */,
-				8060C344199FC8D3001282CF /* STGUploadedFileToken.m */,
+				80F7697919A0E606000DC74D /* Status-Item */,
+				80F7697719A0E5DF000DC74D /* Quick-Upload */,
+				80F7697619A0E5CF000DC74D /* Create-Album */,
+				80F7697B19A0E753000DC74D /* Movie-Capture */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -466,6 +436,8 @@
 				803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */,
 				8011328B172966CB006702B9 /* STGDataCaptureEntry.h */,
 				8011328C172966CB006702B9 /* STGDataCaptureEntry.m */,
+				80F7697319A0C3AE000DC74D /* STGMovieCaptureSession.h */,
+				80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */,
 			);
 			name = "Data-Capture";
 			sourceTree = "<group>";
@@ -534,6 +506,99 @@
 				80CC42621733C3B40068476F /* dsa_pub.pem */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		80F7697619A0E5CF000DC74D /* Create-Album */ = {
+			isa = PBXGroup;
+			children = (
+				8060C33E199FB1FE001282CF /* STGCreateAlbumWindowController.h */,
+				8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */,
+				8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */,
+				8060C343199FC8D3001282CF /* STGUploadedFileToken.h */,
+				8060C344199FC8D3001282CF /* STGUploadedFileToken.m */,
+			);
+			name = "Create-Album";
+			sourceTree = "<group>";
+		};
+		80F7697719A0E5DF000DC74D /* Quick-Upload */ = {
+			isa = PBXGroup;
+			children = (
+				80369DD11847A27D00349068 /* STGQuickUploadWindowController.h */,
+				80369DD21847A27D00349068 /* STGQuickUploadWindowController.m */,
+				80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */,
+				808A9A1717538EBC0058235D /* STGQuickUploadView.h */,
+				808A9A1817538EBC0058235D /* STGQuickUploadView.m */,
+			);
+			name = "Quick-Upload";
+			sourceTree = "<group>";
+		};
+		80F7697819A0E5EE000DC74D /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */,
+				8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */,
+				8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */,
+				80781B501746B26400D0C790 /* STGOptionsQuickUploadViewController.h */,
+				80781B511746B26400D0C790 /* STGOptionsQuickUploadViewController.m */,
+				80781B521746B26400D0C790 /* STGOptionsQuickUploadViewController.xib */,
+				80781B451746899200D0C790 /* STGOptionsCFSViewController.h */,
+				80781B461746899200D0C790 /* STGOptionsCFSViewController.m */,
+				80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */,
+				8029A49B17283EEF00F09884 /* STGOptionsShortcutsViewController.h */,
+				8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */,
+				8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */,
+				8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */,
+				8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */,
+				801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */,
+				803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */,
+				803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */,
+			);
+			name = Options;
+			sourceTree = "<group>";
+		};
+		80F7697919A0E606000DC74D /* Status-Item */ = {
+			isa = PBXGroup;
+			children = (
+				80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */,
+				80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */,
+				80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */,
+				80210E50172EC9920056C502 /* STGRecentFileView.xib */,
+				8011CA3D174FE9860021249F /* STGStatusItemView.h */,
+				8011CA3E174FE9860021249F /* STGStatusItemView.m */,
+				80210E52172EDE050056C502 /* STGRecentUploadView.h */,
+				80210E53172EDE050056C502 /* STGRecentUploadView.m */,
+				804860141748051300CB6226 /* STGStatusItemDrawingHelper.h */,
+				804860151748051300CB6226 /* STGStatusItemDrawingHelper.m */,
+				80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */,
+				80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */,
+				80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */,
+				8071453A18492A17007F1EA1 /* STGTypeChooserView.h */,
+				8071453B18492A17007F1EA1 /* STGTypeChooserView.m */,
+				8071453D18492A56007F1EA1 /* STGTypeChooserViewType.h */,
+				8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */,
+			);
+			name = "Status-Item";
+			sourceTree = "<group>";
+		};
+		80F7697A19A0E61A000DC74D /* CFS */ = {
+			isa = PBXGroup;
+			children = (
+				8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */,
+				8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */,
+				809A10C4174D6F5B0016A391 /* STGCFSSyncCheckEntry.h */,
+				809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */,
+			);
+			name = CFS;
+			sourceTree = "<group>";
+		};
+		80F7697B19A0E753000DC74D /* Movie-Capture */ = {
+			isa = PBXGroup;
+			children = (
+				80F7697C19A0E77B000DC74D /* STGMovieCaptureWindowController.h */,
+				80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */,
+				80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */,
+			);
+			name = "Movie-Capture";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -623,6 +688,7 @@
 				80486009174802C000CB6226 /* CocoStorageStatusBarIcon05.png in Resources */,
 				8048600A174802C000CB6226 /* CocoStorageStatusBarIcon06.png in Resources */,
 				8048600B174802C000CB6226 /* CocoStorageStatusBarIcon07.png in Resources */,
+				80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */,
 				8048600C174802C000CB6226 /* CocoStorageStatusBarIcon08.png in Resources */,
 				8048600D174802C000CB6226 /* CocoStorageStatusBarIcon09.png in Resources */,
 				8048600E174802C000CB6226 /* CocoStorageStatusBarIcon10.png in Resources */,
@@ -664,6 +730,7 @@
 				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
 				80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */,
 				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,
+				80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */,
 				8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */,
 				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
 				80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */,
@@ -680,6 +747,7 @@
 				8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */,
 				808A9A1917538EBC0058235D /* STGQuickUploadView.m in Sources */,
 				809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */,
+				80F7697519A0C3AE000DC74D /* STGMovieCaptureSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

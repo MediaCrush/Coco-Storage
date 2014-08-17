@@ -24,6 +24,7 @@
 #import "STGAPIConfiguration.h"
 
 #import "STGCreateAlbumWindowController.h"
+#import "STGMovieCaptureWindowController.h"
 
 @class STGPacketQueue;
 
@@ -39,11 +40,13 @@
 
 @class STGHotkeyHelper;
 
+@class STGMovieCaptureSession;
+
 @class SUUpdater;
 
 @class STGCFSSyncCheck;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate, STGDataCaptureDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
@@ -57,6 +60,7 @@
 @property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
 
 @property (nonatomic, retain) STGCreateAlbumWindowController *createAlbumWC;
+@property (nonatomic, retain) STGMovieCaptureWindowController *captureMovieWC;
 
 @property (nonatomic, retain) NSMutableArray *recentFilesArray;
 
@@ -67,6 +71,8 @@
 @property (nonatomic, retain) STGCFSSyncCheck *cfsSyncCheck;
 
 @property (nonatomic, retain) STGHotkeyHelper *hotkeyHelper;
+
+@property (nonatomic, retain) STGMovieCaptureSession *currentMovieCapture;
 
 @property (nonatomic, retain) STGOptionsGeneralViewController *optionsGeneralVC;
 @property (nonatomic, retain) STGOptionsShortcutsViewController *optionsShortcutsVC;

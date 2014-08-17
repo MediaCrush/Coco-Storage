@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureAreaMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFullScreenMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *captureMovieMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFileMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureClipboardMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *createAlbumMenuItem;
@@ -68,6 +69,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 - (IBAction)captureArea:(id)sender;
 - (IBAction)captureFullScreen:(id)sender;
+- (IBAction)captureMovie:(id)sender;
 - (IBAction)captureFile:(id)sender;
 - (IBAction)captureClipboard:(id)sender;
 - (IBAction)createAlbum:(id)sender;
@@ -102,6 +104,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 @protocol STGStatusItemManagerDelegate <NSObject>
 
 -(void)captureScreen:(BOOL)fullScreen;
+-(void)captureMovie;
 -(void)captureFile;
 -(void)createAlbum;
 -(void)uploadEntries:(NSArray *)entries;

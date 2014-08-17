@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 };
 
 @class STGDataCaptureEntry;
+@class STGMovieCaptureSession;
 
 @protocol STGDataCaptureDelegate <NSObject>
 @optional
@@ -38,6 +39,8 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 + (void)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
 
 + (void)startFileCaptureWithTempFolder:(NSString *)tempFolder delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
+
++ (STGMovieCaptureSession *)startScreenMovieCapture:(NSRect)capturedRect display:(CGDirectDisplayID)displayID length:(NSTimeInterval)length tempFolder:(NSString *)tempFolder recordVideo:(BOOL)recordVideo recordComputerAudio:(BOOL)recordComputerAudio recordMicrophoneAudio:(BOOL)recordMicrophoneAudio quality:(NSString *)qualityPreset delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
 
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder;

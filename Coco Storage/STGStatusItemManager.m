@@ -315,6 +315,14 @@
     }
 }
 
+- (void)captureMovie:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(captureMovie)])
+    {
+        [_delegate captureMovie];
+    }
+}
+
 - (IBAction)captureFile:(id)sender
 {
     if ([_delegate respondsToSelector:@selector(captureFile)])
