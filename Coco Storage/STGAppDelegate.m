@@ -119,21 +119,8 @@ STGAppDelegate *sharedAppDelegate;
     [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
     [[STGAPIConfiguration currentConfiguration] setDelegate:self];
     
-    [self setOptionsGeneralVC:[[STGOptionsGeneralViewController alloc] initWithNibName:@"STGOptionsGeneralViewController" bundle:nil]];
-    [self setOptionsShortcutsVC:[[STGOptionsShortcutsViewController alloc] initWithNibName:@"STGOptionsShortcutsViewController" bundle:nil]];
-    [_optionsShortcutsVC setDelegate:self];
-    [self setOptionsQuickUploadVC:[[STGOptionsQuickUploadViewController alloc] initWithNibName:@"STGOptionsQuickUploadViewController" bundle:nil]];
-    [self setOptionsCFSVC:[[STGOptionsCFSViewController alloc] initWithNibName:@"STGOptionsCFSViewController" bundle:nil]];
-    [self setOptionsAboutVC:[[STGOptionsAboutViewController alloc] initWithNibName:@"STGOptionsAboutViewController" bundle:nil]];
-    
-    NSMutableArray *optionsArray = [[NSMutableArray alloc] init];
-    [optionsArray addObject:_optionsGeneralVC];
-    [optionsArray addObject:_optionsQuickUploadVC];
-    if ([[STGAPIConfiguration currentConfiguration] hasCFS])
-        [optionsArray addObject:_optionsCFSVC];
-    [optionsArray addObject:_optionsShortcutsVC];
-    [optionsArray addObject:_optionsAboutVC];
-    [self setPrefsController:[[MASPreferencesWindowController alloc] initWithViewControllers:optionsArray title:@"Coco Storage Preferences"]];
+    [self setOptionsManager:[[STGOptionsManager alloc] init]];
+    [_optionsManager setDelegate:self];
     
     [self setWelcomeWC:[[STGWelcomeWindowController alloc] initWithWindowNibName:@"STGWelcomeWindowController"]];
     [_welcomeWC setWelcomeWCDelegate:self];
@@ -277,7 +264,7 @@ STGAppDelegate *sharedAppDelegate;
                     [STGSystemHelper restartUsingSparkle];
             }
 
-            [[self optionsShortcutsVC] updateHotkeyStatus];
+            [[self optionsManager] updateHotkeyStatus];
         }
     }
     
@@ -437,15 +424,12 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)openPreferences
 {
-    [_prefsController selectControllerAtIndex:0];
-    [_prefsController showWindow:self];
-    
-    [NSApp  activateIgnoringOtherApps:YES];
+    [_optionsManager openPreferencesWindow];
 }
 
 - (IBAction)openPreferences:(id)sender
 {
-    [self openPreferences];
+    [_optionsManager openPreferencesWindow];
 }
 
 - (IBAction)openWelcomeWindow:(id)sender
@@ -494,7 +478,7 @@ STGAppDelegate *sharedAppDelegate;
     {
         if ([[userInfo objectForKey:@"action"] isEqualToString:@"hotkeyChange"])
         {
-            NSEvent *hotkeyReturnEvent = [_optionsShortcutsVC keyPressed:event];
+            NSEvent *hotkeyReturnEvent = [_optionsManager keyPressed:event];
             
             if (hotkeyReturnEvent != event)
             {
@@ -679,7 +663,7 @@ STGAppDelegate *sharedAppDelegate;
             [STGSystemHelper restartUsingSparkle];
     }
 
-    [[self optionsShortcutsVC] updateHotkeyStatus];
+    [_optionsManager updateHotkeyStatus];
 }
 
 - (BOOL)hotkeysEnabled

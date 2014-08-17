@@ -13,8 +13,6 @@
 
 #import "STGDataCaptureManager.h"
 
-#import "STGOptionsShortcutsViewController.h"
-
 #import "STGRecentUploadView.h"
 
 #import "STGWelcomeWindowController.h"
@@ -26,15 +24,11 @@
 #import "STGCreateAlbumWindowController.h"
 #import "STGMovieCaptureWindowController.h"
 
+#import "STGOptionsManager.h"
+
 @class STGPacketQueue;
 
 @class MASPreferencesWindowController;
-
-@class STGOptionsGeneralViewController;
-@class STGOptionsShortcutsViewController;
-@class STGOptionsQuickUploadViewController;
-@class STGOptionsCFSViewController;
-@class STGOptionsAboutViewController;
 
 @class STGStatusItemManager;
 
@@ -46,7 +40,7 @@
 
 @class STGCFSSyncCheck;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsShortcutsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
@@ -56,7 +50,6 @@
 @property (nonatomic, assign) BOOL apiV1Alive;
 @property (nonatomic, assign) BOOL apiV2Alive;
 
-@property (nonatomic, retain) MASPreferencesWindowController *prefsController;
 @property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
 
 @property (nonatomic, retain) STGCreateAlbumWindowController *createAlbumWC;
@@ -74,12 +67,7 @@
 
 @property (nonatomic, retain) STGMovieCaptureSession *currentMovieCapture;
 
-@property (nonatomic, retain) STGOptionsGeneralViewController *optionsGeneralVC;
-@property (nonatomic, retain) STGOptionsShortcutsViewController *optionsShortcutsVC;
-@property (nonatomic, retain) STGOptionsQuickUploadViewController *optionsQuickUploadVC;
-@property (nonatomic, retain) STGOptionsCFSViewController *optionsCFSVC;
-@property (nonatomic, retain) STGOptionsAboutViewController *optionsAboutVC;
-
+@property (nonatomic, retain) STGOptionsManager *optionsManager;
 @property (nonatomic, retain) STGStatusItemManager *statusItemManager;
 
 - (IBAction)openPreferences:(id)sender;

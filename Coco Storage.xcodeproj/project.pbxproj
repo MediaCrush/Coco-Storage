@@ -99,6 +99,7 @@
 		80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */; };
 		80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */; };
 		80F7698219A1207A000DC74D /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80F7698119A1207A000DC74D /* IOKit.framework */; };
+		80F7698519A1379A000DC74D /* STGOptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7698419A1379A000DC74D /* STGOptionsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -253,6 +254,8 @@
 		80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGMovieCaptureWindowController.m; sourceTree = "<group>"; };
 		80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGMovieCaptureWindowController.xib; sourceTree = "<group>"; };
 		80F7698119A1207A000DC74D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		80F7698319A1379A000DC74D /* STGOptionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsManager.h; sourceTree = "<group>"; };
+		80F7698419A1379A000DC74D /* STGOptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,6 +538,8 @@
 		80F7697819A0E5EE000DC74D /* Options */ = {
 			isa = PBXGroup;
 			children = (
+				80F7698319A1379A000DC74D /* STGOptionsManager.h */,
+				80F7698419A1379A000DC74D /* STGOptionsManager.m */,
 				8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */,
 				8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */,
 				8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */,
@@ -716,6 +721,7 @@
 				8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */,
 				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
 				8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */,
+				80F7698519A1379A000DC74D /* STGOptionsManager.m in Sources */,
 				80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */,
 				8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */,
 				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
