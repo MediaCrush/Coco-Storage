@@ -80,7 +80,16 @@ STGAppDelegate *sharedAppDelegate;
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
     [[self hotkeyHelper] linkToSystem];
     
+#if USED_STORAGE_API == API_MEDIACRUSH
     [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
+#else
+    #if USED_STORAGE_API == API_STORAGE
+    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStorage standardConfiguration]];
+    #else
+    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStub standardConfiguration]];
+    #endif
+#endif
+    
     [[STGAPIConfiguration currentConfiguration] setDelegate:_networkManager];
     
     [self setOptionsManager:[[STGOptionsManager alloc] init]];
