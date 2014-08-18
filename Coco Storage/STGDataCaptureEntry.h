@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface STGDataCaptureEntry : NSObject
+@interface STGDataCaptureEntry : NSObject <NSCoding>
 
 @property (nonatomic, retain) NSURL *fileURL;
 @property (nonatomic, assign) BOOL deleteOnCompletetion;
@@ -17,8 +17,5 @@
 @property (nonatomic, retain) NSString *onlineLink;
 
 + (id)entryWithURL:(NSURL *)url deleteOnCompletion:(BOOL)del;
-+ (id)entryFromString:(NSString *)string;
-
-- (NSString *)storeInfoInString;
 
 @end

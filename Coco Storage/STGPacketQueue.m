@@ -74,7 +74,10 @@
     [_uploadQueue removeObject:entry];
     
     if ([_connectionManager activeEntry] == entry)
+    {
         [_connectionManager cancelCurrentRequest];
+        [self setUploadedData:0.0];
+    }
     
     [self update];
     
@@ -84,14 +87,17 @@
 
 - (void)cancelAllEntries
 {
-    while ([_uploadQueue count] > 0)
+    while ([_uploadQueue count] > 1)
     {
-        [self cancelEntry:[_uploadQueue objectAtIndex:0]];
+        [self cancelEntry:[_uploadQueue objectAtIndex:1]];
     }
+    
+    [self cancelEntry:[_uploadQueue objectAtIndex:0]];
 }
 
 - (void)startUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry
 {
+    [self setUploadedData:0.0];
     if ([_delegate respondsToSelector:@selector(startUploadingData:entry:)])
     {
         [_delegate startUploadingData:self entry:entry];
@@ -102,6 +108,8 @@
 
 - (void)updateUploadProgress:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry sentData:(NSInteger)sentData totalData:(NSInteger)totalData
 {
+    [self setUploadedData:(double)sentData / (double)totalData];
+    
     if ([_delegate respondsToSelector:@selector(updateUploadProgress:entry:sentData:totalData:)])
     {
         [_delegate updateUploadProgress:self entry:entry sentData:sentData totalData:totalData];
@@ -113,6 +121,7 @@
 - (void)finishUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse
 {
     [self cancelEntry:entry];
+    [self setUploadedData:0.0];
     
     if ([_delegate respondsToSelector:@selector(finishUploadingData:entry:fullResponse:urlResponse:)])
     {
@@ -120,6 +129,17 @@
     }
 
     [self update];
+}
+
+- (void)setUploadedData:(double)uploadedData
+{
+    if (_uploadedData != uploadedData)
+    {
+        _uploadedData = uploadedData;
+        
+        if ([_delegate respondsToSelector:@selector(packetQueueUpdatedProgress:)])
+            [_delegate packetQueueUpdatedProgress:self];
+    }
 }
 
 @end

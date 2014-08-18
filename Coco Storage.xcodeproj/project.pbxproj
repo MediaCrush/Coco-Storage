@@ -100,6 +100,8 @@
 		80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */; };
 		80F7698219A1207A000DC74D /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80F7698119A1207A000DC74D /* IOKit.framework */; };
 		80F7698519A1379A000DC74D /* STGOptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7698419A1379A000DC74D /* STGOptionsManager.m */; };
+		80F7698819A14B06000DC74D /* STGNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7698719A14B06000DC74D /* STGNetworkManager.m */; };
+		80F7698B19A15146000DC74D /* STGUncompletedUploadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7698A19A15146000DC74D /* STGUncompletedUploadList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -256,6 +258,10 @@
 		80F7698119A1207A000DC74D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		80F7698319A1379A000DC74D /* STGOptionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsManager.h; sourceTree = "<group>"; };
 		80F7698419A1379A000DC74D /* STGOptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsManager.m; sourceTree = "<group>"; };
+		80F7698619A14B06000DC74D /* STGNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGNetworkManager.h; sourceTree = "<group>"; };
+		80F7698719A14B06000DC74D /* STGNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkManager.m; sourceTree = "<group>"; };
+		80F7698919A15146000DC74D /* STGUncompletedUploadList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUncompletedUploadList.h; sourceTree = "<group>"; };
+		80F7698A19A15146000DC74D /* STGUncompletedUploadList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUncompletedUploadList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,8 +399,12 @@
 		806598491995686F00EF0E34 /* Web-API */ = {
 			isa = PBXGroup;
 			children = (
+				80F7698619A14B06000DC74D /* STGNetworkManager.h */,
+				80F7698719A14B06000DC74D /* STGNetworkManager.m */,
 				80492696173EEAB100C08A7F /* STGPacketQueue.h */,
 				80492697173EEAB100C08A7F /* STGPacketQueue.m */,
+				80F7698919A15146000DC74D /* STGUncompletedUploadList.h */,
+				80F7698A19A15146000DC74D /* STGUncompletedUploadList.m */,
 				80068FDF17272D9900DA1492 /* STGStorageConnectionManager.h */,
 				80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */,
 				80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */,
@@ -718,6 +728,7 @@
 				80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */,
 				8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */,
 				8029A49E17283EF000F09884 /* STGOptionsShortcutsViewController.m in Sources */,
+				80F7698819A14B06000DC74D /* STGNetworkManager.m in Sources */,
 				8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */,
 				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
 				8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */,
@@ -740,6 +751,7 @@
 				8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */,
 				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
 				80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */,
+				80F7698B19A15146000DC74D /* STGUncompletedUploadList.m in Sources */,
 				80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */,
 				80781B531746B26400D0C790 /* STGOptionsQuickUploadViewController.m in Sources */,
 				80485FE91747FABF00CB6226 /* NSButton+TextColor.m in Sources */,

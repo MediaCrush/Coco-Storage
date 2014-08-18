@@ -11,27 +11,7 @@
 #import "STGStorageConnectionManager.h"
 
 @class STGPacket;
-
-@protocol STGPacketQueueDelegate;
-
-@interface STGPacketQueue : NSObject <STGStorageConnectionManagerDelegate>
-
-@property (nonatomic, assign) id<STGPacketQueueDelegate> delegate;
-
-@property (nonatomic, retain) NSMutableArray *uploadQueue;
-@property (nonatomic, retain) STGStorageConnectionManager *connectionManager;
-
-@property (nonatomic, assign) BOOL uploadsPaused;
-
-- (void)update;
-
-- (void)addEntry:(STGPacket *)entry;
-
-- (void)cancelEntry:(STGPacket *)entry;
-- (void)cancelEntryAtIndex:(int)index;
-- (void)cancelAllEntries;
-
-@end
+@class STGPacketQueue;
 
 @protocol STGPacketQueueDelegate <NSObject>
 
@@ -42,5 +22,27 @@
 - (void)finishUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse;
 
 - (void)packetQueue:(STGPacketQueue *)queue cancelledEntry:(STGPacket *)entry;
+
+- (void)packetQueueUpdatedProgress:(STGPacketQueue *)queue;
+
+@end
+
+@interface STGPacketQueue : NSObject <STGStorageConnectionManagerDelegate>
+
+@property (nonatomic, assign) id<STGPacketQueueDelegate> delegate;
+
+@property (nonatomic, retain) NSMutableArray *uploadQueue;
+@property (nonatomic, retain) STGStorageConnectionManager *connectionManager;
+
+@property (nonatomic, assign) BOOL uploadsPaused;
+@property (nonatomic, assign, readonly) double uploadedData;
+
+- (void)update;
+
+- (void)addEntry:(STGPacket *)entry;
+
+- (void)cancelEntry:(STGPacket *)entry;
+- (void)cancelEntryAtIndex:(int)index;
+- (void)cancelAllEntries;
 
 @end

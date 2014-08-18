@@ -12,19 +12,9 @@
 
 #import "STGStatusItemView.h"
 
-#define STGStatusItemWidth 24.0
+#import "STGNetworkManager.h"
 
-typedef NS_ENUM(NSUInteger, STGServerStatus)
-{
-    STGServerStatusOnline = 0,
-    STGServerStatusServerOffline = 1,
-    STGServerStatusClientOffline = 2,
-    STGServerStatusUnknown = 3,
-    STGServerStatusServerV1Busy = 4,
-    STGServerStatusServerV2Busy = 5,
-    STGServerStatusServerBusy = 6,
-    STGServerStatusInvalidKey = 7
-};
+#define STGStatusItemWidth 24.0
 
 @class STGPacketQueue;
 @class STGDataCaptureEntry;

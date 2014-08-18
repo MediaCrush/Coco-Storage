@@ -26,7 +26,7 @@
 
 #import "STGOptionsManager.h"
 
-@class STGPacketQueue;
+#import "STGNetworkManager.h"
 
 @class MASPreferencesWindowController;
 
@@ -38,17 +38,11 @@
 
 @class SUUpdater;
 
-@class STGCFSSyncCheck;
-
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, STGPacketQueueDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGAPIConfigurationDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
-@property (nonatomic, retain) NSTimer *uploadTimer;
-@property (nonatomic, assign) NSUInteger ticksAlive;
-
-@property (nonatomic, assign) BOOL apiV1Alive;
-@property (nonatomic, assign) BOOL apiV2Alive;
+@property (nonatomic, retain) STGNetworkManager *networkManager;
 
 @property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
 
@@ -57,12 +51,6 @@
 
 @property (nonatomic, retain) NSMutableArray *recentFilesArray;
 
-@property (nonatomic, retain) STGPacketQueue *packetUploadV1Queue;
-@property (nonatomic, retain) STGPacketQueue *packetUploadV2Queue;
-@property (nonatomic, retain) STGPacketQueue *packetSupportQueue;
-
-@property (nonatomic, retain) STGCFSSyncCheck *cfsSyncCheck;
-
 @property (nonatomic, retain) STGHotkeyHelper *hotkeyHelper;
 
 @property (nonatomic, retain) STGMovieCaptureSession *currentMovieCapture;
@@ -70,13 +58,13 @@
 @property (nonatomic, retain) STGOptionsManager *optionsManager;
 @property (nonatomic, retain) STGStatusItemManager *statusItemManager;
 
+@property (nonatomic, retain) NSTimer *assistiveDeviceTimer;
+
 - (IBAction)openPreferences:(id)sender;
 - (IBAction)openWelcomeWindow:(id)sender;
 
 - (void)readFromUserDefaults;
 - (void)saveProperties;
-
-- (void)uploadTimerFired:(NSTimer*)theTimer;
 
 - (void)updateShortcuts;
 - (void)registerAsAssistiveDevice;

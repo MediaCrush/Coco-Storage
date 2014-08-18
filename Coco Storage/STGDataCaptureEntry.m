@@ -12,6 +12,26 @@
 
 @implementation STGDataCaptureEntry
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        [self setFileURL:[aDecoder decodeObjectForKey:@"FileURL"]];
+        [self setDeleteOnCompletetion:[aDecoder decodeBoolForKey:@"DeleteOnCompletion"]];
+        [self setOnlineLink:[aDecoder decodeObjectForKey:@"OnlineLink"]];
+        [self setOnlineID:[aDecoder decodeObjectForKey:@"OnlineID"]];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_fileURL forKey:@"FileURL"];
+    [aCoder encodeBool:_deleteOnCompletetion forKey:@"DeleteOnCompletion"];
+    [aCoder encodeObject:_onlineLink forKey:@"OnlineLink"];
+    [aCoder encodeObject:_onlineID forKey:@"OnlineID"];
+}
+
 + (STGDataCaptureEntry *)entryWithURL:(NSURL *)url deleteOnCompletion:(BOOL)del
 {
     STGDataCaptureEntry *entry = [[STGDataCaptureEntry alloc] init];
@@ -21,40 +41,6 @@
     [entry setOnlineID:@""];
     
     return entry;
-}
-
-+ (STGDataCaptureEntry *)entryFromString:(NSString *)string
-{
-    NSArray *stringArray = [STGFileHelper readStringsFromString:string];
-
-    STGDataCaptureEntry *entry = [[STGDataCaptureEntry alloc] init];
-
-    if ([stringArray count] > 0)
-        [entry setFileURL:[NSURL URLWithString:[stringArray objectAtIndex:0]]];
-    else
-        [entry setFileURL:nil];
-
-    if ([stringArray count] > 1)
-        [entry setDeleteOnCompletetion:[[stringArray objectAtIndex:1] intValue] == 1];
-    else
-        [entry setDeleteOnCompletetion:NO];
-
-    if ([stringArray count] > 2)
-        [entry setOnlineLink:[stringArray objectAtIndex:2]];
-    else
-        [entry setOnlineLink:@""];
-
-    if ([stringArray count] > 3)
-        [entry setOnlineID:[stringArray objectAtIndex:3]];
-    else
-        [entry setOnlineID:@""];
-
-    return entry;
-}
-
-- (NSString *)storeInfoInString
-{
-    return [STGFileHelper storeStringsInString:[NSArray arrayWithObjects:[_fileURL absoluteString], [NSString stringWithFormat:@"%i", _deleteOnCompletetion], _onlineLink, _onlineID, nil]];
 }
 
 @end

@@ -26,13 +26,10 @@
 #import "STGStatusItemManager.h"
 
 #import "STGPacketQueue.h"
-#import "STGPacket.h"
 
 #import "STGAPIConfiguration.h"
 #import "STGAPIConfigurationStorage.h"
 #import "STGAPIConfigurationMediacrush.h"
-
-#import "STGCFSSyncCheck.h"
 
 #import "STGJSONHelper.h"
 
@@ -40,25 +37,9 @@
 
 #import "STGMovieCaptureSession.h"
 
+#import "STGUncompletedUploadList.h"
+
 STGAppDelegate *sharedAppDelegate;
-
-@interface STGAppDelegate ()
-
-- (NSString *)getApiKey;
-- (BOOL)isAPIKeyValid:(BOOL)output;
-- (NSString *)getCFSFolder;
-- (NSString *)getTempFolder;
-
-- (void)keyMissingSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
-
-- (void)assistiveDeviceFailedSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
-- (void)assistiveDevicePromptSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
-
-- (void)tryAddingStandardShortcut:(NSString *)charsDefaultsKey action:(NSString *)action menuItem:(NSMenuItem *)menuItem;
-
-- (void)promptAssistiveDeviceRegister;
-
-@end
 
 @implementation STGAppDelegate
 
@@ -73,9 +54,6 @@ STGAppDelegate *sharedAppDelegate;
         sharedAppDelegate = self;
         
         [self setRecentFilesArray:[[NSMutableArray alloc] init]];
-        
-        [self setApiV1Alive:YES];
-        [self setApiV2Alive:YES];
     }
     
     return self;
@@ -95,18 +73,14 @@ STGAppDelegate *sharedAppDelegate;
     [[NSUserDefaults standardUserDefaults] registerDefaults:standardDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-    [self setPacketUploadV1Queue:[[STGPacketQueue alloc] init]];
-    [_packetUploadV1Queue setDelegate:self];
-    [self setPacketUploadV2Queue:[[STGPacketQueue alloc] init]];
-    [_packetUploadV2Queue setDelegate:self];
-    [self setPacketSupportQueue:[[STGPacketQueue alloc] init]];
-    [_packetSupportQueue setDelegate:self];
+    [self setNetworkManager:[[STGNetworkManager alloc] init]];
+    [_networkManager setDelegate:self];
     
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
     [[self hotkeyHelper] linkToSystem];
     
     [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
-    [[STGAPIConfiguration currentConfiguration] setDelegate:self];
+    [[STGAPIConfiguration currentConfiguration] setDelegate:_networkManager];
     
     [self setOptionsManager:[[STGOptionsManager alloc] init]];
     [_optionsManager setDelegate:self];
@@ -126,8 +100,6 @@ STGAppDelegate *sharedAppDelegate;
     [self setStatusItemManager:[[STGStatusItemManager alloc] init]];
     [_statusItemManager setDelegate:self];
     
-    [self setCfsSyncCheck:[[STGCFSSyncCheck alloc] init]];
-
     [self setCreateAlbumWC:[[STGCreateAlbumWindowController alloc] initWithWindowNibName:@"STGCreateAlbumWindowController"]];
     [_createAlbumWC setDelegate:self];
     [self setCaptureMovieWC:[[STGMovieCaptureWindowController alloc] initWithWindowNibName:@"STGMovieCaptureWindowController"]];
@@ -137,12 +109,12 @@ STGAppDelegate *sharedAppDelegate;
 
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
         
-    [self setUploadTimer:[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(uploadTimerFired:) userInfo:nil repeats:YES]];
-        
     [_statusItemManager updateRecentFiles:_recentFilesArray];
-    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+    [_statusItemManager updateUploadQueue:[_networkManager packetUploadV1Queue] currentProgress:0.0];
     [_statusItemManager updatePauseDownloadItem];
     [self updateShortcuts];
+    
+    [self setAssistiveDeviceTimer:[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(assistiveDeviceTimerFired:) userInfo:nil repeats:YES]];
   
 //    [_packetSupportQueue addEntry:[STGPacketCreator cfsDeleteFilePacket:@"/foo2.png" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
 //    [_packetUploadV2Queue addEntry:[STGPacketCreator cfsPostFilePacket:@"/foo9.png" fileURL:[STGFileHelper urlFromStandardPath:[[self getCFSFolder] stringByAppendingPathComponent:@"/foo2/foo2.png"]] link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
@@ -152,27 +124,22 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)readFromUserDefaults
 {
-    NSArray *uploadQueueStringArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"uploadQueue"];
-    for (NSString *string in uploadQueueStringArray)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSData *uncompletedUploadsData = [defaults objectForKey:@"UploadQueue"];
+    if (uncompletedUploadsData)
     {
-        STGDataCaptureEntry *entry = [STGDataCaptureEntry entryFromString:string];
-        
-        if(entry)
-        {
-            [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
-        }
+        STGUncompletedUploadList *uncompletedUploads = [NSKeyedUnarchiver unarchiveObjectWithData:uncompletedUploadsData];
+        [uncompletedUploads queueAll:[_networkManager packetUploadV1Queue] inConfiguration:[STGAPIConfiguration currentConfiguration] withKey:[self getApiKey]];
     }
-    [_packetUploadV1Queue setUploadsPaused:[[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"]];
-    [_packetUploadV2Queue setUploadsPaused:[[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"]];
+
+    [_networkManager setUploadsPaused:[[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"]];
     
-    NSArray *recentFilesStringArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"recentEntries"];
-    for (NSString *string in recentFilesStringArray)
-    {
-        STGDataCaptureEntry *entry = [STGDataCaptureEntry entryFromString:string];
-        
-        if(entry)
-            [_recentFilesArray addObject:entry];
-    }
+    NSData *recentFilesData = [defaults objectForKey:@"RecentUploads"];
+    if (recentFilesData)
+        [self setRecentFilesArray:[NSKeyedUnarchiver unarchiveObjectWithData:recentFilesData]];
+    if (![_recentFilesArray isKindOfClass:[NSMutableArray class]])
+        [self setRecentFilesArray:[[NSMutableArray alloc] init]];
     
     [STGSystemHelper setStartOnSystemLaunch:[[NSUserDefaults standardUserDefaults] integerForKey:@"startAtLogin"] == 1];
     
@@ -181,7 +148,7 @@ STGAppDelegate *sharedAppDelegate;
     
     [_sparkleUpdater setAutomaticallyChecksForUpdates:[[NSUserDefaults standardUserDefaults] integerForKey:@"autoUpdate"] == 1];
     
-    [_cfsSyncCheck setBasePath:[self getCFSFolder]];
+//    [[_networkManager cfsSyncCheck] setBasePath:[self getCFSFolder]];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"promptedAssistiveDeviceRegister"] && ![STGSystemHelper isAssistiveDevice])
     {
@@ -192,79 +159,39 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)saveProperties
 {
-    NSMutableArray *uploadQueueStringArray = [[NSMutableArray alloc] init];
-    for (STGPacket *entry in [_packetUploadV1Queue uploadQueue])
-    {
-        if ([[entry packetType] isEqualToString:@"uploadFile"])
-            [uploadQueueStringArray addObject:[[[entry userInfo] objectForKey:@"dataCaptureEntry"] storeInfoInString]];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:uploadQueueStringArray forKey:@"uploadQueue"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    STGUncompletedUploadList *uncompletedUploads = [[STGUncompletedUploadList alloc] initWithPacketQueue:[_networkManager packetUploadV1Queue]];
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:uncompletedUploads] forKey:@"UploadQueue"];
     
-    NSMutableArray *recentFilesStringArray = [[NSMutableArray alloc] initWithCapacity:[_recentFilesArray count]];
-    for (STGDataCaptureEntry *entry in _recentFilesArray)
-    {
-        [recentFilesStringArray addObject:[entry storeInfoInString]];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:recentFilesStringArray forKey:@"recentEntries"];
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_recentFilesArray] forKey:@"RecentUploads"];
     
     [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"lastVersion"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];    
 }
 
-#pragma mark - Timer 
+#pragma mark - Timer
 
-- (void)uploadTimerFired:(NSTimer*)theTimer
+- (void)assistiveDeviceTimerFired:(NSTimer *)timer
 {
-    [_packetUploadV1Queue update];
-    [_packetUploadV2Queue update];
-    [_packetSupportQueue update];
-    
-    if (_ticksAlive % 5 == 0)
+    if ([[self hotkeyHelper] hotkeyStatus] != STGHotkeyStatusOkay)
     {
-        BOOL reachingServer = [[STGAPIConfiguration currentConfiguration] canReachServer];
-        
-        if (reachingServer)
+        if ([STGSystemHelper isAssistiveDevice])
         {
-            if ([self isAPIKeyValid:NO])
-            {
-                [[STGAPIConfiguration currentConfiguration] sendStatusPacket:_packetSupportQueue apiKey:[self getApiKey]];
-                
-                //                [_packetSupportQueue addEntry:[STGPacketCreator cfsFileListPacket:@"" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] recursive:YES key:[self getApiKey]]];
-                
-//                [_packetSupportQueue addEntry:[STGPacketCreator objectInfoPacket:[[_recentFilesArray objectAtIndex:0] onlineID] link:[[STGAPIConfiguration standardConfiguration] getObjectInfoLink] key:[self getApiKey]]];
-            }
-        }
-        else
-        {
-            BOOL reachingApple = [STGNetworkHelper isWebsiteReachable:@"www.apple.com"];
-
-            if (!reachingApple)
-                [_statusItemManager updateServerStatus:STGServerStatusClientOffline];
-            else
-                [_statusItemManager updateServerStatus:STGServerStatusServerOffline];
+            if (![[self hotkeyHelper] linkToSystem])
+                [STGSystemHelper restartUsingSparkle];
         }
         
-        if ([[self hotkeyHelper] hotkeyStatus] != STGHotkeyStatusOkay)
-        {
-            if ([STGSystemHelper isAssistiveDevice])
-            {
-                if (![[self hotkeyHelper] linkToSystem])
-                    [STGSystemHelper restartUsingSparkle];
-            }
-
-            [[self optionsManager] updateHotkeyStatus];
-        }
+        [[self optionsManager] updateHotkeyStatus];
     }
-    
-    _ticksAlive ++;
 }
 
 #pragma mark - Capturing
 
 -(void)captureScreen:(BOOL)fullScreen;
 {
-    if ([self isAPIKeyValid:YES])
+    if ([_networkManager isAPIKeyValid:YES])
     {
         [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[self getTempFolder] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0 delegate:self];
     }
@@ -278,7 +205,7 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)captureFile
 {
-    if ([self isAPIKeyValid:YES])
+    if ([_networkManager isAPIKeyValid:YES])
     {
         [STGDataCaptureManager startFileCaptureWithTempFolder:[self getTempFolder] delegate:self];
     }
@@ -309,79 +236,20 @@ STGAppDelegate *sharedAppDelegate;
         {
             if (entry)
             {
-                [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
-            }
-        }
-        
-        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
-    }    
-}
-
-- (void)startUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry
-{
-    if ([[entry packetType] isEqualToString:@"uploadFile"])
-    {
-        [_statusItemManager setStatusItemUploadProgress:0.0];
-    }
-}
-
-- (void)updateUploadProgress:(STGPacketQueue *)queue entry:(STGPacket *)entry sentData:(NSInteger)sentData totalData:(NSInteger)totalData
-{
-    if ([[entry packetType] isEqualToString:@"uploadFile"])
-    {
-        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:((double)sentData / (double)totalData)];
-        [_statusItemManager setStatusItemUploadProgress:((double)sentData / (double)totalData)];
-    }
-}
-
-- (void)finishUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse
-{
-    NSUInteger responseCode = 0;
-    if ([urlResponse isKindOfClass:[NSHTTPURLResponse class]])
-    {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) urlResponse;
-        
-        responseCode = [httpResponse statusCode];
-        
-        BOOL debugOutput = NO;
-        
-        if (debugOutput)
-            NSLog(@"Status (ERROR!): (%li) %@", (long)[httpResponse statusCode], [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
-        
-        BOOL outputHeaders = NO;
-        
-        if (outputHeaders)
-        {
-            NSDictionary *headerFields = [httpResponse allHeaderFields];
-            
-            NSLog(@"----Headers----");
-            
-            for (NSObject *key in [headerFields allKeys])
-            {
-                NSLog(@"\"%@\" : \"%@\"", key, [headerFields objectForKey:key]);
+                [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entry:entry public:YES];
             }
         }
     }
-    
-    [[STGAPIConfiguration currentConfiguration] handlePacket:entry fullResponse:response urlResponse:urlResponse];
-}
-
-- (void)packetQueue:(STGPacketQueue *)queue cancelledEntry:(STGPacket *)entry
-{
-    [[STGAPIConfiguration currentConfiguration] cancelPacketUpload:entry];
 }
 
 - (void)cancelAllUploads
 {
-    [_packetUploadV1Queue cancelAllEntries];
-        
-    [_statusItemManager setStatusItemUploadProgress:0.0];
-    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+    [[_networkManager packetUploadV1Queue] cancelAllEntries];
 }
 
 -(void)deleteRecentFile:(STGDataCaptureEntry *)entry
 {
-    [[STGAPIConfiguration currentConfiguration] sendFileDeletePacket:_packetSupportQueue apiKey:[self getApiKey] entry:entry];
+    [[STGAPIConfiguration currentConfiguration] sendFileDeletePacket:[_networkManager packetSupportQueue] apiKey:[self getApiKey] entry:entry];
     
     [_recentFilesArray removeObject:entry];
     [_statusItemManager updateRecentFiles:_recentFilesArray];
@@ -389,11 +257,7 @@ STGAppDelegate *sharedAppDelegate;
 
 -(void)cancelQueueFile:(int)index
 {
-    [_packetUploadV1Queue cancelEntryAtIndex:index];
-    
-    if (index == 0)
-        [_statusItemManager setStatusItemUploadProgress:0.0];
-    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+    [[_networkManager packetUploadV1Queue] cancelEntryAtIndex:index];
 }
 
 -(void)togglePauseUploads
@@ -402,8 +266,7 @@ STGAppDelegate *sharedAppDelegate;
     
     [[NSUserDefaults standardUserDefaults] setBool:pause forKey:@"pauseUploads"];
     
-    [_packetUploadV1Queue setUploadsPaused:pause];
-    [_packetUploadV2Queue setUploadsPaused:pause];
+    [_networkManager setUploadsPaused:pause];
     
     [_statusItemManager setStatusItemUploadProgress:0.0];
     [_statusItemManager updatePauseDownloadItem];
@@ -521,7 +384,7 @@ STGAppDelegate *sharedAppDelegate;
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
-    if ([self isAPIKeyValid:YES])
+    if ([_networkManager isAPIKeyValid:YES])
     {
         NSURL *url = [STGFileHelper urlFromStandardPath:filename];
         
@@ -529,10 +392,8 @@ STGAppDelegate *sharedAppDelegate;
         {
             STGDataCaptureEntry *entry = [STGDataCaptureManager captureFile:url tempFolder:[self getTempFolder]];
             
-            [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
+            [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entry:entry public:YES];
         }
-        
-        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
         
         return YES;
     }
@@ -542,7 +403,7 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
-    if ([self isAPIKeyValid:YES])
+    if ([_networkManager isAPIKeyValid:YES])
     {
         for (NSString *filename in filenames)
         {
@@ -552,50 +413,13 @@ STGAppDelegate *sharedAppDelegate;
             {
                 STGDataCaptureEntry *entry = [STGDataCaptureManager captureFile:url tempFolder:[self getTempFolder]];
                 
-                [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
+                [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entry:entry public:YES];
             }
         }
-        
-        [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
     }
 }
 
 #pragma mark - Getters
-
-- (BOOL)isAPIKeyValid:(BOOL)output
-{
-    if (![[STGAPIConfiguration currentConfiguration] hasAPIKeys])
-        return YES;
-    else
-    {
-        NSString *key = [self getApiKey];
-        
-        int error = -1;
-        
-        if (!key || [key length] == 0)
-            error = 1;
-        else if ([key length] < 40)
-            error = 2;
-        
-        if (error > 0 && output)
-        {
-            if (error == 1)
-            {
-                NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"You have entered no Storage key! This is required as identification for %@. Please move to the preferences to enter / create one.", [[STGAPIConfiguration currentConfiguration] apiHostName]];
-                [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-            }
-            else if (error == 2)
-            {
-                NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Your storage key is too short [invalid]. This is required as identification for %@. Please move to the preferences to enter / create one.", [[STGAPIConfiguration currentConfiguration] apiHostName]];
-                [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-            }
-            
-            return NO;
-        }
-        else
-            return YES;
-    }
-}
 
 - (void)keyMissingSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
@@ -675,15 +499,26 @@ STGAppDelegate *sharedAppDelegate;
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"];
 }
 
-#pragma mark API Configuration delegate
+#pragma mark Network Delegate
 
-- (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success 
+- (void)serverStatusChanged:(STGNetworkManager *)networkManager
 {
-    [[[_statusItemManager statusItem] menu] cancelTracking];
-    [_statusItemManager setStatusItemUploadProgress:0.0];
-    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+    [_statusItemManager updateServerStatus:[networkManager serverStatus]];
+}
 
-    if (success)
+- (void)fileUploadProgressChanged:(STGNetworkManager *)networkManager
+{
+    [_statusItemManager updateUploadQueue:[networkManager packetUploadV1Queue] currentProgress:[networkManager fileUploadProgress]];
+}
+
+- (void)fileUploadQueueChanged:(STGNetworkManager *)networkManager
+{
+    [_statusItemManager updateUploadQueue:[networkManager packetUploadV1Queue] currentProgress:[networkManager fileUploadProgress]];
+}
+
+- (void)fileUploadCompleted:(STGNetworkManager *)networkManager entry:(STGDataCaptureEntry *)entry successful:(BOOL)successful
+{
+    if (successful)
     {
         [_recentFilesArray addObject:entry];
         
@@ -694,8 +529,8 @@ STGAppDelegate *sharedAppDelegate;
     }
     
     if ([entry deleteOnCompletetion] &&
-        ((success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepAllScreenshots"] == 0)
-         || (!success && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"] == 0)))
+        ((successful && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepAllScreenshots"] == 0)
+         || (!successful && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"] == 0)))
     {
         if ([entry fileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[[entry fileURL] path]])
         {
@@ -713,51 +548,18 @@ STGAppDelegate *sharedAppDelegate;
     }
 }
 
--(void)updateAPIStatus:(BOOL)active validKey:(BOOL)validKey
-{
-    [self setApiV1Alive:active];
-//    [self setApiV2Alive:alive];
-    
-    STGServerStatus status;
-    
-    if (_apiV1Alive/* && _apiV2Alive*/)
-        status = STGServerStatusOnline;
-    else if (!validKey)
-        status = STGServerStatusInvalidKey;
-    else
-    {
-        BOOL reachingServer = [[STGAPIConfiguration currentConfiguration] canReachServer];
-        BOOL reachingApple = [STGNetworkHelper isWebsiteReachable:@"www.apple.com"];
-        
-        if (!reachingApple && !reachingServer)
-            status = STGServerStatusClientOffline;
-        else if (!reachingServer)
-            status = STGServerStatusServerOffline;
-        else if (!_apiV1Alive/* && !_apiV2Alive*/)
-            status = STGServerStatusServerBusy;
-        else if (!_apiV1Alive)
-            status = STGServerStatusServerV1Busy;
-//        else if (!_apiV2Alive)
-//            status = STGServerStatusServerV2Busy;
-        else
-            status = STGServerStatusUnknown;
-    }
-    
-    [_statusItemManager updateServerStatus:status];
-}
-
 #pragma mark Album Controller Delegate
 
 - (void)createAlbumWithIDs:(NSArray *)entryIDs
 {
-    [[STGAPIConfiguration currentConfiguration] sendAlbumCreatePacket:_packetUploadV1Queue apiKey:[self getApiKey] entries:entryIDs];
+    [[STGAPIConfiguration currentConfiguration] sendAlbumCreatePacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entries:entryIDs];
 }
 
 #pragma mark Movie Controller Delegate
 
 - (void)startMovieCapture:(STGMovieCaptureWindowController *)movieCaptureWC
 {
-    if ([self isAPIKeyValid:YES] && (_currentMovieCapture == nil || ![_currentMovieCapture isRecording]))
+    if ([_networkManager isAPIKeyValid:YES] && (_currentMovieCapture == nil || ![_currentMovieCapture isRecording]))
     {
         [self performSelector:@selector(startMovieCaptureIgnoringDelay:) withObject:movieCaptureWC afterDelay:[[movieCaptureWC recordDelay] doubleValue]];
     }
@@ -774,9 +576,7 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)dataCaptureCompleted:(STGDataCaptureEntry *)entry sender:(id)sender
 {
-    [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:_packetUploadV1Queue apiKey:[self getApiKey] entry:entry public:YES];
-    
-    [_statusItemManager updateUploadQueue:_packetUploadV1Queue currentProgress:0.0];
+    [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entry:entry public:YES];
 }
 
 @end
