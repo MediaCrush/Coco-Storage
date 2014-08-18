@@ -28,6 +28,7 @@
 #import "STGPacketQueue.h"
 
 #import "STGAPIConfiguration.h"
+#import "STGAPIConfigurationStub.h"
 #import "STGAPIConfigurationStorage.h"
 #import "STGAPIConfigurationMediacrush.h"
 
@@ -526,6 +527,42 @@ STGAppDelegate *sharedAppDelegate;
             [_recentFilesArray removeObjectAtIndex:0];
         
         [_statusItemManager updateRecentFiles:_recentFilesArray];
+        
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"displayNotification"] == 1)
+        {
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            
+            [notification setTitle:[NSString stringWithFormat:@"Upload complete: %@!", [entry onlineID]]];
+            [notification setInformativeText:@"Click to view the uploaded file"];
+            [notification setSoundName:nil];
+            [notification setUserInfo:[NSDictionary dictionaryWithObject:[entry onlineLink] forKey:@"uploadLink"]];
+            
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        }
+        
+        if (![[[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"] isEqualToString:@"noSound"])
+        {
+            NSSound *sound = [NSSound soundNamed:[[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"]];
+            
+            if (sound)
+                [sound play];
+        }
+        
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkCopyToPasteboard"] == 1)
+        {
+            [[NSPasteboard generalPasteboard] clearContents];
+            [[NSPasteboard generalPasteboard] setString:[entry onlineLink] forType:NSPasteboardTypeString];
+        }
+        
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkOpenInBrowser"] == 1)
+        {
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[entry onlineLink]]];
+        }
+    }
+    else
+    {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file upload... Make sure your Storage key is valid, and try again.\n"];
+        [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];        
     }
     
     if ([entry deleteOnCompletetion] &&

@@ -150,37 +150,6 @@ STGAPIConfigurationStorage *standardConfiguration;
             NSString *link = [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID];
             [dataCaptureEntry setOnlineLink:link];
             
-            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"displayNotification"] == 1)
-            {
-                NSUserNotification *notification = [[NSUserNotification alloc] init];
-                
-                [notification setTitle:[NSString stringWithFormat:@"Coco Storage Upload complete: %@!", link]];
-                [notification setInformativeText:@"Click to view the uploaded file"];
-                [notification setSoundName:nil];
-                [notification setUserInfo:[NSDictionary dictionaryWithObject:link forKey:@"uploadLink"]];
-                
-                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-            }
-            
-            if (![[[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"] isEqualToString:@"noSound"])
-            {
-                NSSound *sound = [NSSound soundNamed:[[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"]];
-                
-                if (sound)
-                    [sound play];
-            }
-            
-            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkCopyToPasteboard"] == 1)
-            {
-                [[NSPasteboard generalPasteboard] clearContents];
-                [[NSPasteboard generalPasteboard] setString:link forType:NSPasteboardTypeString];
-            }
-            
-            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkOpenInBrowser"] == 1)
-            {
-                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:link]];
-            }
-            
             if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
             {
                 [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
@@ -188,11 +157,8 @@ STGAPIConfigurationStorage *standardConfiguration;
         }
         else
         {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file upload... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
-            [alert beginSheetModalForWindow:nil modalDelegate:[self delegate] didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-            
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
-            
+
             if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
             {
                 [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];

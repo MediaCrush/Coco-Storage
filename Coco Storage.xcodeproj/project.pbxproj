@@ -89,6 +89,7 @@
 		80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D7F9BF1741707500851DDB /* SystemConfiguration.framework */; };
 		80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C51741773A00851DDB /* ServerStatusOK.png */; };
 		80D7F9C81741773B00851DDB /* ServerStatusUnavailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */; };
+		80D91A7219A1DB8E00A402D6 /* STGAPIConfigurationStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D91A7119A1DB8E00A402D6 /* STGAPIConfigurationStub.m */; };
 		80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */; };
 		80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */; };
 		80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */; };
@@ -241,6 +242,8 @@
 		80D7F9BF1741707500851DDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		80D7F9C51741773A00851DDB /* ServerStatusOK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServerStatusOK.png; sourceTree = "<group>"; };
 		80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServerStatusUnavailable.png; sourceTree = "<group>"; };
+		80D91A7019A1DB8E00A402D6 /* STGAPIConfigurationStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationStub.h; sourceTree = "<group>"; };
+		80D91A7119A1DB8E00A402D6 /* STGAPIConfigurationStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfigurationStub.m; sourceTree = "<group>"; };
 		80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGWelcomeWindowController.h; sourceTree = "<group>"; };
 		80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGWelcomeWindowController.m; sourceTree = "<group>"; };
 		80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGWelcomeWindowController.xib; sourceTree = "<group>"; };
@@ -399,6 +402,7 @@
 		806598491995686F00EF0E34 /* Web-API */ = {
 			isa = PBXGroup;
 			children = (
+				80D91A6E19A1DB6300A402D6 /* APIs */,
 				80F7698619A14B06000DC74D /* STGNetworkManager.h */,
 				80F7698719A14B06000DC74D /* STGNetworkManager.m */,
 				80492696173EEAB100C08A7F /* STGPacketQueue.h */,
@@ -412,8 +416,6 @@
 				80492699173EEAC100C08A7F /* STGPacket.h */,
 				8049269A173EEAC100C08A7F /* STGPacket.m */,
 				80F7697A19A0E61A000DC74D /* CFS */,
-				8065984A1995688200EF0E34 /* Mediacrush */,
-				80659844199562BB00EF0E34 /* Getstorage */,
 			);
 			name = "Web-API";
 			sourceTree = "<group>";
@@ -519,6 +521,25 @@
 				80CC42621733C3B40068476F /* dsa_pub.pem */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		80D91A6E19A1DB6300A402D6 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				80D91A6F19A1DB7300A402D6 /* Stub */,
+				8065984A1995688200EF0E34 /* Mediacrush */,
+				80659844199562BB00EF0E34 /* Getstorage */,
+			);
+			name = APIs;
+			sourceTree = "<group>";
+		};
+		80D91A6F19A1DB7300A402D6 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				80D91A7019A1DB8E00A402D6 /* STGAPIConfigurationStub.h */,
+				80D91A7119A1DB8E00A402D6 /* STGAPIConfigurationStub.m */,
+			);
+			name = Stub;
 			sourceTree = "<group>";
 		};
 		80F7697619A0E5CF000DC74D /* Create-Album */ = {
@@ -733,6 +754,7 @@
 				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
 				8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */,
 				80F7698519A1379A000DC74D /* STGOptionsManager.m in Sources */,
+				80D91A7219A1DB8E00A402D6 /* STGAPIConfigurationStub.m in Sources */,
 				80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */,
 				8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */,
 				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
