@@ -60,6 +60,9 @@
 		8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 80486029174823A500CB6226 /* StatusBarIconUpdateOverlay.png */; };
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
+		804C879119A1FAAA000957C6 /* STGFloatingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */; };
+		804C879219A1FAAA000957C6 /* STGFloatingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804C879019A1FAAA000957C6 /* STGFloatingWindowController.xib */; };
+		804C879519A1FE2D000957C6 /* STGCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 804C879419A1FE2D000957C6 /* STGCountdownView.m */; };
 		8060C341199FB1FE001282CF /* STGCreateAlbumWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */; };
 		8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */; };
 		8060C345199FC8D3001282CF /* STGUploadedFileToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8060C344199FC8D3001282CF /* STGUploadedFileToken.m */; };
@@ -196,6 +199,11 @@
 		80492697173EEAB100C08A7F /* STGPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacketQueue.m; sourceTree = "<group>"; };
 		80492699173EEAC100C08A7F /* STGPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGPacket.h; sourceTree = "<group>"; };
 		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
+		804C878E19A1FAAA000957C6 /* STGFloatingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGFloatingWindowController.h; sourceTree = "<group>"; };
+		804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGFloatingWindowController.m; sourceTree = "<group>"; };
+		804C879019A1FAAA000957C6 /* STGFloatingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGFloatingWindowController.xib; sourceTree = "<group>"; };
+		804C879319A1FE2D000957C6 /* STGCountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCountdownView.h; sourceTree = "<group>"; };
+		804C879419A1FE2D000957C6 /* STGCountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCountdownView.m; sourceTree = "<group>"; };
 		8060C33E199FB1FE001282CF /* STGCreateAlbumWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCreateAlbumWindowController.h; sourceTree = "<group>"; };
 		8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCreateAlbumWindowController.m; sourceTree = "<group>"; };
 		8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGCreateAlbumWindowController.xib; sourceTree = "<group>"; };
@@ -390,6 +398,18 @@
 			name = MASPreferences;
 			sourceTree = "<group>";
 		};
+		804C878D19A1FA34000957C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				804C878E19A1FAAA000957C6 /* STGFloatingWindowController.h */,
+				804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */,
+				804C879019A1FAAA000957C6 /* STGFloatingWindowController.xib */,
+				804C879319A1FE2D000957C6 /* STGCountdownView.h */,
+				804C879419A1FE2D000957C6 /* STGCountdownView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		80659844199562BB00EF0E34 /* Getstorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +452,7 @@
 		8065984E1995694400EF0E34 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				804C878D19A1FA34000957C6 /* Views */,
 				80F7697819A0E5EE000DC74D /* Options */,
 				80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */,
 				80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */,
@@ -695,6 +716,7 @@
 				8029A48D17282CC900F09884 /* Credits.html in Resources */,
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
 				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
+				804C879219A1FAAA000957C6 /* STGFloatingWindowController.xib in Resources */,
 				8029A4A11728427900F09884 /* MainMenu.xib in Resources */,
 				8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */,
 				801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */,
@@ -745,6 +767,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80068FCF17272CA800DA1492 /* main.m in Sources */,
+				804C879119A1FAAA000957C6 /* STGFloatingWindowController.m in Sources */,
 				80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */,
 				80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */,
 				8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */,
@@ -760,6 +783,7 @@
 				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
 				807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */,
 				807A6682172A98AD00E0212C /* STGHotkeyHelperEntry.m in Sources */,
+				804C879519A1FE2D000957C6 /* STGCountdownView.m in Sources */,
 				807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */,
 				803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */,
 				803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */,

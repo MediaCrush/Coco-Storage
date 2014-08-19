@@ -42,6 +42,4 @@
 
 - (IBAction)startMovieCapture:(id)sender;
 
-- (void)startMovieCaptureIgnoringDelay;
-
 @end

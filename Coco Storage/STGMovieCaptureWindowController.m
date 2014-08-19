@@ -103,11 +103,6 @@
 {
     [self close];
 
-    [self performSelector:@selector(startMovieCaptureIgnoringDelay) withObject:nil afterDelay:[[self recordDelay] doubleValue]];
-}
-
-- (void)startMovieCaptureIgnoringDelay
-{
     if ([_delegate respondsToSelector:@selector(startMovieCapture:)])
     {
         [_delegate startMovieCapture:self];

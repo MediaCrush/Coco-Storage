@@ -43,6 +43,8 @@
 
 @class SUUpdater;
 
+@class STGFloatingWindowController;
+
 @interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
@@ -64,6 +66,8 @@
 @property (nonatomic, retain) STGStatusItemManager *statusItemManager;
 
 @property (nonatomic, retain) NSTimer *assistiveDeviceTimer;
+
+@property (nonatomic, retain) STGFloatingWindowController *countdownWC;
 
 - (IBAction)openPreferences:(id)sender;
 - (IBAction)openWelcomeWindow:(id)sender;

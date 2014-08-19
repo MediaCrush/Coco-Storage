@@ -35,6 +35,8 @@
 #import "STGJSONHelper.h"
 
 #import "STGCreateAlbumWindowController.h"
+#import "STGFloatingWindowController.h"
+#import "STGCountdownView.h"
 
 #import "STGMovieCaptureSession.h"
 
@@ -114,6 +116,10 @@ STGAppDelegate *sharedAppDelegate;
     [_createAlbumWC setDelegate:self];
     [self setCaptureMovieWC:[[STGMovieCaptureWindowController alloc] initWithWindowNibName:@"STGMovieCaptureWindowController"]];
     [_captureMovieWC setDelegate:self];
+    
+    [self setCountdownWC:[[STGFloatingWindowController alloc] initWithWindowNibName:@"STGFloatingWindowController"]];
+    [_countdownWC setContentView:[[STGCountdownView alloc] init]];
+    [[_countdownWC window] setContentSize:NSMakeSize(500, 40)];
 
     [self readFromUserDefaults];
 
@@ -607,12 +613,24 @@ STGAppDelegate *sharedAppDelegate;
 {
     if ([_networkManager isAPIKeyValid:YES] && (_currentMovieCapture == nil || ![_currentMovieCapture isRecording]))
     {
-        [self performSelector:@selector(startMovieCaptureIgnoringDelay:) withObject:movieCaptureWC afterDelay:[[movieCaptureWC recordDelay] doubleValue]];
+        CGFloat delay = [[movieCaptureWC recordDelay] doubleValue];
+
+        CGSize screenSize = [[[_countdownWC window] screen] frame].size;
+        CGSize windowSize = [[_countdownWC window] frame].size;
+        [[_countdownWC window] setFrameOrigin:NSMakePoint(screenSize.width - windowSize.width - 10, screenSize.height - windowSize.height - 50)];
+
+        [(STGCountdownView *)[_countdownWC contentView] setCountdownTime:delay];
+        [(STGCountdownView *)[_countdownWC contentView] fadeIn];
+
+        [_countdownWC showWindow:self];
+        
+        [self performSelector:@selector(startMovieCaptureIgnoringDelay:) withObject:movieCaptureWC afterDelay:delay];
     }
 }
 
 - (void)startMovieCaptureIgnoringDelay:(STGMovieCaptureWindowController *)movieCaptureWC
 {
+    [[_countdownWC window] close];
     STGMovieCaptureSession *session = [STGDataCaptureManager startScreenMovieCapture:[movieCaptureWC recordRect] display:[[movieCaptureWC recordDisplayID] unsignedIntValue] length:[[movieCaptureWC recordDuration] doubleValue] tempFolder:[self getTempFolder] recordVideo:[movieCaptureWC recordsVideo] recordComputerAudio:[movieCaptureWC recordsComputerAudio] recordMicrophoneAudio:[movieCaptureWC recordsMicrophoneAudio] quality:[movieCaptureWC quality] delegate:self];
     
     [self setCurrentMovieCapture:session];
