@@ -28,6 +28,8 @@
 
 #import "STGNetworkManager.h"
 
+#import "STGMovieCaptureSession.h"
+
 #define API_MEDIACRUSH 1
 #define API_STORAGE 2
 
@@ -39,13 +41,11 @@
 
 @class STGHotkeyHelper;
 
-@class STGMovieCaptureSession;
-
 @class SUUpdater;
 
 @class STGFloatingWindowController;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate, STGMovieCaptureSessionDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
@@ -67,6 +67,7 @@
 
 @property (nonatomic, retain) NSTimer *assistiveDeviceTimer;
 
+@property (nonatomic, retain) NSTimer *movieCaptureTimer;
 @property (nonatomic, retain) STGFloatingWindowController *countdownWC;
 
 - (IBAction)openPreferences:(id)sender;

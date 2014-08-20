@@ -23,6 +23,8 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 @class STGDataCaptureEntry;
 @class STGMovieCaptureSession;
 
+@protocol STGMovieCaptureSessionDelegate;
+
 @protocol STGDataCaptureDelegate <NSObject>
 @optional
 - (void)dataCaptureCompleted:(STGDataCaptureEntry *)entry sender:(id)sender;
@@ -40,7 +42,7 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 
 + (void)startFileCaptureWithTempFolder:(NSString *)tempFolder delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
 
-+ (STGMovieCaptureSession *)startScreenMovieCapture:(NSRect)capturedRect display:(CGDirectDisplayID)displayID length:(NSTimeInterval)length tempFolder:(NSString *)tempFolder recordVideo:(BOOL)recordVideo recordComputerAudio:(BOOL)recordComputerAudio recordMicrophoneAudio:(BOOL)recordMicrophoneAudio quality:(NSString *)qualityPreset delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
++ (STGMovieCaptureSession *)startScreenMovieCapture:(NSRect)capturedRect display:(CGDirectDisplayID)displayID length:(NSTimeInterval)length tempFolder:(NSString *)tempFolder recordVideo:(BOOL)recordVideo recordComputerAudio:(BOOL)recordComputerAudio recordMicrophoneAudio:(BOOL)recordMicrophoneAudio quality:(NSString *)qualityPreset delegate:(NSObject<STGMovieCaptureSessionDelegate> *)delegate;
 
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder;

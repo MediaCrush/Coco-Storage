@@ -20,7 +20,23 @@
 @class STGDataCaptureEntry;
 @class STGCreateAlbumWindowController;
 
-@protocol STGStatusItemManagerDelegate;
+@protocol STGStatusItemManagerDelegate <NSObject>
+
+-(void)captureScreen:(BOOL)fullScreen;
+-(void)captureMovie;
+-(void)captureFile;
+-(void)createAlbum;
+-(void)uploadEntries:(NSArray *)entries;
+-(void)cancelAllUploads;
+-(void)togglePauseUploads;
+-(void)deleteRecentFile:(STGDataCaptureEntry *)entry;
+-(void)cancelQueueFile:(int)index;
+-(void)openPreferences;
+
+-(void)stopRecording;
+-(void)cancelRecording;
+
+@end
 
 @interface STGStatusItemManager : NSObject <STGRecentUploadDelegate, STGStatusItemViewDelegate>
 
@@ -35,6 +51,10 @@
 @property (nonatomic, assign) int ticks;
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *serverStatusItem;
+
+@property (nonatomic, retain) IBOutlet NSMenuItem *stopRecordingMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *cancelRecordingMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem *recordingSectionSeparatorItem;
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureAreaMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *captureFullScreenMenuItem;
@@ -80,6 +100,9 @@
 
 - (IBAction)cancelQueueFile:(id)sender;
 
+- (IBAction)stopRecording:(id)sender;
+- (IBAction)cancelRecording:(id)sender;
+
 - (void)timerFired:(NSTimer *)timer;
 
 - (void)updateRecentFiles:(NSArray *)recentFiles;
@@ -89,19 +112,6 @@
 
 - (void)setStatusItemUploadProgress:(float)progress;
 
-@end
-
-@protocol STGStatusItemManagerDelegate <NSObject>
-
--(void)captureScreen:(BOOL)fullScreen;
--(void)captureMovie;
--(void)captureFile;
--(void)createAlbum;
--(void)uploadEntries:(NSArray *)entries;
--(void)cancelAllUploads;
--(void)togglePauseUploads;
--(void)deleteRecentFile:(STGDataCaptureEntry *)entry;
--(void)cancelQueueFile:(int)index;
--(void)openPreferences;
+- (void)setMovieControlsVisible:(BOOL)visible;
 
 @end

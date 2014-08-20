@@ -441,4 +441,27 @@
     }
 }
 
+- (void)stopRecording:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(stopRecording)])
+    {
+        [_delegate stopRecording];
+    }
+}
+
+- (void)cancelRecording:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(cancelRecording)])
+    {
+        [_delegate cancelRecording];
+    }
+}
+
+- (void)setMovieControlsVisible:(BOOL)visible
+{
+    [_stopRecordingMenuItem setHidden:!visible];
+    [_cancelRecordingMenuItem setHidden:!visible];
+    [_recordingSectionSeparatorItem setHidden:!visible];
+}
+
 @end

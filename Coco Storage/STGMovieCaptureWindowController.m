@@ -101,11 +101,14 @@
 
 - (void)startMovieCapture:(id)sender
 {
-    [self close];
-
-    if ([_delegate respondsToSelector:@selector(startMovieCapture:)])
+    if ([[self window] makeFirstResponder:sender]) // Force a value validation
     {
-        [_delegate startMovieCapture:self];
+        [self close];
+        
+        if ([_delegate respondsToSelector:@selector(startMovieCapture:)])
+        {
+            [_delegate startMovieCapture:self];
+        }
     }
 }
 

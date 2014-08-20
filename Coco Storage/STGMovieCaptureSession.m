@@ -128,6 +128,9 @@
     else if (_recordType == STGMovieCaptureTypeAudio)
         [(AVCaptureAudioFileOutput *)fileOutput startRecordingToOutputFileURL:_destURL outputFileType:AVFileTypeAppleM4A recordingDelegate:self];
     
+    if ([_delegate respondsToSelector:@selector(movieCaptureSessionDidBegin:)])
+        [_delegate movieCaptureSessionDidBegin:self];
+
     mTimer = [NSTimer scheduledTimerWithTimeInterval:_recordTime target:self selector:@selector(finishRecord:) userInfo:nil repeats:NO];
     
     return YES;
@@ -142,13 +145,11 @@
 {
     if ([self isRecording])
     {
+        [mSession stopRunning];
         [self cancelRecording];
         
-        if ([_delegate respondsToSelector:@selector(dataCaptureCompleted:sender:)])
-        {
-            STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:_destURL deleteOnCompletion:YES];
-            [_delegate dataCaptureCompleted:entry sender:self];
-        }
+        if ([_delegate respondsToSelector:@selector(movieCaptureSessionDidEnd:withError:wasCancelled:)])
+            [_delegate movieCaptureSessionDidEnd:self withError:nil wasCancelled:NO];
     }
 }
 
@@ -157,6 +158,12 @@
     [mTimer invalidate];
     mTimer = nil;
 
+    if ([self isRecording])
+    {
+        if ([_delegate respondsToSelector:@selector(movieCaptureSessionDidEnd:withError:wasCancelled:)])
+            [_delegate movieCaptureSessionDidEnd:self withError:nil wasCancelled:YES];
+    }
+    
     [mSession stopRunning];
     mSession = nil;
 
@@ -177,6 +184,8 @@
     {
         NSLog(@"Did finish recording to %@ due to error %@", [outputFileURL description], [error description]);
         
+        if ([_delegate respondsToSelector:@selector(movieCaptureSessionDidEnd:withError:wasCancelled:)])
+            [_delegate movieCaptureSessionDidEnd:self withError:error wasCancelled:NO];
         [self cancelRecording];
     }
 }

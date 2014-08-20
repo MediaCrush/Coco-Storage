@@ -10,14 +10,21 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "STGDataCaptureManager.h"
-
 typedef NS_ENUM(NSUInteger, STGMovieCaptureType)
 {
     STGMovieCaptureTypeScreenMovie = 0,
     STGMovieCaptureTypeCameraMovie = 1,
     STGMovieCaptureTypeAudio = 2,
 };
+
+@class STGMovieCaptureSession;
+
+@protocol STGMovieCaptureSessionDelegate <NSObject>
+
+@optional
+- (void)movieCaptureSessionDidBegin:(STGMovieCaptureSession *)movieCaptureSession;
+- (void)movieCaptureSessionDidEnd:(STGMovieCaptureSession *)movieCaptureSession withError:(NSError *)error wasCancelled:(BOOL)cancelled;
+@end
 
 @interface STGMovieCaptureSession : NSObject <AVCaptureFileOutputRecordingDelegate>
 {
@@ -27,7 +34,7 @@ typedef NS_ENUM(NSUInteger, STGMovieCaptureType)
     NSTimer *mTimer;
 }
 
-@property (nonatomic, assign) NSObject<STGDataCaptureDelegate> *delegate;
+@property (nonatomic, assign) NSObject<STGMovieCaptureSessionDelegate> *delegate;
 
 @property (nonatomic, retain) NSURL *destURL;
 

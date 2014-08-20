@@ -288,6 +288,36 @@ STGAppDelegate *sharedAppDelegate;
     [_statusItemManager updatePauseDownloadItem];
 }
 
+- (void)cancelRecording
+{
+    if (_movieCaptureTimer != nil)
+    {
+        [_movieCaptureTimer invalidate];
+        [self setMovieCaptureTimer:nil];
+    }
+
+    if (_currentMovieCapture)
+        [_currentMovieCapture cancelRecording];
+    
+    [_statusItemManager setMovieControlsVisible:NO];
+    [[_countdownWC contentView] setCountdownTime:-1];
+}
+
+- (void)stopRecording
+{
+    if (_movieCaptureTimer != nil)
+    {
+        [_movieCaptureTimer invalidate];
+        [self setMovieCaptureTimer:nil];
+    }
+    
+    if (_currentMovieCapture)
+        [_currentMovieCapture stopRecording];
+    
+    [_statusItemManager setMovieControlsVisible:NO];
+    [[_countdownWC contentView] setCountdownTime:-1];
+}
+
 #pragma mark - Windows
 
 - (void)openPreferences
@@ -580,23 +610,33 @@ STGAppDelegate *sharedAppDelegate;
         [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];        
     }
     
+    [self deleteEntryIfNecessary:entry successful:successful];
+}
+
+- (void)deleteEntryIfNecessary:(STGDataCaptureEntry *)entry successful:(BOOL)successful
+{
     if ([entry deleteOnCompletetion] &&
         ((successful && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepAllScreenshots"] == 0)
          || (!successful && [[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"] == 0)))
     {
-        if ([entry fileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[[entry fileURL] path]])
-        {
-            NSError *error = nil;
-            
-            [[NSFileManager defaultManager] removeItemAtURL:[entry fileURL] error:&error];
-            
-            if (error)
-                NSLog(@"%@", error);
-        }
-        else
-        {
-            NSLog(@"Problem: Trying to delete entry without URL!");
-        }
+        [self deleteEntry:entry];
+    }
+}
+
+- (void)deleteEntry:(STGDataCaptureEntry *)entry
+{
+    if ([entry fileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[[entry fileURL] path]])
+    {
+        NSError *error = nil;
+        
+        [[NSFileManager defaultManager] removeItemAtURL:[entry fileURL] error:&error];
+        
+        if (error)
+            NSLog(@"%@", error);
+    }
+    else
+    {
+        NSLog(@"Problem: Trying to delete entry without URL!");
     }
 }
 
@@ -624,8 +664,14 @@ STGAppDelegate *sharedAppDelegate;
 
         [_countdownWC showWindow:self];
         
-        [self performSelector:@selector(startMovieCaptureIgnoringDelay:) withObject:movieCaptureWC afterDelay:delay];
+        [self setMovieCaptureTimer:[NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(movieCaptureTimerFired:) userInfo:movieCaptureWC repeats:NO]];
+        [_statusItemManager setMovieControlsVisible:YES];
     }
+}
+
+- (void)movieCaptureTimerFired:(NSTimer *)timer
+{
+    [self startMovieCaptureIgnoringDelay:[timer userInfo]];
 }
 
 - (void)startMovieCaptureIgnoringDelay:(STGMovieCaptureWindowController *)movieCaptureWC
@@ -641,6 +687,28 @@ STGAppDelegate *sharedAppDelegate;
 - (void)dataCaptureCompleted:(STGDataCaptureEntry *)entry sender:(id)sender
 {
     [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entry:entry public:YES];
+}
+
+#pragma mark Movie Capture Delegate
+
+- (void)movieCaptureSessionDidBegin:(STGMovieCaptureSession *)movieCaptureSession
+{
+    [_statusItemManager setMovieControlsVisible:YES];
+}
+
+- (void)movieCaptureSessionDidEnd:(STGMovieCaptureSession *)movieCaptureSession withError:(NSError *)error wasCancelled:(BOOL)cancelled
+{
+    [_statusItemManager setMovieControlsVisible:NO];
+
+    if (error == nil && !cancelled)
+    {
+        STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:[movieCaptureSession destURL] deleteOnCompletion:YES];
+        [self dataCaptureCompleted:entry sender:self];        
+    }
+    else
+    {
+        [self deleteEntry:[STGDataCaptureEntry entryWithURL:[movieCaptureSession destURL] deleteOnCompletion:YES]];
+    }
 }
 
 @end
