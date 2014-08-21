@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
     STGServerStatusInvalidKey = 7
 };
 
-@interface STGNetworkManager : NSObject <STGPacketQueueDelegate, STGAPIConfigurationDelegate>
+@interface STGNetworkManager : NSObject <STGPacketQueueDelegate, STGAPIConfigurationNetworkDelegate>
 
 @property (nonatomic, assign) NSObject<STGNetworkDelegate> *delegate;
 

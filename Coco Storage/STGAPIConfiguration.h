@@ -13,17 +13,24 @@
 @class STGPacket;
 @class STGPacketQueue;
 
-@protocol STGAPIConfigurationDelegate
+@protocol STGAPIConfigurationNetworkDelegate
 
 @optional
 - (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success;
 - (void)updateAPIStatus:(BOOL)active validKey:(BOOL)validKey;
+- (void)openPreferences;
+@end
 
+@protocol STGAPIConfigurationDelegate
+
+@optional
+- (void)openPreferences;
 @end
 
 @protocol STGAPIConfiguration
 
 @property (nonatomic, assign) NSObject<STGAPIConfigurationDelegate> *delegate;
+@property (nonatomic, assign) NSObject<STGAPIConfigurationNetworkDelegate> *networkDelegate;
 
 - (NSString *)apiHostName;
 - (BOOL)hasAPIKeys;
@@ -32,6 +39,8 @@
 - (NSString *)accountLinkTitle;
 - (NSString *)fileListLinkTitle;
 - (NSSet *)supportedUploadTypes;
+
+- (BOOL)hasWelcomeWindow;
 
 - (NSString *)objectIDFromString:(NSString *)string;
 
@@ -48,7 +57,10 @@
 - (void)openCFSLink;
 - (void)openAccountLink;
 - (void)openFileListLink;
+
 - (void)sendAlbumCreatePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entries:(NSArray *)entries;
+
+- (void)openWelcomeWindow;
 @end
 
 @interface STGAPIConfiguration : NSObject

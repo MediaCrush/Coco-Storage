@@ -15,8 +15,6 @@
 
 #import "STGRecentUploadView.h"
 
-#import "STGWelcomeWindowController.h"
-
 #import "STGStatusItemManager.h"
 
 #import "STGAPIConfiguration.h"
@@ -45,13 +43,13 @@
 
 @class STGFloatingWindowController;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGWelcomeWindowControllerDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate, STGMovieCaptureSessionDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate, STGMovieCaptureSessionDelegate, STGAPIConfigurationDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
-@property (nonatomic, retain) STGNetworkManager *networkManager;
+@property (nonatomic, retain) IBOutlet NSMenuItem *openWelcomeWindowMenuItem;
 
-@property (nonatomic, retain) STGWelcomeWindowController *welcomeWC;
+@property (nonatomic, retain) STGNetworkManager *networkManager;
 
 @property (nonatomic, retain) STGCreateAlbumWindowController *createAlbumWC;
 @property (nonatomic, retain) STGMovieCaptureWindowController *captureMovieWC;

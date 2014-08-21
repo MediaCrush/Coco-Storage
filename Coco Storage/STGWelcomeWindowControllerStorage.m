@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Lukas Tenbrink. All rights reserved.
 //
 
-#import "STGWelcomeWindowController.h"
+#import "STGWelcomeWindowControllerStorage.h"
 
 #import "NSButton+TextColor.h"
 
@@ -15,13 +15,13 @@
 CGFloat boxOpacityHover = 1.0f;
 CGFloat boxOpacityIdle = 0.0f;
 
-@interface STGWelcomeWindowController ()
+@interface STGWelcomeWindowControllerStorage ()
 
 - (void)addVersion:(NSString *)version withChanges:(NSArray *)array;
 
 @end
 
-@implementation STGWelcomeWindowController
+@implementation STGWelcomeWindowControllerStorage
 
 - (void)awakeFromNib
 {

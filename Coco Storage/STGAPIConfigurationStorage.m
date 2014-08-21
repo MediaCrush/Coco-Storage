@@ -17,11 +17,13 @@
 
 #import "STGFileHelper.h"
 
+#import "STGWelcomeWindowControllerStorage.h"
+
 STGAPIConfigurationStorage *standardConfiguration;
 
 @implementation STGAPIConfigurationStorage
 
-@synthesize delegate;
+@synthesize delegate = _delegate, networkDelegate = _networkDelegate;
 
 + (STGAPIConfigurationStorage *)standardConfiguration
 {
@@ -34,6 +36,16 @@ STGAPIConfigurationStorage *standardConfiguration;
     }
     
     return standardConfiguration;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setWelcomeWC:[[STGWelcomeWindowControllerStorage alloc] initWithWindowNibName:@"STGWelcomeWindowController"]];
+        [_welcomeWC setWelcomeWCDelegate:self];
+    }
+    return self;
 }
 
 - (NSString *)apiHostName
@@ -95,6 +107,16 @@ STGAPIConfigurationStorage *standardConfiguration;
             nil];
 }
 
+- (BOOL)hasWelcomeWindow
+{
+    return YES;
+}
+
+- (void)openWelcomeWindow
+{
+    [_welcomeWC showWindow:self];
+}
+
 - (NSString *)objectIDFromString:(NSString *)string
 {
     NSRange linkRange = [string rangeOfString:@"stor.ag/e/"];
@@ -150,18 +172,18 @@ STGAPIConfigurationStorage *standardConfiguration;
             NSString *link = [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID];
             [dataCaptureEntry setOnlineLink:link];
             
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:)])
             {
-                [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
+                [_networkDelegate didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
             }
         }
         else
         {
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
 
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:)])
             {
-                [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
+                [_networkDelegate didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
             }
         }
     }
@@ -179,7 +201,7 @@ STGAPIConfigurationStorage *standardConfiguration;
         {
             /*            [[[_statusItemManager statusItem] menu] cancelTracking];
              NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file deletion... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
-             [alert beginSheetModalForWindow:nil modalDelegate:[self delegate] didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];*/
+             [alert beginSheetModalForWindow:nil modalDelegate:_networkDelegate didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];*/
             
             if (responseCode != 500) //Not found, probably
                 NSLog(@"Delete file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
@@ -193,10 +215,10 @@ STGAPIConfigurationStorage *standardConfiguration;
         
         NSString *stringStatus = dictionary ? [dictionary objectForKey:@"status"] : nil;
 
-        if ([[self delegate] respondsToSelector:@selector(updateAPIStatus:validKey:)])
+        if ([_networkDelegate respondsToSelector:@selector(updateAPIStatus:validKey:)])
         {
             if ([[[entry userInfo] objectForKey:@"apiVersion"] integerValue] == 1)
-                [[self delegate] updateAPIStatus:[stringStatus isEqualToString:@"ok"] validKey:responseCode != 401];
+                [_networkDelegate updateAPIStatus:[stringStatus isEqualToString:@"ok"] validKey:responseCode != 401];
         }
     }
     else if ([[entry packetType] isEqualToString:@"cfs:getFileList"])
@@ -220,9 +242,9 @@ STGAPIConfigurationStorage *standardConfiguration;
 {
 //    if ([[entry packetType] isEqualToString:@"uploadFile"])
 //    {
-//        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
+//        if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:)])
 //        {
-//            [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];            
+//            [_networkDelegate didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
 //        }
 //    }
 }
@@ -327,5 +349,12 @@ STGAPIConfigurationStorage *standardConfiguration;
 //    return [self cfsGenericPacket:@"DELETE" path:filePath link:link key:key packetType:@"cfs:deleteFile"];
 //}
 
+#pragma mark Welcome Window Delegate
+
+- (void)openPreferences
+{
+    if ([_delegate respondsToSelector:@selector(openPreferences)])
+        [_delegate openPreferences];
+}
 
 @end

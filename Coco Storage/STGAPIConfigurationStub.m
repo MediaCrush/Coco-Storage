@@ -14,7 +14,7 @@ STGAPIConfigurationStub *standardConfiguration;
 
 @implementation STGAPIConfigurationStub 
 
-@synthesize delegate;
+@synthesize delegate = _delegate, networkDelegate = _networkDelegate;
 
 + (STGAPIConfigurationStub *)standardConfiguration
 {
@@ -75,6 +75,11 @@ STGAPIConfigurationStub *standardConfiguration;
             nil];
 }
 
+- (BOOL)hasWelcomeWindow
+{
+    return NO;
+}
+
 - (NSString *)objectIDFromString:(NSString *)string
 {
     NSRange linkRange = [string rangeOfString:@"mediacru.sh/"];
@@ -105,9 +110,9 @@ STGAPIConfigurationStub *standardConfiguration;
 
 - (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey
 {
-    if ([[self delegate] respondsToSelector:@selector(updateAPIStatus:validKey:)])
+    if ([[self networkDelegate] respondsToSelector:@selector(updateAPIStatus:validKey:)])
     {
-        [[self delegate] updateAPIStatus:YES validKey:true];
+        [[self networkDelegate] updateAPIStatus:YES validKey:true];
     }
     
     // No API status packet
@@ -127,9 +132,9 @@ STGAPIConfigurationStub *standardConfiguration;
     if (error)
         NSLog(@"File copy error %@", error);
     
-    if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
+    if ([[self networkDelegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
     {
-        [[self delegate] didUploadDataCaptureEntry:entry success:error == nil];
+        [[self networkDelegate] didUploadDataCaptureEntry:entry success:error == nil];
     }
 }
 

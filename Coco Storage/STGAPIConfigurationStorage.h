@@ -8,7 +8,11 @@
 
 #import "STGAPIConfiguration.h"
 
-@interface STGAPIConfigurationStorage : NSObject <STGAPIConfiguration>
+#import "STGWelcomeWindowControllerStorage.h"
+
+@interface STGAPIConfigurationStorage : NSObject <STGAPIConfiguration, STGWelcomeWindowControllerDelegate>
+
+@property (nonatomic, retain) STGWelcomeWindowControllerStorage *welcomeWC;
 
 + (STGAPIConfigurationStorage *)standardConfiguration;
 

@@ -92,8 +92,8 @@
 		80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C51741773A00851DDB /* ServerStatusOK.png */; };
 		80D7F9C81741773B00851DDB /* ServerStatusUnavailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */; };
 		80D91A7219A1DB8E00A402D6 /* STGAPIConfigurationStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D91A7119A1DB8E00A402D6 /* STGAPIConfigurationStub.m */; };
-		80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */; };
-		80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */; };
+		80DBC66B17316241000DEF72 /* STGWelcomeWindowControllerStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC66917316241000DEF72 /* STGWelcomeWindowControllerStorage.m */; };
+		80DBC66C17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib */; };
 		80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */; };
 		80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */; };
 		80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */; };
@@ -252,9 +252,9 @@
 		80D7F9C61741773A00851DDB /* ServerStatusUnavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServerStatusUnavailable.png; sourceTree = "<group>"; };
 		80D91A7019A1DB8E00A402D6 /* STGAPIConfigurationStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationStub.h; sourceTree = "<group>"; };
 		80D91A7119A1DB8E00A402D6 /* STGAPIConfigurationStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfigurationStub.m; sourceTree = "<group>"; };
-		80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGWelcomeWindowController.h; sourceTree = "<group>"; };
-		80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGWelcomeWindowController.m; sourceTree = "<group>"; };
-		80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGWelcomeWindowController.xib; sourceTree = "<group>"; };
+		80DBC66817316241000DEF72 /* STGWelcomeWindowControllerStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGWelcomeWindowControllerStorage.h; sourceTree = "<group>"; };
+		80DBC66917316241000DEF72 /* STGWelcomeWindowControllerStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGWelcomeWindowControllerStorage.m; sourceTree = "<group>"; };
+		80DBC66A17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGWelcomeWindowControllerStorage.xib; sourceTree = "<group>"; };
 		80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemManager.h; sourceTree = "<group>"; };
 		80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemManager.m; sourceTree = "<group>"; };
 		80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGStatusItemManager.xib; sourceTree = "<group>"; };
@@ -407,6 +407,9 @@
 			children = (
 				804C878E19A1FAAA000957C6 /* STGFloatingWindowController.h */,
 				804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */,
+				80DBC66817316241000DEF72 /* STGWelcomeWindowControllerStorage.h */,
+				80DBC66917316241000DEF72 /* STGWelcomeWindowControllerStorage.m */,
+				80DBC66A17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib */,
 				80FD082419A52628009126D7 /* STGScreenOverlayWindow.h */,
 				80FD082519A52628009126D7 /* STGScreenOverlayWindow.m */,
 				804C879319A1FE2D000957C6 /* STGCountdownView.h */,
@@ -438,8 +441,6 @@
 				80F7698A19A15146000DC74D /* STGUncompletedUploadList.m */,
 				80068FDF17272D9900DA1492 /* STGStorageConnectionManager.h */,
 				80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */,
-				80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */,
-				80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */,
 				80492699173EEAC100C08A7F /* STGPacket.h */,
 				8049269A173EEAC100C08A7F /* STGPacket.m */,
 				80F7697A19A0E61A000DC74D /* CFS */,
@@ -461,9 +462,6 @@
 			children = (
 				804C878D19A1FA34000957C6 /* Views */,
 				80F7697819A0E5EE000DC74D /* Options */,
-				80DBC66817316241000DEF72 /* STGWelcomeWindowController.h */,
-				80DBC66917316241000DEF72 /* STGWelcomeWindowController.m */,
-				80DBC66A17316241000DEF72 /* STGWelcomeWindowController.xib */,
 				80F7697919A0E606000DC74D /* Status-Item */,
 				80F7697719A0E5DF000DC74D /* Quick-Upload */,
 				80F7697619A0E5CF000DC74D /* Create-Album */,
@@ -554,6 +552,8 @@
 		80D91A6E19A1DB6300A402D6 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				80781B4A174698CC00D0C790 /* STGAPIConfiguration.h */,
+				80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */,
 				80D91A6F19A1DB7300A402D6 /* Stub */,
 				8065984A1995688200EF0E34 /* Mediacrush */,
 				80659844199562BB00EF0E34 /* Getstorage */,
@@ -728,7 +728,7 @@
 				801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */,
 				807A6702172AF86000E0212C /* CocoStorageLogo.icns in Resources */,
 				80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */,
-				80DBC66C17316241000DEF72 /* STGWelcomeWindowController.xib in Resources */,
+				80DBC66C17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib in Resources */,
 				80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */,
 				80CC42631733C3B40068476F /* dsa_pub.pem in Resources */,
 				80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */,
@@ -796,7 +796,7 @@
 				80FD082319A4F3A8009126D7 /* STGScreenRectangleSelectView.m in Sources */,
 				80369DD41847A27D00349068 /* STGQuickUploadWindowController.m in Sources */,
 				80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */,
-				80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */,
+				80DBC66B17316241000DEF72 /* STGWelcomeWindowControllerStorage.m in Sources */,
 				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
 				80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */,
 				80FD082619A52628009126D7 /* STGScreenOverlayWindow.m in Sources */,

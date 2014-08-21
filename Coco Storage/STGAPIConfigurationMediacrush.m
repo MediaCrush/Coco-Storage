@@ -19,7 +19,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 @implementation STGAPIConfigurationMediacrush
 
-@synthesize delegate;
+@synthesize delegate = _delegate, networkDelegate = _networkDelegate;
 
 + (STGAPIConfigurationMediacrush *)standardConfiguration
 {
@@ -75,6 +75,11 @@ STGAPIConfigurationMediacrush *standardConfiguration;
             nil];
 }
 
+- (BOOL)hasWelcomeWindow
+{
+    return NO;
+}
+
 - (NSString *)objectIDFromString:(NSString *)string
 {
     NSRange linkRange = [string rangeOfString:@"mediacru.sh/"];
@@ -125,18 +130,18 @@ STGAPIConfigurationMediacrush *standardConfiguration;
             NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
             [dataCaptureEntry setOnlineLink:link];
                         
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
             {
-                [[self delegate] didUploadDataCaptureEntry:dataCaptureEntry success:YES];
+                [_networkDelegate didUploadDataCaptureEntry:dataCaptureEntry success:YES];
             }
         }
         else
         {
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
             {
-                [[self delegate] didUploadDataCaptureEntry:dataCaptureEntry success:NO];
+                [_networkDelegate didUploadDataCaptureEntry:dataCaptureEntry success:NO];
             }
         }
     }
@@ -154,7 +159,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         {
             /*            [[[_statusItemManager statusItem] menu] cancelTracking];
              NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file deletion... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
-             [alert beginSheetModalForWindow:nil modalDelegate:[self delegate] didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];*/
+             [alert beginSheetModalForWindow:nil modalDelegate:_delegate didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];*/
             
             if (responseCode != 500) //Not found, probably
                 NSLog(@"Delete file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
@@ -168,10 +173,10 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         
         NSString *stringStatus = dictionary ? [dictionary objectForKey:@"status"] : nil;
         
-        if ([[self delegate] respondsToSelector:@selector(updateAPIStatus:validKey:)])
+        if ([_networkDelegate respondsToSelector:@selector(updateAPIStatus:validKey:)])
         {
             if ([[[entry userInfo] objectForKey:@"apiVersion"] integerValue] == 1)
-                [[self delegate] updateAPIStatus:[stringStatus isEqualToString:@"ok"] validKey:responseCode != 401];
+                [_networkDelegate updateAPIStatus:[stringStatus isEqualToString:@"ok"] validKey:responseCode != 401];
         }
     }
     else if ([[entry packetType] isEqualToString:@"createAlbum"])
@@ -190,9 +195,9 @@ STGAPIConfigurationMediacrush *standardConfiguration;
             NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
             [dataCaptureEntry setOnlineLink:link];
             
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
             {
-                [[self delegate] didUploadDataCaptureEntry:dataCaptureEntry success:YES];
+                [_networkDelegate didUploadDataCaptureEntry:dataCaptureEntry success:YES];
             }
         }
     }
@@ -206,18 +211,18 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 {
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
-//        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
+//        if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
 //        {
-//            [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
+//            [_networkDelegate didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
 //        }
     }
 }
 
 - (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey
 {
-    if ([[self delegate] respondsToSelector:@selector(updateAPIStatus:validKey:)])
+    if ([_networkDelegate respondsToSelector:@selector(updateAPIStatus:validKey:)])
     {
-        [[self delegate] updateAPIStatus:[STGNetworkHelper isWebsiteReachable:@"mediacru.sh"] validKey:true];
+        [_networkDelegate updateAPIStatus:[STGNetworkHelper isWebsiteReachable:@"mediacru.sh"] validKey:true];
     }
 
     // No API status packet

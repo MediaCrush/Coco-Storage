@@ -68,7 +68,7 @@ STGAppDelegate *sharedAppDelegate;
     
     NSMutableDictionary *standardDefaults = [[NSMutableDictionary alloc] init];
     [STGOptionsManager registerDefaults:standardDefaults];
-    [STGWelcomeWindowController registerStandardDefaults:standardDefaults];
+    [STGWelcomeWindowControllerStorage registerStandardDefaults:standardDefaults];
     [standardDefaults setObject:[NSArray array] forKey:@"recentEntries"];
     [standardDefaults setObject:[NSArray array] forKey:@"uploadQueue"];
     [standardDefaults setObject:[NSNumber numberWithBool:NO] forKey:@"pauseUploads"];
@@ -92,13 +92,14 @@ STGAppDelegate *sharedAppDelegate;
     #endif
 #endif
     
-    [[STGAPIConfiguration currentConfiguration] setDelegate:_networkManager];
+    [[STGAPIConfiguration currentConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfiguration currentConfiguration] setDelegate:self];
+    
+    [_openWelcomeWindowMenuItem setHidden:![[STGAPIConfiguration currentConfiguration] hasWelcomeWindow]];
     
     [self setOptionsManager:[[STGOptionsManager alloc] init]];
     [_optionsManager setDelegate:self];
     
-    [self setWelcomeWC:[[STGWelcomeWindowController alloc] initWithWindowNibName:@"STGWelcomeWindowController"]];
-    [_welcomeWC setWelcomeWCDelegate:self];
     if (![[[NSUserDefaults standardUserDefaults] stringForKey:@"lastVersion"] isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]])
     {
         // Show the update log?
@@ -327,11 +328,6 @@ STGAppDelegate *sharedAppDelegate;
 
 #pragma mark - Windows
 
-- (void)openPreferences
-{
-    [_optionsManager openPreferencesWindow];
-}
-
 - (IBAction)openPreferences:(id)sender
 {
     [_optionsManager openPreferencesWindow];
@@ -339,9 +335,11 @@ STGAppDelegate *sharedAppDelegate;
 
 - (IBAction)openWelcomeWindow:(id)sender
 {
-    [_welcomeWC showWindow:self];
-    
-    [NSApp  activateIgnoringOtherApps:YES];
+    if ([[STGAPIConfiguration currentConfiguration] hasWelcomeWindow])
+    {
+        [[STGAPIConfiguration currentConfiguration] openWelcomeWindow];
+        [NSApp  activateIgnoringOtherApps:YES];
+    }
 }
 
 #pragma mark - Shortcuts
@@ -716,6 +714,13 @@ STGAppDelegate *sharedAppDelegate;
     {
         [self deleteEntry:[STGDataCaptureEntry entryWithURL:[movieCaptureSession destURL] deleteOnCompletion:YES]];
     }
+}
+
+#pragma mark API Configuration Delegate
+
+- (void)openPreferences
+{
+    [_optionsManager openPreferencesWindow];
 }
 
 @end

@@ -14,7 +14,7 @@
 
 @end
 
-@interface STGWelcomeWindowController : NSWindowController
+@interface STGWelcomeWindowControllerStorage : NSWindowController
 
 @property (nonatomic, assign) id<STGWelcomeWindowControllerDelegate> welcomeWCDelegate;
 
