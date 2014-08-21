@@ -71,6 +71,14 @@
 
 - (void)cancelEntry:(STGPacket *)entry
 {
+    [self deleteEntry:entry];
+    
+    if ([_delegate respondsToSelector:@selector(packetQueue:cancelledEntry:)])
+        [_delegate packetQueue:self cancelledEntry:entry];
+}
+
+- (void)deleteEntry:(STGPacket *)entry
+{
     [_uploadQueue removeObject:entry];
     
     if ([_connectionManager activeEntry] == entry)
@@ -80,9 +88,6 @@
     }
     
     [self update];
-    
-    if ([_delegate respondsToSelector:@selector(packetQueue:cancelledEntry:)])
-        [_delegate packetQueue:self cancelledEntry:entry];
 }
 
 - (void)cancelAllEntries
@@ -120,7 +125,7 @@
 
 - (void)finishUploadingData:(STGStorageConnectionManager *)captureManager entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse
 {
-    [self cancelEntry:entry];
+    [self deleteEntry:entry];
     [self setUploadedData:0.0];
     
     if ([_delegate respondsToSelector:@selector(finishUploadingData:entry:fullResponse:urlResponse:)])
