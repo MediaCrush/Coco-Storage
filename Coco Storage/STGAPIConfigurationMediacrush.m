@@ -195,18 +195,6 @@ STGAPIConfigurationMediacrush *standardConfiguration;
                 [[self delegate] didUploadDataCaptureEntry:dataCaptureEntry success:YES];
             }
         }
-        else
-        {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your album upload... Make sure your Storage key is valid, and try again.\nHTTP Status: %@ (%li)", [NSHTTPURLResponse localizedStringForStatusCode:responseCode], responseCode];
-            [alert beginSheetModalForWindow:nil modalDelegate:[self delegate] didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-            
-            NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
-            
-            if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
-            {
-                [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
-            }
-        }
     }
     else
     {
@@ -218,10 +206,10 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 {
     if ([[entry packetType] isEqualToString:@"uploadFile"])
     {
-        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
-        {
-            [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
-        }
+//        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
+//        {
+//            [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
+//        }
     }
 }
 

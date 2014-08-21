@@ -218,13 +218,13 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 - (void)cancelPacketUpload:(STGPacket *)entry
 {
-    if ([[entry packetType] isEqualToString:@"uploadFile"])
-    {
-        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
-        {
-            [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];            
-        }
-    }
+//    if ([[entry packetType] isEqualToString:@"uploadFile"])
+//    {
+//        if ([[self delegate] respondsToSelector:@selector(didUploadDataCaptureEntry:)])
+//        {
+//            [[self delegate] didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];            
+//        }
+//    }
 }
 
 - (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey
