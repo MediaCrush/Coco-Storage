@@ -82,7 +82,7 @@
         CGFloat fontHeight = _bounds.size.height;
         [_stringDrawAttributes setObject:[NSFont fontWithName:@"Arial" size:fontHeight] forKey:NSFontAttributeName];
         
-                CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+        CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
         CGContextSetShadow(context, NSMakeSize(3, -3), 2.0);
         CGContextSetShadowWithColor(context, NSMakeSize(3, -3), 3.0, CGColorCreateGenericRGB(1.0, 1.0, 1.0, baseAlpha * 0.3));
 
