@@ -464,6 +464,7 @@
     [_recordingSectionSeparatorItem setHidden:!visible];
 
     [_captureMovieMenuItem setEnabled:!visible];
+    [self setIsSyncing:visible]; // TODO Remove or replace with something more appropriate later
 }
 
 @end
