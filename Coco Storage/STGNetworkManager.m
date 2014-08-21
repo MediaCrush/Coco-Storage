@@ -240,4 +240,10 @@
     }
 }
 
+- (void)didDeleteDataCaptureEntry:(STGDataCaptureEntry *)entry
+{
+    if ([_delegate respondsToSelector:@selector(fileDeletionCompleted:entry:)])
+        [_delegate fileDeletionCompleted:self entry:entry];
+}
+
 @end

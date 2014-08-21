@@ -153,7 +153,9 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         
         if ([message isEqualToString:@"success"])
         {
-            
+            STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
+            if ([_networkDelegate respondsToSelector:@selector(didDeleteDataCaptureEntry:)])
+                [_networkDelegate didDeleteDataCaptureEntry:dataCaptureEntry];
         }
         else
         {

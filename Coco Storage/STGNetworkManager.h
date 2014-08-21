@@ -22,6 +22,7 @@
 - (void)fileUploadQueueChanged:(STGNetworkManager *)networkManager;
 
 - (void)fileUploadCompleted:(STGNetworkManager *)networkManager entry:(STGDataCaptureEntry *)entry successful:(BOOL)successful;
+- (void)fileDeletionCompleted:(STGNetworkManager *)networkManager entry:(STGDataCaptureEntry *)entry;
 @end
 
 typedef NS_ENUM(NSUInteger, STGServerStatus)

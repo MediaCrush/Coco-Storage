@@ -192,13 +192,6 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)assistiveDeviceTimerFired:(NSTimer *)timer
 {
-    NSImage *image = [[NSCursor currentCursor] image];
-    if (image != nil)
-    {
-        [[NSPasteboard generalPasteboard] clearContents];
-        [[NSPasteboard generalPasteboard] writeObjects:[NSArray arrayWithObject:image]];
-    }
-
     if ([[self hotkeyHelper] hotkeyStatus] != STGHotkeyStatusOkay)
     {
         if ([STGSystemHelper isAssistiveDevice])
@@ -565,6 +558,8 @@ STGAppDelegate *sharedAppDelegate;
 - (void)fileUploadQueueChanged:(STGNetworkManager *)networkManager
 {
     [_statusItemManager updateUploadQueue:[networkManager packetUploadV1Queue] currentProgress:[networkManager fileUploadProgress]];
+    
+    [self saveProperties];
 }
 
 - (void)fileUploadCompleted:(STGNetworkManager *)networkManager entry:(STGDataCaptureEntry *)entry successful:(BOOL)successful
@@ -608,6 +603,8 @@ STGAppDelegate *sharedAppDelegate;
         {
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[entry onlineLink]]];
         }
+
+        [self saveProperties];
     }
     else
     {
@@ -616,6 +613,11 @@ STGAppDelegate *sharedAppDelegate;
     }
     
     [self deleteEntryIfNecessary:entry successful:successful];
+}
+
+- (void)fileDeletionCompleted:(STGNetworkManager *)networkManager entry:(STGDataCaptureEntry *)entry
+{
+    [self saveProperties];
 }
 
 - (void)deleteEntryIfNecessary:(STGDataCaptureEntry *)entry successful:(BOOL)successful

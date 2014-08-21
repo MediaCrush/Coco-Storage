@@ -195,7 +195,9 @@ STGAPIConfigurationStorage *standardConfiguration;
         
         if ([message isEqualToString:@"Object deleted."])
         {
-            
+            STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
+            if ([_networkDelegate respondsToSelector:@selector(didDeleteDataCaptureEntry:)])
+                [_networkDelegate didDeleteDataCaptureEntry:dataCaptureEntry];
         }
         else
         {

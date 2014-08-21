@@ -17,6 +17,7 @@
 
 @optional
 - (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success;
+- (void)didDeleteDataCaptureEntry:(STGDataCaptureEntry *)entry;
 - (void)updateAPIStatus:(BOOL)active validKey:(BOOL)validKey;
 - (void)openPreferences;
 @end

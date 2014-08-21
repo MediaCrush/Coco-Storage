@@ -140,7 +140,8 @@ STGAPIConfigurationStub *standardConfiguration;
 
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry
 {
-
+    if ([_networkDelegate respondsToSelector:@selector(didDeleteDataCaptureEntry:)])
+        [_networkDelegate didDeleteDataCaptureEntry:entry];
 }
 
 - (void)sendAlbumCreatePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entries:(NSArray *)entries
