@@ -462,6 +462,8 @@
     [_stopRecordingMenuItem setHidden:!visible];
     [_cancelRecordingMenuItem setHidden:!visible];
     [_recordingSectionSeparatorItem setHidden:!visible];
+
+    [_captureMovieMenuItem setEnabled:!visible];
 }
 
 @end

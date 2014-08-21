@@ -59,7 +59,7 @@
                 <menuItem isSeparatorItem="YES" hidden="YES" id="KXp-6k-PwD"/>
                 <menuItem title="Upload" id="47z-g0-Zs9">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Upload" id="jfG-hR-B5h">
+                    <menu key="submenu" title="Upload" autoenablesItems="NO" id="jfG-hR-B5h">
                         <items>
                             <menuItem title="Capture area" image="NSRightFacingTriangleTemplate" id="46">
                                 <modifierMask key="keyEquivalentModifierMask"/>
