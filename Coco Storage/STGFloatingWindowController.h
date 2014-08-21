@@ -10,6 +10,9 @@
 
 @interface STGFloatingWindowController : NSWindowController
 
++ (STGFloatingWindowController *)floatingWindowController;
++ (STGFloatingWindowController *)overlayWindowController;
+
 - (void)setContentView:(NSView *)view;
 - (id)contentView;
 

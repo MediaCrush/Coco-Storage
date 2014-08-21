@@ -11,6 +11,9 @@
 #import <IOKit/graphics/IOGraphicsLib.h>
 #import <AVFoundation/AVFoundation.h>
 
+#import "STGFloatingWindowController.h"
+#import "STGScreenRectangleSelectView.h"
+
 @interface STGMovieCaptureWindowController ()
 
 @end
@@ -33,6 +36,10 @@
 
         [self setRecordsComputerAudio:NO];
         [self setRecordsMicrophoneAudio:YES];
+        
+        [self setRectSelectWC:[STGFloatingWindowController overlayWindowController]];
+        [_rectSelectWC setContentView:[[STGScreenRectangleSelectView alloc] init]];
+        [(STGScreenRectangleSelectView *)[_rectSelectWC contentView] setDelegate:self];
     }
     return self;
 }
@@ -61,7 +68,7 @@
 
 - (NSString *)screenNameForDisplay:(CGDirectDisplayID)displayID
 {
-    NSString *screenName = @"";
+    NSString *screenName = @"Screen";
     NSDictionary *deviceInfo = (__bridge NSDictionary *)IODisplayCreateInfoDictionary(CGDisplayIOServicePort(displayID), kIODisplayOnlyPreferredName);
     NSDictionary *localizedNames = [deviceInfo objectForKey:[NSString stringWithUTF8String:kDisplayProductName]];
     
@@ -75,7 +82,12 @@
 
 - (void)selectRecordRect:(id)sender
 {
+    NSRect displayRect = CGDisplayBounds([_recordDisplayID unsignedIntValue]);
+    [[_rectSelectWC window] setFrame:displayRect display:YES];
     
+    [_rectSelectWC showWindow:self];
+    [NSApp  activateIgnoringOtherApps:YES];
+    [[_rectSelectWC window] makeFirstResponder:[_rectSelectWC contentView]];
 }
 
 - (void)qualitySelected:(id)sender
@@ -110,6 +122,13 @@
             [_delegate startMovieCapture:self];
         }
     }
+}
+
+#pragma mark Screen Rectangle Select Delegate
+
+- (void)screenRectangleSelectView:(STGScreenRectangleSelectView *)view didSelectRectangle:(NSRect)rectangle
+{
+    [self setRecordRect:rectangle];
 }
 
 @end

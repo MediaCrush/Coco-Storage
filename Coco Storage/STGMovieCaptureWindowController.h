@@ -8,7 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "STGScreenRectangleSelectView.h"
+
 @class STGMovieCaptureWindowController;
+@class STGFloatingWindowController;
 
 @protocol STGMovieCaptureWindowControllerDelegate <NSObject>
 
@@ -16,12 +19,14 @@
 
 @end
 
-@interface STGMovieCaptureWindowController : NSWindowController
+@interface STGMovieCaptureWindowController : NSWindowController <STGScreenRectangleSelectViewDelegate>
 
 @property (nonatomic, assign) NSObject<STGMovieCaptureWindowControllerDelegate> *delegate;
 
 @property (nonatomic, retain) IBOutlet NSPopUpButton *screenSelectPopupButton;
 @property (nonatomic, retain) IBOutlet NSPopUpButton *qualitySelectPopupButton;
+
+@property (nonatomic, retain) STGFloatingWindowController *rectSelectWC;
 
 @property (nonatomic, retain) NSNumber *recordDuration;
 @property (nonatomic, retain) NSNumber *recordDelay;

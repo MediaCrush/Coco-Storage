@@ -61,7 +61,6 @@
 		80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80492697173EEAB100C08A7F /* STGPacketQueue.m */; };
 		8049269B173EEAC100C08A7F /* STGPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8049269A173EEAC100C08A7F /* STGPacket.m */; };
 		804C879119A1FAAA000957C6 /* STGFloatingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */; };
-		804C879219A1FAAA000957C6 /* STGFloatingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804C879019A1FAAA000957C6 /* STGFloatingWindowController.xib */; };
 		804C879519A1FE2D000957C6 /* STGCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 804C879419A1FE2D000957C6 /* STGCountdownView.m */; };
 		8060C341199FB1FE001282CF /* STGCreateAlbumWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8060C33F199FB1FE001282CF /* STGCreateAlbumWindowController.m */; };
 		8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8060C340199FB1FE001282CF /* STGCreateAlbumWindowController.xib */; };
@@ -106,6 +105,8 @@
 		80F7698519A1379A000DC74D /* STGOptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7698419A1379A000DC74D /* STGOptionsManager.m */; };
 		80F7698819A14B06000DC74D /* STGNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7698719A14B06000DC74D /* STGNetworkManager.m */; };
 		80F7698B19A15146000DC74D /* STGUncompletedUploadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7698A19A15146000DC74D /* STGUncompletedUploadList.m */; };
+		80FD082319A4F3A8009126D7 /* STGScreenRectangleSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD082219A4F3A8009126D7 /* STGScreenRectangleSelectView.m */; };
+		80FD082619A52628009126D7 /* STGScreenOverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD082519A52628009126D7 /* STGScreenOverlayWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -201,7 +202,6 @@
 		8049269A173EEAC100C08A7F /* STGPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGPacket.m; sourceTree = "<group>"; };
 		804C878E19A1FAAA000957C6 /* STGFloatingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGFloatingWindowController.h; sourceTree = "<group>"; };
 		804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGFloatingWindowController.m; sourceTree = "<group>"; };
-		804C879019A1FAAA000957C6 /* STGFloatingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGFloatingWindowController.xib; sourceTree = "<group>"; };
 		804C879319A1FE2D000957C6 /* STGCountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCountdownView.h; sourceTree = "<group>"; };
 		804C879419A1FE2D000957C6 /* STGCountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCountdownView.m; sourceTree = "<group>"; };
 		8060C33E199FB1FE001282CF /* STGCreateAlbumWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCreateAlbumWindowController.h; sourceTree = "<group>"; };
@@ -273,6 +273,10 @@
 		80F7698719A14B06000DC74D /* STGNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkManager.m; sourceTree = "<group>"; };
 		80F7698919A15146000DC74D /* STGUncompletedUploadList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUncompletedUploadList.h; sourceTree = "<group>"; };
 		80F7698A19A15146000DC74D /* STGUncompletedUploadList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUncompletedUploadList.m; sourceTree = "<group>"; };
+		80FD082119A4F3A8009126D7 /* STGScreenRectangleSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGScreenRectangleSelectView.h; sourceTree = "<group>"; };
+		80FD082219A4F3A8009126D7 /* STGScreenRectangleSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGScreenRectangleSelectView.m; sourceTree = "<group>"; };
+		80FD082419A52628009126D7 /* STGScreenOverlayWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGScreenOverlayWindow.h; sourceTree = "<group>"; };
+		80FD082519A52628009126D7 /* STGScreenOverlayWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGScreenOverlayWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,9 +407,12 @@
 			children = (
 				804C878E19A1FAAA000957C6 /* STGFloatingWindowController.h */,
 				804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */,
-				804C879019A1FAAA000957C6 /* STGFloatingWindowController.xib */,
+				80FD082419A52628009126D7 /* STGScreenOverlayWindow.h */,
+				80FD082519A52628009126D7 /* STGScreenOverlayWindow.m */,
 				804C879319A1FE2D000957C6 /* STGCountdownView.h */,
 				804C879419A1FE2D000957C6 /* STGCountdownView.m */,
+				80FD082119A4F3A8009126D7 /* STGScreenRectangleSelectView.h */,
+				80FD082219A4F3A8009126D7 /* STGScreenRectangleSelectView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -716,7 +723,6 @@
 				8029A48D17282CC900F09884 /* Credits.html in Resources */,
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
 				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
-				804C879219A1FAAA000957C6 /* STGFloatingWindowController.xib in Resources */,
 				8029A4A11728427900F09884 /* MainMenu.xib in Resources */,
 				8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */,
 				801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */,
@@ -787,11 +793,13 @@
 				807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */,
 				803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */,
 				803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */,
+				80FD082319A4F3A8009126D7 /* STGScreenRectangleSelectView.m in Sources */,
 				80369DD41847A27D00349068 /* STGQuickUploadWindowController.m in Sources */,
 				80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */,
 				80DBC66B17316241000DEF72 /* STGWelcomeWindowController.m in Sources */,
 				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
 				80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */,
+				80FD082619A52628009126D7 /* STGScreenOverlayWindow.m in Sources */,
 				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,
 				80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */,
 				8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */,

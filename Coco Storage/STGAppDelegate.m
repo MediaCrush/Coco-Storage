@@ -117,7 +117,7 @@ STGAppDelegate *sharedAppDelegate;
     [self setCaptureMovieWC:[[STGMovieCaptureWindowController alloc] initWithWindowNibName:@"STGMovieCaptureWindowController"]];
     [_captureMovieWC setDelegate:self];
     
-    [self setCountdownWC:[[STGFloatingWindowController alloc] initWithWindowNibName:@"STGFloatingWindowController"]];
+    [self setCountdownWC:[STGFloatingWindowController floatingWindowController]];
     [_countdownWC setContentView:[[STGCountdownView alloc] init]];
     [[_countdownWC window] setContentSize:NSMakeSize(500, 40)];
 
@@ -191,6 +191,13 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)assistiveDeviceTimerFired:(NSTimer *)timer
 {
+    NSImage *image = [[NSCursor currentCursor] image];
+    if (image != nil)
+    {
+        [[NSPasteboard generalPasteboard] clearContents];
+        [[NSPasteboard generalPasteboard] writeObjects:[NSArray arrayWithObject:image]];
+    }
+
     if ([[self hotkeyHelper] hotkeyStatus] != STGHotkeyStatusOkay)
     {
         if ([STGSystemHelper isAssistiveDevice])
