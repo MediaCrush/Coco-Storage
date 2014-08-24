@@ -210,7 +210,6 @@
 		8060C343199FC8D3001282CF /* STGUploadedFileToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedFileToken.h; sourceTree = "<group>"; };
 		8060C344199FC8D3001282CF /* STGUploadedFileToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedFileToken.m; sourceTree = "<group>"; };
 		8060C346199FE174001282CF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		8060C348199FE18A001282CF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		80659846199565FE00EF0E34 /* STGAPIConfigurationStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationStorage.h; sourceTree = "<group>"; };
 		80659847199565FE00EF0E34 /* STGAPIConfigurationStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGAPIConfigurationStorage.m; sourceTree = "<group>"; };
 		8065984B199568A700EF0E34 /* STGAPIConfigurationMediacrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGAPIConfigurationMediacrush.h; sourceTree = "<group>"; };
@@ -300,11 +299,6 @@
 		80068FB617272CA700DA1492 = {
 			isa = PBXGroup;
 			children = (
-				8060C348199FE18A001282CF /* AVFoundation.framework */,
-				80D7F9BF1741707500851DDB /* SystemConfiguration.framework */,
-				801203401732FF9D0003BB23 /* Sparkle.framework */,
-				807A668A172AC79900E0212C /* Security.framework */,
-				807A6688172AC6DF00E0212C /* CoreServices.framework */,
 				80068FC817272CA800DA1492 /* Coco Storage */,
 				80068FC117272CA800DA1492 /* Frameworks */,
 				80068FC017272CA800DA1492 /* Products */,
@@ -322,6 +316,10 @@
 		80068FC117272CA800DA1492 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80D7F9BF1741707500851DDB /* SystemConfiguration.framework */,
+				801203401732FF9D0003BB23 /* Sparkle.framework */,
+				807A668A172AC79900E0212C /* Security.framework */,
+				807A6688172AC6DF00E0212C /* CoreServices.framework */,
 				80F7698119A1207A000DC74D /* IOKit.framework */,
 				8060C346199FE174001282CF /* AVFoundation.framework */,
 				80068FC217272CA800DA1492 /* Cocoa.framework */,
