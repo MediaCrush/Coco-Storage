@@ -46,7 +46,7 @@
                                 <rect key="frame" x="85" y="91" width="165" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="161" id="Ajg-tl-dkN"/>
+                                    <constraint firstAttribute="width" constant="161" id="sQV-KM-4sr"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Lukas Tenbrink / 'Ivorius'" id="25">
                                     <font key="font" metaFont="system"/>
@@ -58,7 +58,7 @@
                                 <rect key="frame" x="85" y="41" width="59" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="bkS-9E-4Fq"/>
+                                    <constraint firstAttribute="width" constant="55" id="O0D-Zn-op6"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="aVersion" id="92">
                                     <font key="font" metaFont="system"/>
@@ -101,7 +101,7 @@
                                 <rect key="frame" x="16" y="14" width="359" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="355" id="uof-ET-fqI"/>
+                                    <constraint firstAttribute="width" constant="355" id="rCc-8A-h7d"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright © 2013, Lukas Tenbrink - All rights reserved." id="367">
                                     <font key="font" metaFont="system"/>
@@ -112,24 +112,25 @@
                         </subviews>
                     </view>
                     <constraints>
-                        <constraint firstItem="83" firstAttribute="baseline" secondItem="91" secondAttribute="baseline" id="0pB-uY-DqS"/>
-                        <constraint firstItem="18" firstAttribute="leading" secondItem="83" secondAttribute="leading" id="1p5-OO-vbP"/>
-                        <constraint firstItem="24" firstAttribute="leading" secondItem="18" secondAttribute="trailing" constant="14" id="9RP-AS-MnS"/>
-                        <constraint firstItem="68" firstAttribute="top" secondItem="24" secondAttribute="bottom" constant="8" symbolic="YES" id="EQs-L5-jLu"/>
-                        <constraint firstItem="405" firstAttribute="top" secondItem="3" secondAttribute="top" constant="21" id="FOU-T3-EHk"/>
-                        <constraint firstItem="366" firstAttribute="top" secondItem="83" secondAttribute="bottom" constant="10" id="GJQ-af-UjD"/>
-                        <constraint firstItem="83" firstAttribute="trailing" secondItem="18" secondAttribute="trailing" id="Kgc-w0-jBg"/>
-                        <constraint firstAttribute="trailing" secondItem="405" secondAttribute="trailing" constant="16" id="LMV-T7-IvQ"/>
-                        <constraint firstItem="18" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="16" id="NiI-4c-PBa"/>
-                        <constraint firstItem="18" firstAttribute="baseline" secondItem="24" secondAttribute="baseline" id="QK1-dl-wxa"/>
-                        <constraint firstItem="68" firstAttribute="centerY" secondItem="184" secondAttribute="centerY" id="UIr-7f-Ql7"/>
-                        <constraint firstItem="91" firstAttribute="top" secondItem="68" secondAttribute="bottom" constant="8" symbolic="YES" id="X31-od-lQT"/>
-                        <constraint firstItem="24" firstAttribute="centerY" secondItem="405" secondAttribute="centerY" id="YQA-7L-S8n"/>
-                        <constraint firstAttribute="bottom" secondItem="366" secondAttribute="bottom" constant="11" id="hgE-6V-pno"/>
-                        <constraint firstItem="91" firstAttribute="leading" secondItem="68" secondAttribute="leading" id="is8-DL-pts"/>
-                        <constraint firstItem="68" firstAttribute="leading" secondItem="24" secondAttribute="leading" id="kmv-Ul-s35"/>
-                        <constraint firstItem="405" firstAttribute="leading" secondItem="184" secondAttribute="leading" id="tJN-dr-hMr"/>
-                        <constraint firstItem="366" firstAttribute="leading" secondItem="83" secondAttribute="leading" id="xPI-4s-UrD"/>
+                        <constraint firstAttribute="trailing" secondItem="405" secondAttribute="trailing" constant="16" id="2BT-ls-guN"/>
+                        <constraint firstItem="83" firstAttribute="leading" secondItem="18" secondAttribute="leading" id="3Z3-zd-1nz"/>
+                        <constraint firstItem="91" firstAttribute="leading" secondItem="68" secondAttribute="leading" id="BBP-r7-wTL"/>
+                        <constraint firstItem="68" firstAttribute="centerY" secondItem="184" secondAttribute="centerY" id="I23-jd-DnB"/>
+                        <constraint firstAttribute="bottom" secondItem="366" secondAttribute="bottom" constant="11" id="NwZ-7E-7vS"/>
+                        <constraint firstItem="24" firstAttribute="baseline" secondItem="18" secondAttribute="baseline" id="SPa-fO-o5z"/>
+                        <constraint firstItem="18" firstAttribute="trailing" secondItem="83" secondAttribute="trailing" id="aD9-mN-bfq"/>
+                        <constraint firstItem="24" firstAttribute="leading" secondItem="18" secondAttribute="trailing" constant="14" id="eS6-7n-pXm"/>
+                        <constraint firstItem="405" firstAttribute="top" secondItem="3" secondAttribute="top" constant="21" id="hIg-Ku-7qF"/>
+                        <constraint firstItem="405" firstAttribute="centerY" secondItem="24" secondAttribute="centerY" id="im5-cW-beo"/>
+                        <constraint firstItem="184" firstAttribute="leading" secondItem="405" secondAttribute="leading" id="kXg-xE-ItR"/>
+                        <constraint firstAttribute="height" constant="130" id="llQ-lL-Lkd"/>
+                        <constraint firstItem="366" firstAttribute="top" secondItem="83" secondAttribute="bottom" constant="10" id="m92-y8-C5b"/>
+                        <constraint firstItem="18" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="16" id="orB-Wi-A7V"/>
+                        <constraint firstItem="83" firstAttribute="baseline" secondItem="91" secondAttribute="baseline" id="pIi-uc-YtY"/>
+                        <constraint firstItem="24" firstAttribute="leading" secondItem="68" secondAttribute="leading" id="rLm-Di-Eyj"/>
+                        <constraint firstItem="68" firstAttribute="top" secondItem="24" secondAttribute="bottom" constant="8" symbolic="YES" id="rzg-Ol-jc1"/>
+                        <constraint firstItem="91" firstAttribute="top" secondItem="68" secondAttribute="bottom" constant="8" symbolic="YES" id="tpm-6N-NHZ"/>
+                        <constraint firstItem="83" firstAttribute="leading" secondItem="366" secondAttribute="leading" id="uwV-GD-oKq"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -165,7 +166,7 @@
                                 <rect key="frame" x="16" y="63" width="377" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="373" id="vlr-JR-AIV"/>
+                                    <constraint firstAttribute="width" constant="373" id="Y47-zK-xVt"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright © 2011, Vadim Shpakovski - All rights reserved." id="361">
                                     <font key="font" metaFont="system"/>
@@ -197,7 +198,7 @@
                                 <rect key="frame" x="16" y="13" width="366" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="362" id="w0r-P3-cdz"/>
+                                    <constraint firstAttribute="width" constant="362" id="253-db-TsE"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright © 2006, Andy Matuschak - All rights reserved." id="382">
                                     <font key="font" metaFont="system"/>
@@ -208,31 +209,32 @@
                         </subviews>
                     </view>
                     <constraints>
-                        <constraint firstItem="245" firstAttribute="leading" secondItem="231" secondAttribute="leading" constant="16" id="5I4-5u-W3b"/>
-                        <constraint firstItem="380" firstAttribute="leading" secondItem="281" secondAttribute="leading" id="5dB-LP-bzg"/>
-                        <constraint firstItem="379" firstAttribute="top" secondItem="360" secondAttribute="bottom" constant="8" symbolic="YES" id="6yo-3a-WHj"/>
-                        <constraint firstItem="381" firstAttribute="top" secondItem="379" secondAttribute="bottom" constant="8" symbolic="YES" id="7Kb-xJ-8eA"/>
-                        <constraint firstItem="281" firstAttribute="top" secondItem="231" secondAttribute="top" constant="25" id="9T3-Qb-P3F"/>
-                        <constraint firstItem="281" firstAttribute="top" secondItem="245" secondAttribute="top" id="CIo-dX-j3o"/>
-                        <constraint firstItem="360" firstAttribute="top" secondItem="245" secondAttribute="bottom" constant="8" symbolic="YES" id="L1n-P0-KPt"/>
-                        <constraint firstItem="379" firstAttribute="top" secondItem="380" secondAttribute="top" id="Oa1-Zh-YAR"/>
-                        <constraint firstAttribute="trailing" secondItem="281" secondAttribute="trailing" constant="16" id="U5L-i1-bUr"/>
-                        <constraint firstItem="379" firstAttribute="leading" secondItem="360" secondAttribute="leading" id="Z86-vO-KNg"/>
-                        <constraint firstItem="245" firstAttribute="leading" secondItem="360" secondAttribute="leading" id="hrY-XL-R3n"/>
-                        <constraint firstItem="381" firstAttribute="leading" secondItem="379" secondAttribute="leading" id="zHV-ma-J24"/>
+                        <constraint firstItem="379" firstAttribute="top" secondItem="360" secondAttribute="bottom" constant="8" symbolic="YES" id="4BG-R8-yWQ"/>
+                        <constraint firstAttribute="height" constant="127" id="8bR-6g-X6m"/>
+                        <constraint firstItem="360" firstAttribute="leading" secondItem="245" secondAttribute="leading" id="G6f-Il-DHv"/>
+                        <constraint firstItem="281" firstAttribute="top" secondItem="231" secondAttribute="top" constant="25" id="Kwg-z0-Ka5"/>
+                        <constraint firstItem="245" firstAttribute="top" secondItem="281" secondAttribute="top" id="fkm-Vy-Bir"/>
+                        <constraint firstItem="379" firstAttribute="top" secondItem="380" secondAttribute="top" id="hEI-Eu-Yrh"/>
+                        <constraint firstItem="360" firstAttribute="top" secondItem="245" secondAttribute="bottom" constant="8" symbolic="YES" id="hbO-F9-0QF"/>
+                        <constraint firstItem="379" firstAttribute="leading" secondItem="360" secondAttribute="leading" id="mPR-Yo-IkJ"/>
+                        <constraint firstItem="381" firstAttribute="leading" secondItem="379" secondAttribute="leading" id="nPb-ph-08X"/>
+                        <constraint firstAttribute="trailing" secondItem="281" secondAttribute="trailing" constant="16" id="qR8-nG-yhf"/>
+                        <constraint firstItem="381" firstAttribute="top" secondItem="379" secondAttribute="bottom" constant="8" symbolic="YES" id="rld-S0-Xpe"/>
+                        <constraint firstItem="245" firstAttribute="leading" secondItem="231" secondAttribute="leading" constant="16" id="vsN-d4-ly0"/>
+                        <constraint firstItem="380" firstAttribute="leading" secondItem="281" secondAttribute="leading" id="vsb-Rk-2ou"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
             <constraints>
-                <constraint firstItem="231" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="Apr-T9-tpG"/>
-                <constraint firstItem="3" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="DF2-hg-h5P"/>
-                <constraint firstItem="3" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="VTo-zo-2Q1"/>
-                <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="20" symbolic="YES" id="Wi0-zd-8lS"/>
-                <constraint firstItem="3" firstAttribute="trailing" secondItem="231" secondAttribute="trailing" id="ewN-PH-25p"/>
-                <constraint firstItem="231" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="8" symbolic="YES" id="olW-Zh-fkk"/>
-                <constraint firstAttribute="bottom" secondItem="231" secondAttribute="bottom" constant="20" symbolic="YES" id="zCa-yA-aW7"/>
+                <constraint firstAttribute="bottom" secondItem="231" secondAttribute="bottom" constant="20" symbolic="YES" id="5p5-Us-HRu"/>
+                <constraint firstItem="3" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="J85-yS-9dl"/>
+                <constraint firstItem="3" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="JKK-qU-ka9"/>
+                <constraint firstItem="231" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="8" symbolic="YES" id="Lig-TI-Jlf"/>
+                <constraint firstItem="231" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="f2q-tL-XpE"/>
+                <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="20" symbolic="YES" id="giq-Nh-dTn"/>
+                <constraint firstItem="231" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="ubS-A6-sSW"/>
             </constraints>
         </customView>
     </objects>
