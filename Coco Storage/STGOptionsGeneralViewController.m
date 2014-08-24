@@ -47,7 +47,7 @@
     if (![[STGAPIConfiguration currentConfiguration] hasAPIKeys])
     {
         [[self apiKeyView] removeFromSuperview];
-        [[self view] setFrameSize:NSMakeSize([[self view] bounds].size.width, 40 + 97)];
+        [[self view] setFrameSize:NSMakeSize([[self view] bounds].size.width, 170)];
     }
 }
 
