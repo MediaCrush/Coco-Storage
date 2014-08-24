@@ -17,8 +17,6 @@
 		801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */; };
 		801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */; };
 		8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011CA3E174FE9860021249F /* STGStatusItemView.m */; };
-		801203411732FF9E0003BB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
-		80120345173300C90003BB23 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 801203401732FF9D0003BB23 /* Sparkle.framework */; };
 		8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
@@ -98,6 +96,7 @@
 		80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */; };
 		80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */; };
 		80E12CAC184A99E70093CA6C /* STGUploadTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */; };
+		80EF761619AA5E540089975C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
 		80F7697519A0C3AE000DC74D /* STGMovieCaptureSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */; };
 		80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */; };
 		80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */; };
@@ -116,7 +115,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				80120345173300C90003BB23 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +142,6 @@
 		801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsAboutViewController.xib; sourceTree = "<group>"; };
 		8011CA3D174FE9860021249F /* STGStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemView.h; sourceTree = "<group>"; };
 		8011CA3E174FE9860021249F /* STGStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemView.m; sourceTree = "<group>"; };
-		801203401732FF9D0003BB23 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCFSSyncCheck.h; sourceTree = "<group>"; };
 		8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheck.m; sourceTree = "<group>"; };
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
@@ -260,6 +257,7 @@
 		80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadTypeViewController.h; sourceTree = "<group>"; };
 		80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadTypeViewController.m; sourceTree = "<group>"; };
 		80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGUploadTypeViewController.xib; sourceTree = "<group>"; };
+		80EF761519AA5E540089975C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		80F7697319A0C3AE000DC74D /* STGMovieCaptureSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGMovieCaptureSession.h; sourceTree = "<group>"; };
 		80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGMovieCaptureSession.m; sourceTree = "<group>"; };
 		80F7697C19A0E77B000DC74D /* STGMovieCaptureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGMovieCaptureWindowController.h; sourceTree = "<group>"; };
@@ -286,10 +284,10 @@
 				80F7698219A1207A000DC74D /* IOKit.framework in Frameworks */,
 				8060C347199FE174001282CF /* AVFoundation.framework in Frameworks */,
 				80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */,
+				80EF761619AA5E540089975C /* Sparkle.framework in Frameworks */,
 				807A668B172AC79900E0212C /* Security.framework in Frameworks */,
 				807A6689172AC6DF00E0212C /* CoreServices.framework in Frameworks */,
 				80068FC317272CA800DA1492 /* Cocoa.framework in Frameworks */,
-				801203411732FF9E0003BB23 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,8 +314,8 @@
 		80068FC117272CA800DA1492 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80EF761519AA5E540089975C /* Sparkle.framework */,
 				80D7F9BF1741707500851DDB /* SystemConfiguration.framework */,
-				801203401732FF9D0003BB23 /* Sparkle.framework */,
 				807A668A172AC79900E0212C /* Security.framework */,
 				807A6688172AC6DF00E0212C /* CoreServices.framework */,
 				80F7698119A1207A000DC74D /* IOKit.framework */,
@@ -906,7 +904,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coco Storage/Coco Storage-Prefix.pch";
@@ -924,7 +923,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coco Storage/Coco Storage-Prefix.pch";
