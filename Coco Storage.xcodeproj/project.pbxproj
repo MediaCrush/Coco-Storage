@@ -84,7 +84,6 @@
 		809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C2174D6D330016A391 /* License_MASPreferences.txt */; };
 		809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */; };
 		809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */; };
-		80CC42631733C3B40068476F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80CC42621733C3B40068476F /* dsa_pub.pem */; };
 		80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BD1741700400851DDB /* STGNetworkHelper.m */; };
 		80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D7F9BF1741707500851DDB /* SystemConfiguration.framework */; };
 		80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C51741773A00851DDB /* ServerStatusOK.png */; };
@@ -97,6 +96,7 @@
 		80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */; };
 		80E12CAC184A99E70093CA6C /* STGUploadTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */; };
 		80EF761619AA5E540089975C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
+		80EF761819AA63C00089975C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80EF761719AA63C00089975C /* dsa_pub.pem */; };
 		80F7697519A0C3AE000DC74D /* STGMovieCaptureSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */; };
 		80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */; };
 		80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F7697E19A0E77B000DC74D /* STGMovieCaptureWindowController.xib */; };
@@ -240,7 +240,6 @@
 		809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheckEntry.m; sourceTree = "<group>"; };
 		809D1B0B176F69FD00F30E22 /* STGJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGJSONHelper.h; sourceTree = "<group>"; };
 		809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGJSONHelper.m; sourceTree = "<group>"; };
-		80CC42621733C3B40068476F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		80D7F9BC1741700400851DDB /* STGNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGNetworkHelper.h; sourceTree = "<group>"; };
 		80D7F9BD1741700400851DDB /* STGNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkHelper.m; sourceTree = "<group>"; };
 		80D7F9BF1741707500851DDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -258,6 +257,7 @@
 		80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadTypeViewController.m; sourceTree = "<group>"; };
 		80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGUploadTypeViewController.xib; sourceTree = "<group>"; };
 		80EF761519AA5E540089975C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		80EF761719AA63C00089975C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		80F7697319A0C3AE000DC74D /* STGMovieCaptureSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGMovieCaptureSession.h; sourceTree = "<group>"; };
 		80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGMovieCaptureSession.m; sourceTree = "<group>"; };
 		80F7697C19A0E77B000DC74D /* STGMovieCaptureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGMovieCaptureWindowController.h; sourceTree = "<group>"; };
@@ -540,7 +540,7 @@
 		80CC42611733C3AA0068476F /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				80CC42621733C3B40068476F /* dsa_pub.pem */,
+				80EF761719AA63C00089975C /* dsa_pub.pem */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -726,7 +726,6 @@
 				80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */,
 				80DBC66C17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib in Resources */,
 				80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */,
-				80CC42631733C3B40068476F /* dsa_pub.pem in Resources */,
 				80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */,
 				80D7F9C81741773B00851DDB /* ServerStatusUnavailable.png in Resources */,
 				80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */,
@@ -756,6 +755,7 @@
 				80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */,
 				80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */,
 				8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
+				80EF761819AA63C00089975C /* dsa_pub.pem in Resources */,
 				809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */,
 				809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */,
 			);
