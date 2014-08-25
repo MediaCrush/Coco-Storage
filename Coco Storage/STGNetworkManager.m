@@ -35,7 +35,7 @@
         
         [self setCfsSyncCheck:[[STGCFSSyncCheck alloc] init]];
         [self setUploadTimer:[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(uploadTimerFired:) userInfo:nil repeats:YES]];
-        [self setServerStatusTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(uploadTimerFired:) userInfo:nil repeats:YES]];
+        [self setServerStatusTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(serverStatusTimerFired:) userInfo:nil repeats:YES]];
     }
     return self;
 }
