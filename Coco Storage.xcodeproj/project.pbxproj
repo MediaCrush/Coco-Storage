@@ -23,6 +23,7 @@
 		801CA87319AB47F500A2F44F /* ClipboardTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87219AB47F500A2F44F /* ClipboardTemplate.pdf */; };
 		801CA87519AB47FA00A2F44F /* AlbumTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */; };
 		801CA87719AB489300A2F44F /* FileTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87619AB489300A2F44F /* FileTemplate.pdf */; };
+		801CA87919ABC74E00A2F44F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
 		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
@@ -120,6 +121,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				801CA87919ABC74E00A2F44F /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
