@@ -135,6 +135,8 @@ STGAppDelegate *sharedAppDelegate;
   
 //    [_packetSupportQueue addEntry:[STGPacketCreator cfsDeleteFilePacket:@"/foo2.png" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
 //    [_packetUploadV2Queue addEntry:[STGPacketCreator cfsPostFilePacket:@"/foo9.png" fileURL:[STGFileHelper urlFromStandardPath:[[self getCFSFolder] stringByAppendingPathComponent:@"/foo2/foo2.png"]] link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
+    
+    [_networkManager checkServerStatus];
 }
 
 #pragma mark - Properties

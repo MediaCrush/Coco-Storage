@@ -61,6 +61,8 @@ typedef NS_ENUM(NSUInteger, STGServerStatus)
 
 - (BOOL)isAPIKeyValid:(BOOL)output;
 
+- (void)checkServerStatus;
+
 - (double)fileUploadProgress;
 
 @end
