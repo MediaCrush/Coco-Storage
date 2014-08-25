@@ -126,19 +126,14 @@
 {
     if ([_delegate respondsToSelector:@selector(fileUploadCompleted:entry:successful:)])
         [_delegate fileUploadCompleted:self entry:entry successful:success];
-    
-    [self notifyOfFileUploadQueueChanges];
 }
 
 - (void)startUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry
 {
-    [self notifyOfFileUploadQueueChanges];
 }
 
 - (void)finishUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse
 {
-    [self notifyOfFileUploadQueueChanges];
-
     NSUInteger responseCode = 0;
     if ([urlResponse isKindOfClass:[NSHTTPURLResponse class]])
     {
@@ -171,9 +166,13 @@
 
 - (void)packetQueue:(STGPacketQueue *)queue cancelledEntry:(STGPacket *)entry
 {
-    [self notifyOfFileUploadQueueChanges];
-
     [[STGAPIConfiguration currentConfiguration] cancelPacketUpload:entry];
+}
+
+- (void)packetQueueUpdatedEntries:(STGPacketQueue *)queue
+{
+    if (queue == _packetUploadV1Queue)
+        [self notifyOfFileUploadQueueChanges];
 }
 
 -(void)updateAPIStatus:(BOOL)active validKey:(BOOL)validKey
@@ -245,5 +244,6 @@
     if ([_delegate respondsToSelector:@selector(fileDeletionCompleted:entry:)])
         [_delegate fileDeletionCompleted:self entry:entry];
 }
+
 
 @end

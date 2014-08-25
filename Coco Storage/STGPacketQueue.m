@@ -59,6 +59,9 @@
     if (entry)
         [_uploadQueue addObject:entry];
     
+    if ([_delegate respondsToSelector:@selector(packetQueueUpdatedEntries:)])
+        [_delegate packetQueueUpdatedEntries:self];
+
     [self update];
 }
 
@@ -80,12 +83,15 @@
 - (void)deleteEntry:(STGPacket *)entry
 {
     [_uploadQueue removeObject:entry];
-    
+
     if ([_connectionManager activeEntry] == entry)
     {
         [_connectionManager cancelCurrentRequest];
         [self setUploadedData:0.0];
     }
+    
+    if ([_delegate respondsToSelector:@selector(packetQueueUpdatedEntries:)])
+        [_delegate packetQueueUpdatedEntries:self];
     
     [self update];
 }

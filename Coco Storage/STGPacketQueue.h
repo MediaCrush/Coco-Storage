@@ -24,6 +24,7 @@
 - (void)packetQueue:(STGPacketQueue *)queue cancelledEntry:(STGPacket *)entry;
 
 - (void)packetQueueUpdatedProgress:(STGPacketQueue *)queue;
+- (void)packetQueueUpdatedEntries:(STGPacketQueue *)queue;
 
 @end
 
