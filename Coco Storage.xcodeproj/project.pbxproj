@@ -18,6 +18,11 @@
 		801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */; };
 		8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011CA3E174FE9860021249F /* STGStatusItemView.m */; };
 		8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */; };
+		801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA86E19AB468100A2F44F /* CameraTemplate.pdf */; };
+		801CA87119AB46F600A2F44F /* MovieCameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */; };
+		801CA87319AB47F500A2F44F /* ClipboardTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87219AB47F500A2F44F /* ClipboardTemplate.pdf */; };
+		801CA87519AB47FA00A2F44F /* AlbumTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */; };
+		801CA87719AB489300A2F44F /* FileTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87619AB489300A2F44F /* FileTemplate.pdf */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
 		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
@@ -144,6 +149,11 @@
 		8011CA3E174FE9860021249F /* STGStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemView.m; sourceTree = "<group>"; };
 		8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCFSSyncCheck.h; sourceTree = "<group>"; };
 		8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheck.m; sourceTree = "<group>"; };
+		801CA86E19AB468100A2F44F /* CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = CameraTemplate.pdf; sourceTree = "<group>"; };
+		801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MovieCameraTemplate.pdf; sourceTree = "<group>"; };
+		801CA87219AB47F500A2F44F /* ClipboardTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClipboardTemplate.pdf; sourceTree = "<group>"; };
+		801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AlbumTemplate.pdf; sourceTree = "<group>"; };
+		801CA87619AB489300A2F44F /* FileTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FileTemplate.pdf; sourceTree = "<group>"; };
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
 		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
 		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
@@ -502,6 +512,11 @@
 		80CC425F1733C39D0068476F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				801CA87619AB489300A2F44F /* FileTemplate.pdf */,
+				801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */,
+				801CA87219AB47F500A2F44F /* ClipboardTemplate.pdf */,
+				801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */,
+				801CA86E19AB468100A2F44F /* CameraTemplate.pdf */,
 				80485FE51747F9B200CB6226 /* ButtonRecessed.png */,
 				80485FD31747EC9800CB6226 /* WelcomeWindowBG.png */,
 				80485FD41747EC9800CB6226 /* WelcomeWindowBGBottom.png */,
@@ -738,6 +753,8 @@
 				80369DD51847A27D00349068 /* STGQuickUploadWindowController.xib in Resources */,
 				80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */,
 				80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */,
+				801CA87319AB47F500A2F44F /* ClipboardTemplate.pdf in Resources */,
+				801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */,
 				80486005174802C000CB6226 /* CocoStorageStatusBarIcon01.png in Resources */,
 				8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */,
 				80486006174802C000CB6226 /* CocoStorageStatusBarIcon02.png in Resources */,
@@ -750,11 +767,14 @@
 				80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */,
 				8048600C174802C000CB6226 /* CocoStorageStatusBarIcon08.png in Resources */,
 				8048600D174802C000CB6226 /* CocoStorageStatusBarIcon09.png in Resources */,
+				801CA87519AB47FA00A2F44F /* AlbumTemplate.pdf in Resources */,
 				8048600E174802C000CB6226 /* CocoStorageStatusBarIcon10.png in Resources */,
 				8048600F174802C000CB6226 /* CocoStorageStatusBarIcon11.png in Resources */,
 				80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */,
 				80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */,
 				8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
+				801CA87719AB489300A2F44F /* FileTemplate.pdf in Resources */,
+				801CA87119AB46F600A2F44F /* MovieCameraTemplate.pdf in Resources */,
 				80EF761819AA63C00089975C /* dsa_pub.pem in Resources */,
 				809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */,
 				809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */,
