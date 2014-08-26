@@ -52,7 +52,7 @@
 	<key>NSUIElement</key>
 	<string>1</string>
 	<key>SUFeedURL</key>
-	<string>http://lukas.axxim.net/cocostorage/appcast.xml</string>
+	<string>http://mediacrush.github.io/Coco-Storage/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>
