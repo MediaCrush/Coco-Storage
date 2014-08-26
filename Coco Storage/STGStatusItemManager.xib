@@ -74,13 +74,13 @@
                                     <action selector="captureFullScreen:" target="-2" id="36"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Capture movie" image="MovieCameraTemplate" id="sY8-Xr-PKr">
+                            <menuItem title="Record movie" image="MovieCameraTemplate" id="sY8-Xr-PKr">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="captureMovie:" target="-2" id="oGZ-ed-NnX"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Capture Clipboard..." image="ClipboardTemplate" id="2k3-Wa-v5p">
+                            <menuItem title="Upload Clipboard" image="ClipboardTemplate" id="2k3-Wa-v5p">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="captureClipboard:" target="-2" id="Dsw-g8-Sul"/>
@@ -170,8 +170,8 @@
     <resources>
         <image name="AlbumTemplate" width="20" height="20"/>
         <image name="CameraTemplate" width="20" height="20"/>
-        <image name="ClipboardTemplate" width="18" height="20"/>
-        <image name="FileTemplate" width="16" height="20"/>
+        <image name="ClipboardTemplate" width="20" height="20"/>
+        <image name="FileTemplate" width="20" height="20"/>
         <image name="MovieCameraTemplate" width="20" height="20"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSFollowLinkFreestandingTemplate" width="10" height="10"/>
