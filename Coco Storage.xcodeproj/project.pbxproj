@@ -20,9 +20,7 @@
 		8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */; };
 		801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA86E19AB468100A2F44F /* CameraTemplate.pdf */; };
 		801CA87119AB46F600A2F44F /* MovieCameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */; };
-		801CA87319AB47F500A2F44F /* ClipboardTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87219AB47F500A2F44F /* ClipboardTemplate.pdf */; };
 		801CA87519AB47FA00A2F44F /* AlbumTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */; };
-		801CA87719AB489300A2F44F /* FileTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87619AB489300A2F44F /* FileTemplate.pdf */; };
 		801CA87919ABC74E00A2F44F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
@@ -39,6 +37,8 @@
 		80369DD51847A27D00349068 /* STGQuickUploadWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */; };
 		803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */; };
 		803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */; };
+		803D7BB819ACF3F400D0162E /* FileTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 803D7BB719ACF3F400D0162E /* FileTemplate.pdf */; };
+		803D7BBA19ACF3FB00D0162E /* ClipboardTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 803D7BB919ACF3FB00D0162E /* ClipboardTemplate.pdf */; };
 		80485FCC1747BF9200CB6226 /* DividerLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FCB1747BF9200CB6226 /* DividerLine.png */; };
 		80485FCE1747E85500CB6226 /* DividerLineM.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FCD1747E85500CB6226 /* DividerLineM.png */; };
 		80485FD51747EC9800CB6226 /* WelcomeWindowBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 80485FD31747EC9800CB6226 /* WelcomeWindowBG.png */; };
@@ -155,9 +155,7 @@
 		8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheck.m; sourceTree = "<group>"; };
 		801CA86E19AB468100A2F44F /* CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = CameraTemplate.pdf; sourceTree = "<group>"; };
 		801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MovieCameraTemplate.pdf; sourceTree = "<group>"; };
-		801CA87219AB47F500A2F44F /* ClipboardTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClipboardTemplate.pdf; sourceTree = "<group>"; };
 		801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AlbumTemplate.pdf; sourceTree = "<group>"; };
-		801CA87619AB489300A2F44F /* FileTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FileTemplate.pdf; sourceTree = "<group>"; };
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
 		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
 		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
@@ -182,6 +180,8 @@
 		803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGDataCaptureManager.m; sourceTree = "<group>"; };
 		803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionTextField.h; sourceTree = "<group>"; };
 		803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionTextField.m; sourceTree = "<group>"; };
+		803D7BB719ACF3F400D0162E /* FileTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FileTemplate.pdf; sourceTree = "<group>"; };
+		803D7BB919ACF3FB00D0162E /* ClipboardTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClipboardTemplate.pdf; sourceTree = "<group>"; };
 		80485FCB1747BF9200CB6226 /* DividerLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DividerLine.png; sourceTree = "<group>"; };
 		80485FCD1747E85500CB6226 /* DividerLineM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DividerLineM.png; sourceTree = "<group>"; };
 		80485FD31747EC9800CB6226 /* WelcomeWindowBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeWindowBG.png; sourceTree = "<group>"; };
@@ -525,9 +525,9 @@
 		80CC425F1733C39D0068476F /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				801CA87619AB489300A2F44F /* FileTemplate.pdf */,
+				803D7BB919ACF3FB00D0162E /* ClipboardTemplate.pdf */,
+				803D7BB719ACF3F400D0162E /* FileTemplate.pdf */,
 				801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */,
-				801CA87219AB47F500A2F44F /* ClipboardTemplate.pdf */,
 				801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */,
 				801CA86E19AB468100A2F44F /* CameraTemplate.pdf */,
 				80485FE51747F9B200CB6226 /* ButtonRecessed.png */,
@@ -745,6 +745,7 @@
 				80068FCD17272CA800DA1492 /* InfoPlist.strings in Resources */,
 				80068FD317272CA900DA1492 /* Credits.rtf in Resources */,
 				8029A48D17282CC900F09884 /* Credits.html in Resources */,
+				803D7BBA19ACF3FB00D0162E /* ClipboardTemplate.pdf in Resources */,
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
 				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
 				8029A4A11728427900F09884 /* MainMenu.xib in Resources */,
@@ -762,11 +763,11 @@
 				80485FCE1747E85500CB6226 /* DividerLineM.png in Resources */,
 				80485FD51747EC9800CB6226 /* WelcomeWindowBG.png in Resources */,
 				80485FD61747EC9800CB6226 /* WelcomeWindowBGBottom.png in Resources */,
+				803D7BB819ACF3F400D0162E /* FileTemplate.pdf in Resources */,
 				80485FE01747EFF400CB6226 /* CocoStorageLogoText.png in Resources */,
 				80369DD51847A27D00349068 /* STGQuickUploadWindowController.xib in Resources */,
 				80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */,
 				80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */,
-				801CA87319AB47F500A2F44F /* ClipboardTemplate.pdf in Resources */,
 				801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */,
 				80486005174802C000CB6226 /* CocoStorageStatusBarIcon01.png in Resources */,
 				8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */,
@@ -786,7 +787,6 @@
 				80486010174802C000CB6226 /* CocoStorageStatusBarIcon12.png in Resources */,
 				80486011174802C000CB6226 /* CocoStorageStatusBarIcon13.png in Resources */,
 				8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
-				801CA87719AB489300A2F44F /* FileTemplate.pdf in Resources */,
 				801CA87119AB46F600A2F44F /* MovieCameraTemplate.pdf in Resources */,
 				80EF761819AA63C00089975C /* dsa_pub.pem in Resources */,
 				809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */,
