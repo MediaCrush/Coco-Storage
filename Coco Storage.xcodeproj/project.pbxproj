@@ -74,6 +74,8 @@
 		8065984D199568A700EF0E34 /* STGAPIConfigurationMediacrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 8065984C199568A700EF0E34 /* STGAPIConfigurationMediacrush.m */; };
 		8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453B18492A17007F1EA1 /* STGTypeChooserView.m */; };
 		8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */; };
+		8072D97C19AC930500A39A5F /* STGGifConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8072D97B19AC930500A39A5F /* STGGifConverter.m */; };
+		8072D98019ACA24600A39A5F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8072D97F19ACA24600A39A5F /* CoreMedia.framework */; };
 		80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B461746899200D0C790 /* STGOptionsCFSViewController.m */; };
 		80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */; };
 		80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */; };
@@ -227,6 +229,10 @@
 		8071453B18492A17007F1EA1 /* STGTypeChooserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGTypeChooserView.m; sourceTree = "<group>"; };
 		8071453D18492A56007F1EA1 /* STGTypeChooserViewType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGTypeChooserViewType.h; sourceTree = "<group>"; };
 		8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGTypeChooserViewType.m; sourceTree = "<group>"; };
+		8072D97A19AC930500A39A5F /* STGGifConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGGifConverter.h; sourceTree = "<group>"; };
+		8072D97B19AC930500A39A5F /* STGGifConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGGifConverter.m; sourceTree = "<group>"; };
+		8072D97D19AC9A8000A39A5F /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		8072D97F19ACA24600A39A5F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		80781B451746899200D0C790 /* STGOptionsCFSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsCFSViewController.h; sourceTree = "<group>"; };
 		80781B461746899200D0C790 /* STGOptionsCFSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsCFSViewController.m; sourceTree = "<group>"; };
 		80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsCFSViewController.xib; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8072D98019ACA24600A39A5F /* CoreMedia.framework in Frameworks */,
 				80F7698219A1207A000DC74D /* IOKit.framework in Frameworks */,
 				8060C347199FE174001282CF /* AVFoundation.framework in Frameworks */,
 				80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */,
@@ -326,6 +333,8 @@
 		80068FC117272CA800DA1492 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8072D97F19ACA24600A39A5F /* CoreMedia.framework */,
+				8072D97D19AC9A8000A39A5F /* QTKit.framework */,
 				80EF761519AA5E540089975C /* Sparkle.framework */,
 				80D7F9BF1741707500851DDB /* SystemConfiguration.framework */,
 				807A668A172AC79900E0212C /* Security.framework */,
@@ -487,6 +496,8 @@
 				8011328C172966CB006702B9 /* STGDataCaptureEntry.m */,
 				80F7697319A0C3AE000DC74D /* STGMovieCaptureSession.h */,
 				80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */,
+				8072D97A19AC930500A39A5F /* STGGifConverter.h */,
+				8072D97B19AC930500A39A5F /* STGGifConverter.m */,
 			);
 			name = "Data-Capture";
 			sourceTree = "<group>";
@@ -790,6 +801,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8072D97C19AC930500A39A5F /* STGGifConverter.m in Sources */,
 				80068FCF17272CA800DA1492 /* main.m in Sources */,
 				804C879119A1FAAA000957C6 /* STGFloatingWindowController.m in Sources */,
 				80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */,

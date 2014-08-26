@@ -42,6 +42,8 @@
 
 #import "STGUncompletedUploadList.h"
 
+#import "STGGifConverter.h"
+
 STGAppDelegate *sharedAppDelegate;
 
 @implementation STGAppDelegate
@@ -712,13 +714,53 @@ STGAppDelegate *sharedAppDelegate;
     if (error == nil && !cancelled)
     {
         STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:[movieCaptureSession destURL] deleteOnCompletion:YES];
-        [self dataCaptureCompleted:entry sender:self];        
+        [self dataCaptureCompleted:entry sender:self];
+
+        // Uncomment to convert to gif instead of uploading the video
+//        AVURLAsset *movie = [[AVURLAsset alloc] initWithURL:[movieCaptureSession destURL] options:nil];
+//        STGGifConverter *gifConverter = [[STGGifConverter alloc] init];
+//        
+//        [gifConverter setDelegate:self];
+//        [gifConverter setUserInfo:[movieCaptureSession destURL]];
+//        [gifConverter beginConversion:movie];
     }
     else
     {
         [self deleteEntry:[STGDataCaptureEntry entryWithURL:[movieCaptureSession destURL] deleteOnCompletion:YES]];
     }
 }
+
+//#pragma mark Gif conversion delegate
+//
+//- (void)gifConversionStarted:(STGGifConverter *)gifConverter
+//{
+//    [[self gifConversions] addObject:gifConverter];
+//}
+//
+//- (void)gifConversionEnded:(STGGifConverter *)gifConverter withData:(NSData *)data canceled:(BOOL)canceleld
+//{
+//    [[self gifConversions] removeObject:gifConverter];
+//    
+//    NSURL *srcURL = [gifConverter userInfo];
+//
+//    if (data != nil)
+//    {
+//        [[NSFileManager defaultManager] removeItemAtURL:srcURL error:nil];
+//        NSURL *gifURL = [srcURL URLByAppendingPathExtension:@"gif"];
+//
+//        if ([data writeToURL:gifURL atomically:NO])
+//        {
+//            STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:gifURL deleteOnCompletion:YES];
+//            
+//            [self dataCaptureCompleted:entry sender:self];
+//        }
+//    }
+//    else
+//    {
+//        STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:srcURL deleteOnCompletion:YES];
+//        [self dataCaptureCompleted:entry sender:self];
+//    }
+//}
 
 #pragma mark API Configuration Delegate
 
