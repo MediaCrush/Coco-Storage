@@ -80,7 +80,7 @@
                                     <action selector="captureMovie:" target="-2" id="oGZ-ed-NnX"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Upload Clipboard" image="ClipboardTemplate" id="2k3-Wa-v5p">
+                            <menuItem title="Upload clipboard" image="ClipboardTemplate" id="2k3-Wa-v5p">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="captureClipboard:" target="-2" id="Dsw-g8-Sul"/>
@@ -92,7 +92,7 @@
                                     <action selector="captureFile:" target="-2" id="35"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Create Album" image="AlbumTemplate" id="gea-n1-pdY">
+                            <menuItem title="Create album" image="AlbumTemplate" id="gea-n1-pdY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="createAlbum:" target="-2" id="u1p-98-Blw"/>
