@@ -82,11 +82,11 @@
 
 - (void)keyDown:(NSEvent *)theEvent
 {
-//    if ([theEvent keyCode] == 49) // Space
-//    {
-//        [self setWindowSelectMode:!_windowSelectMode];
-//    }
-//    else
+    if ([theEvent keyCode] == 49) // Space
+    {
+        [self setWindowSelectMode:!_windowSelectMode];
+    }
+    else
         [super keyDown:theEvent];
 }
 
@@ -124,7 +124,7 @@
 
 - (NSRect)currentWindowRect
 {
-    NSArray *array = (__bridge NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionAll, kCGNullWindowID);
+    NSArray *array = (__bridge NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
     NSPoint mousePoint = [NSEvent mouseLocation];
     
     NSRect highestRect = NSZeroRect;
@@ -137,7 +137,7 @@
 //        NSLog(@"WINDOW %@", [windowInfo objectForKey:(id)kCGWindowName]);
 
         int sharingState = [[windowInfo objectForKey:(id)kCGWindowSharingState] intValue];
-        if(sharingState != kCGWindowSharingNone)
+        if(sharingState != kCGWindowSharingNone && ![[windowInfo objectForKey:(id)kCGWindowName] isEqualToString:@"Dock"])
         {
             long windowLevel = [[windowInfo objectForKey:(id)kCGWindowLayer] intValue];
             
