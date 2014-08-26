@@ -151,6 +151,7 @@ STGAppDelegate *sharedAppDelegate;
 //            }
 //        }];
         [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(autoUpdateSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+        [NSApp activateIgnoringOtherApps:YES];
     }
 }
 
@@ -639,6 +640,7 @@ STGAppDelegate *sharedAppDelegate;
     {
         NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage Upload Error" defaultButton:@"Open Preferences" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"Coco Storage could not complete your file upload... Make sure your Storage key is valid, and try again.\n"];
         [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];        
+        [NSApp activateIgnoringOtherApps:YES];
     }
     
     [self deleteEntryIfNecessary:entry successful:successful];
