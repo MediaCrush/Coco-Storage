@@ -287,7 +287,6 @@ STGAppDelegate *sharedAppDelegate;
     
     [_networkManager setUploadsPaused:pause];
     
-    [_statusItemManager setStatusItemUploadProgress:0.0];
     [_statusItemManager updatePauseDownloadItem];
 }
 
@@ -554,7 +553,9 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)fileUploadProgressChanged:(STGNetworkManager *)networkManager
 {
-    [_statusItemManager updateUploadQueue:[networkManager packetUploadV1Queue] currentProgress:[networkManager fileUploadProgress]];
+    CGFloat uploadProgress = [networkManager fileUploadProgress];
+    [_statusItemManager setStatusItemUploadProgress:uploadProgress];
+    [_statusItemManager updateUploadQueue:[networkManager packetUploadV1Queue] currentProgress:uploadProgress];
 }
 
 - (void)fileUploadQueueChanged:(STGNetworkManager *)networkManager
