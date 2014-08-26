@@ -270,7 +270,6 @@
     NSPasteboard *pBoard = [NSPasteboard generalPasteboard];
     
     NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard withAction:action];
-    entries = [STGAPIConfiguration validUploadActions:entries forConfiguration:[STGAPIConfiguration currentConfiguration]];
     
     if (entries && [entries count] > 0)
     {
@@ -288,7 +287,6 @@
     NSPasteboard *pBoard = [sender draggingPasteboard];
     
     NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:pBoard withAction:action];
-    entries = [STGAPIConfiguration validUploadActions:entries forConfiguration:[STGAPIConfiguration currentConfiguration]];
 
     if (entries && [entries count] > 0)
     {
