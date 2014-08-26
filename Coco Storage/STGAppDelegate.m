@@ -42,8 +42,6 @@
 
 #import "STGUncompletedUploadList.h"
 
-#import "STGGifConverter.h"
-
 STGAppDelegate *sharedAppDelegate;
 
 @implementation STGAppDelegate
