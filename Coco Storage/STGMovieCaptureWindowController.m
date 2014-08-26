@@ -84,6 +84,7 @@
 {
     NSRect displayRect = CGDisplayBounds([_recordDisplayID unsignedIntValue]);
     [[_rectSelectWC window] setFrame:displayRect display:YES];
+    [[_rectSelectWC contentView] setWindowSelectMode:NO];
     
     [_rectSelectWC showWindow:self];
     [NSApp  activateIgnoringOtherApps:YES];
