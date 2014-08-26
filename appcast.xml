@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Coco Storage - Changelog</title>
+        <link>http://lukas.axxim.net/cocostorage/appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.4 (Initial Mediacru.sh release)</title>
+            <sparkle:releaseNotesLink>
+                http://lukas.axxim.net/cocostorage/versions/1.4.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Sun, 24 Aug 2014 20:23:40 +0100</pubDate>
+            <enclosure url="http://lukas.axxim.net/cocostorage/versions/Coco%20Storage%201.4.app.zip" sparkle:version="1.4" length="756408" type="application/octet-stream" sparkle:dsaSignature="MC0CFQDGHxQvnv2Dq+0MefRt2TEV1tDrZwIUTynZ6rUJINUecfRYMyuL4HxtjtQ=" />
+            <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>

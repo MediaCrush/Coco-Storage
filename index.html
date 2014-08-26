@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Coco Storage</title>
+		<link rel="shortcut icon" href="http://mediacrush.github.io/coco-storage/favicon.ico" />
+
+		<link href="http://mediacrush.github.io/coco-storage/style/jquery-ui.css" rel="stylesheet">
+
+		<script src="http://mediacrush.github.io/coco-storage/javascript/jquery.js"></script>
+		<script src="http://mediacrush.github.io/coco-storage/javascript/jquery-ui.js"></script>
+
+		<link href="http://mediacrush.github.io/coco-storage/style/lightbox.css" rel="stylesheet">
+		<script src="http://mediacrush.github.io/coco-storage/javascript/lightbox.min.js"></script>
+
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<link rel="stylesheet" href="http://mediacrush.github.io/coco-storage/style/style.css" type="text/css"/>
+		
+		<script>
+		$(function() {
+			$( "input[type=submit], button" )
+				.button()
+				.click(function( event ) {
+				event.preventDefault();
+			});
+			$( ".link-button" ).click(function() {
+				window.open($(this).closest('a').attr('href'));
+			});
+			  
+			/*setInterval( bgloop, 1000 / 60 );*/
+		});
+		
+		var time = 0;
+		function bgloop() {
+			$( ".segment-header" ).css( "background-position-x", time * 0.2);
+			time ++;
+		}
+		</script>
+	</head>
+	<body class="smoothlink">
+		<center>
+		<div class="coco-header segment-header">Coco Storage
+		</div>
+		<br />
+		<h3>The Media Sharing Utility for OSX</h3>
+		Powered by <a href="https://mediacru.sh">Mediacru.sh</a>. <br />
+		<br /><br /><br /><br />
+		<a href="http://mediacrush.github.io/coco-storage/versions/Coco%20Storage%201.4.app.zip" target="_blank"><button class="link-button download-button"><i class="fa fa-download"></i> Download Now</button></a>
+		<a href="https://github.com/MediaCrush/Coco-Storage" target="_blank"><button class="link-button download-button"><i class="fa fa-github"></i> View Source</button></a>
+		<br /><br /><br /><br /><br />
+		<a href="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%201.png" data-lightbox="screenshots" target="blank"><div class="image-box"><div class="overlay"></div><img src="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%201.png" alt="Screenshot"/></div></a>
+		<a href="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%202.png" data-lightbox="screenshots" target="blank"><div class="image-box"><div class="overlay"></div><img src="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%202.png" alt="Screenshot"/></div></a>
+		<a href="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%203.png" data-lightbox="screenshots" target="blank"><div class="image-box"><div class="overlay"></div><img src="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%203.png" alt="Screenshot"/></div></a>
+		<a href="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%204.png" data-lightbox="screenshots" target="blank"><div class="image-box"><div class="overlay"></div><img src="http://mediacrush.github.io/coco-storage/images/Coco%20Storage%20Screenshot%204.png" alt="Screenshot"/></div></a>
+		<br /><br /><br /><br />
+		<div class="segment-header">Features</div>
+		<div id="feature-list">
+		<div class="single-feature"><h2><i class="fa fa-cloud"></i> Instant Uploads</h2><hr />All Uploads are super fast. Share them in seconds!</div>
+		<div class="single-feature"><h2><i class="fa fa-camera"></i> Screen Capture</h2><hr />Make a simple screenshot of an area to share an experience.</div>
+		<div class="single-feature"><h2><i class="fa fa-video-camera"></i> Screen Recording</h2><hr />Record your screen to showcase a quick action, workflow, or animation.</div>
+		<div class="single-feature"><h2><i class="fa fa-microphone"></i> Audio Recording</h2><hr />Record and share some audio recorded directly from your microphone.</div>
+		<div class="single-feature"><h2><i class="fa fa-photo"></i> Albums</h2><hr />Create Albums to group uploads together.</div>
+		<div class="single-feature"><h2><i class="fa fa-file-zip-o"></i> File Upload</h2><hr />Grab any pre-existing file to upload it without any browser fiddling.</div>
+		<div class="single-feature"><h2><i class="fa fa-times"></i> File Deletion</h2><hr />Your privacy is <a href="https://mediacru.sh/about#goodwill">highly valued</a>! You are, at any point, capable of quickly deleting your files again.</div>
+		<div class="single-feature"><h2><i class="fa fa-gears"></i> Customizable</h2><hr />Fully customizable! Switch to your preferred hotkeys, upload settings, and more.</div>
+		</div>
+		<footer>
+		&copy; <a href="http://lukas.axxim.net/">Lukas Tenbrink</a>, 2013
+		</footer>
+		<br /><br />
+		</center>
+	</body>
+</html>
