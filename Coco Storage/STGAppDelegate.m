@@ -73,6 +73,8 @@ STGAppDelegate *sharedAppDelegate;
     [standardDefaults setObject:[NSArray array] forKey:@"uploadQueue"];
     [standardDefaults setObject:[NSNumber numberWithBool:NO] forKey:@"pauseUploads"];
     [standardDefaults setObject:@"0.0" forKey:@"lastVersion"];
+    [standardDefaults setObject:[NSNumber numberWithInt:0] forKey:@"autoUpdate"];
+    [standardDefaults setObject:[NSNumber numberWithBool:NO] forKey:@"HadFirstLaunch"];
     [[NSUserDefaults standardUserDefaults] registerDefaults:standardDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
@@ -137,6 +139,28 @@ STGAppDelegate *sharedAppDelegate;
 //    [_packetUploadV2Queue addEntry:[STGPacketCreator cfsPostFilePacket:@"/foo9.png" fileURL:[STGFileHelper urlFromStandardPath:[[self getCFSFolder] stringByAppendingPathComponent:@"/foo2/foo2.png"]] link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
     
     [_networkManager checkServerStatus];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HadFirstLaunch"])
+    {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Coco Storage - Caution" defaultButton:@"OK" alternateButton:@"Disable auto-updates" otherButton:nil informativeTextWithFormat:@"Note that Coco Storage automatically queries a server (GitHub) for automatic updates. You are free to disable it at any time."];
+//        [alert beginSheetModalForWindow:nil completionHandler:^(NSModalResponse returnCode) {
+//            if (returnCode == NSModalResponseOK)
+//            {
+//                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"autoUpdate"];
+//                [_sparkleUpdater setAutomaticallyChecksForUpdates:YES];
+//            }
+//        }];
+        [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(autoUpdateSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+    }
+}
+
+- (void)autoUpdateSheetDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    if (returnCode == 1)
+    {
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"autoUpdate"];
+        [_sparkleUpdater setAutomaticallyChecksForUpdates:YES];
+    }
 }
 
 #pragma mark - Properties
@@ -186,8 +210,10 @@ STGAppDelegate *sharedAppDelegate;
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_recentFilesArray] forKey:@"RecentUploads"];
     
     [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"lastVersion"];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];    
+
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HadFirstLaunch"];
+
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Timer

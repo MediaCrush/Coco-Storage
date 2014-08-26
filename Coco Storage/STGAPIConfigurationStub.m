@@ -110,9 +110,9 @@ STGAPIConfigurationStub *standardConfiguration;
 
 - (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey
 {
-    if ([[self networkDelegate] respondsToSelector:@selector(updateAPIStatus:validKey:)])
+    if ([_networkDelegate respondsToSelector:@selector(updateAPIStatus:validKey:)])
     {
-        [[self networkDelegate] updateAPIStatus:YES validKey:true];
+        [_networkDelegate updateAPIStatus:YES validKey:true];
     }
     
     // No API status packet
@@ -132,9 +132,9 @@ STGAPIConfigurationStub *standardConfiguration;
     if (error)
         NSLog(@"File copy error %@", error);
     
-    if ([[self networkDelegate] respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
+    if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
     {
-        [[self networkDelegate] didUploadDataCaptureEntry:entry success:error == nil];
+        [_networkDelegate didUploadDataCaptureEntry:entry success:error == nil];
     }
 }
 

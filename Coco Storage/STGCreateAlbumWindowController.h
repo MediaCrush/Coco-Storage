@@ -16,7 +16,7 @@
 
 @interface STGCreateAlbumWindowController : NSWindowController <NSTokenFieldDelegate>
 
-@property (nonatomic, assign) NSObject<STGCreateAlbumWindowControllerDelegate> *delegate;
+@property (nonatomic, assign) id<STGCreateAlbumWindowControllerDelegate> delegate;
 
 @property (nonatomic, retain) NSArray *uploadIDList;
 

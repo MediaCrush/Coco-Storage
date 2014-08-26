@@ -44,7 +44,7 @@
     [aCoder encodeObject:_list forKey:@"List"];
 }
 
-- (void)queueAll:(STGPacketQueue *)packetQueue inConfiguration:(NSObject<STGAPIConfiguration> *)apiConfiguration withKey:(NSString *)apiKey
+- (void)queueAll:(STGPacketQueue *)packetQueue inConfiguration:(id<STGAPIConfiguration>)apiConfiguration withKey:(NSString *)apiKey
 {
     for (STGDataCaptureEntry *entry in _list)
     {

@@ -13,7 +13,7 @@
 @class STGPacket;
 @class STGPacketQueue;
 
-@protocol STGAPIConfigurationNetworkDelegate
+@protocol STGAPIConfigurationNetworkDelegate<NSObject>
 
 @optional
 - (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success;
@@ -22,16 +22,16 @@
 - (void)openPreferences;
 @end
 
-@protocol STGAPIConfigurationDelegate
+@protocol STGAPIConfigurationDelegate<NSObject>
 
 @optional
 - (void)openPreferences;
 @end
 
-@protocol STGAPIConfiguration
+@protocol STGAPIConfiguration<NSObject>
 
-@property (nonatomic, assign) NSObject<STGAPIConfigurationDelegate> *delegate;
-@property (nonatomic, assign) NSObject<STGAPIConfigurationNetworkDelegate> *networkDelegate;
+@property (nonatomic, assign) id<STGAPIConfigurationDelegate> delegate;
+@property (nonatomic, assign) id<STGAPIConfigurationNetworkDelegate> networkDelegate;
 
 - (NSString *)apiHostName;
 - (BOOL)hasAPIKeys;
@@ -66,8 +66,8 @@
 
 @interface STGAPIConfiguration : NSObject
 
-+ (void)setCurrentConfiguration:(NSObject<STGAPIConfiguration> *)configuration;
-+ (NSObject<STGAPIConfiguration> *)currentConfiguration;
++ (void)setCurrentConfiguration:(id<STGAPIConfiguration>)configuration;
++ (id<STGAPIConfiguration>)currentConfiguration;
 
 + (NSArray *)validUploadActions:(NSArray *)actions forConfiguration:(id<STGAPIConfiguration>) configuration;
 
