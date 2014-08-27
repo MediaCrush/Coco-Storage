@@ -90,10 +90,12 @@
             }
         }
     }
+    
     if ([[pasteboard types] containsObject:NSPasteboardTypeRTF])
     {
         [array addObject:[NSNumber numberWithInteger:STGDropActionUploadRtfText]];
     }
+    
     if ([[pasteboard types] containsObject:NSPasteboardTypeString])
     {
         [array addObject:[NSNumber numberWithInteger:STGDropActionUploadText]];

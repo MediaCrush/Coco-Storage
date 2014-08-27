@@ -10,14 +10,14 @@
 
 typedef NS_ENUM(NSUInteger, STGDropAction)
 {
-    STGDropActionUploadFile = 0,
-    STGDropActionUploadDirectoryZip = 1,
-    STGDropActionUploadZip = 2,
-    STGDropActionUploadText = 3,
-    STGDropActionUploadRtfText = 4,
-    STGDropActionUploadImage = 5,
-    STGDropActionUploadLinkRedirect = 6,
-    STGDropActionUploadColor = 7
+    STGDropActionUploadFile,
+    STGDropActionUploadDirectoryZip,
+    STGDropActionUploadZip,
+    STGDropActionUploadText,
+    STGDropActionUploadRtfText,
+    STGDropActionUploadImage,
+    STGDropActionUploadLinkRedirect,
+    STGDropActionUploadColor
 };
 
 @class STGDataCaptureEntry;
