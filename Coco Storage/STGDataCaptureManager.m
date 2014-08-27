@@ -26,7 +26,85 @@
 
 + (NSArray *)getSupportedPasteboardContentTypes
 {
-    return [NSArray arrayWithObjects:NSURLPboardType, NSPasteboardTypeString, NSPasteboardTypeColor, NSPasteboardTypeRTF, NSPasteboardTypePNG, NSPasteboardTypeTIFF, NSTIFFPboardType, nil];
+    return [NSArray arrayWithObjects:NSFilenamesPboardType, NSURLPboardType, NSPasteboardTypePNG, NSPasteboardTypeTIFF, NSTIFFPboardType, NSPasteboardTypeRTF, NSPasteboardTypeString, NSPasteboardTypeColor, nil];
+}
+
++ (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    if ([[pasteboard types] containsObject:NSFilenamesPboardType])
+    {
+        NSData *data = [pasteboard dataForType:NSFilenamesPboardType];
+        NSError *error;
+        
+        NSArray *filenames = [NSPropertyListSerialization propertyListWithData:data options:kCFPropertyListImmutable format:nil error:&error];
+        
+        if (error)
+            NSLog(@"%@", error);
+        else if (filenames && [filenames count] > 1)
+        {
+            [array addObject:[NSNumber numberWithInteger:STGDropActionUploadZip]];
+        }
+        else if (filenames && ![[pasteboard types] containsObject:NSURLPboardType])
+        {
+            NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+            
+            if (url && [url isFileURL])
+            {
+                BOOL isDirectory;
+                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+                
+                if (exists && !isDirectory)
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadFile]];
+                else if (exists)
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadDirectoryZip]];
+            }
+        }
+    }
+    
+    if ([pasteboard canReadObjectForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil])
+    {
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadImage]];
+    }
+    
+    if ([[pasteboard types] containsObject:NSURLPboardType])
+    {
+        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+        
+        if (url)
+        {
+            if ([url isFileURL])
+            {
+                BOOL isDirectory;
+                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+                
+                if (exists && !isDirectory)
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadFile]];
+                else if (exists)
+                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadDirectoryZip]];
+            }
+            else if([[url scheme] isEqualToString:@"http"])
+            {
+                [array addObject:[NSNumber numberWithInteger:STGDropActionUploadLinkRedirect]];
+            }
+        }
+    }
+    if ([[pasteboard types] containsObject:NSPasteboardTypeRTF])
+    {
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadRtfText]];
+    }
+    if ([[pasteboard types] containsObject:NSPasteboardTypeString])
+    {
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadText]];
+    }
+    
+    if ([[pasteboard types] containsObject:NSPasteboardTypeColor])
+    {
+        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadColor]];
+    }
+    
+    return array;
 }
 
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGDropAction)action
@@ -123,82 +201,6 @@
     }
     
     return nil;
-}
-
-+ (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard
-{
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-
-    if ([[pasteboard types] containsObject:NSFilenamesPboardType])
-    {
-        NSData *data = [pasteboard dataForType:NSFilenamesPboardType];
-        NSError *error;
-        
-        NSArray *filenames = [NSPropertyListSerialization propertyListWithData:data options:kCFPropertyListImmutable format:nil error:&error];
-        
-        if (error)
-            NSLog(@"%@", error);
-        else if (filenames && [filenames count] > 1)
-        {
-            [array addObject:[NSNumber numberWithInteger:STGDropActionUploadZip]];
-        }
-        else if (filenames && ![[pasteboard types] containsObject:NSURLPboardType])
-        {
-            NSURL *url = [NSURL URLFromPasteboard:pasteboard];
-            
-            if (url && [url isFileURL])
-            {
-                BOOL isDirectory;
-                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
-                
-                if (exists && !isDirectory)
-                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadFile]];
-                else if (exists)
-                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadDirectoryZip]];
-            }
-        }
-    }
-    if ([pasteboard canReadObjectForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil])
-    {
-        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadImage]];
-    }
-    if ([[pasteboard types] containsObject:NSURLPboardType])
-    {
-        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
-        
-        if (url)
-        {
-            if ([url isFileURL])
-            {
-                BOOL isDirectory;
-                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
-                
-                if (exists && !isDirectory)
-                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadFile]];
-                else if (exists)
-                    [array addObject:[NSNumber numberWithInteger:STGDropActionUploadDirectoryZip]];
-            }
-            else if([[url scheme] isEqualToString:@"http"])
-            {
-                [array addObject:[NSNumber numberWithInteger:STGDropActionUploadLinkRedirect]];
-            }
-        }
-    }
-    if ([[pasteboard types] containsObject:NSPasteboardTypeRTF])
-    {
-        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadRtfText]];
-    }
-    if ([[pasteboard types] containsObject:NSPasteboardTypeString])
-    {
-        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadText]];
-    }
-
-    if ([[pasteboard types] containsObject:NSPasteboardTypeColor])
-    {
-        [array addObject:[NSNumber numberWithInteger:STGDropActionUploadColor]];
-    }
-    
-    return array;
 }
 
 + (NSString *)getNameForAction:(STGDropAction)action
