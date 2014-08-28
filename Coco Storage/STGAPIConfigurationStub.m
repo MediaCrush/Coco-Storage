@@ -10,6 +10,9 @@
 
 #import "STGDataCaptureEntry.h"
 
+#import "STGUploadedEntry.h"
+#import "STGUploadedEntryFile.h"
+
 STGAPIConfigurationStub *standardConfiguration;
 
 @implementation STGAPIConfigurationStub 
@@ -120,28 +123,30 @@ STGAPIConfigurationStub *standardConfiguration;
 
 - (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile
 {
-    [entry setOnlineID:[NSString stringWithFormat:@"%i", rand()]];
+    NSString *onlineID = [NSString stringWithFormat:@"%i", rand()];
     
     NSURL *destDirectoryURL = [NSURL URLWithString:[@"file://" stringByAppendingString:[self destinationDirectory]]];
-    NSURL *destURL = [destDirectoryURL URLByAppendingPathComponent:[[entry onlineID] stringByAppendingString:[[entry fileURL] lastPathComponent]]];
-    [entry setOnlineLink:[destURL absoluteString]];
-    
+    NSURL *destURL = [destDirectoryURL URLByAppendingPathComponent:[onlineID stringByAppendingString:[[entry fileURL] lastPathComponent]]];
+
+    STGUploadedEntryFile *fileEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:entry onlineID:onlineID onlineLink:destURL];
+
     NSError *error = nil;
     [[NSFileManager defaultManager] copyItemAtURL:[entry fileURL] toURL:destURL error:&error];
     
     if (error)
         NSLog(@"File copy error %@", error);
     
-    if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
-    {
-        [_networkDelegate didUploadDataCaptureEntry:entry success:error == nil];
-    }
+    if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
+        [_networkDelegate didUploadEntry:fileEntry success:error == nil];
+
+    if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:dataCaptureEntry:success:)])
+        [_networkDelegate didUploadDataCaptureEntry:fileEntry dataCaptureEntry:entry success:error == nil];
 }
 
-- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry
+- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGUploadedEntry *)entry
 {
     if ([_networkDelegate respondsToSelector:@selector(didDeleteDataCaptureEntry:)])
-        [_networkDelegate didDeleteDataCaptureEntry:entry];
+        [_networkDelegate didDeleteEntry:entry];
 }
 
 - (void)sendAlbumCreatePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entries:(NSArray *)entries

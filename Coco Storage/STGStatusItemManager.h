@@ -17,7 +17,7 @@
 #define STGStatusItemWidth 24.0
 
 @class STGPacketQueue;
-@class STGDataCaptureEntry;
+@class STGUploadedEntry;
 @class STGCreateAlbumWindowController;
 
 @protocol STGStatusItemManagerDelegate <NSObject>
@@ -29,7 +29,7 @@
 -(void)uploadEntries:(NSArray *)entries;
 -(void)cancelAllUploads;
 -(void)togglePauseUploads;
--(void)deleteRecentFile:(STGDataCaptureEntry *)entry;
+-(void)deleteRecentFile:(STGUploadedEntry *)entry;
 -(void)cancelQueueFile:(int)index;
 -(void)openPreferences;
 

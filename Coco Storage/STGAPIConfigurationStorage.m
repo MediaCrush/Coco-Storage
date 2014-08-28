@@ -14,6 +14,7 @@
 #import "STGPacketQueue.h"
 
 #import "STGDataCaptureEntry.h"
+#import "STGUploadedEntryFile.h"
 
 #import "STGFileHelper.h"
 
@@ -168,23 +169,26 @@ STGAPIConfigurationStorage *standardConfiguration;
         
         if (uploadID)
         {
-            [dataCaptureEntry setOnlineID:uploadID];
             NSString *link = [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID];
-            [dataCaptureEntry setOnlineLink:link];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:uploadID onlineLink:[NSURL URLWithString:link]];
             
-            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:)])
-            {
-                [_networkDelegate didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:YES];
-            }
+            if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
+                [_networkDelegate didUploadEntry:uploadedEntry success:YES];
+
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:dataCaptureEntry:success:)])
+                [_networkDelegate didUploadDataCaptureEntry:uploadedEntry dataCaptureEntry:dataCaptureEntry success:YES];
         }
         else
         {
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:nil onlineLink:nil];
+
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
 
-            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:)])
-            {
-                [_networkDelegate didUploadDataCaptureEntry:[[entry userInfo] objectForKey:@"dataCaptureEntry"] success:NO];
-            }
+            if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:)])
+                [_networkDelegate didUploadEntry:uploadedEntry success:NO];
+
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:dataCaptureEntry:success:)])
+                [_networkDelegate didUploadDataCaptureEntry:uploadedEntry dataCaptureEntry:dataCaptureEntry success:NO];
         }
     }
     else if ([[entry packetType] isEqualToString:@"deleteFile"])
@@ -195,9 +199,9 @@ STGAPIConfigurationStorage *standardConfiguration;
         
         if ([message isEqualToString:@"Object deleted."])
         {
-            STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
-            if ([_networkDelegate respondsToSelector:@selector(didDeleteDataCaptureEntry:)])
-                [_networkDelegate didDeleteDataCaptureEntry:dataCaptureEntry];
+            STGUploadedEntry *uploadedEntry = [[entry userInfo] objectForKey:@"uploadedEntry"];
+            if ([_networkDelegate respondsToSelector:@selector(didDeleteEntry:)])
+                [_networkDelegate didDeleteEntry:uploadedEntry];
         }
         else
         {
@@ -279,14 +283,14 @@ STGAPIConfigurationStorage *standardConfiguration;
     [packetQueue addEntry:packet];
 }
 
-- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry
+- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGUploadedEntry *)entry
 {
     NSString *entryID = [entry onlineID];
     NSString *urlString = [NSString stringWithFormat:@"https://api.stor.ag/v1/object/%@?key=%@", entryID, apiKey];
     
-    NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyData:[NSData dataWithContentsOfURL:[entry fileURL]]];
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[entry onlineID] mainBodyData:[NSData data]];
     
-    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"deleteFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"deleteFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"uploadedEntry"]];
 
     [packetQueue addEntry:packet];
 }

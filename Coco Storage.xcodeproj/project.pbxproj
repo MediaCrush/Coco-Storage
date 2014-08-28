@@ -22,6 +22,8 @@
 		801CA87119AB46F600A2F44F /* MovieCameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */; };
 		801CA87519AB47FA00A2F44F /* AlbumTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */; };
 		801CA87919ABC74E00A2F44F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
+		801E29BD19AE4CC1000A4D0C /* STGUploadedEntryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E29BC19AE4CC1000A4D0C /* STGUploadedEntryFile.m */; };
+		801E29C019AE696A000A4D0C /* STGUploadedEntryAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
 		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
@@ -92,6 +94,7 @@
 		809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C2174D6D330016A391 /* License_MASPreferences.txt */; };
 		809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */; };
 		809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */; };
+		80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */; };
 		80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BD1741700400851DDB /* STGNetworkHelper.m */; };
 		80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D7F9BF1741707500851DDB /* SystemConfiguration.framework */; };
 		80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C51741773A00851DDB /* ServerStatusOK.png */; };
@@ -156,6 +159,10 @@
 		801CA86E19AB468100A2F44F /* CameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = CameraTemplate.pdf; sourceTree = "<group>"; };
 		801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MovieCameraTemplate.pdf; sourceTree = "<group>"; };
 		801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AlbumTemplate.pdf; sourceTree = "<group>"; };
+		801E29BB19AE4CC1000A4D0C /* STGUploadedEntryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntryFile.h; sourceTree = "<group>"; };
+		801E29BC19AE4CC1000A4D0C /* STGUploadedEntryFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntryFile.m; sourceTree = "<group>"; };
+		801E29BE19AE696A000A4D0C /* STGUploadedEntryAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntryAlbum.h; sourceTree = "<group>"; };
+		801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntryAlbum.m; sourceTree = "<group>"; };
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
 		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
 		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
@@ -258,6 +265,8 @@
 		809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheckEntry.m; sourceTree = "<group>"; };
 		809D1B0B176F69FD00F30E22 /* STGJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGJSONHelper.h; sourceTree = "<group>"; };
 		809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGJSONHelper.m; sourceTree = "<group>"; };
+		80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntry.h; sourceTree = "<group>"; };
+		80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntry.m; sourceTree = "<group>"; };
 		80D7F9BC1741700400851DDB /* STGNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGNetworkHelper.h; sourceTree = "<group>"; };
 		80D7F9BD1741700400851DDB /* STGNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkHelper.m; sourceTree = "<group>"; };
 		80D7F9BF1741707500851DDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -366,7 +375,7 @@
 				80068FD517272CA900DA1492 /* STGAppDelegate.m */,
 				8029A4A01728427900F09884 /* MainMenu.xib */,
 				806598491995686F00EF0E34 /* Web-API */,
-				8065984E1995694400EF0E34 /* Interface */,
+				8065984E1995694400EF0E34 /* GUI */,
 				8065984F1995695300EF0E34 /* Data-Capture */,
 				80B0A1801996C88A00A93C3B /* Hotkeys */,
 				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
@@ -395,6 +404,19 @@
 				80068FD117272CA900DA1492 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		801E29BA19AE4CA4000A4D0C /* Uploaded Entries */ = {
+			isa = PBXGroup;
+			children = (
+				80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */,
+				80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */,
+				801E29BB19AE4CC1000A4D0C /* STGUploadedEntryFile.h */,
+				801E29BC19AE4CC1000A4D0C /* STGUploadedEntryFile.m */,
+				801E29BE19AE696A000A4D0C /* STGUploadedEntryAlbum.h */,
+				801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */,
+			);
+			name = "Uploaded Entries";
 			sourceTree = "<group>";
 		};
 		8029A48F172832BF00F09884 /* Resources */ = {
@@ -460,6 +482,7 @@
 				80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */,
 				80492699173EEAC100C08A7F /* STGPacket.h */,
 				8049269A173EEAC100C08A7F /* STGPacket.m */,
+				801E29BA19AE4CA4000A4D0C /* Uploaded Entries */,
 				80F7697A19A0E61A000DC74D /* CFS */,
 			);
 			name = "Web-API";
@@ -474,7 +497,7 @@
 			name = Mediacrush;
 			sourceTree = "<group>";
 		};
-		8065984E1995694400EF0E34 /* Interface */ = {
+		8065984E1995694400EF0E34 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
 				804C878D19A1FA34000957C6 /* Views */,
@@ -484,7 +507,7 @@
 				80F7697619A0E5CF000DC74D /* Create-Album */,
 				80F7697B19A0E753000DC74D /* Movie-Capture */,
 			);
-			name = Interface;
+			name = GUI;
 			sourceTree = "<group>";
 		};
 		8065984F1995695300EF0E34 /* Data-Capture */ = {
@@ -802,6 +825,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8072D97C19AC930500A39A5F /* STGGifConverter.m in Sources */,
+				801E29C019AE696A000A4D0C /* STGUploadedEntryAlbum.m in Sources */,
 				80068FCF17272CA800DA1492 /* main.m in Sources */,
 				804C879119A1FAAA000957C6 /* STGFloatingWindowController.m in Sources */,
 				80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */,
@@ -823,6 +847,7 @@
 				807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */,
 				803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */,
 				803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */,
+				80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */,
 				80FD082319A4F3A8009126D7 /* STGScreenRectangleSelectView.m in Sources */,
 				80369DD41847A27D00349068 /* STGQuickUploadWindowController.m in Sources */,
 				80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */,
@@ -836,6 +861,7 @@
 				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
 				80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */,
 				80F7698B19A15146000DC74D /* STGUncompletedUploadList.m in Sources */,
+				801E29BD19AE4CC1000A4D0C /* STGUploadedEntryFile.m in Sources */,
 				80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */,
 				80781B531746B26400D0C790 /* STGOptionsQuickUploadViewController.m in Sources */,
 				80485FE91747FABF00CB6226 /* NSButton+TextColor.m in Sources */,

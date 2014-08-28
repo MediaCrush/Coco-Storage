@@ -42,6 +42,8 @@
 
 #import "STGUncompletedUploadList.h"
 
+#import "STGUploadedEntry.h"
+
 STGAppDelegate *sharedAppDelegate;
 
 @implementation STGAppDelegate
@@ -184,6 +186,9 @@ STGAppDelegate *sharedAppDelegate;
         [self setRecentFilesArray:[NSKeyedUnarchiver unarchiveObjectWithData:recentFilesData]];
     if (![_recentFilesArray isKindOfClass:[NSMutableArray class]])
         [self setRecentFilesArray:[[NSMutableArray alloc] init]];
+    [_recentFilesArray filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject isKindOfClass:[STGUploadedEntry class]];
+    }]];
     
     [STGSystemHelper setStartOnSystemLaunch:[[NSUserDefaults standardUserDefaults] integerForKey:@"startAtLogin"] == 1];
     
@@ -261,7 +266,7 @@ STGAppDelegate *sharedAppDelegate;
 {
     NSMutableArray *uploadIDList = [[NSMutableArray alloc] initWithCapacity:[_recentFilesArray count]];
     
-    for (STGDataCaptureEntry *entry in _recentFilesArray)
+    for (STGUploadedEntry *entry in _recentFilesArray)
     {
         [uploadIDList addObject:[entry onlineID]];
     }
@@ -276,15 +281,9 @@ STGAppDelegate *sharedAppDelegate;
 
 -(void)uploadEntries:(NSArray *)entries
 {
-    if (entries && [entries count] > 0)
+    for (STGDataCaptureEntry *entry in entries)
     {
-        for (STGDataCaptureEntry *entry in entries)
-        {
-            if (entry)
-            {
-                [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entry:entry public:YES];
-            }
-        }
+        [[STGAPIConfiguration currentConfiguration] sendFileUploadPacket:[_networkManager packetUploadV1Queue] apiKey:[self getApiKey] entry:entry public:YES];
     }
 }
 
@@ -293,7 +292,7 @@ STGAppDelegate *sharedAppDelegate;
     [[_networkManager packetUploadV1Queue] cancelAllEntries];
 }
 
--(void)deleteRecentFile:(STGDataCaptureEntry *)entry
+-(void)deleteRecentFile:(STGUploadedEntry *)entry
 {
     [[STGAPIConfiguration currentConfiguration] sendFileDeletePacket:[_networkManager packetSupportQueue] apiKey:[self getApiKey] entry:entry];
     
@@ -592,7 +591,7 @@ STGAppDelegate *sharedAppDelegate;
     [self saveProperties];
 }
 
-- (void)fileUploadCompleted:(STGNetworkManager *)networkManager entry:(STGDataCaptureEntry *)entry successful:(BOOL)successful
+- (void)uploadCompleted:(STGNetworkManager *)networkManager entry:(STGUploadedEntry *)entry successful:(BOOL)successful
 {
     if (successful)
     {
@@ -610,7 +609,7 @@ STGAppDelegate *sharedAppDelegate;
             [notification setTitle:[NSString stringWithFormat:@"Upload complete: %@!", [entry onlineID]]];
             [notification setInformativeText:@"Click to view the uploaded file"];
             [notification setSoundName:nil];
-            [notification setUserInfo:[NSDictionary dictionaryWithObject:[entry onlineLink] forKey:@"uploadLink"]];
+            [notification setUserInfo:[NSDictionary dictionaryWithObject:[[entry onlineLink] absoluteString] forKey:@"uploadLink"]];
             
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         }
@@ -626,12 +625,12 @@ STGAppDelegate *sharedAppDelegate;
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkCopyToPasteboard"] == 1)
         {
             [[NSPasteboard generalPasteboard] clearContents];
-            [[NSPasteboard generalPasteboard] setString:[entry onlineLink] forType:NSPasteboardTypeString];
+            [[entry onlineLink] writeToPasteboard:[NSPasteboard generalPasteboard]];
         }
         
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkOpenInBrowser"] == 1)
         {
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[entry onlineLink]]];
+            [[NSWorkspace sharedWorkspace] openURL:[entry onlineLink]];
         }
 
         [self saveProperties];
@@ -642,11 +641,14 @@ STGAppDelegate *sharedAppDelegate;
         [alert beginSheetModalForWindow:nil modalDelegate:self didEndSelector:@selector(keyMissingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];        
         [NSApp activateIgnoringOtherApps:YES];
     }
-    
-    [self deleteEntryIfNecessary:entry successful:successful];
 }
 
-- (void)fileDeletionCompleted:(STGNetworkManager *)networkManager entry:(STGDataCaptureEntry *)entry
+- (void)fileUploadCompleted:(STGNetworkManager *)networkManager entry:(STGUploadedEntry *)entry dataCaptureEntry:(STGDataCaptureEntry *)dataCaptureEntry successful:(BOOL)successful
+{
+    [self deleteEntryIfNecessary:dataCaptureEntry successful:successful];
+}
+
+- (void)uploadDeletionCompleted:(STGNetworkManager *)networkManager entry:(STGUploadedEntry *)entry
 {
     [self saveProperties];
 }

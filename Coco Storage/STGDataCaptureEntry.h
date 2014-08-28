@@ -13,9 +13,6 @@
 @property (nonatomic, retain) NSURL *fileURL;
 @property (nonatomic, assign) BOOL deleteOnCompletetion;
 
-@property (nonatomic, retain) NSString *onlineID;
-@property (nonatomic, retain) NSString *onlineLink;
-
 + (id)entryWithURL:(NSURL *)url deleteOnCompletion:(BOOL)del;
 
 @end

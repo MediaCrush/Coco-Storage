@@ -12,12 +12,14 @@
 
 @class STGPacket;
 @class STGPacketQueue;
+@class STGUploadedEntry;
 
 @protocol STGAPIConfigurationNetworkDelegate<NSObject>
 
 @optional
-- (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success;
-- (void)didDeleteDataCaptureEntry:(STGDataCaptureEntry *)entry;
+- (void)didUploadDataCaptureEntry:(STGUploadedEntry *)entry dataCaptureEntry:(STGDataCaptureEntry *)dataCaptureEntry success:(BOOL)success;
+- (void)didUploadEntry:(STGUploadedEntry *)entry success:(BOOL)success;
+- (void)didDeleteEntry:(STGUploadedEntry *)entry;
 - (void)updateAPIStatus:(BOOL)active validKey:(BOOL)validKey;
 - (void)openPreferences;
 @end
@@ -51,7 +53,7 @@
 
 - (void)sendStatusPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey;
 - (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile;
-- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry;
+- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGUploadedEntry *)entry;
 
 @optional
 - (NSString *)cfsLinkTitle;

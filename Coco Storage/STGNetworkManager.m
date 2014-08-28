@@ -128,10 +128,16 @@
 
 #pragma mark API Configuration delegate
 
-- (void)didUploadDataCaptureEntry:(STGDataCaptureEntry *)entry success:(BOOL)success
+- (void)didUploadEntry:(STGUploadedEntry *)entry success:(BOOL)success
 {
-    if ([_delegate respondsToSelector:@selector(fileUploadCompleted:entry:successful:)])
-        [_delegate fileUploadCompleted:self entry:entry successful:success];
+    if ([_delegate respondsToSelector:@selector(uploadCompleted:entry:successful:)])
+        [_delegate uploadCompleted:self entry:entry successful:success];
+}
+
+- (void)didUploadDataCaptureEntry:(STGUploadedEntry *)entry dataCaptureEntry:(STGDataCaptureEntry *)dataCaptureEntry success:(BOOL)success
+{
+    if ([_delegate respondsToSelector:@selector(fileUploadCompleted:entry:dataCaptureEntry:successful:)])
+        [_delegate fileUploadCompleted:self entry:entry dataCaptureEntry:dataCaptureEntry successful:success];
 }
 
 - (void)startUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry
@@ -245,10 +251,10 @@
     }
 }
 
-- (void)didDeleteDataCaptureEntry:(STGDataCaptureEntry *)entry
+- (void)didDeleteEntry:(STGUploadedEntry *)entry
 {
-    if ([_delegate respondsToSelector:@selector(fileDeletionCompleted:entry:)])
-        [_delegate fileDeletionCompleted:self entry:entry];
+    if ([_delegate respondsToSelector:@selector(uploadDeletionCompleted:entry:)])
+        [_delegate uploadDeletionCompleted:self entry:entry];
 }
 
 

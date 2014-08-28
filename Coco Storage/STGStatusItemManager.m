@@ -14,6 +14,7 @@
 #import "STGCreateAlbumWindowController.h"
 
 #import "STGDataCaptureEntry.h"
+#import "STGUploadedEntry.h"
 
 #import "STGPacketQueue.h"
 #import "STGPacket.h"
@@ -140,26 +141,24 @@
     {
         for (int i = 0; i < [recentFiles count] && i < 10; i++)
         {
-            int index = (int)[recentFiles count] - i - 1;
-            
+            STGUploadedEntry *entry = [recentFiles objectAtIndex:(int)[recentFiles count] - i - 1];
+   
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Recent upload" action:@selector(openRecentFile:) keyEquivalent:@""];
             [menuItem setTarget:self];
-            [menuItem setTag:index];
             
             NSViewController *tempController = [[NSViewController alloc] initWithNibName:@"STGRecentFileView" bundle:nil];
             
             STGRecentUploadView *itemView = (STGRecentUploadView *)[tempController view];
             [menuItem setView:itemView];
-            [itemView setCaptureEntry:[recentFiles objectAtIndex:index]];
+            [itemView setCaptureEntry:entry];
             [itemView setRecentUploadDelegate:self];
             
-            NSString *fileName = [[[recentFiles objectAtIndex:index] fileURL] lastPathComponent];
-            NSInteger pointLoc = [fileName rangeOfString:@"." options:NSBackwardsSearch].location;
-            NSString *fileType = pointLoc != NSNotFound ? [fileName substringFromIndex:pointLoc] : @"";
+            NSString *displayName = [entry entryName];
+            NSImage *displayImage = [entry entryIcon];
             
-            [[[menuItem view] viewWithTag:10] setImage:[[NSWorkspace sharedWorkspace] iconForFileType:fileType]];
-            [[itemView viewWithTag:11] setStringValue:[[[recentFiles objectAtIndex:index] fileURL] lastPathComponent]];
-            [[itemView viewWithTag:12] setStringValue:[[recentFiles objectAtIndex:index] onlineLink]];
+            [[[menuItem view] viewWithTag:10] setImage:displayImage];
+            [[itemView viewWithTag:11] setStringValue:displayName];
+            [[itemView viewWithTag:12] setStringValue:[[entry onlineLink] absoluteString]];
             [[itemView viewWithTag:13] setAction:@selector(deleteRecentFile:)];
             [[itemView viewWithTag:13] setTarget:self];
             [[itemView viewWithTag:14] setAction:@selector(copyRecentFileLink:)];
@@ -372,16 +371,16 @@
 
 - (IBAction)openRecentFile:(id)sender
 {
-    STGDataCaptureEntry *entry = [(STGRecentUploadView *)[sender superview] captureEntry];
+    STGUploadedEntry *entry = [(STGRecentUploadView *)[sender superview] captureEntry];
     
-    [[NSWorkspace sharedWorkspace] openURL:[entry fileURL]];
+    [[NSWorkspace sharedWorkspace] openURL:[entry onlineLink]];
 }
 
 - (IBAction)deleteRecentFile:(id)sender
 {
     if ([_delegate respondsToSelector:@selector(deleteRecentFile:)])
     {
-        STGDataCaptureEntry *entry = [(STGRecentUploadView *)[sender superview] captureEntry];
+        STGUploadedEntry *entry = [(STGRecentUploadView *)[sender superview] captureEntry];
 
         [_delegate deleteRecentFile:entry];
     }
@@ -402,7 +401,7 @@
 {
     [[_statusItem menu] cancelTracking];
     
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[recentUploadView captureEntry] onlineLink]]];
+    [[NSWorkspace sharedWorkspace] openURL:[[recentUploadView captureEntry] onlineLink]];
 }
 
 - (IBAction)cancelQueueFile:(id)sender

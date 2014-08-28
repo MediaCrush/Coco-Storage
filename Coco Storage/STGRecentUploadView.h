@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class STGDataCaptureEntry;
+@class STGUploadedEntry;
 
 @protocol STGRecentUploadDelegate;
 
@@ -16,7 +16,7 @@
 
 @property (nonatomic, assign) id<STGRecentUploadDelegate> recentUploadDelegate;
 
-@property (nonatomic, retain) STGDataCaptureEntry *captureEntry;
+@property (nonatomic, retain) STGUploadedEntry *captureEntry;
 
 @property (nonatomic, retain) NSTrackingArea *trackingArea;
 @property (nonatomic, assign) BOOL isHighlighted;

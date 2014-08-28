@@ -14,6 +14,8 @@
 #import "STGPacketQueue.h"
 
 #import "STGDataCaptureEntry.h"
+#import "STGUploadedEntryFile.h"
+#import "STGUploadedEntryAlbum.h"
 
 STGAPIConfigurationMediacrush *standardConfiguration;
 
@@ -126,23 +128,25 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         
         if (uploadID)
         {
-            [dataCaptureEntry setOnlineID:uploadID];
             NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            [dataCaptureEntry setOnlineLink:link];
-                        
-            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
-            {
-                [_networkDelegate didUploadDataCaptureEntry:dataCaptureEntry success:YES];
-            }
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:uploadID onlineLink:[NSURL URLWithString:link]];
+            
+            if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
+                [_networkDelegate didUploadEntry:uploadedEntry success:YES];
+
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:dataCaptureEntry:success:)])
+                [_networkDelegate didUploadDataCaptureEntry:uploadedEntry dataCaptureEntry:dataCaptureEntry success:YES];
         }
         else
         {
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:nil onlineLink:nil];
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
-            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
-            {
-                [_networkDelegate didUploadDataCaptureEntry:dataCaptureEntry success:NO];
-            }
+            if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
+                [_networkDelegate didUploadEntry:uploadedEntry success:NO];
+
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:dataCaptureEntry:success:)])
+                [_networkDelegate didUploadDataCaptureEntry:uploadedEntry dataCaptureEntry:dataCaptureEntry success:NO];
         }
     }
     else if ([[entry packetType] isEqualToString:@"deleteFile"])
@@ -153,9 +157,9 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         
         if ([message isEqualToString:@"success"])
         {
-            STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
-            if ([_networkDelegate respondsToSelector:@selector(didDeleteDataCaptureEntry:)])
-                [_networkDelegate didDeleteDataCaptureEntry:dataCaptureEntry];
+            STGUploadedEntry *uploadedEntry = [[entry userInfo] objectForKey:@"uploadedEntry"];
+            if ([_networkDelegate respondsToSelector:@selector(didDeleteEntry:)])
+                [_networkDelegate didDeleteEntry:uploadedEntry];
         }
         else
         {
@@ -184,23 +188,17 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     else if ([[entry packetType] isEqualToString:@"createAlbum"])
     {
         NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
-//        NSArray *entryIDs = [[entry userInfo] objectForKey:@"entryIDs"];
+        NSArray *entryIDs = [[entry userInfo] objectForKey:@"entryIDs"];
         
         NSString *uploadID = [dictionary objectForKey:@"hash"];
         
         if (uploadID)
         {
-//            STGDataCaptureEntry *dataCaptureEntry = [STGDataCaptureEntry entryWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"Album (%li files)", [entryIDs count]]] deleteOnCompletion:NO];
-            STGDataCaptureEntry *dataCaptureEntry = [STGDataCaptureEntry entryWithURL:[NSURL URLWithString:@"Album"] deleteOnCompletion:NO];
-            
-            [dataCaptureEntry setOnlineID:uploadID];
             NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            [dataCaptureEntry setOnlineLink:link];
+            STGUploadedEntryAlbum *uploadedEntry = [[STGUploadedEntryAlbum alloc] initWithID:uploadID link:[NSURL URLWithString:link] numberOfEntries:[entryIDs count]];
             
-            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:success:)])
-            {
-                [_networkDelegate didUploadDataCaptureEntry:dataCaptureEntry success:YES];
-            }
+            if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
+                [_networkDelegate didUploadEntry:uploadedEntry success:YES];
         }
     }
     else
@@ -247,14 +245,14 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     [packetQueue addEntry:packet];
 }
 
-- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry
+- (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGUploadedEntry *)entry
 {
     NSString *entryID = [entry onlineID];
     NSString *urlString = [NSString stringWithFormat:@"https://mediacru.sh/api/%@", entryID];
     
-    NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:[[entry fileURL] lastPathComponent] mainBodyData:[NSData dataWithContentsOfURL:[entry fileURL]]];
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:entryID mainBodyData:[NSData data]];
     
-    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"deleteFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
+    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"deleteFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"uploadedEntry"]];
     
     [packetQueue addEntry:packet];
 }
