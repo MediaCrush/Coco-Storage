@@ -42,10 +42,11 @@
         [self setDragMode:NO];
         
         [self setLabelTextField:[[NSTextField alloc] init]];
-        [[self labelTextField] setEditable:NO];
-        [[self labelTextField] setBezeled:NO];
-        [[self labelTextField] setDrawsBackground:NO];
-        [[self labelTextField] setTextColor:[NSColor colorWithCalibratedRed:0.4f green:0.4f blue:0.4f alpha:1.0f]];
+        [_labelTextField setEditable:NO];
+        [_labelTextField setBezeled:NO];
+        [_labelTextField setDrawsBackground:NO];
+        [_labelTextField setTextColor:[NSColor colorWithCalibratedRed:0.4f green:0.4f blue:0.4f alpha:1.0f]];
+        [[_labelTextField cell] setLineBreakMode:NSLineBreakByTruncatingTail];
         [self addSubview:[self labelTextField]];
         
         [self setSelectionFillGradient:[[NSGradient alloc] initWithColorsAndLocations:[NSColor colorWithCalibratedRed:0.547 green:0.551 blue:1.0 alpha:0.6],0.0,[NSColor colorWithCalibratedRed:0.527 green:0.527 blue:0.939 alpha:0.6],0.5,[NSColor colorWithCalibratedRed:0.380 green:0.388 blue:0.996 alpha:0.6],0.5,[NSColor colorWithCalibratedRed:0.337 green:0.337 blue:0.957 alpha:0.6],1.0, nil]];
