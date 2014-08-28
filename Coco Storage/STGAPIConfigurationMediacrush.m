@@ -71,9 +71,9 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 - (NSSet *)supportedUploadTypes
 {
     return [NSSet setWithObjects:
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadFile],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadImage],
-//            [NSNumber numberWithUnsignedInteger:STGDropActionUploadText],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadFile],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadImage],
+//            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadText],
             nil];
 }
 

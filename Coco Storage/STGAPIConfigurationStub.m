@@ -67,14 +67,14 @@ STGAPIConfigurationStub *standardConfiguration;
 - (NSSet *)supportedUploadTypes
 {
     return [NSSet setWithObjects:
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadFile],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadImage],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadText],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadRtfText],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadColor],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadZip],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadDirectoryZip],
-            [NSNumber numberWithUnsignedInteger:STGDropActionUploadLinkRedirect],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadFile],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadImage],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadText],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadRtfText],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadColor],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadZip],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadDirectoryZip],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionRedirectLink],
             nil];
 }
 

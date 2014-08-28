@@ -38,47 +38,47 @@
     
     for (NSInteger i = 0; i < [uploadTypes count]; i++)
     {
-        STGDropAction dropAction = [[uploadTypes objectAtIndex:i] integerValue];
+        STGUploadAction dropAction = [[uploadTypes objectAtIndex:i] integerValue];
         
         NSImage *image;
         NSString *name;
         
-        if (dropAction == STGDropActionUploadFile)
+        if (dropAction == STGUploadActionUploadFile)
         {
             image = [NSImage imageNamed:@"NSMultipleDocuments"];
             name = @"File";
         }
-        else if (dropAction == STGDropActionUploadDirectoryZip)
+        else if (dropAction == STGUploadActionUploadDirectoryZip)
         {
             image = [NSImage imageNamed:@"NSFolder"];
             name = @"Folder as Zip";
         }
-        else if (dropAction == STGDropActionUploadZip)
+        else if (dropAction == STGUploadActionUploadZip)
         {
             image = [NSImage imageNamed:@"NSFolder"];
             name = @"Files as Zip";
         }
-        else if (dropAction == STGDropActionUploadColor)
+        else if (dropAction == STGUploadActionUploadColor)
         {
             image = [NSImage imageNamed:@"NSColorPanel"];
             name = @"Color";
         }
-        else if (dropAction == STGDropActionUploadImage)
+        else if (dropAction == STGUploadActionUploadImage)
         {
             image = [[NSWorkspace sharedWorkspace] iconForFileType:@"png"];
             name = @"Image";
         }
-        else if (dropAction == STGDropActionUploadLinkRedirect)
+        else if (dropAction == STGUploadActionRedirectLink)
         {
             image = [NSImage imageNamed:@"NSNetwork"];
             name = @"Shorten link";
         }
-        else if (dropAction == STGDropActionUploadRtfText)
+        else if (dropAction == STGUploadActionUploadRtfText)
         {
             image = [[NSWorkspace sharedWorkspace] iconForFileType:@"rtf"];
             name = @"Attributed Text";
         }
-        else if (dropAction == STGDropActionUploadText)
+        else if (dropAction == STGUploadActionUploadText)
         {
             image = [[NSWorkspace sharedWorkspace] iconForFileType:@"txt"];
             name = @"Text";
@@ -133,7 +133,7 @@
 
 - (void)chooserView:(STGTypeChooserView *)view choseType:(STGTypeChooserViewType *)type
 {
-    STGDropAction action = [[[type userInfo] objectForKey:@"actionType"] unsignedIntegerValue];
+    STGUploadAction action = [[[type userInfo] objectForKey:@"actionType"] unsignedIntegerValue];
     
     if ([[self delegate] respondsToSelector:@selector(uploadTypeViewController:choseType:)])
     {
@@ -143,7 +143,7 @@
 
 - (void)chooserView:(STGTypeChooserView *) view choseType:(STGTypeChooserViewType *)type whileDragging:(id<NSDraggingInfo>)sender
 {
-    STGDropAction action = [[[type userInfo] objectForKey:@"actionType"] unsignedIntegerValue];
+    STGUploadAction action = [[[type userInfo] objectForKey:@"actionType"] unsignedIntegerValue];
     
     if ([[self delegate] respondsToSelector:@selector(uploadTypeViewController:choseType:whileDragging:)])
     {

@@ -15,8 +15,8 @@
 @property (nonatomic, retain) NSURL *fileURL;
 @property (nonatomic, assign) BOOL deleteOnCompletetion;
 
-@property (nonatomic, assign) STGDropAction uploadAction;
+@property (nonatomic, assign) STGUploadAction uploadAction;
 
-+ (id)entryWithAction:(STGDropAction)action url:(NSURL *)url deleteOnCompletion:(BOOL)del;
++ (id)entryWithAction:(STGUploadAction)action url:(NSURL *)url deleteOnCompletion:(BOOL)del;
 
 @end

@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, STGDropAction)
+typedef NS_ENUM(NSUInteger, STGUploadAction)
 {
-    STGDropActionUploadFile,
-    STGDropActionUploadDirectoryZip,
-    STGDropActionUploadZip,
-    STGDropActionUploadText,
-    STGDropActionUploadRtfText,
-    STGDropActionUploadImage,
-    STGDropActionUploadLinkRedirect,
-    STGDropActionUploadColor
+    STGUploadActionUploadFile,
+    STGUploadActionUploadDirectoryZip,
+    STGUploadActionUploadZip,
+    STGUploadActionUploadText,
+    STGUploadActionUploadRtfText,
+    STGUploadActionUploadImage,
+    STGUploadActionRedirectLink,
+    STGUploadActionUploadColor
 };
 
 @class STGDataCaptureEntry;
@@ -33,9 +33,9 @@ typedef NS_ENUM(NSUInteger, STGDropAction)
 @interface STGDataCaptureManager : NSObject
 
 + (NSArray *)getSupportedPasteboardContentTypes;
-+ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGDropAction)action;
++ (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGUploadAction)action;
 + (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard;
-+ (NSString *)getNameForAction:(STGDropAction)action;
++ (NSString *)getNameForAction:(STGUploadAction)action;
 + (NSArray *)getReadableActionsFromPasteboard:(NSPasteboard *)pasteboard;
 
 + (void)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent delegate:(NSObject<STGDataCaptureDelegate> *)delegate;

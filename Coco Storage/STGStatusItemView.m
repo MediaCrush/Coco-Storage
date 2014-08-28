@@ -265,7 +265,7 @@
     [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
 }
 
-- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGDropAction)action
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGUploadAction)action
 {
     NSPasteboard *pBoard = [NSPasteboard generalPasteboard];
     
@@ -282,7 +282,7 @@
     [[self uploadTypeVC] hide];
 }
 
-- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGDropAction)action whileDragging:(id<NSDraggingInfo>)sender
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGUploadAction)action whileDragging:(id<NSDraggingInfo>)sender
 {
     NSPasteboard *pBoard = [sender draggingPasteboard];
     

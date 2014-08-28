@@ -29,9 +29,9 @@
 
 @protocol STGUploadTypeViewControllerDelegate <NSObject>
 @optional
-- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGDropAction)action;
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGUploadAction)action;
 
-- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGDropAction)action whileDragging:(id<NSDraggingInfo>)sender;
+- (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGUploadAction)action whileDragging:(id<NSDraggingInfo>)sender;
 - (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController draggingEnded:(id<NSDraggingInfo>)sender;
 - (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController draggingExited:(id<NSDraggingInfo>)sender;
 

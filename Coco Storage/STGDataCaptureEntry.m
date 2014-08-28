@@ -30,7 +30,7 @@
     [aCoder encodeInteger:_uploadAction forKey:@"UploadAction"];
 }
 
-+ (id)entryWithAction:(STGDropAction)action url:(NSURL *)url deleteOnCompletion:(BOOL)del
++ (id)entryWithAction:(STGUploadAction)action url:(NSURL *)url deleteOnCompletion:(BOOL)del
 {
     STGDataCaptureEntry *entry = [[STGDataCaptureEntry alloc] init];
     [entry setUploadAction:action];
