@@ -18,6 +18,7 @@
     if (self) {
         [self setFileURL:[aDecoder decodeObjectForKey:@"FileURL"]];
         [self setDeleteOnCompletetion:[aDecoder decodeBoolForKey:@"DeleteOnCompletion"]];
+        [self setUploadAction:[aDecoder decodeBoolForKey:@"UploadAction"]];
     }
     return self;
 }
@@ -26,11 +27,13 @@
 {
     [aCoder encodeObject:_fileURL forKey:@"FileURL"];
     [aCoder encodeBool:_deleteOnCompletetion forKey:@"DeleteOnCompletion"];
+    [aCoder encodeInteger:_uploadAction forKey:@"UploadAction"];
 }
 
-+ (STGDataCaptureEntry *)entryWithURL:(NSURL *)url deleteOnCompletion:(BOOL)del
++ (id)entryWithAction:(STGDropAction)action url:(NSURL *)url deleteOnCompletion:(BOOL)del
 {
     STGDataCaptureEntry *entry = [[STGDataCaptureEntry alloc] init];
+    [entry setUploadAction:action];
     [entry setFileURL:url];
     [entry setDeleteOnCompletetion:del];
     

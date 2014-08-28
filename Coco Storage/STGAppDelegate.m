@@ -742,7 +742,7 @@ STGAppDelegate *sharedAppDelegate;
 
     if (error == nil && !cancelled)
     {
-        STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithURL:[movieCaptureSession destURL] deleteOnCompletion:YES];
+        STGDataCaptureEntry *entry = [STGDataCaptureEntry entryWithAction:STGDropActionUploadFile url:[movieCaptureSession destURL] deleteOnCompletion:YES];
         [self dataCaptureCompleted:entry sender:self];
 
         // Uncomment to convert to gif instead of uploading the video
@@ -755,7 +755,7 @@ STGAppDelegate *sharedAppDelegate;
     }
     else
     {
-        [self deleteEntry:[STGDataCaptureEntry entryWithURL:[movieCaptureSession destURL] deleteOnCompletion:YES]];
+        [self deleteEntry:[STGDataCaptureEntry entryWithAction:STGDropActionUploadFile url:[movieCaptureSession destURL] deleteOnCompletion:YES]];
     }
 }
 

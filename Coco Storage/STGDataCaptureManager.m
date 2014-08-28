@@ -269,7 +269,7 @@
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:fileName])
         {
-            [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES] sender:nil];
+            [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithAction:STGDropActionUploadImage url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES] sender:nil];
         }
     });
 }
@@ -285,7 +285,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGDropActionUploadText url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder
@@ -302,7 +302,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGDropActionUploadRtfText url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder
@@ -316,7 +316,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGDropActionUploadLinkRedirect url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureImageAsFile:(NSImage *)image tempFolder:(NSString *)tempFolder
@@ -333,7 +333,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGDropActionUploadImage url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureColorAsFile:(NSColor *)color tempFolder:(NSString *)tempFolder
@@ -349,12 +349,12 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGDropActionUploadColor url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureFile:(NSURL *)link tempFolder:(NSString *)tempFolder
 {
-    return [STGDataCaptureEntry entryWithURL:link deleteOnCompletion:NO];
+    return [STGDataCaptureEntry entryWithAction:STGDropActionUploadFile url:link deleteOnCompletion:NO];
 }
 
 + (STGDataCaptureEntry *)captureFilesAsZip:(NSArray *)links withTempFolder:(NSString *)tempFolder
@@ -411,7 +411,7 @@
             return nil;
         }
         
-        return [STGDataCaptureEntry entryWithURL:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+        return [STGDataCaptureEntry entryWithAction:STGDropActionUploadImage url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
     }
     
     return nil;
@@ -433,7 +433,7 @@
             NSArray *urls = [filePanel URLs];
             
             for (NSURL *url in urls)
-                [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithURL:url deleteOnCompletion:NO] sender:nil];
+                [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithAction:STGDropActionUploadFile url:url deleteOnCompletion:NO] sender:nil];
         }
     });
 }
