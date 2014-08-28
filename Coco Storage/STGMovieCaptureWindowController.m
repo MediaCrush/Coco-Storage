@@ -49,8 +49,8 @@
     [super windowDidLoad];
     
     [_qualitySelectPopupButton removeAllItems];
-    [_qualitySelectPopupButton addItemsWithTitles:@[@"Low Quality", @"Medium Quality", @"High Quality"]];
-    [_qualitySelectPopupButton selectItemAtIndex:1];
+    [_qualitySelectPopupButton addItemsWithTitles:@[@"High Quality", @"Medium Quality", @"Low Quality"]];
+    [_qualitySelectPopupButton selectItemAtIndex:0];
     
     [_screenSelectPopupButton removeAllItems];
 
@@ -95,14 +95,14 @@
 {
     switch ([_qualitySelectPopupButton indexOfSelectedItem])
     {
-        case 1:
-            _quality = AVCaptureSessionPresetMedium;
-            break;
         case 2:
+            _quality = AVCaptureSessionPresetLow;
+            break;
+        case 0:
             _quality = AVCaptureSessionPresetHigh;
             break;
         default:
-            _quality = AVCaptureSessionPresetLow;
+            _quality = AVCaptureSessionPresetMedium;
             break;
     }
 }
