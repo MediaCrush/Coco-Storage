@@ -16,6 +16,7 @@
 #import "STGDataCaptureEntry.h"
 #import "STGUploadedEntryFile.h"
 #import "STGUploadedEntryAlbum.h"
+#import "STGUploadedEntryRehosted.h"
 
 STGAPIConfigurationMediacrush *standardConfiguration;
 
@@ -73,6 +74,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     return [NSSet setWithObjects:
             [NSNumber numberWithUnsignedInteger:STGUploadActionUploadFile],
             [NSNumber numberWithUnsignedInteger:STGUploadActionUploadImage],
+            [NSNumber numberWithUnsignedInteger:STGUploadActionRehostFromLink],
 //            [NSNumber numberWithUnsignedInteger:STGUploadActionUploadText],
             nil];
 }
@@ -201,6 +203,37 @@ STGAPIConfigurationMediacrush *standardConfiguration;
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
         }
     }
+    else if ([[entry packetType] isEqualToString:@"rehostLink"])
+    {
+        NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
+        STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
+        
+        NSString *uploadID = [dictionary objectForKey:@"hash"];
+        
+        if (uploadID)
+        {
+            NSString *originalLink = [[entry userInfo] objectForKey:@"link"];
+            NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithID:uploadID link:[NSURL URLWithString:link] originalLink:[NSURL URLWithString:originalLink]];
+            
+            if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
+                [_networkDelegate didUploadEntry:uploadedEntry success:YES];
+            
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:dataCaptureEntry:success:)])
+                [_networkDelegate didUploadDataCaptureEntry:uploadedEntry dataCaptureEntry:dataCaptureEntry success:YES];
+        }
+        else
+        {
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:nil onlineLink:nil];
+            NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
+            
+            if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
+                [_networkDelegate didUploadEntry:uploadedEntry success:NO];
+            
+            if ([_networkDelegate respondsToSelector:@selector(didUploadDataCaptureEntry:dataCaptureEntry:success:)])
+                [_networkDelegate didUploadDataCaptureEntry:uploadedEntry dataCaptureEntry:dataCaptureEntry success:NO];
+        }
+    }
     else
     {
         NSLog(@"Unknown packet entry. Entry: \"%@\"\nResponse:\n%@\nStatus: %li (%@)", [entry packetType], response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
@@ -230,19 +263,41 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 - (void)sendFileUploadPacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGDataCaptureEntry *)entry public:(BOOL)publicFile
 {
-    NSData *contentPart = [STGPacket contentPartObjectsForKeys:
-                           [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"file", @"name",
-                            [[entry fileURL] lastPathComponent], @"filename",
-                            publicFile ? @"false" : @"true", @"private",
-                            nil] content:[NSData dataWithContentsOfURL:[entry fileURL]]];
-    NSArray *requestParts = [NSArray arrayWithObject:contentPart];
+    NSData *fileData = [NSData dataWithContentsOfURL:[entry fileURL]];
     
-    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://mediacru.sh/api/upload/file"] httpMethod:@"POST" contentParts:requestParts];
-    
-    STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"uploadFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
-    
-    [packetQueue addEntry:packet];
+    if ([entry uploadAction] == STGUploadActionRehostFromLink)
+    {
+        NSString *urlToFetchFrom = [[NSString alloc] initWithData:fileData encoding:NSUTF8StringEncoding];
+        NSData *contentPart = [STGPacket contentPartObjectsForKeys:
+                               [NSDictionary dictionaryWithObjectsAndKeys:
+                                @"url", @"name",
+                                urlToFetchFrom, @"url",
+                                publicFile ? @"false" : @"true", @"private",
+                                nil] content:fileData];
+        NSArray *requestParts = [NSArray arrayWithObject:contentPart];
+        
+        NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://mediacru.sh/api/upload/url"] httpMethod:@"POST" contentParts:requestParts];
+        
+        STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"rehostLink" userInfo:[NSMutableDictionary dictionaryWithObjectsAndKeys: entry, @"dataCaptureEntry", urlToFetchFrom, @"link", nil]];
+        
+        [packetQueue addEntry:packet];
+    }
+    else
+    {
+        NSData *contentPart = [STGPacket contentPartObjectsForKeys:
+                               [NSDictionary dictionaryWithObjectsAndKeys:
+                                @"file", @"name",
+                                [[entry fileURL] lastPathComponent], @"filename",
+                                publicFile ? @"false" : @"true", @"private",
+                                nil] content:fileData];
+        NSArray *requestParts = [NSArray arrayWithObject:contentPart];
+        
+        NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://mediacru.sh/api/upload/file"] httpMethod:@"POST" contentParts:requestParts];
+        
+        STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"uploadFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
+        
+        [packetQueue addEntry:packet];
+    }
 }
 
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGUploadedEntry *)entry

@@ -83,6 +83,11 @@
             image = [[NSWorkspace sharedWorkspace] iconForFileType:@"txt"];
             name = @"Text";
         }
+        else if (dropAction == STGUploadActionRehostFromLink)
+        {
+            image = [NSImage imageNamed:@"NSNetwork"];
+            name = @"Fetch Media from URL";
+        }
         else
         {
             image = [NSImage imageNamed:@"CocoStorageLogo"];

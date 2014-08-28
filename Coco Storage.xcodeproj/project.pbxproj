@@ -95,6 +95,7 @@
 		809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */; };
 		809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */; };
 		80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */; };
+		80C1B86519AF55C700669A10 /* STGUploadedEntryRehosted.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86419AF55C700669A10 /* STGUploadedEntryRehosted.m */; };
 		80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BD1741700400851DDB /* STGNetworkHelper.m */; };
 		80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D7F9BF1741707500851DDB /* SystemConfiguration.framework */; };
 		80D7F9C71741773B00851DDB /* ServerStatusOK.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D7F9C51741773A00851DDB /* ServerStatusOK.png */; };
@@ -267,6 +268,8 @@
 		809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGJSONHelper.m; sourceTree = "<group>"; };
 		80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntry.h; sourceTree = "<group>"; };
 		80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntry.m; sourceTree = "<group>"; };
+		80C1B86319AF55C700669A10 /* STGUploadedEntryRehosted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntryRehosted.h; sourceTree = "<group>"; };
+		80C1B86419AF55C700669A10 /* STGUploadedEntryRehosted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntryRehosted.m; sourceTree = "<group>"; };
 		80D7F9BC1741700400851DDB /* STGNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGNetworkHelper.h; sourceTree = "<group>"; };
 		80D7F9BD1741700400851DDB /* STGNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGNetworkHelper.m; sourceTree = "<group>"; };
 		80D7F9BF1741707500851DDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -415,6 +418,8 @@
 				801E29BC19AE4CC1000A4D0C /* STGUploadedEntryFile.m */,
 				801E29BE19AE696A000A4D0C /* STGUploadedEntryAlbum.h */,
 				801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */,
+				80C1B86319AF55C700669A10 /* STGUploadedEntryRehosted.h */,
+				80C1B86419AF55C700669A10 /* STGUploadedEntryRehosted.m */,
 			);
 			name = "Uploaded Entries";
 			sourceTree = "<group>";
@@ -853,6 +858,7 @@
 				80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */,
 				80DBC66B17316241000DEF72 /* STGWelcomeWindowControllerStorage.m in Sources */,
 				80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */,
+				80C1B86519AF55C700669A10 /* STGUploadedEntryRehosted.m in Sources */,
 				80492698173EEAB100C08A7F /* STGPacketQueue.m in Sources */,
 				80FD082619A52628009126D7 /* STGScreenOverlayWindow.m in Sources */,
 				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,

@@ -68,26 +68,23 @@
         [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadImage]];
     }
     
-    if ([[pasteboard types] containsObject:NSURLPboardType])
+    NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+    if (url)
     {
-        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
-        
-        if (url)
+        if ([url isFileURL])
         {
-            if ([url isFileURL])
-            {
-                BOOL isDirectory;
-                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
-                
-                if (exists && !isDirectory)
-                    [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
-                else if (exists)
-                    [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
-            }
-            else if([[url scheme] isEqualToString:@"http"])
-            {
-                [array addObject:[NSNumber numberWithInteger:STGUploadActionRedirectLink]];
-            }
+            BOOL isDirectory;
+            BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+            
+            if (exists && !isDirectory)
+                [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
+            else if (exists)
+                [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
+        }
+        else if([[url scheme] isEqualToString:@"http"])
+        {
+            [array addObject:[NSNumber numberWithInteger:STGUploadActionRedirectLink]];
+            [array addObject:[NSNumber numberWithInteger:STGUploadActionRehostFromLink]];
         }
     }
     
@@ -194,6 +191,15 @@
         if (entry)
             return [NSArray arrayWithObject:entry];
     }
+    else if (action == STGUploadActionRehostFromLink)
+    {
+        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+        
+        STGDataCaptureEntry *entry = [self captureLinkAsRehostFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        
+        if (entry)
+            return [NSArray arrayWithObject:entry];
+    }
     else if (action == STGUploadActionUploadColor)
     {
         STGDataCaptureEntry *entry = [self captureColorAsFile:[NSColor colorFromPasteboard:pasteboard] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
@@ -223,6 +229,8 @@
         return @"Shorten Link";
     else if (action == STGUploadActionUploadColor)
         return @"Upload Color";
+    else if (action == STGUploadActionRehostFromLink)
+        return @"Fetch Media from URL";
     
     return nil;
 }
@@ -307,16 +315,26 @@
 
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder
 {
-    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Link_%@_%@", [link host], [self getDateAsString]];
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Link_%@_%@.html", [link host], [self getDateAsString]];
     
     [[NSFileManager defaultManager] createFileAtPath:fileName contents:[[NSString stringWithFormat:@"<html>\n<head>\n<meta http-equiv=\"refresh\" content=\"0; url=%@\">\n</head>\n<body></body></html>", [link absoluteString]] dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
-    {
         return nil;
-    }
     
     return [STGDataCaptureEntry entryWithAction:STGUploadActionRedirectLink url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+}
+
++ (STGDataCaptureEntry *)captureLinkAsRehostFile:(NSURL *)link tempFolder:(NSString *)tempFolder
+{
+    NSString *fileName = [tempFolder stringByAppendingFormat:@"/Media_%@_%@.txt", [link host], [self getDateAsString]];
+    
+    [[NSFileManager defaultManager] createFileAtPath:fileName contents:[[link absoluteString] dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
+        return nil;
+    
+    return [STGDataCaptureEntry entryWithAction:STGUploadActionRehostFromLink url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureImageAsFile:(NSImage *)image tempFolder:(NSString *)tempFolder

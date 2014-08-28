@@ -17,7 +17,8 @@ typedef NS_ENUM(NSUInteger, STGUploadAction)
     STGUploadActionUploadRtfText,
     STGUploadActionUploadImage,
     STGUploadActionRedirectLink,
-    STGUploadActionUploadColor
+    STGUploadActionUploadColor,
+    STGUploadActionRehostFromLink
 };
 
 @class STGDataCaptureEntry;
@@ -47,6 +48,7 @@ typedef NS_ENUM(NSUInteger, STGUploadAction)
 + (STGDataCaptureEntry *)captureTextAsFile:(NSString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
++ (STGDataCaptureEntry *)captureLinkAsRehostFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureImageAsFile:(NSImage *)image tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureColorAsFile:(NSColor *)color tempFolder:(NSString *)tempFolder;
 + (STGDataCaptureEntry *)captureFile:(NSURL *)link tempFolder:(NSString *)tempFolder;
