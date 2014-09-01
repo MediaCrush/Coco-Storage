@@ -10,8 +10,11 @@
 
 #import "STGAPIConfiguration.h"
 
+extern NSString * const kSTGAPIConfigurationKeyStub;
+
 @interface STGAPIConfigurationStub : NSObject <STGAPIConfiguration>
 
 + (STGAPIConfigurationStub *)standardConfiguration;
++ (void)registerStandardConfiguration;
 
 @end

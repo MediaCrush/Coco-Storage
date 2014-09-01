@@ -20,6 +20,7 @@
 
 #import "STGWelcomeWindowControllerStorage.h"
 
+NSString * const kSTGAPIConfigurationKeyStorage = @"kSTGAPIConfigurationKeyStorage";
 STGAPIConfigurationStorage *standardConfiguration;
 
 @implementation STGAPIConfigurationStorage
@@ -37,6 +38,11 @@ STGAPIConfigurationStorage *standardConfiguration;
     }
     
     return standardConfiguration;
+}
+
++ (void)registerStandardConfiguration
+{
+    [STGAPIConfiguration registerConfiguration:[self standardConfiguration] withID:kSTGAPIConfigurationKeyStorage];
 }
 
 - (instancetype)init

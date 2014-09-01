@@ -8,8 +8,11 @@
 
 #import "STGAPIConfiguration.h"
 
+extern NSString * const kSTGAPIConfigurationKeyMediacrush;
+
 @interface STGAPIConfigurationMediacrush : NSObject <STGAPIConfiguration>
 
 + (STGAPIConfigurationMediacrush *)standardConfiguration;
++ (void)registerStandardConfiguration;
 
 @end

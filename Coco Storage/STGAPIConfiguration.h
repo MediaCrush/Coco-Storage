@@ -71,6 +71,10 @@
 + (void)setCurrentConfiguration:(id<STGAPIConfiguration>)configuration;
 + (id<STGAPIConfiguration>)currentConfiguration;
 
++ (id<STGAPIConfiguration>)configurationWithID:(NSString *)configID;
++ (BOOL)registerConfiguration:(id<STGAPIConfiguration>)configuration withID:(NSString *)configID;
++ (NSString *)idOfConfiguration:(id<STGAPIConfiguration>)configuration;
+
 + (NSArray *)validUploadActions:(NSArray *)actions forConfiguration:(id<STGAPIConfiguration>) configuration;
 
 @end

@@ -86,18 +86,21 @@ STGAppDelegate *sharedAppDelegate;
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
     [[self hotkeyHelper] linkToSystem];
     
-#if USED_STORAGE_API == API_MEDIACRUSH
+    [STGAPIConfigurationMediacrush registerStandardConfiguration];
+    [[STGAPIConfigurationMediacrush standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationMediacrush standardConfiguration] setDelegate:self];
+
+    [STGAPIConfigurationStorage registerStandardConfiguration];
+    [[STGAPIConfigurationStorage standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationStorage standardConfiguration] setDelegate:self];
+
+    [STGAPIConfigurationStub registerStandardConfiguration];
+    [[STGAPIConfigurationStub standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationStub standardConfiguration] setDelegate:self];
+
     [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
-#else
-    #if USED_STORAGE_API == API_STORAGE
-    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStorage standardConfiguration]];
-    #else
-    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStub standardConfiguration]];
-    #endif
-#endif
-    
-    [[STGAPIConfiguration currentConfiguration] setNetworkDelegate:_networkManager];
-    [[STGAPIConfiguration currentConfiguration] setDelegate:self];
+//    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStorage standardConfiguration]];
+//    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStub standardConfiguration]];
     
     [_openWelcomeWindowMenuItem setHidden:![[STGAPIConfiguration currentConfiguration] hasWelcomeWindow]];
     

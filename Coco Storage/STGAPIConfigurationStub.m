@@ -13,6 +13,7 @@
 #import "STGUploadedEntry.h"
 #import "STGUploadedEntryFile.h"
 
+NSString * const kSTGAPIConfigurationKeyStub = @"kSTGAPIConfigurationKeyStub";
 STGAPIConfigurationStub *standardConfiguration;
 
 @implementation STGAPIConfigurationStub 
@@ -27,6 +28,11 @@ STGAPIConfigurationStub *standardConfiguration;
     }
     
     return standardConfiguration;
+}
+
++ (void)registerStandardConfiguration
+{
+    [STGAPIConfiguration registerConfiguration:[self standardConfiguration] withID:kSTGAPIConfigurationKeyStub];
 }
 
 - (NSString *)apiHostName

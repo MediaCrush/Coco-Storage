@@ -18,6 +18,7 @@
 #import "STGUploadedEntryAlbum.h"
 #import "STGUploadedEntryRehosted.h"
 
+NSString * const kSTGAPIConfigurationKeyMediacrush = @"kSTGAPIConfigurationKeyMediacrush";
 STGAPIConfigurationMediacrush *standardConfiguration;
 
 @implementation STGAPIConfigurationMediacrush
@@ -32,6 +33,11 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     }
     
     return standardConfiguration;
+}
+
++ (void)registerStandardConfiguration
+{
+    [STGAPIConfiguration registerConfiguration:[self standardConfiguration] withID:kSTGAPIConfigurationKeyMediacrush];
 }
 
 - (NSString *)apiHostName

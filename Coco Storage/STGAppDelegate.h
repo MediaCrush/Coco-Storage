@@ -28,11 +28,6 @@
 
 #import "STGMovieCaptureSession.h"
 
-#define API_MEDIACRUSH 1
-#define API_STORAGE 2
-
-#define USED_STORAGE_API 1
-
 @class MASPreferencesWindowController;
 
 @class STGStatusItemManager;

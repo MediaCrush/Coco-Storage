@@ -10,10 +10,13 @@
 
 #import "STGWelcomeWindowControllerStorage.h"
 
+extern NSString * const kSTGAPIConfigurationKeyStorage;
+
 @interface STGAPIConfigurationStorage : NSObject <STGAPIConfiguration, STGWelcomeWindowControllerDelegate>
 
 @property (nonatomic, retain) STGWelcomeWindowControllerStorage *welcomeWC;
 
 + (STGAPIConfigurationStorage *)standardConfiguration;
++ (void)registerStandardConfiguration;
 
 @end
