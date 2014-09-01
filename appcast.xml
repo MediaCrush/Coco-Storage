@@ -2,34 +2,34 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>Coco Storage - Changelog</title>
-        <link>http://lukas.axxim.net/cocostorage/appcast.xml</link>
+        <link>http://mediacrush.github.io/Coco-Storage/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
 		<item>
 		    <title>Version 1.4.2 (Small Feature Update)</title>
 		    <sparkle:releaseNotesLink>
-		        http://lukas.axxim.net/cocostorage/versions/1.4.2.html
+		        http://mediacrush.github.io/Coco-Storage/versions/1.4.2.html
 		    </sparkle:releaseNotesLink>
 		    <pubDate>Mon, 01 Sep 2014 17:44:56 +0100</pubDate>
-		    <enclosure url="http://lukas.axxim.net/cocostorage/versions/Coco%20Storage%201.4.2.app.zip" sparkle:version="1.4.2" length="1862295" type="application/octet-stream" sparkle:dsaSignature="MCwCFHh8wGEsi4AsvJRLtVvpNJph5DyJAhQP/lbfEjg7kc/XzFUvxkXuy7wIKg==" />
+		    <enclosure url="http://mediacrush.github.io/Coco-Storage/versions/Coco%20Storage%201.4.2.app.zip" sparkle:version="1.4.2" length="1862295" type="application/octet-stream" sparkle:dsaSignature="MCwCFHh8wGEsi4AsvJRLtVvpNJph5DyJAhQP/lbfEjg7kc/XzFUvxkXuy7wIKg==" />
 		    <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 		</item>
 		<item>
 		    <title>Version 1.4.1 (Small Feature Update)</title>
 		    <sparkle:releaseNotesLink>
-		        http://lukas.axxim.net/cocostorage/versions/1.4.1.html
+		        http://mediacrush.github.io/Coco-Storage/versions/1.4.1.html
 		    </sparkle:releaseNotesLink>
 		    <pubDate>Tue, 26 Aug 2014 20:48:59 +0100</pubDate>
-		    <enclosure url="http://lukas.axxim.net/cocostorage/versions/Coco%20Storage%201.4.1.app.zip" sparkle:version="1.4.1" length="1853163" type="application/octet-stream" sparkle:dsaSignature="MCwCFEHzNPQGxMgZLcG20FD9LpsKTtzXAhQz85B3oDpCyLTjEKSkrrLFng2o1A==" />
+		    <enclosure url="http://mediacrush.github.io/Coco-Storage/versions/Coco%20Storage%201.4.1.app.zip" sparkle:version="1.4.1" length="1853163" type="application/octet-stream" sparkle:dsaSignature="MCwCFEHzNPQGxMgZLcG20FD9LpsKTtzXAhQz85B3oDpCyLTjEKSkrrLFng2o1A==" />
 		    <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 		</item>
         <item>
             <title>Version 1.4 (Initial Mediacru.sh release)</title>
             <sparkle:releaseNotesLink>
-                http://lukas.axxim.net/cocostorage/versions/1.4.html
+                http://mediacrush.github.io/Coco-Storage/versions/1.4.html
             </sparkle:releaseNotesLink>
             <pubDate>Sun, 24 Aug 2014 20:23:40 +0100</pubDate>
-            <enclosure url="http://lukas.axxim.net/cocostorage/versions/Coco%20Storage%201.4.app.zip" sparkle:version="1.4" length="1850307" type="application/octet-stream" sparkle:dsaSignature="MC0CFQDGHxQvnv2Dq+0MefRt2TEV1tDrZwIUTynZ6rUJINUecfRYMyuL4HxtjtQ=" />
+            <enclosure url="http://mediacrush.github.io/Coco-Storage/versions/Coco%20Storage%201.4.app.zip" sparkle:version="1.4" length="1850307" type="application/octet-stream" sparkle:dsaSignature="MC0CFQDGHxQvnv2Dq+0MefRt2TEV1tDrZwIUTynZ6rUJINUecfRYMyuL4HxtjtQ=" />
             <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
         </item>
     </channel>
