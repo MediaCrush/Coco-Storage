@@ -12,16 +12,6 @@
 
 #import "STGAPIConfiguration.h"
 
-@interface STGQuickUploadView ()
-
-- (NSRect)getRectAtPosition:(NSInteger)pos withActions:(NSInteger)actionCount;
-- (BOOL)isMouseInRect:(NSInteger)pos withActions:(NSInteger)actionCount;
-- (NSString *)getDisplayString:(NSInteger)pos pasteboard:(BOOL)fromPasteboard shortV:(BOOL)shortVersion;
-
-- (BOOL)uploadFromPasteboard:(NSPasteboard *)pBoard actions:(NSArray *)actions needsRectangle:(BOOL)needsRectangle;
-
-@end
-
 @implementation STGQuickUploadView
 
 - (id)initWithFrame:(NSRect)frame

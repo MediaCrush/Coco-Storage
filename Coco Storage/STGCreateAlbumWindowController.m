@@ -79,15 +79,20 @@
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField readFromPasteboard:(NSPasteboard *)pboard
 {
-    NSString *string = [pboard stringForType:NSPasteboardTypeString];
-    NSArray *strings = [string componentsSeparatedByString:@","];
+    NSArray *strings = [pboard readObjectsForClasses:[NSArray arrayWithObject:[NSString class]]     options:[NSDictionary dictionary]];
     
-    NSMutableArray *tokens = [[NSMutableArray alloc] initWithCapacity:[strings count]];
-    for (NSString *tokenString in strings)
+    NSMutableArray *tokens = [[NSMutableArray alloc] init];
+    
+    for (NSString *string in strings)
     {
-        NSString *representedID = [[STGAPIConfiguration currentConfiguration] objectIDFromString:tokenString];
+        NSArray *words = [string componentsSeparatedByString:@","];
         
-        [tokens addObject:[[STGUploadedFileToken alloc] initWithOnlineID:representedID ? representedID : tokenString]];
+        for (NSString *tokenString in words)
+        {
+            NSString *representedID = [[STGAPIConfiguration currentConfiguration] objectIDFromString:tokenString];
+            
+            [tokens addObject:[[STGUploadedFileToken alloc] initWithOnlineID:representedID ? representedID : tokenString]];
+        }
     }
     
     return tokens;
@@ -98,11 +103,9 @@
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:[objects count]];
     
     for (STGUploadedFileToken *token in objects)
-    {
         [array addObject:[token onlineID]];
-    }
     
-    [pboard setString:[array componentsJoinedByString:@","] forType:NSPasteboardTypeString];
+    [pboard writeObjects:array];
     
     return YES;
 }

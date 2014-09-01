@@ -210,29 +210,35 @@
     
     if (row <= [storageKeyArray count])
     {
+        BOOL didWrite = NO;
+        
         NSPasteboard *pboard = [info draggingPasteboard];
-        if ([[pboard types] containsObject:NSPasteboardTypeString])
+        NSArray *strings = [pboard readObjectsForClasses:[NSArray arrayWithObject:[NSString class]] options:[NSDictionary dictionary]];
+        if (strings)
         {
-            NSString *text = [pboard stringForType:NSPasteboardTypeString];
-
-            if (text)
+            for (NSString *string in strings)
             {
                 if ([info draggingSource] == tableView)
                 {
-                    NSUInteger oldIndex = [storageKeyArray indexOfObject:text];
+                    NSUInteger oldIndex = [storageKeyArray indexOfObject:string];
                     [storageKeyArray removeObjectAtIndex:oldIndex];
                     
                     if (row > oldIndex)
                         row --;
                 }
-
-                [storageKeyArray insertObject:text atIndex:row];
-                [[NSUserDefaults standardUserDefaults] setObject:storageKeyArray forKey:@"storageKeys"];
-
-                [tableView reloadData];
                 
-                return YES;
+                [storageKeyArray insertObject:string atIndex:row];
+                didWrite = YES;
             }
+        }
+        
+        if (didWrite)
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:storageKeyArray forKey:@"storageKeys"];
+            
+            [tableView reloadData];
+            
+            return YES;
         }
     }
     
@@ -258,23 +264,21 @@
     NSArray *keys = [[NSUserDefaults standardUserDefaults] stringArrayForKey:@"storageKeys"];
     NSUInteger keyCount = [keys count];
     
-    __block BOOL lastKeyUsed = NO;
-    
+    __block NSMutableArray *pboardObjects = [[NSMutableArray alloc] init];
     [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        
-        if (idx > keyCount)
-        {
-            lastKeyUsed = YES;
-            *stop = YES;
-        }
+        if (idx < keyCount)
+            [pboardObjects addObject:[keys objectAtIndex:idx]];
     }];
     
-    if (!lastKeyUsed)
+    if ([pboardObjects count] > 0)
     {
-        [pboard setString:[keys objectAtIndex:[rowIndexes firstIndex]] forType:NSStringPboardType];
+        [pboard clearContents];
+        [pboard writeObjects:pboardObjects];
+        
+        return YES;
     }
     
-    return !lastKeyUsed;
+    return NO;
 }
 
 - (void)keyDown:(NSEvent *)theEvent
@@ -292,29 +296,37 @@
 
 - (void)deleteCurrentRows
 {
-    NSMutableArray *storageKeyArray = [[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"storageKeys"] mutableCopy];
+    __block NSMutableArray *storageKeyArray = [[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"storageKeys"] mutableCopy];
     
-    if ([_storageKeyTable selectedRow] >= 0 && [_storageKeyTable selectedRow] < [storageKeyArray count])
-    {
+    NSIndexSet *selectedIndices = [_storageKeyTable selectedRowIndexes];
+    [selectedIndices enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
         if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"mainStorageKey"] isEqualToString:[storageKeyArray objectAtIndex:[_storageKeyTable selectedRow]]])
             [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"mainStorageKey"];
-            
+        
         [storageKeyArray removeObjectAtIndex:[_storageKeyTable selectedRow]];
-    }
+    }];
     
     [[NSUserDefaults standardUserDefaults] setObject:storageKeyArray forKey:@"storageKeys"];
-    
     [_storageKeyTable reloadData];
 }
 
 - (IBAction)copy:(id)sender
 {
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
     NSArray *storageKeyArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:@"storageKeys"];
     
-    if ([_storageKeyTable selectedRow] >= 0 && [_storageKeyTable selectedRow] < [storageKeyArray count])
+    NSIndexSet *rowIndexes = [_storageKeyTable selectedRowIndexes];
+
+    __block NSMutableArray *pboardObjects = [[NSMutableArray alloc] init];
+    [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        if (idx < [storageKeyArray count])
+            [pboardObjects addObject:[storageKeyArray objectAtIndex:idx]];
+    }];
+    
+    if ([pboardObjects count] > 0)
     {
-        [[NSPasteboard generalPasteboard] clearContents];
-        [[NSPasteboard generalPasteboard] setString:[storageKeyArray objectAtIndex:[_storageKeyTable selectedRow]] forType:NSStringPboardType];
+        [pboard clearContents];
+        [pboard writeObjects:pboardObjects];
     }
 }
 
@@ -326,20 +338,25 @@
 
 - (IBAction)paste:(id)sender
 {
-    if ([[[NSPasteboard generalPasteboard] types] containsObject:NSPasteboardTypeString])
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
+    NSArray *strings = [pboard readObjectsForClasses:[NSArray arrayWithObject:[NSString class]] options:[NSDictionary dictionary]];
+    
+    if (strings)
     {
-        NSUInteger insertIndex = 0;
-        
-        if ([_storageKeyTable selectedRow] >= 0)
-            insertIndex = [_storageKeyTable selectedRow];
-        
         NSMutableArray *storageKeyArray = [[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"storageKeys"] mutableCopy];
-        
-        [storageKeyArray insertObject:[[NSPasteboard generalPasteboard] stringForType:NSPasteboardTypeString] atIndex:insertIndex];
 
-        [[NSUserDefaults standardUserDefaults] setObject:storageKeyArray forKey:@"storageKeys"];
+        for (NSString *string in strings)
+        {
+            NSUInteger insertIndex = 0;
+            
+            if ([_storageKeyTable selectedRow] >= 0)
+                insertIndex = [_storageKeyTable selectedRow];
+            
+            [storageKeyArray insertObject:string atIndex:insertIndex];
+        }
         
-        [_storageKeyTable reloadData];        
+        [[NSUserDefaults standardUserDefaults] setObject:storageKeyArray forKey:@"storageKeys"];
+        [_storageKeyTable reloadData];
     }
 }
 

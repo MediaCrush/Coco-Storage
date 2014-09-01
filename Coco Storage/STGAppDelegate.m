@@ -636,7 +636,7 @@ STGAppDelegate *sharedAppDelegate;
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkCopyToPasteboard"] == 1)
         {
             [[NSPasteboard generalPasteboard] clearContents];
-            [[entry onlineLink] writeToPasteboard:[NSPasteboard generalPasteboard]];
+            [[NSPasteboard generalPasteboard] writeObjects:[NSArray arrayWithObject:[entry onlineLink]]];
         }
         
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"linkOpenInBrowser"] == 1)

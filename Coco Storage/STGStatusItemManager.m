@@ -389,10 +389,10 @@
 - (IBAction)copyRecentFileLink:(id)sender
 {
     NSString *link = [[[sender superview] viewWithTag:12] stringValue];
+    NSURL *url = [NSURL URLWithString:link];
     
     [[NSPasteboard generalPasteboard] clearContents];
-    
-    [[NSPasteboard generalPasteboard] setData:[link dataUsingEncoding:NSUTF8StringEncoding] forType:NSPasteboardTypeString];
+    [[NSPasteboard generalPasteboard] writeObjects:[NSArray arrayWithObject:url]];
     
     [[_statusItem menu] cancelTracking];
 }
