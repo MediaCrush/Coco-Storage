@@ -94,6 +94,7 @@
 		809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C2174D6D330016A391 /* License_MASPreferences.txt */; };
 		809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */; };
 		809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */; };
+		80BAE11119B46700003A2D12 /* STGUploadedEntrySimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */; };
 		80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */; };
 		80C1B86519AF55C700669A10 /* STGUploadedEntryRehosted.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86419AF55C700669A10 /* STGUploadedEntryRehosted.m */; };
 		80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D7F9BD1741700400851DDB /* STGNetworkHelper.m */; };
@@ -266,6 +267,8 @@
 		809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheckEntry.m; sourceTree = "<group>"; };
 		809D1B0B176F69FD00F30E22 /* STGJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGJSONHelper.h; sourceTree = "<group>"; };
 		809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGJSONHelper.m; sourceTree = "<group>"; };
+		80BAE10F19B46700003A2D12 /* STGUploadedEntrySimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntrySimple.h; sourceTree = "<group>"; };
+		80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntrySimple.m; sourceTree = "<group>"; };
 		80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntry.h; sourceTree = "<group>"; };
 		80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntry.m; sourceTree = "<group>"; };
 		80C1B86319AF55C700669A10 /* STGUploadedEntryRehosted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntryRehosted.h; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 			children = (
 				80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */,
 				80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */,
+				80BAE10F19B46700003A2D12 /* STGUploadedEntrySimple.h */,
+				80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */,
 				801E29BB19AE4CC1000A4D0C /* STGUploadedEntryFile.h */,
 				801E29BC19AE4CC1000A4D0C /* STGUploadedEntryFile.m */,
 				801E29BE19AE696A000A4D0C /* STGUploadedEntryAlbum.h */,
@@ -848,6 +853,7 @@
 				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
 				807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */,
 				807A6682172A98AD00E0212C /* STGHotkeyHelperEntry.m in Sources */,
+				80BAE11119B46700003A2D12 /* STGUploadedEntrySimple.m in Sources */,
 				804C879519A1FE2D000957C6 /* STGCountdownView.m in Sources */,
 				807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */,
 				803C33B7172C780100E8CE3F /* STGDataCaptureManager.m in Sources */,

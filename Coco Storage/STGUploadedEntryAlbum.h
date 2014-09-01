@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "STGUploadedEntry.h"
+#import "STGUploadedEntrySimple.h"
 
-@interface STGUploadedEntryAlbum : STGUploadedEntry
-
-@property (nonatomic, retain) NSString *onlineID;
-@property (nonatomic, retain) NSURL *onlineLink;
+@interface STGUploadedEntryAlbum : STGUploadedEntrySimple
 
 @property (nonatomic, assign) NSUInteger numberOfEntries;
 
-- (instancetype)initWithID:(NSString *)onlineID link:(NSURL *)onlineLink numberOfEntries:(NSUInteger)numberOfEntries;
+- (instancetype)initWithAPIConfigurationID:(NSString *)configID onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink entries:(NSArray *)objectIDs;
 
 @end

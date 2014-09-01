@@ -134,7 +134,7 @@ STGAPIConfigurationStub *standardConfiguration;
     NSURL *destDirectoryURL = [NSURL URLWithString:[@"file://" stringByAppendingString:[self destinationDirectory]]];
     NSURL *destURL = [destDirectoryURL URLByAppendingPathComponent:[onlineID stringByAppendingString:[[entry fileURL] lastPathComponent]]];
 
-    STGUploadedEntryFile *fileEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:entry onlineID:onlineID onlineLink:destURL];
+    STGUploadedEntryFile *fileEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyStub onlineID:onlineID onlineLink:destURL dataCaptureEntry:entry];
 
     NSError *error = nil;
     [[NSFileManager defaultManager] copyItemAtURL:[entry fileURL] toURL:destURL error:&error];

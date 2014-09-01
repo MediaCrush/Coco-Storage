@@ -6,15 +6,12 @@
 //  Copyright (c) 2014 Lukas Tenbrink. All rights reserved.
 //
 
-#import "STGUploadedEntry.h"
+#import "STGUploadedEntrySimple.h"
 
-@interface STGUploadedEntryRehosted : STGUploadedEntry
-
-@property (nonatomic, retain) NSString *onlineID;
-@property (nonatomic, retain) NSURL *onlineLink;
+@interface STGUploadedEntryRehosted : STGUploadedEntrySimple
 
 @property (nonatomic, retain) NSURL *originalLink;
 
-- (instancetype)initWithID:(NSString *)onlineID link:(NSURL *)onlineLink originalLink:(NSURL *)originalLink;
+- (instancetype)initWithAPIConfigurationID:(NSString *)configID onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink originalLink:(NSURL *)originalLink;
 
 @end

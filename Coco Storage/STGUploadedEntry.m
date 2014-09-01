@@ -24,6 +24,11 @@
     
 }
 
+- (NSString *)apiConfigurationID
+{
+    return nil;
+}
+
 - (NSString *)onlineID
 {
     return nil;

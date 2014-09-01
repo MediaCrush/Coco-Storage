@@ -137,7 +137,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         if (uploadID)
         {
             NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:uploadID onlineLink:[NSURL URLWithString:link]];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:uploadID onlineLink:[NSURL URLWithString:link] dataCaptureEntry:dataCaptureEntry];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -147,7 +147,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         }
         else
         {
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:nil onlineLink:nil];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:nil onlineLink:nil dataCaptureEntry:dataCaptureEntry];
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
@@ -203,7 +203,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         if (uploadID)
         {
             NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            STGUploadedEntryAlbum *uploadedEntry = [[STGUploadedEntryAlbum alloc] initWithID:uploadID link:[NSURL URLWithString:link] numberOfEntries:[entryIDs count]];
+            STGUploadedEntryAlbum *uploadedEntry = [[STGUploadedEntryAlbum alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:uploadID onlineLink:[NSURL URLWithString:link] entries:entryIDs];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -213,14 +213,14 @@ STGAPIConfigurationMediacrush *standardConfiguration;
     {
         NSDictionary *dictionary = [STGJSONHelper getDictionaryJSONFromData:response];
         STGDataCaptureEntry *dataCaptureEntry = [[entry userInfo] objectForKey:@"dataCaptureEntry"];
+        NSString *originalLink = [[entry userInfo] objectForKey:@"link"];
         
         NSString *uploadID = [dictionary objectForKey:@"hash"];
         
         if (uploadID)
         {
-            NSString *originalLink = [[entry userInfo] objectForKey:@"link"];
             NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithID:uploadID link:[NSURL URLWithString:link] originalLink:[NSURL URLWithString:originalLink]];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:uploadID onlineLink:[NSURL URLWithString:link] originalLink:[NSURL URLWithString:originalLink]];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -230,7 +230,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         }
         else
         {
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:nil onlineLink:nil];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:nil onlineLink:nil originalLink:[NSURL URLWithString:originalLink]];
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])

@@ -12,31 +12,25 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super init];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        [self setOnlineID:[aDecoder decodeObjectForKey:@"OnlineID"]];
-        [self setOnlineLink:[aDecoder decodeObjectForKey:@"OnlineLink"]];
         [self setNumberOfEntries:[aDecoder decodeIntegerForKey:@"NumberOfEntries"]];
     }
     return self;
 }
 
-- (instancetype)initWithID:(NSString *)onlineID link:(NSURL *)onlineLink numberOfEntries:(NSUInteger)numberOfEntries
+- (instancetype)initWithAPIConfigurationID:(NSString *)configID onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink entries:(NSArray *)objectIDs
 {
-    self = [super init];
+    self = [super initWithAPIConfigurationID:configID onlineID:onlineID onlineLink:onlineLink];
     if (self) {
-        [self setOnlineID:onlineID];
-        [self setOnlineLink:onlineLink];
-        [self setNumberOfEntries:numberOfEntries];
+        [self setNumberOfEntries:[objectIDs count]];
     }
     return self;
 }
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
+- (void)encodeWithCoder:(NSCoder *)coder
 {
-    [aCoder encodeObject:_onlineID forKey:@"OnlineID"];
-    [aCoder encodeObject:_onlineLink forKey:@"OnlineLink"];
-    [aCoder encodeInteger:_numberOfEntries forKey:@"NumberOfEntries"];
+    [super encodeWithCoder:coder];
+    [coder encodeInteger:_numberOfEntries forKey:@"NumberOfEntries"];
 }
 
 - (NSString *)entryName

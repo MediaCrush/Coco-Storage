@@ -8,17 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "STGUploadedEntry.h"
+#import "STGUploadedEntrySimple.h"
 
 @class STGDataCaptureEntry;
 
-@interface STGUploadedEntryFile : STGUploadedEntry
-
-@property (nonatomic, retain) NSString *onlineID;
-@property (nonatomic, retain) NSURL *onlineLink;
+@interface STGUploadedEntryFile : STGUploadedEntrySimple
 
 @property (nonatomic, retain) NSString *fileName;
 
-- (instancetype)initWithDataCaptureEntry:(STGDataCaptureEntry *)entry onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink;
+- (instancetype)initWithAPIConfigurationID:(NSString *)configID onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink dataCaptureEntry:(STGDataCaptureEntry *)dataCaptureEntry;
 
 @end

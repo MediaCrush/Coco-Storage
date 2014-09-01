@@ -12,21 +12,17 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super init];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        [self setOnlineID:[aDecoder decodeObjectForKey:@"OnlineID"]];
-        [self setOnlineLink:[aDecoder decodeObjectForKey:@"OnlineLink"]];
         [self setOriginalLink:[aDecoder decodeObjectForKey:@"OriginalLink"]];
     }
     return self;
 }
 
-- (instancetype)initWithID:(NSString *)onlineID link:(NSURL *)onlineLink originalLink:(NSURL *)originalLink
+- (instancetype)initWithAPIConfigurationID:(NSString *)configID onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink originalLink:(NSURL *)originalLink
 {
-    self = [super init];
+    self = [super initWithAPIConfigurationID:configID onlineID:onlineID onlineLink:onlineLink];
     if (self) {
-        [self setOnlineID:onlineID];
-        [self setOnlineLink:onlineLink];
         [self setOriginalLink:originalLink];
     }
     return self;
@@ -34,8 +30,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_onlineID forKey:@"OnlineID"];
-    [aCoder encodeObject:_onlineLink forKey:@"OnlineLink"];
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_originalLink forKey:@"OriginalLink"];
 }
 

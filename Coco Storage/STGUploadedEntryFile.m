@@ -14,30 +14,27 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super init];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        [self setOnlineID:[aDecoder decodeObjectForKey:@"OnlineID"]];
-        [self setOnlineLink:[aDecoder decodeObjectForKey:@"OnlineLink"]];
         [self setFileName:[aDecoder decodeObjectForKey:@"FileName"]];
     }
     return self;
 }
 
-- (instancetype)initWithDataCaptureEntry:(STGDataCaptureEntry *)entry onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink
+- (instancetype)initWithAPIConfigurationID:(NSString *)configID onlineID:(NSString *)onlineID onlineLink:(NSURL *)onlineLink dataCaptureEntry:(STGDataCaptureEntry *)dataCaptureEntry
 {
-    self = [super init];
+    self = [super initWithAPIConfigurationID:configID onlineID:onlineID onlineLink:onlineLink];
     if (self) {
         [self setOnlineID:onlineID];
         [self setOnlineLink:onlineLink];
-        [self setFileName:[[entry fileURL] lastPathComponent]];
+        [self setFileName:[[dataCaptureEntry fileURL] lastPathComponent]];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_onlineID forKey:@"OnlineID"];
-    [aCoder encodeObject:_onlineLink forKey:@"OnlineLink"];
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:_fileName forKey:@"FileName"];
 }
 

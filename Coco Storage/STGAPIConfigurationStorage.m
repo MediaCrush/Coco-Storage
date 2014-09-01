@@ -176,7 +176,7 @@ STGAPIConfigurationStorage *standardConfiguration;
         if (uploadID)
         {
             NSString *link = [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID];
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:uploadID onlineLink:[NSURL URLWithString:link]];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyStorage onlineID:uploadID onlineLink:[NSURL URLWithString:link] dataCaptureEntry:dataCaptureEntry];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -186,7 +186,7 @@ STGAPIConfigurationStorage *standardConfiguration;
         }
         else
         {
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithDataCaptureEntry:dataCaptureEntry onlineID:nil onlineLink:nil];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyStorage onlineID:nil onlineLink:nil dataCaptureEntry:dataCaptureEntry];
 
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
 

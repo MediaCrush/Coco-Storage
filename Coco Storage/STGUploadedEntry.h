@@ -10,6 +10,7 @@
 
 @interface STGUploadedEntry : NSObject <NSCoding>
 
+- (NSString *)apiConfigurationID;
 - (NSString *)onlineID;
 - (NSURL *)onlineLink;
 
