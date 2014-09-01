@@ -6,6 +6,15 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
 		<item>
+		    <title>Version 1.4.2 (Small Feature Update)</title>
+		    <sparkle:releaseNotesLink>
+		        http://lukas.axxim.net/cocostorage/versions/1.4.2.html
+		    </sparkle:releaseNotesLink>
+		    <pubDate>Mon, 01 Sep 2014 17:44:56 +0100</pubDate>
+		    <enclosure url="http://lukas.axxim.net/cocostorage/versions/Coco%20Storage%201.4.2.app.zip" sparkle:version="1.4.2" length="1862295" type="application/octet-stream" sparkle:dsaSignature="MCwCFHh8wGEsi4AsvJRLtVvpNJph5DyJAhQP/lbfEjg7kc/XzFUvxkXuy7wIKg==" />
+		    <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+		</item>
+		<item>
 		    <title>Version 1.4.1 (Small Feature Update)</title>
 		    <sparkle:releaseNotesLink>
 		        http://lukas.axxim.net/cocostorage/versions/1.4.1.html
