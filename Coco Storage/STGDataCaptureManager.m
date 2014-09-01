@@ -442,7 +442,7 @@
     [filePanel setCanChooseFiles:YES];
     [filePanel setAllowsMultipleSelection:YES];
     [filePanel setFloatingPanel:NO];
-    [filePanel setTitle:@"Select file to upload"];
+    [filePanel setTitle:@"Select files to upload"];
     [filePanel setPrompt:@"Upload"];
 
     dispatch_async(dispatch_get_current_queue(), ^{
