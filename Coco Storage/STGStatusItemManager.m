@@ -189,6 +189,9 @@
     }
     else
     {
+        [[_currentUploadsItem submenu] addItem:_cancelUploadsMenuItem];
+        [[_currentUploadsItem submenu] addItem:[NSMenuItem separatorItem]];
+        
         for (int i = 0; i < [uploadEntries count] && i < 10; i++)
         {
             if (i < 9 || [uploadEntries count] == 10)

@@ -72,6 +72,8 @@
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *pauseUploadsItem;
 
+@property (nonatomic, retain) IBOutlet NSMenuItem *cancelUploadsMenuItem;
+
 @property (nonatomic, retain) IBOutlet NSMenuItem *accountLinkItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *fileListLinkItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *cfsLinkItem;

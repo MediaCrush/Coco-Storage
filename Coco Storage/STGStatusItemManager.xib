@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="accountLinkItem" destination="16" id="juR-of-TX0"/>
                 <outlet property="cancelRecordingMenuItem" destination="bdZ-ya-vkp" id="hjm-PV-5EC"/>
+                <outlet property="cancelUploadsMenuItem" destination="6" id="SoV-H0-4SG"/>
                 <outlet property="captureAreaMenuItem" destination="46" id="48"/>
                 <outlet property="captureClipboardMenuItem" destination="2k3-Wa-v5p" id="mhS-tm-ywF"/>
                 <outlet property="captureFileMenuItem" destination="7" id="24"/>
@@ -136,12 +137,6 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="44"/>
-                <menuItem title="Cancel all uploads" image="NSStopProgressTemplate" id="6">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="cancelUploads:" target="-2" id="33"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Pause Coco Storage" id="5">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -165,6 +160,12 @@
         </menu>
         <menuItem title="..." enabled="NO" id="39">
             <modifierMask key="keyEquivalentModifierMask"/>
+        </menuItem>
+        <menuItem title="Cancel all uploads" image="NSStopProgressTemplate" id="6">
+            <modifierMask key="keyEquivalentModifierMask"/>
+            <connections>
+                <action selector="cancelUploads:" target="-2" id="33"/>
+            </connections>
         </menuItem>
     </objects>
     <resources>
