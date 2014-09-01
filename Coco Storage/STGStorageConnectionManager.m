@@ -40,9 +40,9 @@
     
     [self setUrlResponse:nil];
 
-    NSURLConnection *myConnection = [[NSURLConnection alloc] initWithRequest:[entry urlRequest] delegate:self startImmediately:YES];
+    _activeUploadConnection = [[NSURLConnection alloc] initWithRequest:[entry urlRequest] delegate:self startImmediately:YES];
     
-    if(myConnection != nil)
+    if(_activeUploadConnection != nil)
     {
         if ([_delegate respondsToSelector:@selector(startUploadingData:entry:)])
         {
