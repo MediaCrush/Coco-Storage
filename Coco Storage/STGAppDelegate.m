@@ -297,10 +297,18 @@ STGAppDelegate *sharedAppDelegate;
 
 -(void)deleteRecentFile:(STGUploadedEntry *)entry
 {
-    [[STGAPIConfiguration currentConfiguration] sendFileDeletePacket:[_networkManager packetSupportQueue] apiKey:[self getApiKey] entry:entry];
-    
-    [_recentFilesArray removeObject:entry];
-    [_statusItemManager updateRecentFiles:_recentFilesArray];
+    id<STGAPIConfiguration> configuration = [STGAPIConfiguration configurationWithID:[entry apiConfigurationID]];
+    if (configuration)
+    {
+        [configuration sendFileDeletePacket:[_networkManager packetSupportQueue] apiKey:[self getApiKey] entry:entry];
+        
+        [_recentFilesArray removeObject:entry];
+        [_statusItemManager updateRecentFiles:_recentFilesArray];
+    }
+    else
+    {
+        NSLog(@"Could not find API Configuration for key %@", [entry apiConfigurationID]);
+    }
 }
 
 -(void)cancelQueueFile:(int)index
