@@ -30,7 +30,7 @@
         [self setRecordDisplayID:[NSNumber numberWithUnsignedInt:kCGDirectMainDisplay]];
         [self resetRecordRectToFullscreen:self];
         
-        [self setQuality:AVCaptureSessionPresetMedium];
+        [self setQuality:AVCaptureSessionPresetHigh];
         
         [self setRecordsVideo:YES];
 
