@@ -23,8 +23,6 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>CocoStorageLogo.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>ivorius.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
