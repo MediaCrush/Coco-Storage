@@ -183,7 +183,7 @@
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="176">
                                 <rect key="frame" x="16" y="31" width="153" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Open link in Browser" bezelStyle="regularSquare" imagePosition="left" inset="2" id="212">
+                                <buttonCell key="cell" type="check" title="Open link in browser" bezelStyle="regularSquare" imagePosition="left" inset="2" id="212">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
