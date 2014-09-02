@@ -197,7 +197,7 @@
             if (i < 9 || [uploadEntries count] == 10)
             {
                 float progress = (i == 0) ? currentFileProgress : 0.0;
-                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%3.0f%%)", [[[[[uploadEntries objectAtIndex:i] userInfo] objectForKey:@"dataCaptureEntry"] fileURL] lastPathComponent], progress * 100] action:@selector(cancelQueueFile:) keyEquivalent:@""];
+                NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%3.2f%%)", [[[[[uploadEntries objectAtIndex:i] userInfo] objectForKey:@"dataCaptureEntry"] fileURL] lastPathComponent], progress * 100] action:@selector(cancelQueueFile:) keyEquivalent:@""];
                 [menuItem setTarget:self];
                 [menuItem setImage:[NSImage imageNamed:@"NSStopProgressTemplate"]];
                 [menuItem setTag:i];
