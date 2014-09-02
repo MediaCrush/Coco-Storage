@@ -24,8 +24,8 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        [self setRecordDuration:[NSNumber numberWithDouble:10.0]];
-        [self setRecordDelay:[NSNumber numberWithDouble:3.0]];
+        [self setRecordDuration:[NSNumber numberWithDouble:300.0]];
+        [self setRecordDelay:[NSNumber numberWithDouble:5.0]];
 
         [self setRecordDisplayID:[NSNumber numberWithUnsignedInt:kCGDirectMainDisplay]];
         [self resetRecordRectToFullscreen:self];
