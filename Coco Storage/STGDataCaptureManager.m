@@ -83,7 +83,7 @@
             BOOL allStringsPaths = YES;
             for (NSString *string in strings)
             {
-                if (![string isAbsolutePath])
+                if (![string isAbsolutePath] || ![[NSFileManager defaultManager] fileExistsAtPath:string])
                     allStringsPaths = NO;
             }
             
@@ -107,10 +107,13 @@
         BOOL isDirectory;
         BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
         
-        if (exists && !isDirectory)
-            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
-        else if (exists)
-            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
+        if (exists)
+        {
+            if (isDirectory)
+                [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
+            else
+                [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
+        }
     }
     else if ([[url scheme] isEqualToString:@"http"] || [[url scheme] isEqualToString:@"https"])
     {
