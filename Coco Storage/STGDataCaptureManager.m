@@ -112,7 +112,7 @@
         else if (exists)
             [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
     }
-    else if([[url scheme] isEqualToString:@"http"])
+    else if ([[url scheme] isEqualToString:@"http"] || [[url scheme] isEqualToString:@"https"])
     {
         [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionRedirectLink]];
         [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionRehostFromLink]];
@@ -193,7 +193,7 @@
     }
     else if (action == STGUploadActionRedirectLink)
     {
-        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+        NSURL *url = [self findURLInPasteboard:pasteboard];
         
         STGDataCaptureEntry *entry = [self captureLinkAsRedirectFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
         
@@ -202,7 +202,7 @@
     }
     else if (action == STGUploadActionRehostFromLink)
     {
-        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+        NSURL *url = [self findURLInPasteboard:pasteboard];
         
         STGDataCaptureEntry *entry = [self captureLinkAsRehostFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
         
