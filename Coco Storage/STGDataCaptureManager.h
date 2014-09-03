@@ -10,15 +10,15 @@
 
 typedef NS_ENUM(NSUInteger, STGUploadAction)
 {
+    STGUploadActionUploadImage,
+    STGUploadActionRedirectLink,
+    STGUploadActionRehostFromLink,
+    STGUploadActionUploadColor,
     STGUploadActionUploadFile,
     STGUploadActionUploadDirectoryZip,
     STGUploadActionUploadZip,
-    STGUploadActionUploadText,
     STGUploadActionUploadRtfText,
-    STGUploadActionUploadImage,
-    STGUploadActionRedirectLink,
-    STGUploadActionUploadColor,
-    STGUploadActionRehostFromLink
+    STGUploadActionUploadText
 };
 
 @class STGDataCaptureEntry;
