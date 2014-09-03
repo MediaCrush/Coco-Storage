@@ -31,7 +31,7 @@
 
 + (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard
 {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableSet *actionSet = [[NSMutableSet alloc] init];
     
     if ([[pasteboard types] containsObject:NSFilenamesPboardType])
     {
@@ -44,7 +44,7 @@
             NSLog(@"%@", error);
         else if (filenames && [filenames count] > 1)
         {
-            [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadZip]];
+            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadZip]];
         }
         else if (filenames && ![[pasteboard types] containsObject:NSURLPboardType])
         {
@@ -56,16 +56,16 @@
                 BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
                 
                 if (exists && !isDirectory)
-                    [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
+                    [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
                 else if (exists)
-                    [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
+                    [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
             }
         }
     }
     
     if ([pasteboard canReadObjectForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil])
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadImage]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadImage]];
     }
     
     NSURL *url = [NSURL URLFromPasteboard:pasteboard];
@@ -77,33 +77,33 @@
             BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
             
             if (exists && !isDirectory)
-                [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
+                [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
             else if (exists)
-                [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
+                [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
         }
         else if([[url scheme] isEqualToString:@"http"])
         {
-            [array addObject:[NSNumber numberWithInteger:STGUploadActionRedirectLink]];
-            [array addObject:[NSNumber numberWithInteger:STGUploadActionRehostFromLink]];
+            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionRedirectLink]];
+            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionRehostFromLink]];
         }
     }
     
     if ([[pasteboard types] containsObject:NSPasteboardTypeRTF])
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadRtfText]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadRtfText]];
     }
     
     if ([[pasteboard types] containsObject:NSPasteboardTypeString])
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadText]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadText]];
     }
     
     if ([[pasteboard types] containsObject:NSPasteboardTypeColor])
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadColor]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadColor]];
     }
     
-    return array;
+    return [actionSet allObjects];
 }
 
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGUploadAction)action
