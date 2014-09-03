@@ -80,6 +80,12 @@ STGAppDelegate *sharedAppDelegate;
     [[NSUserDefaults standardUserDefaults] registerDefaults:standardDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
+    [self setIntercommHandler:[STGIntercommHandlerImpl registeredHandlerForName:@"ivorius.Coco-Storage.intercomm"]];
+    if (_intercommHandler)
+        [_intercommHandler setDelegate:self];
+    else
+        NSLog(@"Could not register intercomm handler");
+    
     [self setNetworkManager:[[STGNetworkManager alloc] init]];
     [_networkManager setDelegate:self];
     
@@ -807,6 +813,43 @@ STGAppDelegate *sharedAppDelegate;
 - (void)openPreferences
 {
     [_optionsManager openPreferencesWindow];
+}
+
+#pragma mark Intercommunication Delegate
+
+- (NSArray *)uploadObjects:(NSArray *)objects fromHandler:(STGIntercommHandlerImpl *)handler
+{
+    NSPasteboard *aPasteboard = [NSPasteboard pasteboardWithUniqueName];
+
+    if ([aPasteboard writeObjects:objects])
+    {
+        NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:aPasteboard];
+        actions = [STGAPIConfiguration validUploadActions:actions forConfiguration:[STGAPIConfiguration currentConfiguration]];
+
+        if (actions && [actions count] > 0)
+        {
+            NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:aPasteboard withAction:[[actions objectAtIndex:0] integerValue]];
+            
+            if (entries && [entries count] > 0)
+            {
+                [self uploadEntries:entries];
+            }
+            else
+            {
+                NSLog(@"Could not capture objects for upload: %@", objects);
+            }
+        }
+        else
+        {
+            NSLog(@"Could not interprete objects: %@", objects);
+        }
+    }
+    else
+    {
+        NSLog(@"Could not write objects to pasteboard: %@", objects);
+    }
+    
+    return nil;
 }
 
 @end

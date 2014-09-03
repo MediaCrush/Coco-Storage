@@ -28,6 +28,8 @@
 
 #import "STGMovieCaptureSession.h"
 
+#import "STGIntercommHandlerImpl.h"
+
 @class MASPreferencesWindowController;
 
 @class STGStatusItemManager;
@@ -38,9 +40,11 @@
 
 @class STGFloatingWindowController;
 
-@interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate, STGMovieCaptureSessionDelegate, STGAPIConfigurationDelegate>
+@interface STGAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, STGHotkeyHelperDelegate, STGOptionsDelegate, STGStatusItemManagerDelegate, STGCreateAlbumWindowControllerDelegate, STGMovieCaptureWindowControllerDelegate, STGDataCaptureDelegate, STGNetworkDelegate, STGMovieCaptureSessionDelegate, STGAPIConfigurationDelegate, STGIntercommHandlerDelegate>
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
+
+@property (nonatomic, retain) IBOutlet STGIntercommHandlerImpl *intercommHandler;
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *openWelcomeWindowMenuItem;
 

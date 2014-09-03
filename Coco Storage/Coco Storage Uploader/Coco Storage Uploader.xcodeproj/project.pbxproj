@@ -1,0 +1,350 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8022B4DA19B7335A00221692 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022B4D919B7335A00221692 /* Automator.framework */; };
+		8022B4DC19B7335A00221692 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022B4DB19B7335A00221692 /* Cocoa.framework */; };
+		8022B4E619B7335A00221692 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8022B4E419B7335A00221692 /* InfoPlist.strings */; };
+		8022B4E919B7335A00221692 /* Coco_Storage_Uploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022B4E819B7335A00221692 /* Coco_Storage_Uploader.m */; };
+		8022B4EC19B7335A00221692 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8022B4EA19B7335A00221692 /* main.xib */; };
+		8022B4FA19B733E300221692 /* CocoStorageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8022B4F919B733E300221692 /* CocoStorageLogo.png */; };
+		8022B50519B7483B00221692 /* OSAKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022B50419B7483B00221692 /* OSAKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8022B4D619B7335A00221692 /* Coco Storage Uploader.action */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Coco Storage Uploader.action"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8022B4D919B7335A00221692 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
+		8022B4DB19B7335A00221692 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		8022B4DE19B7335A00221692 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8022B4DF19B7335A00221692 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8022B4E019B7335A00221692 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		8022B4E319B7335A00221692 /* Coco Storage Uploader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Coco Storage Uploader-Info.plist"; sourceTree = "<group>"; };
+		8022B4E519B7335A00221692 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8022B4E719B7335A00221692 /* Coco_Storage_Uploader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Coco_Storage_Uploader.h; sourceTree = "<group>"; };
+		8022B4E819B7335A00221692 /* Coco_Storage_Uploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Coco_Storage_Uploader.m; sourceTree = "<group>"; };
+		8022B4EB19B7335A00221692 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/main.xib; sourceTree = "<group>"; };
+		8022B4ED19B7335A00221692 /* Coco Storage Uploader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Coco Storage Uploader-Prefix.pch"; sourceTree = "<group>"; };
+		8022B4F919B733E300221692 /* CocoStorageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageLogo.png; sourceTree = "<group>"; };
+		8022B50419B7483B00221692 /* OSAKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSAKit.framework; path = System/Library/Frameworks/OSAKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8022B4D219B7335A00221692 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8022B50519B7483B00221692 /* OSAKit.framework in Frameworks */,
+				8022B4DC19B7335A00221692 /* Cocoa.framework in Frameworks */,
+				8022B4DA19B7335A00221692 /* Automator.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8022B4CC19B7335900221692 = {
+			isa = PBXGroup;
+			children = (
+				8022B4E119B7335A00221692 /* Coco Storage Uploader */,
+				8022B4D819B7335A00221692 /* Frameworks */,
+				8022B4D719B7335A00221692 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8022B4D719B7335A00221692 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8022B4D619B7335A00221692 /* Coco Storage Uploader.action */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8022B4D819B7335A00221692 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8022B50419B7483B00221692 /* OSAKit.framework */,
+				8022B4D919B7335A00221692 /* Automator.framework */,
+				8022B4DB19B7335A00221692 /* Cocoa.framework */,
+				8022B4DD19B7335A00221692 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8022B4DD19B7335A00221692 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8022B4DE19B7335A00221692 /* Foundation.framework */,
+				8022B4DF19B7335A00221692 /* CoreData.framework */,
+				8022B4E019B7335A00221692 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		8022B4E119B7335A00221692 /* Coco Storage Uploader */ = {
+			isa = PBXGroup;
+			children = (
+				8022B4E719B7335A00221692 /* Coco_Storage_Uploader.h */,
+				8022B4E819B7335A00221692 /* Coco_Storage_Uploader.m */,
+				8022B4F919B733E300221692 /* CocoStorageLogo.png */,
+				8022B4EA19B7335A00221692 /* main.xib */,
+				8022B4E219B7335A00221692 /* Supporting Files */,
+			);
+			path = "Coco Storage Uploader";
+			sourceTree = "<group>";
+		};
+		8022B4E219B7335A00221692 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8022B4E319B7335A00221692 /* Coco Storage Uploader-Info.plist */,
+				8022B4E419B7335A00221692 /* InfoPlist.strings */,
+				8022B4ED19B7335A00221692 /* Coco Storage Uploader-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8022B4D519B7335A00221692 /* Coco Storage Uploader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8022B4F019B7335A00221692 /* Build configuration list for PBXNativeTarget "Coco Storage Uploader" */;
+			buildPhases = (
+				8022B4D119B7335A00221692 /* Sources */,
+				8022B4D219B7335A00221692 /* Frameworks */,
+				8022B4D319B7335A00221692 /* Resources */,
+				8022B4D419B7335A00221692 /* Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Coco Storage Uploader";
+			productName = "Coco Storage Uploader";
+			productReference = 8022B4D619B7335A00221692 /* Coco Storage Uploader.action */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8022B4CD19B7335900221692 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Lukas Tenbrink";
+			};
+			buildConfigurationList = 8022B4D019B7335900221692 /* Build configuration list for PBXProject "Coco Storage Uploader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8022B4CC19B7335900221692;
+			productRefGroup = 8022B4D719B7335A00221692 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8022B4D519B7335A00221692 /* Coco Storage Uploader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8022B4D319B7335A00221692 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8022B4FA19B733E300221692 /* CocoStorageLogo.png in Resources */,
+				8022B4EC19B7335A00221692 /* main.xib in Resources */,
+				8022B4E619B7335A00221692 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8022B4D419B7335A00221692 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "amlint \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8022B4D119B7335A00221692 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8022B4E919B7335A00221692 /* Coco_Storage_Uploader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8022B4E419B7335A00221692 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8022B4E519B7335A00221692 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8022B4EA19B7335A00221692 /* main.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8022B4EB19B7335A00221692 /* Base */,
+			);
+			name = main.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8022B4EE19B7335A00221692 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8022B4EF19B7335A00221692 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8022B4F119B7335A00221692 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Coco Storage Uploader/Coco Storage Uploader-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../,
+				);
+				INFOPLIST_FILE = "Coco Storage Uploader/Coco Storage Uploader-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Automator";
+				OTHER_OSAFLAGS = "-x -t 0 -c 0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = action;
+			};
+			name = Debug;
+		};
+		8022B4F219B7335A00221692 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Coco Storage Uploader/Coco Storage Uploader-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../,
+				);
+				INFOPLIST_FILE = "Coco Storage Uploader/Coco Storage Uploader-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Automator";
+				OTHER_OSAFLAGS = "-x -t 0 -c 0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = action;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8022B4D019B7335900221692 /* Build configuration list for PBXProject "Coco Storage Uploader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8022B4EE19B7335A00221692 /* Debug */,
+				8022B4EF19B7335A00221692 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8022B4F019B7335A00221692 /* Build configuration list for PBXNativeTarget "Coco Storage Uploader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8022B4F119B7335A00221692 /* Debug */,
+				8022B4F219B7335A00221692 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8022B4CD19B7335900221692 /* Project object */;
+}
