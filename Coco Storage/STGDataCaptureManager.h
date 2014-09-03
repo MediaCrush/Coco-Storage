@@ -10,13 +10,13 @@
 
 typedef NS_ENUM(NSUInteger, STGUploadAction)
 {
+    STGUploadActionUploadFile,
+    STGUploadActionUploadDirectoryZip,
+    STGUploadActionUploadZip,
     STGUploadActionUploadImage,
     STGUploadActionRedirectLink,
     STGUploadActionRehostFromLink,
     STGUploadActionUploadColor,
-    STGUploadActionUploadFile,
-    STGUploadActionUploadDirectoryZip,
-    STGUploadActionUploadZip,
     STGUploadActionUploadRtfText,
     STGUploadActionUploadText
 };

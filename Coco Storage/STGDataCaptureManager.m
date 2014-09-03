@@ -31,7 +31,7 @@
 
 + (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard
 {
-    NSMutableSet *array = [[NSMutableSet alloc] init];
+    NSMutableSet *actionSet = [[NSMutableSet alloc] init];
     
     if ([[pasteboard types] containsObject:NSFilenamesPboardType])
     {
@@ -44,73 +44,86 @@
             NSLog(@"%@", error);
         else if (filenames && [filenames count] > 1)
         {
-            [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadZip]];
-        }
-        else if (filenames && ![[pasteboard types] containsObject:NSURLPboardType])
-        {
-            NSURL *url = [NSURL URLFromPasteboard:pasteboard];
-            
-            if (url && [url isFileURL])
-            {
-                BOOL isDirectory;
-                BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
-                
-                if (exists && !isDirectory)
-                    [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
-                else if (exists)
-                    [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
-            }
+            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadZip]];
         }
     }
     
     if ([pasteboard canReadObjectForClasses:[NSArray arrayWithObject:[NSImage class]] options:nil])
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadImage]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadImage]];
     }
     
     NSURL *url = [NSURL URLFromPasteboard:pasteboard];
     if (url)
-    {
-        if ([url isFileURL])
-        {
-            BOOL isDirectory;
-            BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
-            
-            if (exists && !isDirectory)
-                [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
-            else if (exists)
-                [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
-        }
-        else if([[url scheme] isEqualToString:@"http"])
-        {
-            [array addObject:[NSNumber numberWithInteger:STGUploadActionRedirectLink]];
-            [array addObject:[NSNumber numberWithInteger:STGUploadActionRehostFromLink]];
-        }
-    }
+        [self handleURLInterpretation:url forSet:actionSet];
     
     if ([[pasteboard types] containsObject:NSPasteboardTypeRTF])
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadRtfText]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadRtfText]];
     }
     
-    if ([[pasteboard types] containsObject:NSPasteboardTypeString])
+    NSArray *strings = [pasteboard readObjectsForClasses:[NSArray arrayWithObject:[NSString class]] options:nil];
+    if (strings)
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadText]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadText]];
+        
+        if ([strings count] == 1)
+        {
+            NSString *string = [strings firstObject];
+            
+            if ([string isAbsolutePath])
+                [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
+
+            NSURL *url = [NSURL URLWithString:string];
+            if (url)
+                [self handleURLInterpretation:url forSet:actionSet];
+        }
+        else if ([strings count] > 1)
+        {
+            BOOL allStringsPaths = YES;
+            for (NSString *string in strings)
+            {
+                if (![string isAbsolutePath])
+                    allStringsPaths = NO;
+            }
+            
+            if (allStringsPaths)
+                [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadZip]];
+        }
     }
     
     if ([[pasteboard types] containsObject:NSPasteboardTypeColor])
     {
-        [array addObject:[NSNumber numberWithInteger:STGUploadActionUploadColor]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadColor]];
     }
     
-    return [[array allObjects] sortedArrayUsingSelector:@selector(integerValue)];
+    return [[actionSet allObjects] sortedArrayUsingSelector:@selector(integerValue)];
+}
+
++ (void)handleURLInterpretation:(NSURL *)url forSet:(NSMutableSet *)actionSet
+{
+    if ([url isFileURL])
+    {
+        BOOL isDirectory;
+        BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+        
+        if (exists && !isDirectory)
+            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadFile]];
+        else if (exists)
+            [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionUploadDirectoryZip]];
+    }
+    else if([[url scheme] isEqualToString:@"http"])
+    {
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionRedirectLink]];
+        [actionSet addObject:[NSNumber numberWithInteger:STGUploadActionRehostFromLink]];
+    }
 }
 
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGUploadAction)action
 {
     if (action == STGUploadActionUploadFile)
     {
-        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+        NSURL *url = [self findURLInPasteboard:pasteboard];
 
         STGDataCaptureEntry *entry = [self captureFile:url tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
         
@@ -119,8 +132,8 @@
     }
     else if (action == STGUploadActionUploadDirectoryZip)
     {
-        NSURL *url = [NSURL URLFromPasteboard:pasteboard];
-
+        NSURL *url = [self findURLInPasteboard:pasteboard];
+        
         STGDataCaptureEntry *entry = [self captureFilesAsZip:[NSArray arrayWithObject:url] withTempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
         
         if (entry)
@@ -128,14 +141,9 @@
     }
     else if (action == STGUploadActionUploadZip)
     {
-        NSData *data = [pasteboard dataForType:NSFilenamesPboardType];
-        NSError *error;
+        NSArray *filenames = [self findPathsInPasteboard:pasteboard];
         
-        NSArray *filenames = [NSPropertyListSerialization propertyListWithData:data options:kCFPropertyListImmutable format:nil error:&error];
-        
-        if (error)
-            NSLog(@"%@", error);
-        else if (filenames && [filenames count] > 1)
+        if (filenames && [filenames count] > 0)
         {
             NSMutableArray *validURLS = [[NSMutableArray alloc] initWithCapacity:[filenames count]];
             
@@ -167,7 +175,8 @@
     }
     else if (action == STGUploadActionUploadText)
     {
-        STGDataCaptureEntry *entry = [self captureTextAsFile:[pasteboard stringForType:NSPasteboardTypeString] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+        NSArray *strings = [pasteboard readObjectsForClasses:[NSArray arrayWithObject:[NSString class]] options:nil];
+        STGDataCaptureEntry *entry = [self captureTextAsFile:[strings componentsJoinedByString:@", "] tempFolder:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
         
         if (entry)
             return [NSArray arrayWithObject:entry];
@@ -209,6 +218,52 @@
     }
     
     return nil;
+}
+
++ (NSURL *)findURLInPasteboard:(NSPasteboard *)pasteboard
+{
+    NSURL *url = [NSURL URLFromPasteboard:pasteboard];
+    
+    if (!url)
+    {
+        NSArray *strings = [pasteboard readObjectsForClasses:[NSArray arrayWithObject:[NSString class]] options:nil];
+        if (strings)
+        {
+            NSString *string = [strings firstObject];
+            
+            if ([string isAbsolutePath])
+                url = [STGFileHelper urlFromStandardPath:string];
+            else
+                url = [NSURL URLWithString:string];
+        }
+    }
+    
+    return url;
+}
+
++ (NSArray *)findPathsInPasteboard:(NSPasteboard *)pasteboard
+{
+    NSData *data = [pasteboard dataForType:NSFilenamesPboardType];
+    NSError *error;
+    
+    NSArray *filenames = [NSPropertyListSerialization propertyListWithData:data options:kCFPropertyListImmutable format:nil error:&error];
+    if (error)
+    {
+        NSArray *strings = [pasteboard readObjectsForClasses:[NSArray arrayWithObject:[NSString class]] options:nil];
+
+        if (strings)
+        {
+            NSMutableArray *mutableFilenames = [[NSMutableArray alloc] init];
+            for (NSString *string in strings)
+            {
+                if ([string isAbsolutePath])
+                    [mutableFilenames addObject:string];
+            }
+            filenames = mutableFilenames;
+        }
+    }
+    
+    return filenames;
 }
 
 + (NSString *)getNameForAction:(STGUploadAction)action
