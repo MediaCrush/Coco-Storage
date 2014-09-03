@@ -235,23 +235,6 @@
     return nil;
 }
 
-+ (NSArray *)getReadableActionsFromPasteboard:(NSPasteboard *)pasteboard
-{
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    
-    NSArray *actions = [self getActionsFromPasteboard:pasteboard];
-
-    for (NSNumber *number in actions)
-    {
-        NSString *name = [self getNameForAction:[number integerValue]];
-        
-        if (name)
-            [array addObject:name];
-    }
-    
-    return array;
-}
-
 + (void)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent delegate:(NSObject<STGDataCaptureDelegate> *)delegate
 {
     NSString *fileName = [tempFolder stringByAppendingFormat:@"/Screenshot_%@.png", [self getDateAsString]];

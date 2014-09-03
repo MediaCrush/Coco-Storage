@@ -122,6 +122,16 @@
 		80FD082619A52628009126D7 /* STGScreenOverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD082519A52628009126D7 /* STGScreenOverlayWindow.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8022B50E19B7842100221692 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8022B4F319B7335A00221692 /* Coco Storage Uploader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8022B4D619B7335A00221692;
+			remoteInfo = "Coco Storage Uploader";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		80120343173300690003BB23 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -444,6 +454,14 @@
 				8022B50119B7401100221692 /* STGIntercommHandlerImpl.m */,
 			);
 			name = Intercomm;
+			sourceTree = "<group>";
+		};
+		8022B50B19B7842100221692 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8022B50F19B7842100221692 /* Coco Storage Uploader.action */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		8029A48F172832BF00F09884 /* Resources */ = {
@@ -780,12 +798,28 @@
 			mainGroup = 80068FB617272CA700DA1492;
 			productRefGroup = 80068FC017272CA800DA1492 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8022B50B19B7842100221692 /* Products */;
+					ProjectRef = 8022B4F319B7335A00221692 /* Coco Storage Uploader.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				80068FBE17272CA700DA1492 /* Coco Storage */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8022B50F19B7842100221692 /* Coco Storage Uploader.action */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Coco Storage Uploader.action";
+			remoteRef = 8022B50E19B7842100221692 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		80068FBD17272CA700DA1492 /* Resources */ = {

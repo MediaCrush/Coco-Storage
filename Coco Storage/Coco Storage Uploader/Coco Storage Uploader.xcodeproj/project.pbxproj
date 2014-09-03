@@ -12,8 +12,6 @@
 		8022B4E619B7335A00221692 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8022B4E419B7335A00221692 /* InfoPlist.strings */; };
 		8022B4E919B7335A00221692 /* Coco_Storage_Uploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022B4E819B7335A00221692 /* Coco_Storage_Uploader.m */; };
 		8022B4EC19B7335A00221692 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8022B4EA19B7335A00221692 /* main.xib */; };
-		8022B4FA19B733E300221692 /* CocoStorageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8022B4F919B733E300221692 /* CocoStorageLogo.png */; };
-		8022B50519B7483B00221692 /* OSAKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022B50419B7483B00221692 /* OSAKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +27,6 @@
 		8022B4E819B7335A00221692 /* Coco_Storage_Uploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Coco_Storage_Uploader.m; sourceTree = "<group>"; };
 		8022B4EB19B7335A00221692 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/main.xib; sourceTree = "<group>"; };
 		8022B4ED19B7335A00221692 /* Coco Storage Uploader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Coco Storage Uploader-Prefix.pch"; sourceTree = "<group>"; };
-		8022B4F919B733E300221692 /* CocoStorageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CocoStorageLogo.png; sourceTree = "<group>"; };
-		8022B50419B7483B00221692 /* OSAKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSAKit.framework; path = System/Library/Frameworks/OSAKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +34,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8022B50519B7483B00221692 /* OSAKit.framework in Frameworks */,
 				8022B4DC19B7335A00221692 /* Cocoa.framework in Frameworks */,
 				8022B4DA19B7335A00221692 /* Automator.framework in Frameworks */,
 			);
@@ -67,7 +62,6 @@
 		8022B4D819B7335A00221692 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8022B50419B7483B00221692 /* OSAKit.framework */,
 				8022B4D919B7335A00221692 /* Automator.framework */,
 				8022B4DB19B7335A00221692 /* Cocoa.framework */,
 				8022B4DD19B7335A00221692 /* Other Frameworks */,
@@ -90,7 +84,6 @@
 			children = (
 				8022B4E719B7335A00221692 /* Coco_Storage_Uploader.h */,
 				8022B4E819B7335A00221692 /* Coco_Storage_Uploader.m */,
-				8022B4F919B733E300221692 /* CocoStorageLogo.png */,
 				8022B4EA19B7335A00221692 /* main.xib */,
 				8022B4E219B7335A00221692 /* Supporting Files */,
 			);
@@ -117,7 +110,7 @@
 				8022B4D119B7335A00221692 /* Sources */,
 				8022B4D219B7335A00221692 /* Frameworks */,
 				8022B4D319B7335A00221692 /* Resources */,
-				8022B4D419B7335A00221692 /* Run Script */,
+				8022B4D419B7335A00221692 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -160,7 +153,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8022B4FA19B733E300221692 /* CocoStorageLogo.png in Resources */,
 				8022B4EC19B7335A00221692 /* main.xib in Resources */,
 				8022B4E619B7335A00221692 /* InfoPlist.strings in Resources */,
 			);
@@ -169,14 +161,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8022B4D419B7335A00221692 /* Run Script */ = {
+		8022B4D419B7335A00221692 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,11 +283,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coco Storage Uploader/Coco Storage Uploader-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../,
-				);
 				INFOPLIST_FILE = "Coco Storage Uploader/Coco Storage Uploader-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Automator";
 				OTHER_OSAFLAGS = "-x -t 0 -c 0";
@@ -311,11 +297,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coco Storage Uploader/Coco Storage Uploader-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../,
-				);
 				INFOPLIST_FILE = "Coco Storage Uploader/Coco Storage Uploader-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Automator";
 				OTHER_OSAFLAGS = "-x -t 0 -c 0";

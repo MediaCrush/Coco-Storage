@@ -14,40 +14,38 @@
 		</array>
 	</dict>
 	<key>AMApplication</key>
-	<string>Coco Storage</string>
+	<string>(* Primary Application used by this action goes here. *)</string>
 	<key>AMCanShowSelectedItemsWhenRun</key>
 	<false/>
 	<key>AMCanShowWhenRun</key>
 	<true/>
 	<key>AMCategory</key>
-	<string>AMCategoryInternet</string>
-	<key>AMDSummary</key>
-	<string>Uploads the objects using Coco Storage</string>
+	<string>(* Category of this action goes here. *)</string>
 	<key>AMDefaultParameters</key>
 	<dict/>
 	<key>AMDescription</key>
 	<dict>
 		<key>AMDAlert</key>
-		<string></string>
+		<string>(* AMDAlert text goes here. (optional) *)</string>
 		<key>AMDInput</key>
-		<string>Accepts whatever Coco Storage is able to upload - e.g. files, images, movies...</string>
+		<string>(* AMDInput text to further explain the types accepted as input goes here. (optional) *)</string>
 		<key>AMDNote</key>
-		<string></string>
+		<string>(* AMDNote text goes here. (optional) *)</string>
 		<key>AMDOptions</key>
-		<string>No Parameters</string>
+		<string>(* AMDOptions text to further explain configuration options in the UI goes here. (optional) *)</string>
 		<key>AMDRelatedActions</key>
-		<string></string>
+		<string>(* AMDRelatedActions bundle ids go here. (optional) *)</string>
 		<key>AMDRequires</key>
-		<string>Requires Coco Storage to be present on the computer</string>
+		<string>(* AMDRequires text to explain anything outside of Automator required for the action's operation, e.g. a web page open in Safari, goes here. (optional) *)</string>
 		<key>AMDResult</key>
-		<string>Returns the input back</string>
+		<string>(* AMDResult text to further explain the types provided as output goes here. (optional) *)</string>
 		<key>AMDSummary</key>
-		<string>Uploads the objects using Coco Storage</string>
+		<string>(* AMDSummary text to explain what your action does goes here. *)</string>
 		<key>AMDWebsite</key>
 		<string>(* AMDWebsite URL to additional information or documentation for the action goes here. (optional) *)</string>
 	</dict>
 	<key>AMIconName</key>
-	<string>CocoStorageLogo.png</string>
+	<string>(* The name of the icon *)</string>
 	<key>AMKeywords</key>
 	<array/>
 	<key>AMName</key>
@@ -66,7 +64,7 @@
 	<key>AMWarning</key>
 	<dict>
 		<key>Action</key>
-		<string>Upload Resources</string>
+		<string>(* Action name to be suggested to add prior to this action to make the task safer, e.g. com.apple.Automator.CopyFiles, goes here. *)</string>
 		<key>ApplyButton</key>
 		<string>(* Button label for user to add proposed Action, e.g. Add. *)</string>
 		<key>IgnoreButton</key>

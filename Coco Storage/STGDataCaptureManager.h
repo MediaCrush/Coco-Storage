@@ -37,7 +37,6 @@ typedef NS_ENUM(NSUInteger, STGUploadAction)
 + (NSArray *)captureDataFromPasteboard:(NSPasteboard *)pasteboard withAction:(STGUploadAction)action;
 + (NSArray *)getActionsFromPasteboard:(NSPasteboard *)pasteboard;
 + (NSString *)getNameForAction:(STGUploadAction)action;
-+ (NSArray *)getReadableActionsFromPasteboard:(NSPasteboard *)pasteboard;
 
 + (void)startScreenCapture:(BOOL)fullscreen tempFolder:(NSString *)tempFolder silent:(BOOL)silent delegate:(NSObject<STGDataCaptureDelegate> *)delegate;
 
