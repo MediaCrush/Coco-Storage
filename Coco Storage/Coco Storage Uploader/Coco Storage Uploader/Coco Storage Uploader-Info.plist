@@ -14,38 +14,38 @@
 		</array>
 	</dict>
 	<key>AMApplication</key>
-	<string>(* Primary Application used by this action goes here. *)</string>
+	<string>Coco Storage</string>
 	<key>AMCanShowSelectedItemsWhenRun</key>
 	<false/>
 	<key>AMCanShowWhenRun</key>
 	<true/>
 	<key>AMCategory</key>
-	<string>(* Category of this action goes here. *)</string>
+	<string>AMCategoryInternet</string>
 	<key>AMDefaultParameters</key>
 	<dict/>
 	<key>AMDescription</key>
 	<dict>
 		<key>AMDAlert</key>
-		<string>(* AMDAlert text goes here. (optional) *)</string>
+		<string></string>
 		<key>AMDInput</key>
-		<string>(* AMDInput text to further explain the types accepted as input goes here. (optional) *)</string>
+		<string>Accepts everything Coco Storage is capable of uploading (e.g. images, files, movies...)</string>
 		<key>AMDNote</key>
-		<string>(* AMDNote text goes here. (optional) *)</string>
+		<string></string>
 		<key>AMDOptions</key>
-		<string>(* AMDOptions text to further explain configuration options in the UI goes here. (optional) *)</string>
+		<string></string>
 		<key>AMDRelatedActions</key>
-		<string>(* AMDRelatedActions bundle ids go here. (optional) *)</string>
+		<string></string>
 		<key>AMDRequires</key>
-		<string>(* AMDRequires text to explain anything outside of Automator required for the action's operation, e.g. a web page open in Safari, goes here. (optional) *)</string>
+		<string>Requires Coco Storage to be present on the Computer, or open already</string>
 		<key>AMDResult</key>
-		<string>(* AMDResult text to further explain the types provided as output goes here. (optional) *)</string>
+		<string>Returns the input</string>
 		<key>AMDSummary</key>
-		<string>(* AMDSummary text to explain what your action does goes here. *)</string>
+		<string>Uploads the objects using Coco Storage</string>
 		<key>AMDWebsite</key>
 		<string>(* AMDWebsite URL to additional information or documentation for the action goes here. (optional) *)</string>
 	</dict>
 	<key>AMIconName</key>
-	<string>(* The name of the icon *)</string>
+	<string>CocoStorageLogo.png</string>
 	<key>AMKeywords</key>
 	<array/>
 	<key>AMName</key>
@@ -65,14 +65,8 @@
 	<dict>
 		<key>Action</key>
 		<string>(* Action name to be suggested to add prior to this action to make the task safer, e.g. com.apple.Automator.CopyFiles, goes here. *)</string>
-		<key>ApplyButton</key>
-		<string>(* Button label for user to add proposed Action, e.g. Add. *)</string>
-		<key>IgnoreButton</key>
-		<string>(* Button label for user not to add proposed Action, e.g. Don't Add. *)</string>
 		<key>Level</key>
 		<integer>0</integer>
-		<key>Message</key>
-		<string>(* Warning message presented to user goes here. *)</string>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>

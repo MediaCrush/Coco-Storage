@@ -13,20 +13,20 @@ AMName = "Coco Storage Uploader";
 /* e.g. myDefaultStringParameter = "Default String Value"; */
 
 /* AMDescription localized strings */
-AMDAlert = "(* AMDAlert text goes here. (optional) *)";
-AMDInput = "(* AMDInput text to further explain the types accepted as input goes here. (optional) *)";
-AMDNote = "(* AMDNote text goes here. (optional) *)";
-AMDOptions = "(* AMDOptions text to further explain configuration options in the UI goes here. (optional) *)";
-AMDResult = "(* AMDResult text to further explain the types provided as output goes here. (optional) *)";
-AMDRequires = "(* AMDRequires text to explain anything outside of Automator required for the action's operation, e.g. a web page open in Safari, goes here. (optional) *)";
-AMDSummary = "(* AMDSummary text to explain what your action does goes here. *)";
-AMDWebsite = "(* AMDWebsite URL to additional information or documentation for the action goes here. (optional) *)";
+//AMDAlert = "(* AMDAlert text goes here. (optional) *)";
+AMDInput = "Accepts everything Coco Storage is capable of uploading (e.g. images, files, movies...)";
+//AMDNote = "(* AMDNote text goes here. (optional) *)";
+//AMDOptions = "(* AMDOptions text to further explain configuration options in the UI goes here. (optional) *)";
+AMDResult = "Returns the input";
+AMDRequires = "Requires Coco Storage to be present on the Computer, or open already";
+AMDSummary = "Uploads the objects using Coco Storage";
+AMDWebsite = "http://mediacrush.github.io/Coco-Storage/";
 
 /* AMKeyword localized strings */
 /* e.g. "Filter" = "Filter"; */
 
 /* AMWarning localized strings */
-ApplyButton = "(* Button label for user to add proposed Action, e.g. Add. *)";
-IgnoreButton = "(* Button label for user not to add proposed Action, e.g. Don't Add. *)";
-Message = "(* Warning message presented to user goes here. *)";
+//ApplyButton = "(* Button label for user to add proposed Action, e.g. Add. *)";
+//IgnoreButton = "(* Button label for user not to add proposed Action, e.g. Don't Add. *)";
+//Message = "(* Warning message presented to user goes here. *)";
 
