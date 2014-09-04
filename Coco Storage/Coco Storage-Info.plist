@@ -75,7 +75,10 @@
 			<key>NSSendTypes</key>
 			<array>
 				<string>public.file-url</string>
-				<string>NSPasteboardTypeString</string>
+				<string>NSFilenamesPboardType</string>
+				<string>NSURLPboardType</string>
+				<string>NSPasteboardTypePNG</string>
+				<string>NSPasteboardTypeTIFF</string>
 			</array>
 		</dict>
 	</array>
