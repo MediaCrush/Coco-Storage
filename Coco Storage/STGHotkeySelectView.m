@@ -158,23 +158,24 @@
         NSMutableString *title = [[NSMutableString alloc] init];
         
         if ((_hotkeyModifiers & NSAlphaShiftKeyMask) != 0)
-            [title appendString:@"\u21EA "];
+            [title appendString:@"\u21EA"];
         if ((_hotkeyModifiers & NSShiftKeyMask) != 0)
-            [title appendString:@"\u21E7 "];
+            [title appendString:@"\u21E7"];
         if ((_hotkeyModifiers & NSControlKeyMask) != 0)
-            [title appendString:@"\u2303 "];
+            [title appendString:@"\u2303"];
         if ((_hotkeyModifiers & NSAlternateKeyMask) != 0)
-            [title appendString:@"\u2325 "];
+            [title appendString:@"\u2325"];
         if ((_hotkeyModifiers & NSCommandKeyMask) != 0)
-            [title appendString:@"\u2318 "];
+            [title appendString:@"\u2318"];
         if ((_hotkeyModifiers & NSNumericPadKeyMask) != 0)
-            [title appendString:@"NumPad "];
+            [title appendString:@"NumPad"];
         if ((_hotkeyModifiers & NSHelpKeyMask) != 0)
-            [title appendString:@"Help "];
+            [title appendString:@"Help"];
         if ((_hotkeyModifiers & NSFunctionKeyMask) != 0)
-            [title appendString:@"fn "];
+            [title appendString:@"fn"];
         
-        [title appendString:_hotkeyString];
+        BOOL capital = (_hotkeyModifiers & (NSAlphaShiftKeyMask | NSShiftKeyMask)) != 0;
+        [title appendString:(capital ? [_hotkeyString capitalizedString] : _hotkeyString)];
         
         [_hotkeyTextField setStringValue:title];
     }
