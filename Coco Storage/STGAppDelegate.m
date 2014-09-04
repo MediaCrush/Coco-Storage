@@ -79,12 +79,6 @@ STGAppDelegate *sharedAppDelegate;
     [standardDefaults setObject:[NSNumber numberWithBool:NO] forKey:@"HadFirstLaunch"];
     [[NSUserDefaults standardUserDefaults] registerDefaults:standardDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
-
-    [self setIntercommHandler:[STGIntercommHandlerImpl registeredHandlerForName:@"ivorius.Coco-Storage.intercomm"]];
-    if (_intercommHandler)
-        [_intercommHandler setDelegate:self];
-    else
-        NSLog(@"Could not register intercomm handler");
     
     [self setNetworkManager:[[STGNetworkManager alloc] init]];
     [_networkManager setDelegate:self];
@@ -149,6 +143,13 @@ STGAppDelegate *sharedAppDelegate;
 //    [_packetSupportQueue addEntry:[STGPacketCreator cfsDeleteFilePacket:@"/foo2.png" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
 //    [_packetUploadV2Queue addEntry:[STGPacketCreator cfsPostFilePacket:@"/foo9.png" fileURL:[STGFileHelper urlFromStandardPath:[[self getCFSFolder] stringByAppendingPathComponent:@"/foo2/foo2.png"]] link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
     
+    [self setServiceHandler:[STGServiceHandler registeredHandler]];
+    if (_serviceHandler)
+        [_serviceHandler setDelegate:self];
+    else
+        NSLog(@"Could not register service handler");
+    NSUpdateDynamicServices();
+
     [_networkManager checkServerStatus];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HadFirstLaunch"])
@@ -815,41 +816,11 @@ STGAppDelegate *sharedAppDelegate;
     [_optionsManager openPreferencesWindow];
 }
 
-#pragma mark Intercommunication Delegate
+#pragma mark Service Handler Delegate
 
-- (NSArray *)uploadObjects:(NSArray *)objects fromHandler:(STGIntercommHandlerImpl *)handler
+- (void)uploadObjects:(NSArray *)objects fromHandler:(STGServiceHandler *)handler
 {
-    NSPasteboard *aPasteboard = [NSPasteboard pasteboardWithUniqueName];
-
-    if ([aPasteboard writeObjects:objects])
-    {
-        NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:aPasteboard];
-        actions = [STGAPIConfiguration validUploadActions:actions forConfiguration:[STGAPIConfiguration currentConfiguration]];
-
-        if (actions && [actions count] > 0)
-        {
-            NSArray *entries = [STGDataCaptureManager captureDataFromPasteboard:aPasteboard withAction:[[actions objectAtIndex:0] integerValue]];
-            
-            if (entries && [entries count] > 0)
-            {
-                [self uploadEntries:entries];
-            }
-            else
-            {
-                NSLog(@"Could not capture objects for upload: %@", objects);
-            }
-        }
-        else
-        {
-            NSLog(@"Could not interprete objects: %@", objects);
-        }
-    }
-    else
-    {
-        NSLog(@"Could not write objects to pasteboard: %@", objects);
-    }
-    
-    return nil;
+    [self uploadEntries:objects];
 }
 
 @end

@@ -13,7 +13,7 @@
 		80068FD317272CA900DA1492 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80068FD117272CA900DA1492 /* Credits.rtf */; };
 		80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FD517272CA900DA1492 /* STGAppDelegate.m */; };
 		80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */; };
-		800BDF2119B7CC4D009A6B04 /* Upload files with Coco Storage.workflow in Resources */ = {isa = PBXBuildFile; fileRef = 800BDF2019B7CC4D009A6B04 /* Upload files with Coco Storage.workflow */; };
+		800BDF2519B7CE30009A6B04 /* STGServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 800BDF2419B7CE30009A6B04 /* STGServiceHandler.m */; };
 		8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328C172966CB006702B9 /* STGDataCaptureEntry.m */; };
 		801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */; };
 		801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */; };
@@ -27,7 +27,6 @@
 		801E29C019AE696A000A4D0C /* STGUploadedEntryAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
-		8022B50219B7401100221692 /* STGIntercommHandlerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022B50119B7401100221692 /* STGIntercommHandlerImpl.m */; };
 		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
 		8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */; };
 		8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */; };
@@ -123,16 +122,6 @@
 		80FD082619A52628009126D7 /* STGScreenOverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD082519A52628009126D7 /* STGScreenOverlayWindow.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8022B50E19B7842100221692 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8022B4F319B7335A00221692 /* Coco Storage Uploader.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8022B4D619B7335A00221692;
-			remoteInfo = "Coco Storage Uploader";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		80120343173300690003BB23 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -161,7 +150,8 @@
 		80068FD517272CA900DA1492 /* STGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STGAppDelegate.m; sourceTree = "<group>"; };
 		80068FDF17272D9900DA1492 /* STGStorageConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStorageConnectionManager.h; sourceTree = "<group>"; };
 		80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStorageConnectionManager.m; sourceTree = "<group>"; };
-		800BDF2019B7CC4D009A6B04 /* Upload files with Coco Storage.workflow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "Upload files with Coco Storage.workflow"; sourceTree = "<group>"; };
+		800BDF2319B7CE30009A6B04 /* STGServiceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGServiceHandler.h; sourceTree = "<group>"; };
+		800BDF2419B7CE30009A6B04 /* STGServiceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGServiceHandler.m; sourceTree = "<group>"; };
 		8011328B172966CB006702B9 /* STGDataCaptureEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGDataCaptureEntry.h; sourceTree = "<group>"; };
 		8011328C172966CB006702B9 /* STGDataCaptureEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGDataCaptureEntry.m; sourceTree = "<group>"; };
 		8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsAboutViewController.h; sourceTree = "<group>"; };
@@ -181,10 +171,6 @@
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
 		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
 		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
-		8022B4F319B7335A00221692 /* Coco Storage Uploader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Coco Storage Uploader.xcodeproj"; path = "Coco Storage/Coco Storage Uploader/Coco Storage Uploader.xcodeproj"; sourceTree = "<group>"; };
-		8022B4FF19B73FDB00221692 /* STGIntercommHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STGIntercommHandler.h; sourceTree = "<group>"; };
-		8022B50019B7401100221692 /* STGIntercommHandlerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGIntercommHandlerImpl.h; sourceTree = "<group>"; };
-		8022B50119B7401100221692 /* STGIntercommHandlerImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGIntercommHandlerImpl.m; sourceTree = "<group>"; };
 		8029A48C17282CC900F09884 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsGeneralViewController.h; sourceTree = "<group>"; };
 		8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsGeneralViewController.m; sourceTree = "<group>"; };
@@ -351,7 +337,6 @@
 				80068FC817272CA800DA1492 /* Coco Storage */,
 				80068FC117272CA800DA1492 /* Frameworks */,
 				80068FC017272CA800DA1492 /* Products */,
-				8022B4F319B7335A00221692 /* Coco Storage Uploader.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -402,7 +387,6 @@
 				8065984E1995694400EF0E34 /* GUI */,
 				8065984F1995695300EF0E34 /* Data-Capture */,
 				80B0A1801996C88A00A93C3B /* Hotkeys */,
-				8022B4FB19B73E5900221692 /* Intercomm */,
 				8029A4BC172884AE00F09884 /* STGFileHelper.h */,
 				8029A4BD172884AE00F09884 /* STGFileHelper.m */,
 				807A668C172AD23800E0212C /* STGSystemHelper.h */,
@@ -431,12 +415,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		800BDF1E19B7CC3C009A6B04 /* Automator */ = {
+		800BDF2219B7CE18009A6B04 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				800BDF2019B7CC4D009A6B04 /* Upload files with Coco Storage.workflow */,
+				800BDF2319B7CE30009A6B04 /* STGServiceHandler.h */,
+				800BDF2419B7CE30009A6B04 /* STGServiceHandler.m */,
 			);
-			name = Automator;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		801E29BA19AE4CA4000A4D0C /* Uploaded Entries */ = {
@@ -456,24 +441,6 @@
 			name = "Uploaded Entries";
 			sourceTree = "<group>";
 		};
-		8022B4FB19B73E5900221692 /* Intercomm */ = {
-			isa = PBXGroup;
-			children = (
-				8022B4FF19B73FDB00221692 /* STGIntercommHandler.h */,
-				8022B50019B7401100221692 /* STGIntercommHandlerImpl.h */,
-				8022B50119B7401100221692 /* STGIntercommHandlerImpl.m */,
-			);
-			name = Intercomm;
-			sourceTree = "<group>";
-		};
-		8022B50B19B7842100221692 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8022B50F19B7842100221692 /* Coco Storage Uploader.action */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		8029A48F172832BF00F09884 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,7 +448,6 @@
 				80CC42611733C3AA0068476F /* Other */,
 				80CC42601733C3A30068476F /* Sounds */,
 				80CC425F1733C39D0068476F /* Images */,
-				800BDF1E19B7CC3C009A6B04 /* Automator */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -569,6 +535,7 @@
 		8065984F1995695300EF0E34 /* Data-Capture */ = {
 			isa = PBXGroup;
 			children = (
+				800BDF2219B7CE18009A6B04 /* Services */,
 				803C33B5172C780000E8CE3F /* STGDataCaptureManager.h */,
 				803C33B6172C780100E8CE3F /* STGDataCaptureManager.m */,
 				8011328B172966CB006702B9 /* STGDataCaptureEntry.h */,
@@ -809,28 +776,12 @@
 			mainGroup = 80068FB617272CA700DA1492;
 			productRefGroup = 80068FC017272CA800DA1492 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8022B50B19B7842100221692 /* Products */;
-					ProjectRef = 8022B4F319B7335A00221692 /* Coco Storage Uploader.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				80068FBE17272CA700DA1492 /* Coco Storage */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		8022B50F19B7842100221692 /* Coco Storage Uploader.action */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Coco Storage Uploader.action";
-			remoteRef = 8022B50E19B7842100221692 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		80068FBD17272CA700DA1492 /* Resources */ = {
@@ -856,7 +807,6 @@
 				80781B541746B26400D0C790 /* STGOptionsQuickUploadViewController.xib in Resources */,
 				80485FCC1747BF9200CB6226 /* DividerLine.png in Resources */,
 				80485FCE1747E85500CB6226 /* DividerLineM.png in Resources */,
-				800BDF2119B7CC4D009A6B04 /* Upload files with Coco Storage.workflow in Resources */,
 				80485FD51747EC9800CB6226 /* WelcomeWindowBG.png in Resources */,
 				80485FD61747EC9800CB6226 /* WelcomeWindowBGBottom.png in Resources */,
 				803D7BB819ACF3F400D0162E /* FileTemplate.pdf in Resources */,
@@ -901,7 +851,6 @@
 				801E29C019AE696A000A4D0C /* STGUploadedEntryAlbum.m in Sources */,
 				80068FCF17272CA800DA1492 /* main.m in Sources */,
 				804C879119A1FAAA000957C6 /* STGFloatingWindowController.m in Sources */,
-				8022B50219B7401100221692 /* STGIntercommHandlerImpl.m in Sources */,
 				80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */,
 				80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */,
 				8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */,
@@ -924,6 +873,7 @@
 				803C33BA172C7B6200E8CE3F /* STGOptionTextField.m in Sources */,
 				80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */,
 				80FD082319A4F3A8009126D7 /* STGScreenRectangleSelectView.m in Sources */,
+				800BDF2519B7CE30009A6B04 /* STGServiceHandler.m in Sources */,
 				80369DD41847A27D00349068 /* STGQuickUploadWindowController.m in Sources */,
 				80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */,
 				80DBC66B17316241000DEF72 /* STGWelcomeWindowControllerStorage.m in Sources */,

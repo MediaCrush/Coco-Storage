@@ -47,6 +47,38 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSKeyEquivalent</key>
+			<dict>
+				<key>default</key>
+				<string>u</string>
+			</dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Coco Storage/Upload</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>uploadObjects</string>
+			<key>NSPortName</key>
+			<string>Coco-Storage</string>
+			<key>NSRequiredContext</key>
+			<dict/>
+			<key>NSReturnTypes</key>
+			<array/>
+			<key>NSSendFileTypes</key>
+			<array>
+				<string>public.item</string>
+			</array>
+			<key>NSSendTypes</key>
+			<array>
+				<string>public.file-url</string>
+				<string>NSPasteboardTypeString</string>
+			</array>
+		</dict>
+	</array>
 	<key>NSUIElement</key>
 	<string>1</string>
 	<key>SUFeedURL</key>

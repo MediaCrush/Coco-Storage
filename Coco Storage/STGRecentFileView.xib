@@ -59,7 +59,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="35" id="2XS-TY-e2S"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="CocoStorageLogo" id="24"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSFolder" id="24"/>
                 </imageView>
             </subviews>
             <constraints>
@@ -91,7 +91,7 @@
         </button>
     </objects>
     <resources>
-        <image name="CocoStorageLogo" width="512" height="512"/>
+        <image name="NSFolder" width="32" height="32"/>
         <image name="NSTrashEmpty" width="32" height="32"/>
     </resources>
 </document>

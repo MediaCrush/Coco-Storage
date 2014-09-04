@@ -90,7 +90,7 @@
         }
         else
         {
-            image = [NSImage imageNamed:@"CocoStorageLogo"];
+            image = [NSImage imageNamed:@"AppIcon"];
             name = @"Unknown (?!)";
         }
         
