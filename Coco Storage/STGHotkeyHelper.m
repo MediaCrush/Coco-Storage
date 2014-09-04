@@ -140,7 +140,8 @@ CGEventRef copyOrModifyKeyboardEvent(CGEventTapProxy proxy, CGEventType type, CG
 {
     NSEvent *returnEvent = event;
     
-    for( STGHotkeyHelperEntry *entry in _entries)
+    NSArray *currentEntries = [_entries copy];
+    for( STGHotkeyHelperEntry *entry in currentEntries)
     {
         if (([[entry character] isEqualToString:[[event characters] lowercaseString]] && ([entry modifiers] & NSDeviceIndependentModifierFlagsMask) == ([event modifierFlags] & NSDeviceIndependentModifierFlagsMask)) || [entry character] == nil)
         {
