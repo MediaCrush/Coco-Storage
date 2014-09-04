@@ -107,6 +107,7 @@
 		80DBC66C17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC66A17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib */; };
 		80DBC6721731CC95000DEF72 /* STGStatusItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */; };
 		80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */; };
+		80DE9D6D19B890F900C41E44 /* STGHotkeySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */; };
 		80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */; };
 		80E12CAC184A99E70093CA6C /* STGUploadTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */; };
 		80EF761619AA5E540089975C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
@@ -289,6 +290,8 @@
 		80DBC6701731CC95000DEF72 /* STGStatusItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemManager.h; sourceTree = "<group>"; };
 		80DBC6711731CC95000DEF72 /* STGStatusItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemManager.m; sourceTree = "<group>"; };
 		80DBC6751731D2C5000DEF72 /* STGStatusItemManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGStatusItemManager.xib; sourceTree = "<group>"; };
+		80DE9D6B19B890F900C41E44 /* STGHotkeySelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGHotkeySelectView.h; sourceTree = "<group>"; };
+		80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGHotkeySelectView.m; sourceTree = "<group>"; };
 		80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadTypeViewController.h; sourceTree = "<group>"; };
 		80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadTypeViewController.m; sourceTree = "<group>"; };
 		80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGUploadTypeViewController.xib; sourceTree = "<group>"; };
@@ -681,6 +684,8 @@
 				8029A49B17283EEF00F09884 /* STGOptionsShortcutsViewController.h */,
 				8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */,
 				8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */,
+				80DE9D6B19B890F900C41E44 /* STGHotkeySelectView.h */,
+				80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */,
 				8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */,
 				8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */,
 				801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */,
@@ -860,6 +865,7 @@
 				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
 				8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */,
 				80F7698519A1379A000DC74D /* STGOptionsManager.m in Sources */,
+				80DE9D6D19B890F900C41E44 /* STGHotkeySelectView.m in Sources */,
 				80D91A7219A1DB8E00A402D6 /* STGAPIConfigurationStub.m in Sources */,
 				80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */,
 				8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */,

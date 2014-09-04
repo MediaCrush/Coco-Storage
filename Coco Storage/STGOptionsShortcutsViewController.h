@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "MASPreferencesWindowController.h"
+#import "STGHotkeySelectView.h"
 
 @protocol STGOptionsShortcutsDelegate <NSObject>
 
@@ -18,14 +19,14 @@
 
 @end
 
-@interface STGOptionsShortcutsViewController : NSViewController <MASPreferencesViewController>
+@interface STGOptionsShortcutsViewController : NSViewController <MASPreferencesViewController, STGHotkeySelectViewDelegate>
 
 @property (nonatomic, retain) IBOutlet NSTextField *hotkeyStatusTextField;
 @property (nonatomic, retain) IBOutlet NSButton *assistiveDeviceRegisterButton;
 
-@property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureAreaTextField;
-@property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureFullScreenTextField;
-@property (nonatomic, retain) IBOutlet NSTextField *hotkeyCaptureFileTextField;
+@property (nonatomic, retain) IBOutlet STGHotkeySelectView *hotkeyViewCaptureArea;
+@property (nonatomic, retain) IBOutlet STGHotkeySelectView *hotkeyViewCaptureScreen;
+@property (nonatomic, retain) IBOutlet STGHotkeySelectView *hotkeyViewUploadFile;
 
 @property (nonatomic, assign) id<STGOptionsShortcutsDelegate> delegate;
 
@@ -34,14 +35,6 @@
 
 - (void)updateHotkeyStatus;
 - (IBAction)registerAsAssistiveDevice:(id)sender;
-
-- (IBAction)resetHotkeyCaptureArea:(id)sender;
-- (IBAction)resetHotkeyCaptureFullScreen:(id)sender;
-- (IBAction)resetHotkeyCaptureFile:(id)sender;
-
-- (IBAction)disableHotkeyCaptureArea:(id)sender;
-- (IBAction)disableHotkeyCaptureFullScreen:(id)sender;
-- (IBAction)disableHotkeyCaptureFile:(id)sender;
 
 - (NSEvent *)keyPressed:(NSEvent *)event;
 
