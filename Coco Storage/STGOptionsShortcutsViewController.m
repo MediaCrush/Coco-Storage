@@ -95,20 +95,22 @@
     if ([[_hotkeyViewCaptureArea hotkeyTextField] currentEditor])
     {
         [_hotkeyViewCaptureArea setHotkey:[[event characters] lowercaseString] withModifiers:[event modifierFlags]];
-        [[[self view] window] makeFirstResponder:nil];
     }
     else if ([[_hotkeyViewCaptureScreen hotkeyTextField] currentEditor])
     {
         [_hotkeyViewCaptureScreen setHotkey:[[event characters] lowercaseString] withModifiers:[event modifierFlags]];
-        [[[self view] window] makeFirstResponder:nil];
     }
     else if ([[_hotkeyViewUploadFile hotkeyTextField] currentEditor])
     {
         [_hotkeyViewUploadFile setHotkey:[[event characters] lowercaseString] withModifiers:[event modifierFlags]];
-        [[[self view] window] makeFirstResponder:nil];
+    }
+    else
+    {
+        return event;
     }
     
-    return event;
+    [[[self view] window] makeFirstResponder:nil];
+    return nil;
 }
 
 - (NSString *)identifier
