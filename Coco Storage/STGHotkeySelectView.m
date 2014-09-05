@@ -96,6 +96,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    if (_backgroundColor)
+    {
+        [_backgroundColor setFill];
+        NSRectFill(dirtyRect);
+    }
+    
     [super drawRect:dirtyRect];
 }
 
@@ -183,6 +189,13 @@
     {
         [_hotkeyTextField setStringValue:@""];
     }
+}
+
+- (void)setBackgroundColor:(NSColor *)backgroundColor
+{
+    _backgroundColor = backgroundColor;
+    
+    [self setNeedsDisplay:YES];
 }
 
 @end

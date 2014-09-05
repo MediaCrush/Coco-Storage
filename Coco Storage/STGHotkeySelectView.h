@@ -30,6 +30,8 @@
 @property (nonatomic, retain) NSString *defaultHotkeyString;
 @property (nonatomic, assign) NSUInteger defaultHotkeyModifiers;
 
+@property (nonatomic, retain) NSColor *backgroundColor;
+
 - (void)setHotkey:(NSString *)hotkey withModifiers:(NSUInteger)modifiers;
 - (void)setDefaultHotkey:(NSString *)hotkey withModifiers:(NSUInteger)modifiers;
 
