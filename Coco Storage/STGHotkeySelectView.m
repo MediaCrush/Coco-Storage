@@ -12,6 +12,7 @@
 
 - (void)baseInit
 {
+    _canResetHotkey = YES;
     _canDisableHotkey = YES;
     
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:0.0f constant:22.0f]];
