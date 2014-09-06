@@ -45,7 +45,7 @@
     [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Upload File" key:@"hotkeyCaptureFile" defaultKey:@"u" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
     
     if ([configuration hasAlbums])
-        [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Create Album" key:@"hotkeyCreateAlbum" defaultKey:@"a" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
+        [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Create Album" key:@"hotkeyCreateAlbum" defaultKey:nil defaultModifiers:0]];
 
     
     return [entries copy];
@@ -74,6 +74,9 @@
         [hotkeyView setHotkey:[[NSUserDefaults standardUserDefaults] stringForKey:[entry userDefaultsKey]] withModifiers:[[NSUserDefaults standardUserDefaults] integerForKey:[[entry userDefaultsKey] stringByAppendingString:@"Modifiers"]]];
         
         [hotkeyView setDefaultHotkey:[entry defaultHotkey] withModifiers:[entry defaultModifiers]];
+        if (![entry defaultHotkey])
+            [hotkeyView setCanResetHotkey:NO];
+            
         [hotkeyView setDelegate:self];
         
         [hotkeyViews addObject:hotkeyView];
@@ -88,8 +91,11 @@
 {
     for (STGHotkeyViewEntry *entry in [STGOptionsShortcutsViewController hotkeyEntriesForAPI:[STGAPIConfiguration currentConfiguration]])
     {
-        [defaults setObject:[entry defaultHotkey] forKey:[entry userDefaultsKey]];
-        [defaults setObject:[NSNumber numberWithInteger:[entry defaultModifiers]] forKey:[[entry userDefaultsKey] stringByAppendingString:@"Modifiers"]];
+        if ([entry defaultHotkey])
+        {
+            [defaults setObject:[entry defaultHotkey] forKey:[entry userDefaultsKey]];
+            [defaults setObject:[NSNumber numberWithInteger:[entry defaultModifiers]] forKey:[[entry userDefaultsKey] stringByAppendingString:@"Modifiers"]];            
+        }
     }
 }
 
