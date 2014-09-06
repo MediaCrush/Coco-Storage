@@ -72,9 +72,10 @@
 {
     NSDictionary *views = NSDictionaryOfVariableBindings(_hotkeyTextField, _resetHotkeyButton, _disableHotkeyButton);
     
+    NSString *resetHotkeyPart = @"-[_resetHotkeyButton]";
     NSString *disableHotkeyPart = @"-[_disableHotkeyButton]";
     
-    [self addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|[_hotkeyTextField(>=10)]-[_resetHotkeyButton]%@|", _canDisableHotkey ? disableHotkeyPart : @""]
+    [self addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|[_hotkeyTextField(>=10)]%@%@|", _canResetHotkey ? resetHotkeyPart : @"", _canDisableHotkey ? disableHotkeyPart : @""]
                                                                   options:0
                                                                   metrics:nil
                                                                     views:views]];
@@ -157,6 +158,13 @@
 {
     _canDisableHotkey = canDisableHotkey;
     [_disableHotkeyButton setHidden:!canDisableHotkey];
+    [self setNeedsUpdateConstraints:YES];
+}
+
+- (void)setCanResetHotkey:(BOOL)canResetHotkey
+{
+    _canResetHotkey = canResetHotkey;
+    [_resetHotkeyButton setHidden:!canResetHotkey];
     [self setNeedsUpdateConstraints:YES];
 }
 

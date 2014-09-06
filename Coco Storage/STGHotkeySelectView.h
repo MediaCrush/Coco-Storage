@@ -31,6 +31,7 @@
 @property (nonatomic, assign) NSUInteger defaultHotkeyModifiers;
 
 @property (nonatomic, assign) BOOL canDisableHotkey;
+@property (nonatomic, assign) BOOL canResetHotkey;
 
 @property (nonatomic, retain) NSColor *backgroundColor;
 
