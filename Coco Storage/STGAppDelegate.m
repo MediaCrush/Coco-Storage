@@ -459,11 +459,8 @@ STGAppDelegate *sharedAppDelegate;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"uploadClipboard"])
         {
-            NSArray *clipboardCapturableItems = [STGAPIConfiguration validUploadActions:[STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]] forConfiguration:[STGAPIConfiguration currentConfiguration]];
-            
-            if ([clipboardCapturableItems count] > 0)
+            if ([_statusItemManager captureClipboard])
             {
-                [_statusItemManager captureClipboard:self];
                 return nil;
             }
         }

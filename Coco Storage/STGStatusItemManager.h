@@ -84,6 +84,7 @@
 - (IBAction)captureMovie:(id)sender;
 - (IBAction)captureFile:(id)sender;
 - (IBAction)captureClipboard:(id)sender;
+- (BOOL)captureClipboard;
 - (IBAction)createAlbum:(id)sender;
 
 - (IBAction)openStorageAccount:(id)sender;

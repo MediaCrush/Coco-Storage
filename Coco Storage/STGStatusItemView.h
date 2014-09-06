@@ -28,7 +28,7 @@
 
 @property (nonatomic, retain) STGUploadTypeViewController *uploadTypeVC;
 
-- (void)displayClipboardCaptureWindow;
+- (void)displayForUploadTypes:(NSArray *)types;
 
 @end
 

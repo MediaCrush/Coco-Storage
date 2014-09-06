@@ -256,12 +256,9 @@
     return NO;
 }
 
-- (void)displayClipboardCaptureWindow
+- (void)displayForUploadTypes:(NSArray *)types
 {
-    NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]];
-    actions = [STGAPIConfiguration validUploadActions:actions forConfiguration:[STGAPIConfiguration currentConfiguration]];
-
-    [[self uploadTypeVC] setUploadTypes:actions fromDragging:NO];
+    [[self uploadTypeVC] setUploadTypes:types fromDragging:NO];
     [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
 }
 

@@ -335,7 +335,21 @@
 
 - (void)captureClipboard:(id)sender
 {
-    [[self statusItemView] displayClipboardCaptureWindow];
+    [self captureClipboard];
+}
+
+- (BOOL)captureClipboard
+{
+    NSArray *actions = [STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]];
+    actions = [STGAPIConfiguration validUploadActions:actions forConfiguration:[STGAPIConfiguration currentConfiguration]];
+    
+    if ([actions count] > 0)
+    {
+        [_statusItemView displayForUploadTypes:actions];
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (void)createAlbum:(id)sender
