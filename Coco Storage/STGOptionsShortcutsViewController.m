@@ -36,9 +36,19 @@
 
 @implementation STGOptionsShortcutsViewController
 
-+ (NSArray *)hotkeyEntriesForAPI:(STGAPIConfiguration *)configuration
++ (NSArray *)hotkeyEntriesForAPI:(id<STGAPIConfiguration>)configuration
 {
-    return @[[STGHotkeyViewEntry entryWithTitle:@"Capture Area" key:@"hotkeyCaptureArea" defaultKey:@"5" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask], [STGHotkeyViewEntry entryWithTitle:@"Capture Full Screen" key:@"hotkeyCaptureFullScreen" defaultKey:@"6" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask], [STGHotkeyViewEntry entryWithTitle:@"Upload File" key:@"hotkeyCaptureFile" defaultKey:@"u" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
+    NSMutableArray *entries = [[NSMutableArray alloc] init];
+    
+    [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Capture Area" key:@"hotkeyCaptureArea" defaultKey:@"5" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
+    [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Capture Full Screen" key:@"hotkeyCaptureFullScreen" defaultKey:@"6" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
+    [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Upload File" key:@"hotkeyCaptureFile" defaultKey:@"u" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
+    
+    if ([configuration hasAlbums])
+        [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Create Album" key:@"hotkeyCreateAlbum" defaultKey:@"a" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
+
+    
+    return [entries copy];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -162,7 +172,7 @@
 
 - (BOOL)hasResizableHeight
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark Table View delegate

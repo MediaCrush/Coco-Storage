@@ -388,9 +388,14 @@ STGAppDelegate *sharedAppDelegate;
     
     [_hotkeyHelper addShortcutEntry:[STGHotkeyHelperEntry entryWithAllStatesAndUserInfo:[NSDictionary dictionaryWithObject:@"hotkeyChange" forKey:@"action"]]];
     
+    id<STGAPIConfiguration> configuration = [STGAPIConfiguration currentConfiguration];
+    
     [self tryAddingStandardShortcut:@"hotkeyCaptureArea" action:@"captureArea" menuItem:[_statusItemManager captureAreaMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFullScreen" action:@"captureFullScreen" menuItem:[_statusItemManager captureFullScreenMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFile" action:@"captureFile" menuItem:[_statusItemManager captureFileMenuItem]];
+    
+    if ([configuration hasAlbums])
+        [self tryAddingStandardShortcut:@"hotkeyCreateAlbum" action:@"createAlbum" menuItem:[_statusItemManager createAlbumMenuItem]];
 }
 
 - (void)tryAddingStandardShortcut:(NSString *)charsDefaultsKey action:(NSString *)action menuItem:(NSMenuItem *)menuItem
@@ -426,24 +431,30 @@ STGAppDelegate *sharedAppDelegate;
             
             event = hotkeyReturnEvent;
         }
-        if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFullScreen"])
+        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFullScreen"])
         {
             [self captureScreen:YES];
             
             return nil;
         }
-        if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureArea"])
+        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureArea"])
         {
             [self captureScreen:NO];
             
             return nil;
         }
-        if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFile"])
+        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFile"])
         {
             [self captureFile];
             
             return nil;
-        }        
+        }
+        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"createAlbum"])
+        {
+            [self createAlbum];
+            
+            return nil;
+        }
     }
     
     return event;
