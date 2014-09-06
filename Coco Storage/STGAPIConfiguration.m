@@ -8,17 +8,17 @@
 
 #import "STGAPIConfiguration.h"
 
-STGAPIConfiguration *currentConfiguration;
+id<STGAPIConfiguration> currentConfiguration;
 NSMutableDictionary *configurations;
 
 @implementation STGAPIConfiguration
 
-+ (void)setCurrentConfiguration:(STGAPIConfiguration *)configuration
++ (void)setCurrentConfiguration:(id<STGAPIConfiguration>)configuration
 {
     currentConfiguration = configuration;
 }
 
-+ (STGAPIConfiguration *)currentConfiguration
++ (id<STGAPIConfiguration>)currentConfiguration
 {
     return currentConfiguration;
 }
