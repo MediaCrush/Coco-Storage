@@ -12,6 +12,8 @@
 
 - (void)baseInit
 {
+    _canDisableHotkey = YES;
+    
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:0.0f constant:22.0f]];
 
     _hotkeyTextField = [[NSTextField alloc] init];
@@ -70,7 +72,9 @@
 {
     NSDictionary *views = NSDictionaryOfVariableBindings(_hotkeyTextField, _resetHotkeyButton, _disableHotkeyButton);
     
-    [self addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_hotkeyTextField(>=10)]-[_resetHotkeyButton]-[_disableHotkeyButton]|"
+    NSString *disableHotkeyPart = @"-[_disableHotkeyButton]";
+    
+    [self addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|[_hotkeyTextField(>=10)]-[_resetHotkeyButton]%@|", _canDisableHotkey ? disableHotkeyPart : @""]
                                                                   options:0
                                                                   metrics:nil
                                                                     views:views]];
@@ -147,6 +151,13 @@
 {
     [self setDefaultHotkeyString:hotkey];
     [self setDefaultHotkeyModifiers:modifiers];
+}
+
+- (void)setCanDisableHotkey:(BOOL)canDisableHotkey
+{
+    _canDisableHotkey = canDisableHotkey;
+    [_disableHotkeyButton setHidden:!canDisableHotkey];
+    [self setNeedsUpdateConstraints:YES];
 }
 
 - (void)notifyOfChanges
