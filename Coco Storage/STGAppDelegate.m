@@ -394,6 +394,8 @@ STGAppDelegate *sharedAppDelegate;
     [self tryAddingStandardShortcut:@"hotkeyCaptureFullScreen" action:@"captureFullScreen" menuItem:[_statusItemManager captureFullScreenMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFile" action:@"captureFile" menuItem:[_statusItemManager captureFileMenuItem]];
     
+    [self tryAddingStandardShortcut:@"hotkeyUploadClipboard" action:@"uploadClipboard" menuItem:[_statusItemManager createAlbumMenuItem]];
+
     if ([configuration hasAlbums])
         [self tryAddingStandardShortcut:@"hotkeyCreateAlbum" action:@"createAlbum" menuItem:[_statusItemManager createAlbumMenuItem]];
 }
@@ -454,6 +456,16 @@ STGAppDelegate *sharedAppDelegate;
             [self createAlbum];
             
             return nil;
+        }
+        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"uploadClipboard"])
+        {
+            NSArray *clipboardCapturableItems = [STGAPIConfiguration validUploadActions:[STGDataCaptureManager getActionsFromPasteboard:[NSPasteboard generalPasteboard]] forConfiguration:[STGAPIConfiguration currentConfiguration]];
+            
+            if ([clipboardCapturableItems count] > 0)
+            {
+                [_statusItemManager captureClipboard:self];
+                return nil;
+            }
         }
     }
     

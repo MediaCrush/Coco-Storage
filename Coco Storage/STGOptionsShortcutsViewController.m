@@ -44,6 +44,8 @@
     [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Capture Full Screen" key:@"hotkeyCaptureFullScreen" defaultKey:@"6" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
     [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Upload File" key:@"hotkeyCaptureFile" defaultKey:@"u" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
     
+    [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Upload clipboard" key:@"hotkeyUploadClipboard" defaultKey:nil defaultModifiers:0]];
+
     if ([configuration hasAlbums])
         [entries addObject:[STGHotkeyViewEntry entryWithTitle:@"Create Album" key:@"hotkeyCreateAlbum" defaultKey:nil defaultModifiers:0]];
 
