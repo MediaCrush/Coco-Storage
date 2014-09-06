@@ -19,14 +19,24 @@
 
 @end
 
-@interface STGOptionsShortcutsViewController : NSViewController <MASPreferencesViewController, STGHotkeySelectViewDelegate>
+@interface STGHotkeyViewEntry : NSObject
+
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *userDefaultsKey;
+
+@property (nonatomic, retain) NSString *defaultHotkey;
+@property (nonatomic, assign) NSUInteger defaultModifiers;
+
++ (STGHotkeyViewEntry *)entryWithTitle:(NSString *)title key:(NSString *)defaultsKey defaultKey:(NSString *)key defaultModifiers:(NSUInteger)modifiers;
+
+@end
+
+@interface STGOptionsShortcutsViewController : NSViewController <MASPreferencesViewController, STGHotkeySelectViewDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, retain) IBOutlet NSTextField *hotkeyStatusTextField;
 @property (nonatomic, retain) IBOutlet NSButton *assistiveDeviceRegisterButton;
 
-@property (nonatomic, retain) IBOutlet STGHotkeySelectView *hotkeyViewCaptureArea;
-@property (nonatomic, retain) IBOutlet STGHotkeySelectView *hotkeyViewCaptureScreen;
-@property (nonatomic, retain) IBOutlet STGHotkeySelectView *hotkeyViewUploadFile;
+@property (nonatomic, retain) IBOutlet NSTableView *hotkeyTableView;
 
 @property (nonatomic, assign) id<STGOptionsShortcutsDelegate> delegate;
 

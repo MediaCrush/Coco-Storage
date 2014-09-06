@@ -27,6 +27,8 @@
 		801E29C019AE696A000A4D0C /* STGUploadedEntryAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
+		8028942E19BBCB2B006945F4 /* MIT-License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8028942B19BBCB2B006945F4 /* MIT-License.rtf */; };
+		8028942F19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */; };
 		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
 		8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */; };
 		8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */; };
@@ -172,6 +174,9 @@
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
 		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
 		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
+		8028942B19BBCB2B006945F4 /* MIT-License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "MIT-License.rtf"; sourceTree = "<group>"; };
+		8028942C19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVerticallyCenteredTextFieldCell.h; sourceTree = "<group>"; };
+		8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVerticallyCenteredTextFieldCell.m; sourceTree = "<group>"; };
 		8029A48C17282CC900F09884 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsGeneralViewController.h; sourceTree = "<group>"; };
 		8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsGeneralViewController.m; sourceTree = "<group>"; };
@@ -444,6 +449,16 @@
 			name = "Uploaded Entries";
 			sourceTree = "<group>";
 		};
+		8028942A19BBCB18006945F4 /* Vertically Centered Row */ = {
+			isa = PBXGroup;
+			children = (
+				8028942B19BBCB2B006945F4 /* MIT-License.rtf */,
+				8028942C19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.h */,
+				8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */,
+			);
+			name = "Vertically Centered Row";
+			sourceTree = "<group>";
+		};
 		8029A48F172832BF00F09884 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +484,7 @@
 		804C878D19A1FA34000957C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8028942A19BBCB18006945F4 /* Vertically Centered Row */,
 				804C878E19A1FAAA000957C6 /* STGFloatingWindowController.h */,
 				804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */,
 				80DBC66817316241000DEF72 /* STGWelcomeWindowControllerStorage.h */,
@@ -796,6 +812,7 @@
 				80068FCD17272CA800DA1492 /* InfoPlist.strings in Resources */,
 				80CC4F0C19B603F300554B26 /* Images.xcassets in Resources */,
 				80068FD317272CA900DA1492 /* Credits.rtf in Resources */,
+				8028942E19BBCB2B006945F4 /* MIT-License.rtf in Resources */,
 				8029A48D17282CC900F09884 /* Credits.html in Resources */,
 				803D7BBA19ACF3FB00D0162E /* ClipboardTemplate.pdf in Resources */,
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
@@ -906,6 +923,7 @@
 				8060C345199FC8D3001282CF /* STGUploadedFileToken.m in Sources */,
 				8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */,
 				808A9A1917538EBC0058235D /* STGQuickUploadView.m in Sources */,
+				8028942F19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m in Sources */,
 				809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */,
 				80F7697519A0C3AE000DC74D /* STGMovieCaptureSession.m in Sources */,
 			);

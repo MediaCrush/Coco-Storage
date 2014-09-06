@@ -66,6 +66,20 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [STGAPIConfigurationMediacrush registerStandardConfiguration];
+    [[STGAPIConfigurationMediacrush standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationMediacrush standardConfiguration] setDelegate:self];
+    
+    [STGAPIConfigurationStorage registerStandardConfiguration];
+    [[STGAPIConfigurationStorage standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationStorage standardConfiguration] setDelegate:self];
+    
+    [STGAPIConfigurationStub registerStandardConfiguration];
+    [[STGAPIConfigurationStub standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationStub standardConfiguration] setDelegate:self];
+    
+    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
+
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSMutableDictionary *standardDefaults = [[NSMutableDictionary alloc] init];
@@ -85,22 +99,6 @@ STGAppDelegate *sharedAppDelegate;
     
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
     [[self hotkeyHelper] linkToSystem];
-    
-    [STGAPIConfigurationMediacrush registerStandardConfiguration];
-    [[STGAPIConfigurationMediacrush standardConfiguration] setNetworkDelegate:_networkManager];
-    [[STGAPIConfigurationMediacrush standardConfiguration] setDelegate:self];
-
-    [STGAPIConfigurationStorage registerStandardConfiguration];
-    [[STGAPIConfigurationStorage standardConfiguration] setNetworkDelegate:_networkManager];
-    [[STGAPIConfigurationStorage standardConfiguration] setDelegate:self];
-
-    [STGAPIConfigurationStub registerStandardConfiguration];
-    [[STGAPIConfigurationStub standardConfiguration] setNetworkDelegate:_networkManager];
-    [[STGAPIConfigurationStub standardConfiguration] setDelegate:self];
-
-    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
-//    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStorage standardConfiguration]];
-//    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationStub standardConfiguration]];
     
     [_openWelcomeWindowMenuItem setHidden:![[STGAPIConfiguration currentConfiguration] hasWelcomeWindow]];
     

@@ -9,19 +9,44 @@
 #import "STGOptionsShortcutsViewController.h"
 
 #import "STGSystemHelper.h"
+#import "STGAPIConfiguration.h"
+
+#import "RSVerticallyCenteredTextFieldCell.h"
 
 @interface STGOptionsShortcutsViewController ()
+
+@property (nonatomic, retain) NSArray *hotkeyEntries;
+@property (nonatomic, retain) NSArray *hotkeyViews;
+
+@end
+
+@implementation STGHotkeyViewEntry
+
++ (STGHotkeyViewEntry *)entryWithTitle:(NSString *)title key:(NSString *)defaultsKey defaultKey:(NSString *)key defaultModifiers:(NSUInteger)modifiers
+{
+    STGHotkeyViewEntry *entry = [[STGHotkeyViewEntry alloc] init];
+    [entry setTitle:title];
+    [entry setUserDefaultsKey:defaultsKey];
+    [entry setDefaultHotkey:key];
+    [entry setDefaultModifiers:modifiers];
+    return entry;
+}
 
 @end
 
 @implementation STGOptionsShortcutsViewController
+
++ (NSArray *)hotkeyEntriesForAPI:(STGAPIConfiguration *)configuration
+{
+    return @[[STGHotkeyViewEntry entryWithTitle:@"Capture Area" key:@"hotkeyCaptureArea" defaultKey:@"5" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask], [STGHotkeyViewEntry entryWithTitle:@"Capture Full Screen" key:@"hotkeyCaptureFullScreen" defaultKey:@"6" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask], [STGHotkeyViewEntry entryWithTitle:@"Upload File" key:@"hotkeyCaptureFile" defaultKey:@"u" defaultModifiers:NSCommandKeyMask | NSShiftKeyMask]];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-
+        [self setHotkeyEntries:[STGOptionsShortcutsViewController hotkeyEntriesForAPI:[STGAPIConfiguration currentConfiguration]]];
     }
     
     return self;
@@ -29,13 +54,21 @@
 
 - (void)awakeFromNib
 {
-    [self updateHotkeyView:_hotkeyViewCaptureArea withBaseUserDefaultsKey:@"hotkeyCaptureArea"];
-    [self updateHotkeyView:_hotkeyViewCaptureScreen withBaseUserDefaultsKey:@"hotkeyCaptureFullScreen"];
-    [self updateHotkeyView:_hotkeyViewUploadFile withBaseUserDefaultsKey:@"hotkeyCaptureFile"];
-    
-    [_hotkeyViewCaptureArea setDefaultHotkey:@"5" withModifiers:NSCommandKeyMask | NSShiftKeyMask];
-    [_hotkeyViewCaptureScreen setDefaultHotkey:@"6" withModifiers:NSCommandKeyMask | NSShiftKeyMask];
-    [_hotkeyViewUploadFile setDefaultHotkey:@"u" withModifiers:NSCommandKeyMask | NSShiftKeyMask];
+    NSMutableArray *hotkeyViews = [[NSMutableArray alloc] init];
+    for (STGHotkeyViewEntry *entry in _hotkeyEntries)
+    {
+        STGHotkeySelectView *hotkeyView = [[STGHotkeySelectView alloc] init];
+        
+        [hotkeyView setIdentifier:[entry userDefaultsKey]];
+        
+        [hotkeyView setHotkey:[[NSUserDefaults standardUserDefaults] stringForKey:[entry userDefaultsKey]] withModifiers:[[NSUserDefaults standardUserDefaults] integerForKey:[[entry userDefaultsKey] stringByAppendingString:@"Modifiers"]]];
+        
+        [hotkeyView setDefaultHotkey:[entry defaultHotkey] withModifiers:[entry defaultModifiers]];
+        [hotkeyView setDelegate:self];
+        
+        [hotkeyViews addObject:hotkeyView];
+    }
+    [self setHotkeyViews:[hotkeyViews copy]];
     
     [[self view] setNextResponder:nil];
     [self updateHotkeyStatus];
@@ -43,12 +76,11 @@
 
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults
 {
-    [defaults setObject:@"5" forKey:@"hotkeyCaptureArea"];
-    [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureAreaModifiers"];
-    [defaults setObject:@"6" forKey:@"hotkeyCaptureFullScreen"];
-    [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFullScreenModifiers"];
-    [defaults setObject:@"u" forKey:@"hotkeyCaptureFile"];
-    [defaults setObject:[NSNumber numberWithInteger:NSCommandKeyMask | NSShiftKeyMask] forKey:@"hotkeyCaptureFileModifiers"];
+    for (STGHotkeyViewEntry *entry in [STGOptionsShortcutsViewController hotkeyEntriesForAPI:[STGAPIConfiguration currentConfiguration]])
+    {
+        [defaults setObject:[entry defaultHotkey] forKey:[entry userDefaultsKey]];
+        [defaults setObject:[NSNumber numberWithInteger:[entry defaultModifiers]] forKey:[[entry userDefaultsKey] stringByAppendingString:@"Modifiers"]];
+    }
 }
 
 - (void)saveProperties
@@ -85,32 +117,27 @@
         [_delegate registerAsAssistiveDevice];
 }
 
-- (void)updateHotkeyView:(STGHotkeySelectView *)view withBaseUserDefaultsKey:(NSString *)key
-{
-    [view setHotkey:[[NSUserDefaults standardUserDefaults] stringForKey:key] withModifiers:[[NSUserDefaults standardUserDefaults] integerForKey:[key stringByAppendingString:@"Modifiers"]]];
-}
-
 - (NSEvent *)keyPressed:(NSEvent *)event
 {
-    if ([[_hotkeyViewCaptureArea hotkeyTextField] currentEditor])
-    {
-        [_hotkeyViewCaptureArea setHotkey:[[event characters] lowercaseString] withModifiers:[event modifierFlags]];
-    }
-    else if ([[_hotkeyViewCaptureScreen hotkeyTextField] currentEditor])
-    {
-        [_hotkeyViewCaptureScreen setHotkey:[[event characters] lowercaseString] withModifiers:[event modifierFlags]];
-    }
-    else if ([[_hotkeyViewUploadFile hotkeyTextField] currentEditor])
-    {
-        [_hotkeyViewUploadFile setHotkey:[[event characters] lowercaseString] withModifiers:[event modifierFlags]];
-    }
-    else
-    {
-        return event;
-    }
+    BOOL foundTextField = NO;
     
-    [[[self view] window] makeFirstResponder:nil];
-    return nil;
+    for (STGHotkeySelectView *hotkeyView in _hotkeyViews)
+    {
+        if ([[hotkeyView hotkeyTextField] currentEditor])
+        {
+            [hotkeyView setHotkey:[[event characters] lowercaseString] withModifiers:[event modifierFlags]];
+            foundTextField = YES;
+            break;
+        }
+    }
+
+    if (foundTextField)
+    {
+        [[[self view] window] makeFirstResponder:nil];
+        return nil;
+    }
+
+    return event;
 }
 
 - (NSString *)identifier
@@ -130,7 +157,7 @@
 
 - (BOOL)hasResizableWidth
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)hasResizableHeight
@@ -138,17 +165,51 @@
     return NO;
 }
 
+#pragma mark Table View delegate
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return [_hotkeyEntries count] * 2 - 1;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    if (row % 2 == 1)
+        return nil;
+    
+    if ([[tableColumn identifier] isEqualToString:@"title"])
+    {
+        STGHotkeyViewEntry *entry = [_hotkeyEntries objectAtIndex:row / 2];
+
+        NSTextField *title = [[NSTextField alloc] init];
+        [title setCell:[[RSVerticallyCenteredTextFieldCell alloc] initTextCell:[entry title]]];
+        [title setBezeled:NO];
+        [title setEditable:NO];
+        [title setSelectable:YES];
+        [title setDrawsBackground:NO];
+        [title setStringValue:[entry title]];
+        return title;
+    }
+    else if ([[tableColumn identifier] isEqualToString:@"hotkey"])
+    {
+        STGHotkeySelectView *hotkeyView = [_hotkeyViews objectAtIndex:row / 2];
+        
+        return hotkeyView;
+    }
+    
+    return nil;
+}
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+    return row % 2 == 1 ? 8 : 22;
+}
+
 #pragma mark Hotkey Select View delegate
 
 - (void)hotkeyView:(STGHotkeySelectView *)hotkeyView changedHotkey:(NSString *)key withModifiers:(NSUInteger)modifiers
 {
-    NSString *userDefaultsKey = nil;
-    if (hotkeyView == _hotkeyViewCaptureArea)
-        userDefaultsKey = @"hotkeyCaptureArea";
-    else if (hotkeyView == _hotkeyViewCaptureScreen)
-        userDefaultsKey = @"hotkeyCaptureFullScreen";
-    else if (hotkeyView == _hotkeyViewUploadFile)
-        userDefaultsKey = @"hotkeyCaptureFile";
+    NSString *userDefaultsKey = [hotkeyView identifier];
     
     [[NSUserDefaults standardUserDefaults] setObject:key forKey:userDefaultsKey];
     [[NSUserDefaults standardUserDefaults] setInteger:modifiers forKey:[userDefaultsKey stringByAppendingString:@"Modifiers"]];
