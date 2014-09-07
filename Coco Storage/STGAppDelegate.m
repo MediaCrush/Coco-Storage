@@ -396,7 +396,7 @@ STGAppDelegate *sharedAppDelegate;
 
     [self tryAddingStandardShortcut:@"hotkeyToggleRecording" action:@"toggleRecording" menuItem:nil];
 
-    [self tryAddingStandardShortcut:@"hotkeyUploadClipboard" action:@"uploadClipboard" menuItem:[_statusItemManager createAlbumMenuItem]];
+    [self tryAddingStandardShortcut:@"hotkeyUploadClipboard" action:@"uploadClipboard" menuItem:[_statusItemManager captureClipboardMenuItem]];
 
     if ([configuration hasAlbums])
         [self tryAddingStandardShortcut:@"hotkeyCreateAlbum" action:@"createAlbum" menuItem:[_statusItemManager createAlbumMenuItem]];
