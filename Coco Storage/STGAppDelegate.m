@@ -67,15 +67,12 @@ STGAppDelegate *sharedAppDelegate;
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [STGAPIConfigurationMediacrush registerStandardConfiguration];
-    [[STGAPIConfigurationMediacrush standardConfiguration] setNetworkDelegate:_networkManager];
     [[STGAPIConfigurationMediacrush standardConfiguration] setDelegate:self];
     
     [STGAPIConfigurationStorage registerStandardConfiguration];
-    [[STGAPIConfigurationStorage standardConfiguration] setNetworkDelegate:_networkManager];
     [[STGAPIConfigurationStorage standardConfiguration] setDelegate:self];
     
     [STGAPIConfigurationStub registerStandardConfiguration];
-    [[STGAPIConfigurationStub standardConfiguration] setNetworkDelegate:_networkManager];
     [[STGAPIConfigurationStub standardConfiguration] setDelegate:self];
     
     [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
@@ -96,6 +93,9 @@ STGAppDelegate *sharedAppDelegate;
     
     [self setNetworkManager:[[STGNetworkManager alloc] init]];
     [_networkManager setDelegate:self];
+    [[STGAPIConfigurationMediacrush standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationStorage standardConfiguration] setNetworkDelegate:_networkManager];
+    [[STGAPIConfigurationStub standardConfiguration] setNetworkDelegate:_networkManager];
     
     [self setHotkeyHelper:[[STGHotkeyHelper alloc] initWithDelegate:self]];
     [[self hotkeyHelper] linkToSystem];
