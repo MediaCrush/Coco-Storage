@@ -393,7 +393,9 @@ STGAppDelegate *sharedAppDelegate;
     [self tryAddingStandardShortcut:@"hotkeyCaptureArea" action:@"captureArea" menuItem:[_statusItemManager captureAreaMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFullScreen" action:@"captureFullScreen" menuItem:[_statusItemManager captureFullScreenMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFile" action:@"captureFile" menuItem:[_statusItemManager captureFileMenuItem]];
-    
+
+    [self tryAddingStandardShortcut:@"hotkeyToggleRecording" action:@"toggleRecording" menuItem:nil];
+
     [self tryAddingStandardShortcut:@"hotkeyUploadClipboard" action:@"uploadClipboard" menuItem:[_statusItemManager createAlbumMenuItem]];
 
     if ([configuration hasAlbums])
@@ -454,6 +456,19 @@ STGAppDelegate *sharedAppDelegate;
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"createAlbum"])
         {
             [self createAlbum];
+            
+            return nil;
+        }
+        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"toggleRecording"])
+        {
+            if ([_networkManager isAPIKeyValid:YES] && (_currentMovieCapture == nil || ![_currentMovieCapture isRecording]))
+            {
+                [self performSelectorOnMainThread:@selector(startMovieCapture:) withObject:_captureMovieWC waitUntilDone:NO];
+            }
+            else
+            {
+                [self performSelectorOnMainThread:@selector(stopRecording) withObject:nil waitUntilDone:NO];
+            }
             
             return nil;
         }
