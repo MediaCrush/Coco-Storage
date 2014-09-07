@@ -394,7 +394,7 @@ STGAppDelegate *sharedAppDelegate;
     [self tryAddingStandardShortcut:@"hotkeyCaptureFullScreen" action:@"captureFullScreen" menuItem:[_statusItemManager captureFullScreenMenuItem]];
     [self tryAddingStandardShortcut:@"hotkeyCaptureFile" action:@"captureFile" menuItem:[_statusItemManager captureFileMenuItem]];
 
-    [self tryAddingStandardShortcut:@"hotkeyToggleRecording" action:@"toggleRecording" menuItem:nil];
+    [self tryAddingStandardShortcut:@"hotkeyToggleRecording" action:@"toggleRecording" menuItem:[_statusItemManager stopRecordingMenuItem]];
 
     [self tryAddingStandardShortcut:@"hotkeyUploadClipboard" action:@"uploadClipboard" menuItem:[_statusItemManager captureClipboardMenuItem]];
 
