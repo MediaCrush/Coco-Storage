@@ -108,7 +108,7 @@
     [filePanel setCanChooseDirectories:YES];
     [filePanel setCanChooseFiles:NO];
     [filePanel setAllowsMultipleSelection:NO];
-    [filePanel setDirectoryURL:[STGFileHelper urlFromStandardPath:[_cfsFolderTextField stringValue]]];
+    [filePanel setDirectoryURL:[NSURL fileURLWithPath:[_cfsFolderTextField stringValue]]];
     [filePanel setFloatingPanel:NO];
     [filePanel setCanSelectHiddenExtension:YES];
     [filePanel setTitle:@"Select Temp Folder Path"];
@@ -126,7 +126,7 @@
 
 - (IBAction)openCfsFolderInFinder:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[_cfsFolderTextField stringValue]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:[_cfsFolderTextField stringValue]]];
 }
 
 - (NSString *)identifier

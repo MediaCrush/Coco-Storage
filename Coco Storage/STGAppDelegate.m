@@ -20,7 +20,6 @@
 #import "STGHotkeyHelperEntry.h"
 
 #import "STGSystemHelper.h"
-#import "STGFileHelper.h"
 #import "STGNetworkHelper.h"
 
 #import "STGStatusItemManager.h"
@@ -142,7 +141,7 @@ STGAppDelegate *sharedAppDelegate;
     [self setAssistiveDeviceTimer:[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(assistiveDeviceTimerFired:) userInfo:nil repeats:YES]];
   
 //    [_packetSupportQueue addEntry:[STGPacketCreator cfsDeleteFilePacket:@"/foo2.png" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
-//    [_packetUploadV2Queue addEntry:[STGPacketCreator cfsPostFilePacket:@"/foo9.png" fileURL:[STGFileHelper urlFromStandardPath:[[self getCFSFolder] stringByAppendingPathComponent:@"/foo2/foo2.png"]] link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
+//    [_packetUploadV2Queue addEntry:[STGPacketCreator cfsPostFilePacket:@"/foo9.png" fileURL:[NSURL fileURLWithPath:[[self getCFSFolder] stringByAppendingPathComponent:@"/foo2/foo2.png"]] link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
     
     [self setServiceHandler:[STGServiceHandler registeredHandler]];
     if (_serviceHandler)
@@ -522,7 +521,7 @@ STGAppDelegate *sharedAppDelegate;
 {
     if ([_networkManager isAPIKeyValid:YES])
     {
-        NSURL *url = [STGFileHelper urlFromStandardPath:filename];
+        NSURL *url = [NSURL fileURLWithPath:filename];
         
         if (url && [url isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[url path]])
         {
@@ -543,7 +542,7 @@ STGAppDelegate *sharedAppDelegate;
     {
         for (NSString *filename in filenames)
         {
-            NSURL *url = [STGFileHelper urlFromStandardPath:filename];
+            NSURL *url = [NSURL fileURLWithPath:filename];
             
             if (url && [url isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[url path]])
             {

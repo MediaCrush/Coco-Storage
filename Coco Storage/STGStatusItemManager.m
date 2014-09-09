@@ -21,8 +21,6 @@
 
 #import "STGStatusItemDrawingHelper.h"
 
-#import "STGFileHelper.h"
-
 @interface STGStatusItemManager ()
 
 @property (nonatomic, assign) float uploadProgress;

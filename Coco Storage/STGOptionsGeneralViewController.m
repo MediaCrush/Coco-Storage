@@ -8,7 +8,6 @@
 
 #import "STGOptionsGeneralViewController.h"
 
-#import "STGFileHelper.h"
 #import "STGSystemHelper.h"
 
 #import <Sparkle/Sparkle.h>

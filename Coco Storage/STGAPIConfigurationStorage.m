@@ -16,8 +16,6 @@
 #import "STGDataCaptureEntry.h"
 #import "STGUploadedEntryFile.h"
 
-#import "STGFileHelper.h"
-
 #import "STGWelcomeWindowControllerStorage.h"
 
 NSString * const kSTGAPIConfigurationKeyStorage = @"kSTGAPIConfigurationKeyStorage";
@@ -82,7 +80,7 @@ STGAPIConfigurationStorage *standardConfiguration;
 
 - (void)openCFSLink
 {
-    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]]];
 }
 
 - (NSString *)accountLinkTitle

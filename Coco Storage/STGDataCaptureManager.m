@@ -12,8 +12,6 @@
 
 #import "STGDataCaptureEntry.h"
 
-#import "STGFileHelper.h"
-
 #import "STGMovieCaptureSession.h"
 
 @interface STGDataCaptureManager ()
@@ -152,7 +150,7 @@
             
             for (NSString *filename in filenames)
             {
-                NSURL *url = [STGFileHelper urlFromStandardPath:filename];
+                NSURL *url = [NSURL fileURLWithPath:filename];
                 
                 if (url && [url isFileURL])
                 {
@@ -235,7 +233,7 @@
             NSString *string = [strings firstObject];
             
             if ([string isAbsolutePath])
-                url = [STGFileHelper urlFromStandardPath:string];
+                url = [NSURL fileURLWithPath:string];
             else
                 url = [NSURL URLWithString:string];
         }
@@ -318,7 +316,7 @@
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:fileName])
         {
-            [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithAction:STGUploadActionUploadImage url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES] sender:nil];
+            [delegate dataCaptureCompleted:[STGDataCaptureEntry entryWithAction:STGUploadActionUploadImage url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES] sender:nil];
         }
     });
 }
@@ -334,7 +332,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadText url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadText url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureAttributedTextAsFile:(NSAttributedString *)text tempFolder:(NSString *)tempFolder
@@ -351,7 +349,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadRtfText url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadRtfText url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureLinkAsRedirectFile:(NSURL *)link tempFolder:(NSString *)tempFolder
@@ -363,7 +361,7 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
         return nil;
     
-    return [STGDataCaptureEntry entryWithAction:STGUploadActionRedirectLink url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGUploadActionRedirectLink url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureLinkAsRehostFile:(NSURL *)link tempFolder:(NSString *)tempFolder
@@ -375,7 +373,7 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName])
         return nil;
     
-    return [STGDataCaptureEntry entryWithAction:STGUploadActionRehostFromLink url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGUploadActionRehostFromLink url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureImageAsFile:(NSImage *)image tempFolder:(NSString *)tempFolder
@@ -392,7 +390,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadImage url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadImage url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureColorAsFile:(NSColor *)color tempFolder:(NSString *)tempFolder
@@ -408,7 +406,7 @@
         return nil;
     }
     
-    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadColor url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+    return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadColor url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES];
 }
 
 + (STGDataCaptureEntry *)captureFile:(NSURL *)link tempFolder:(NSString *)tempFolder
@@ -470,7 +468,7 @@
             return nil;
         }
         
-        return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadImage url:[STGFileHelper urlFromStandardPath:fileName] deleteOnCompletion:YES];
+        return [STGDataCaptureEntry entryWithAction:STGUploadActionUploadImage url:[NSURL fileURLWithPath:fileName] deleteOnCompletion:YES];
     }
     
     return nil;
@@ -507,9 +505,9 @@
     
     [session setRecordType:recordVideo ? STGMovieCaptureTypeScreenMovie : STGMovieCaptureTypeAudio];
     if (recordVideo)
-        [session setDestURL:[STGFileHelper urlFromStandardPath:[tempFolder stringByAppendingFormat:@"/Movie_%@.mov", [self getDateAsString]]]];
+        [session setDestURL:[NSURL fileURLWithPath:[tempFolder stringByAppendingFormat:@"/Movie_%@.mov", [self getDateAsString]]]];
     else
-        [session setDestURL:[STGFileHelper urlFromStandardPath:[tempFolder stringByAppendingFormat:@"/Audio_%@.m4a", [self getDateAsString]]]];
+        [session setDestURL:[NSURL fileURLWithPath:[tempFolder stringByAppendingFormat:@"/Audio_%@.m4a", [self getDateAsString]]]];
     
     [session setQualityPreset:qualityPreset];
 

@@ -131,7 +131,7 @@
 - (IBAction)openTempFolderInFinder:(id)sender
 {
     NSString *currentFilePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"];
-    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:currentFilePath]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:currentFilePath]];
 }
 
 - (NSString *)identifier

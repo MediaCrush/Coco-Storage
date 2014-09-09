@@ -8,8 +8,6 @@
 
 #import "STGDataCaptureEntry.h"
 
-#import "STGFileHelper.h"
-
 @implementation STGDataCaptureEntry
 
 - (id)initWithCoder:(NSCoder *)aDecoder

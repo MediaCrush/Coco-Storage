@@ -10,8 +10,6 @@
 
 #import "NSButton+TextColor.h"
 
-#import "STGFileHelper.h"
-
 CGFloat boxOpacityHover = 1.0f;
 CGFloat boxOpacityIdle = 0.0f;
 
@@ -99,7 +97,7 @@ CGFloat boxOpacityIdle = 0.0f;
 
 - (IBAction)openCFSFolder:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"cfsFolder"]]];
 }
 
 - (IBAction)openStorageAccount:(id)sender

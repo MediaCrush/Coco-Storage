@@ -8,8 +8,6 @@
 
 #import "STGStatusItemView.h"
 
-#import "STGFileHelper.h"
-
 #import "STGDataCaptureManager.h"
 
 #import "STGAPIConfiguration.h"
