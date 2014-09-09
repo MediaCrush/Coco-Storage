@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1DDC63B12BC44F41A6D65975"
-               BuildableName = "libPods-Coco Storage-Sparkle.a"
-               BlueprintName = "Pods-Coco Storage-Sparkle"
+               BlueprintIdentifier = "DB7BFA6090A74711A0BED397"
+               BuildableName = "libPods-Coco Storage-DCOTransparentScroller.a"
+               BlueprintName = "Pods-Coco Storage-DCOTransparentScroller"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BEE3081A236D42C9AAFDDFEC"
+               BlueprintIdentifier = "FF23DFAD95534C61B33229D1"
                BuildableName = "libPods-Coco Storage-MASPreferences.a"
                BlueprintName = "Pods-Coco Storage-MASPreferences"
                ReferencedContainer = "container:Pods.xcodeproj">

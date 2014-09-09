@@ -6,6 +6,18 @@
 // project.
 
 
+// DCOAboutWindow
+#define COCOAPODS_POD_AVAILABLE_DCOAboutWindow
+#define COCOAPODS_VERSION_MAJOR_DCOAboutWindow 0
+#define COCOAPODS_VERSION_MINOR_DCOAboutWindow 1
+#define COCOAPODS_VERSION_PATCH_DCOAboutWindow 0
+
+// DCOTransparentScroller
+#define COCOAPODS_POD_AVAILABLE_DCOTransparentScroller
+#define COCOAPODS_VERSION_MAJOR_DCOTransparentScroller 0
+#define COCOAPODS_VERSION_MINOR_DCOTransparentScroller 0
+#define COCOAPODS_VERSION_PATCH_DCOTransparentScroller 1
+
 // MASPreferences
 #define COCOAPODS_POD_AVAILABLE_MASPreferences
 #define COCOAPODS_VERSION_MAJOR_MASPreferences 1

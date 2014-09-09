@@ -41,6 +41,7 @@ install_resource()
       ;;
   esac
 }
+install_resource "DCOAboutWindow/DCOAboutWindow/DCOAboutWindow.xib"
 install_resource "MASPreferences/MASPreferencesWindow.xib"
 install_resource "Sparkle/Sparkle.framework"
 

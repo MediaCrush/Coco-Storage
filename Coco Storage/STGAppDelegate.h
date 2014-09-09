@@ -31,6 +31,7 @@
 #import "STGServiceHandler.h"
 
 @class MASPreferencesWindowController;
+@class DCOAboutWindowController;
 
 @class STGStatusItemManager;
 
@@ -44,7 +45,9 @@
 
 @property (nonatomic, retain) IBOutlet SUUpdater *sparkleUpdater;
 
-@property (nonatomic, retain) IBOutlet STGServiceHandler *serviceHandler;
+@property (nonatomic, retain) DCOAboutWindowController *aboutWC;
+
+@property (nonatomic, retain) STGServiceHandler *serviceHandler;
 
 @property (nonatomic, retain) IBOutlet NSMenuItem *openWelcomeWindowMenuItem;
 
@@ -69,6 +72,7 @@
 
 - (IBAction)openPreferences:(id)sender;
 - (IBAction)openWelcomeWindow:(id)sender;
+- (IBAction)openAboutWindow:(id)sender;
 
 - (void)readFromUserDefaults;
 - (void)saveProperties;

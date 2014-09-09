@@ -11,7 +11,6 @@
 		80068FC317272CA800DA1492 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80068FC217272CA800DA1492 /* Cocoa.framework */; };
 		80068FCD17272CA800DA1492 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80068FCB17272CA800DA1492 /* InfoPlist.strings */; };
 		80068FCF17272CA800DA1492 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FCE17272CA800DA1492 /* main.m */; };
-		80068FD317272CA900DA1492 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80068FD117272CA900DA1492 /* Credits.rtf */; };
 		80068FD617272CA900DA1492 /* STGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FD517272CA900DA1492 /* STGAppDelegate.m */; };
 		80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */; };
 		800BDF2519B7CE30009A6B04 /* STGServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 800BDF2419B7CE30009A6B04 /* STGServiceHandler.m */; };
@@ -29,7 +28,6 @@
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
 		8028942E19BBCB2B006945F4 /* MIT-License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8028942B19BBCB2B006945F4 /* MIT-License.rtf */; };
 		8028942F19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */; };
-		8029A48D17282CC900F09884 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 8029A48C17282CC900F09884 /* Credits.html */; };
 		8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */; };
 		8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */; };
 		8029A49E17283EF000F09884 /* STGOptionsShortcutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */; };
@@ -94,6 +92,8 @@
 		809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C2174D6D330016A391 /* License_MASPreferences.txt */; };
 		809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */; };
 		809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */; };
+		80B9D48719BF038200E1E5B8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D48619BF038200E1E5B8 /* Credits.rtf */; };
+		80B9D48919BF048C00E1E5B8 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D48819BF048C00E1E5B8 /* Acknowledgments.rtf */; };
 		80BAE11119B46700003A2D12 /* STGUploadedEntrySimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */; };
 		80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */; };
 		80C1B86519AF55C700669A10 /* STGUploadedEntryRehosted.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86419AF55C700669A10 /* STGUploadedEntryRehosted.m */; };
@@ -146,7 +146,6 @@
 		80068FCC17272CA800DA1492 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		80068FCE17272CA800DA1492 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80068FD017272CA800DA1492 /* Coco Storage-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Coco Storage-Prefix.pch"; sourceTree = "<group>"; };
-		80068FD217272CA900DA1492 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		80068FD417272CA900DA1492 /* STGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STGAppDelegate.h; sourceTree = "<group>"; };
 		80068FD517272CA900DA1492 /* STGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STGAppDelegate.m; sourceTree = "<group>"; };
 		80068FDF17272D9900DA1492 /* STGStorageConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStorageConnectionManager.h; sourceTree = "<group>"; };
@@ -175,7 +174,6 @@
 		8028942B19BBCB2B006945F4 /* MIT-License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "MIT-License.rtf"; sourceTree = "<group>"; };
 		8028942C19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVerticallyCenteredTextFieldCell.h; sourceTree = "<group>"; };
 		8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVerticallyCenteredTextFieldCell.m; sourceTree = "<group>"; };
-		8029A48C17282CC900F09884 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsGeneralViewController.h; sourceTree = "<group>"; };
 		8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsGeneralViewController.m; sourceTree = "<group>"; };
 		8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsGeneralViewController.xib; sourceTree = "<group>"; };
@@ -269,6 +267,8 @@
 		809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheckEntry.m; sourceTree = "<group>"; };
 		809D1B0B176F69FD00F30E22 /* STGJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGJSONHelper.h; sourceTree = "<group>"; };
 		809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGJSONHelper.m; sourceTree = "<group>"; };
+		80B9D48619BF038200E1E5B8 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		80B9D48819BF048C00E1E5B8 /* Acknowledgments.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Acknowledgments.rtf; sourceTree = "<group>"; };
 		80BAE10F19B46700003A2D12 /* STGUploadedEntrySimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntrySimple.h; sourceTree = "<group>"; };
 		80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntrySimple.m; sourceTree = "<group>"; };
 		80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntry.h; sourceTree = "<group>"; };
@@ -406,12 +406,12 @@
 		80068FC917272CA800DA1492 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8029A48C17282CC900F09884 /* Credits.html */,
+				80B9D48619BF038200E1E5B8 /* Credits.rtf */,
+				80B9D48819BF048C00E1E5B8 /* Acknowledgments.rtf */,
 				80068FCA17272CA800DA1492 /* Coco Storage-Info.plist */,
 				80068FCB17272CA800DA1492 /* InfoPlist.strings */,
 				80068FCE17272CA800DA1492 /* main.m */,
 				80068FD017272CA800DA1492 /* Coco Storage-Prefix.pch */,
-				80068FD117272CA900DA1492 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -795,9 +795,7 @@
 			files = (
 				80068FCD17272CA800DA1492 /* InfoPlist.strings in Resources */,
 				80CC4F0C19B603F300554B26 /* Images.xcassets in Resources */,
-				80068FD317272CA900DA1492 /* Credits.rtf in Resources */,
 				8028942E19BBCB2B006945F4 /* MIT-License.rtf in Resources */,
-				8029A48D17282CC900F09884 /* Credits.html in Resources */,
 				803D7BBA19ACF3FB00D0162E /* ClipboardTemplate.pdf in Resources */,
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
 				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
@@ -820,6 +818,7 @@
 				80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */,
 				80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */,
 				801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */,
+				80B9D48719BF038200E1E5B8 /* Credits.rtf in Resources */,
 				80486005174802C000CB6226 /* CocoStorageStatusBarIcon01.png in Resources */,
 				8060C342199FB1FE001282CF /* STGCreateAlbumWindowController.xib in Resources */,
 				80486006174802C000CB6226 /* CocoStorageStatusBarIcon02.png in Resources */,
@@ -831,6 +830,7 @@
 				8048600B174802C000CB6226 /* CocoStorageStatusBarIcon07.png in Resources */,
 				80F7698019A0E77B000DC74D /* STGMovieCaptureWindowController.xib in Resources */,
 				8048600C174802C000CB6226 /* CocoStorageStatusBarIcon08.png in Resources */,
+				80B9D48919BF048C00E1E5B8 /* Acknowledgments.rtf in Resources */,
 				8048600D174802C000CB6226 /* CocoStorageStatusBarIcon09.png in Resources */,
 				801CA87519AB47FA00A2F44F /* AlbumTemplate.pdf in Resources */,
 				8048600E174802C000CB6226 /* CocoStorageStatusBarIcon10.png in Resources */,
@@ -953,14 +953,6 @@
 				80068FCC17272CA800DA1492 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		80068FD117272CA900DA1492 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80068FD217272CA900DA1492 /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

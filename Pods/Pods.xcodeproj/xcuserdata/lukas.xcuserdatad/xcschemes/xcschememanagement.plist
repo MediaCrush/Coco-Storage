@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-Coco Storage-DCOAboutWindow.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Coco Storage-DCOTransparentScroller.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Coco Storage-MASPreferences.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B65A031AF19941ADADAA0B32</key>
+		<key>1DDC63B12BC44F41A6D65975</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BEE3081A236D42C9AAFDDFEC</key>
+		<key>C5DDFD4B2E9140C7A3B38397</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C9C2DEC3273241B1AD2E5355</key>
+		<key>DB7BFA6090A74711A0BED397</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFB0216E594E472BA2AC466F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF23DFAD95534C61B33229D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

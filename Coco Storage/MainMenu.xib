@@ -20,7 +20,7 @@
                             <menuItem title="About Coco Storage" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
+                                    <action selector="openAboutWindow:" target="494" id="tWb-zx-6yu"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="236">

@@ -9,6 +9,8 @@
 #import "STGAppDelegate.h"
 
 #import <Sparkle/Sparkle.h>
+#import <DCOAboutWindow/DCOAboutWindowController.h>
+#import <MASPreferences/MASPreferencesWindowController.h>
 
 #import "STGDataCaptureManager.h"
 
@@ -20,8 +22,6 @@
 #import "STGSystemHelper.h"
 #import "STGFileHelper.h"
 #import "STGNetworkHelper.h"
-
-#import "MASPreferencesWindowController.h"
 
 #import "STGStatusItemManager.h"
 
@@ -109,6 +109,9 @@ STGAppDelegate *sharedAppDelegate;
     {
         // Show the update log?
     }
+    
+    [self setAboutWC:[[DCOAboutWindowController alloc] init]];
+    [_aboutWC setAppWebsiteURL:[NSURL URLWithString:@"http://mediacrush.github.io/Coco-Storage/"]];
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"showWelcomeWindowOnLaunch"] == 1)
     {
@@ -376,6 +379,11 @@ STGAppDelegate *sharedAppDelegate;
         [[STGAPIConfiguration currentConfiguration] openWelcomeWindow];
         [NSApp  activateIgnoringOtherApps:YES];
     }
+}
+
+- (void)openAboutWindow:(id)sender
+{
+    [_aboutWC showWindow:nil];
 }
 
 #pragma mark - Shortcuts

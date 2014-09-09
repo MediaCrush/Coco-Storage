@@ -1,12 +1,18 @@
 PODS:
+  - DCOAboutWindow (0.1.0):
+    - DCOTransparentScroller
+  - DCOTransparentScroller (0.0.1)
   - MASPreferences (1.1)
   - Sparkle (1.8.0)
 
 DEPENDENCIES:
+  - DCOAboutWindow (~> 0.1)
   - MASPreferences (~> 1.1)
   - Sparkle (~> 1.8)
 
 SPEC CHECKSUMS:
+  DCOAboutWindow: 467dbed5fa78dbab5905b603e6f6ff83566578e8
+  DCOTransparentScroller: bafe06de9a46d03a4fb6ea6690bf547030d42135
   MASPreferences: 971d03da4b3818f8ea0d0ef10b86b02b2c052d17
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
 
