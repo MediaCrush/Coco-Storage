@@ -24,7 +24,7 @@
 		801E29C019AE696A000A4D0C /* STGUploadedEntryAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
 		80210E54172EDE050056C502 /* STGRecentUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80210E53172EDE050056C502 /* STGRecentUploadView.m */; };
-		8028942E19BBCB2B006945F4 /* MIT-License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8028942B19BBCB2B006945F4 /* MIT-License.rtf */; };
+		8028942E19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell-MIT-License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8028942B19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell-MIT-License.rtf */; };
 		8028942F19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */; };
 		8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49717283ECD00F09884 /* STGOptionsGeneralViewController.m */; };
 		8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A49817283ECD00F09884 /* STGOptionsGeneralViewController.xib */; };
@@ -91,6 +91,7 @@
 		80B9D48719BF038200E1E5B8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D48619BF038200E1E5B8 /* Credits.rtf */; };
 		80B9D48919BF048C00E1E5B8 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D48819BF048C00E1E5B8 /* Acknowledgments.rtf */; };
 		80B9D49B19BF19AB00E1E5B8 /* InfoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D49A19BF19AB00E1E5B8 /* InfoTemplate.pdf */; };
+		80B9D49E19BF3E7000E1E5B8 /* STGFileChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B9D49D19BF3E7000E1E5B8 /* STGFileChooserView.m */; };
 		80BAE11119B46700003A2D12 /* STGUploadedEntrySimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */; };
 		80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */; };
 		80C1B86519AF55C700669A10 /* STGUploadedEntryRehosted.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86419AF55C700669A10 /* STGUploadedEntryRehosted.m */; };
@@ -165,7 +166,7 @@
 		80210E50172EC9920056C502 /* STGRecentFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGRecentFileView.xib; sourceTree = "<group>"; };
 		80210E52172EDE050056C502 /* STGRecentUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGRecentUploadView.h; sourceTree = "<group>"; };
 		80210E53172EDE050056C502 /* STGRecentUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGRecentUploadView.m; sourceTree = "<group>"; };
-		8028942B19BBCB2B006945F4 /* MIT-License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "MIT-License.rtf"; sourceTree = "<group>"; };
+		8028942B19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell-MIT-License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "RSVerticallyCenteredTextFieldCell-MIT-License.rtf"; sourceTree = "<group>"; };
 		8028942C19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVerticallyCenteredTextFieldCell.h; sourceTree = "<group>"; };
 		8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVerticallyCenteredTextFieldCell.m; sourceTree = "<group>"; };
 		8029A49617283ECD00F09884 /* STGOptionsGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsGeneralViewController.h; sourceTree = "<group>"; };
@@ -262,6 +263,8 @@
 		80B9D48619BF038200E1E5B8 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		80B9D48819BF048C00E1E5B8 /* Acknowledgments.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Acknowledgments.rtf; sourceTree = "<group>"; };
 		80B9D49A19BF19AB00E1E5B8 /* InfoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = InfoTemplate.pdf; sourceTree = "<group>"; };
+		80B9D49C19BF3E7000E1E5B8 /* STGFileChooserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGFileChooserView.h; sourceTree = "<group>"; };
+		80B9D49D19BF3E7000E1E5B8 /* STGFileChooserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGFileChooserView.m; sourceTree = "<group>"; };
 		80BAE10F19B46700003A2D12 /* STGUploadedEntrySimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntrySimple.h; sourceTree = "<group>"; };
 		80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntrySimple.m; sourceTree = "<group>"; };
 		80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntry.h; sourceTree = "<group>"; };
@@ -438,7 +441,7 @@
 		8028942A19BBCB18006945F4 /* Vertically Centered Row */ = {
 			isa = PBXGroup;
 			children = (
-				8028942B19BBCB2B006945F4 /* MIT-License.rtf */,
+				8028942B19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell-MIT-License.rtf */,
 				8028942C19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.h */,
 				8028942D19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m */,
 			);
@@ -458,8 +461,10 @@
 		804C878D19A1FA34000957C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8028942A19BBCB18006945F4 /* Vertically Centered Row */,
 				804C878E19A1FAAA000957C6 /* STGFloatingWindowController.h */,
+				8028942A19BBCB18006945F4 /* Vertically Centered Row */,
+				80B9D49C19BF3E7000E1E5B8 /* STGFileChooserView.h */,
+				80B9D49D19BF3E7000E1E5B8 /* STGFileChooserView.m */,
 				804C878F19A1FAAA000957C6 /* STGFloatingWindowController.m */,
 				80DBC66817316241000DEF72 /* STGWelcomeWindowControllerStorage.h */,
 				80DBC66917316241000DEF72 /* STGWelcomeWindowControllerStorage.m */,
@@ -470,6 +475,10 @@
 				804C879419A1FE2D000957C6 /* STGCountdownView.m */,
 				80FD082119A4F3A8009126D7 /* STGScreenRectangleSelectView.h */,
 				80FD082219A4F3A8009126D7 /* STGScreenRectangleSelectView.m */,
+				80DE9D6B19B890F900C41E44 /* STGHotkeySelectView.h */,
+				80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */,
+				803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */,
+				803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -666,10 +675,6 @@
 				8029A49B17283EEF00F09884 /* STGOptionsShortcutsViewController.h */,
 				8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */,
 				8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */,
-				80DE9D6B19B890F900C41E44 /* STGHotkeySelectView.h */,
-				80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */,
-				803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */,
-				803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */,
 			);
 			name = Options;
 			sourceTree = "<group>";
@@ -776,7 +781,7 @@
 			files = (
 				80068FCD17272CA800DA1492 /* InfoPlist.strings in Resources */,
 				80CC4F0C19B603F300554B26 /* Images.xcassets in Resources */,
-				8028942E19BBCB2B006945F4 /* MIT-License.rtf in Resources */,
+				8028942E19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell-MIT-License.rtf in Resources */,
 				803D7BBA19ACF3FB00D0162E /* ClipboardTemplate.pdf in Resources */,
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
 				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
@@ -899,6 +904,7 @@
 				80FD082619A52628009126D7 /* STGScreenOverlayWindow.m in Sources */,
 				8049269B173EEAC100C08A7F /* STGPacket.m in Sources */,
 				80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */,
+				80B9D49E19BF3E7000E1E5B8 /* STGFileChooserView.m in Sources */,
 				8071453C18492A17007F1EA1 /* STGTypeChooserView.m in Sources */,
 				80D7F9BE1741700500851DDB /* STGNetworkHelper.m in Sources */,
 				80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */,

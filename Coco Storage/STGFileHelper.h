@@ -12,6 +12,8 @@
 
 + (NSString *)getApplicationSupportDirectory;
 + (NSString *)getDocumentsDirectory;
++ (NSString *)getDownloadsDirectory;
++ (NSString *)getDesktopDirectory;
 + (BOOL)createFolderIfNonExistent:(NSString *)path;
 
 + (NSString *)storeStringsInString:(NSArray *)array;

@@ -27,6 +27,18 @@
     return [paths objectAtIndex:0];
 }
 
++ (NSString *)getDownloadsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES);
+    return [paths objectAtIndex:0];
+}
+
++ (NSString *)getDesktopDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES);
+    return [paths objectAtIndex:0];
+}
+
 + (BOOL)createFolderIfNonExistent:(NSString *)path
 {
     if(![[NSFileManager defaultManager] fileExistsAtPath:path])

@@ -29,8 +29,10 @@
 - (void)awakeFromNib
 {
     [[NSUserDefaults standardUserDefaults] synchronize];
-        
-    [_tempFolderTextField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+    
+    [_tempFolderChooser setPaths:[NSArray arrayWithObjects:[STGFileChooserPath filePathWithPath:[[STGFileHelper getApplicationSupportDirectory] stringByAppendingString:@"/temp"] customTitle:@"Default"], [STGFileHelper getDownloadsDirectory], [STGFileHelper getDesktopDirectory], nil]];
+    [_tempFolderChooser setSelectedPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
+    
     [_keepFailedScreenshotsButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"]];
     [_keepAllScreenshotsButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"keepAllScreenshots"]];
     
@@ -74,7 +76,6 @@
 
 - (void)saveProperties
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[_tempFolderTextField stringValue] forKey:@"tempFolder"];
     [[NSUserDefaults standardUserDefaults] setInteger:[_keepFailedScreenshotsButton integerValue] forKey:@"keepFailedScreenshots"];
     [[NSUserDefaults standardUserDefaults] setInteger:[_keepAllScreenshotsButton integerValue] forKey:@"keepAllScreenshots"];
     
@@ -122,47 +123,15 @@
     }
 }
 
-- (void)textChanged:(STGOptionTextField *)textField
+- (void)tempFolderChanged:(id)sender
 {
-    [self saveProperties];
-}
-
-- (IBAction)resetTempFolderClicked:(id)sender
-{
-    NSString *folderPath = [[STGFileHelper getApplicationSupportDirectory] stringByAppendingString:@"/temp"];
     
-    [STGFileHelper createFolderIfNonExistent:folderPath];
-    
-    [_tempFolderTextField setStringValue:folderPath];
-    
-    [self saveProperties];
-}
-
-- (void)openTempFolderDialogue:(id)sender
-{
-    NSOpenPanel *filePanel = [[NSOpenPanel alloc] init];
-    [filePanel setCanChooseDirectories:YES];
-    [filePanel setCanChooseFiles:NO];
-    [filePanel setAllowsMultipleSelection:NO];
-    [filePanel setDirectoryURL:[STGFileHelper urlFromStandardPath:[_tempFolderTextField stringValue]]];
-    [filePanel setFloatingPanel:NO];
-    [filePanel setCanSelectHiddenExtension:YES];
-    [filePanel setTitle:@"Select Temp Folder Path"];
-    [filePanel setPrompt:@"Select"];
-    
-    if ([filePanel runModal] == NSOKButton)
-    {
-        NSURL *selectedURL = [filePanel URL];
-        
-        [_tempFolderTextField setStringValue:[selectedURL relativeString]];
-        
-        [self saveProperties];
-    }
 }
 
 - (IBAction)openTempFolderInFinder:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:[_tempFolderTextField stringValue]]];
+    NSString *currentFilePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"];
+    [[NSWorkspace sharedWorkspace] openURL:[STGFileHelper urlFromStandardPath:currentFilePath]];
 }
 
 - (NSString *)identifier
@@ -188,6 +157,13 @@
 - (BOOL)hasResizableHeight
 {
     return NO;
+}
+
+#pragma mark Path chooser Delegate
+
+- (void)pathChooserView:(STGFileChooserView *)view chosePath:(NSString *)path
+{
+    [[NSUserDefaults standardUserDefaults] setObject:path forKey:@"tempFolder"];
 }
 
 @end

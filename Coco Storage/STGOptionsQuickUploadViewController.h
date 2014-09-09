@@ -8,11 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "STGOptionTextField.h"
+#import "STGFileChooserView.h"
 
-@interface STGOptionsQuickUploadViewController : NSViewController <STGOptionTextFieldDelegate>
+@interface STGOptionsQuickUploadViewController : NSViewController <STGFileChooserViewDelegate>
 
-@property (nonatomic, retain) IBOutlet NSTextField *tempFolderTextField;
+@property (nonatomic, retain) IBOutlet STGFileChooserView *tempFolderChooser;
+
 @property (nonatomic, retain) IBOutlet NSButton *keepFailedScreenshotsButton;
 @property (nonatomic, retain) IBOutlet NSButton *keepAllScreenshotsButton;
 
@@ -28,8 +29,7 @@
 
 - (IBAction)checkboxButtonClicked:(id)sender;
 
-- (IBAction)resetTempFolderClicked:(id)sender;
-- (IBAction)openTempFolderDialogue:(id)sender;
+- (IBAction)tempFolderChanged:(id)sender;
 - (IBAction)openTempFolderInFinder:(id)sender;
 
 @end
