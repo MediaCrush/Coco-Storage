@@ -75,6 +75,7 @@
 		8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071453E18492A56007F1EA1 /* STGTypeChooserViewType.m */; };
 		8072D97C19AC930500A39A5F /* STGGifConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8072D97B19AC930500A39A5F /* STGGifConverter.m */; };
 		8072D98019ACA24600A39A5F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8072D97F19ACA24600A39A5F /* CoreMedia.framework */; };
+		807736A419BF64080045D67B /* STGSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 807736A319BF64080045D67B /* STGSoundPicker.m */; };
 		80781B481746899200D0C790 /* STGOptionsCFSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B461746899200D0C790 /* STGOptionsCFSViewController.m */; };
 		80781B491746899200D0C790 /* STGOptionsCFSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */; };
 		80781B4C174698CC00D0C790 /* STGAPIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 80781B4B174698CC00D0C790 /* STGAPIConfiguration.m */; };
@@ -238,6 +239,8 @@
 		8072D97B19AC930500A39A5F /* STGGifConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGGifConverter.m; sourceTree = "<group>"; };
 		8072D97D19AC9A8000A39A5F /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		8072D97F19ACA24600A39A5F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		807736A219BF64080045D67B /* STGSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGSoundPicker.h; sourceTree = "<group>"; };
+		807736A319BF64080045D67B /* STGSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGSoundPicker.m; sourceTree = "<group>"; };
 		80781B451746899200D0C790 /* STGOptionsCFSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsCFSViewController.h; sourceTree = "<group>"; };
 		80781B461746899200D0C790 /* STGOptionsCFSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsCFSViewController.m; sourceTree = "<group>"; };
 		80781B471746899200D0C790 /* STGOptionsCFSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsCFSViewController.xib; sourceTree = "<group>"; };
@@ -479,6 +482,8 @@
 				80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */,
 				803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */,
 				803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */,
+				807736A219BF64080045D67B /* STGSoundPicker.h */,
+				807736A319BF64080045D67B /* STGSoundPicker.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -920,6 +925,7 @@
 				809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */,
 				8065984D199568A700EF0E34 /* STGAPIConfigurationMediacrush.m in Sources */,
 				8060C345199FC8D3001282CF /* STGUploadedFileToken.m in Sources */,
+				807736A419BF64080045D67B /* STGSoundPicker.m in Sources */,
 				8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */,
 				808A9A1917538EBC0058235D /* STGQuickUploadView.m in Sources */,
 				8028942F19BBCB2B006945F4 /* RSVerticallyCenteredTextFieldCell.m in Sources */,

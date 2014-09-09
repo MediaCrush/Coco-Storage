@@ -42,22 +42,16 @@
     else
     {
         [_playSoundButton setState:1];
-        [_selectSoundButton selectItemWithTitle:[completionSound substringToIndex:[completionSound rangeOfString:@"." options:NSBackwardsSearch].location]];
+        [_finishSoundPicker setSelectedSound:completionSound];
     }
     [_linkCopyToPasteboardButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"linkCopyToPasteboard"]];
     [_openLinkInBrowserButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"linkOpenInBrowser"]];
     [_displayNotificationButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"displayNotification"]];
     [_playScreenshotSoundButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"]];
+
+    [_keepAllScreenshotsButton setEnabled:[_keepFailedScreenshotsButton integerValue] == 1];
     
-    if([_keepFailedScreenshotsButton integerValue] == 0)
-        [_keepAllScreenshotsButton setEnabled:NO];
-    else
-        [_keepAllScreenshotsButton setEnabled:YES];
-    
-    if ([_playSoundButton integerValue] == 0)
-        [_selectSoundButton setEnabled:NO];
-    else
-        [_selectSoundButton setEnabled:YES];
+    [_finishSoundPicker setEnabled:[_playSoundButton integerValue] == 1];
 }
 
 + (void)registerStandardDefaults:(NSMutableDictionary *)defaults
@@ -80,7 +74,7 @@
     [[NSUserDefaults standardUserDefaults] setInteger:[_keepAllScreenshotsButton integerValue] forKey:@"keepAllScreenshots"];
     
     if ([_playSoundButton integerValue] == 1)
-        [[NSUserDefaults standardUserDefaults] setObject:[[[_selectSoundButton selectedItem] title] stringByAppendingString:@".aiff"] forKey:@"completionSound"];
+        [[NSUserDefaults standardUserDefaults] setObject:[_finishSoundPicker selectedSound] forKey:@"completionSound"];
     else
         [[NSUserDefaults standardUserDefaults] setObject:@"noSound" forKey:@"completionSound"];
     [[NSUserDefaults standardUserDefaults] setInteger:[_linkCopyToPasteboardButton integerValue] forKey:@"linkCopyToPasteboard"];
@@ -110,22 +104,8 @@
     
     if (sender == _playSoundButton)
     {
-        if ([_playSoundButton integerValue] == 0)
-            [_selectSoundButton setEnabled:NO];
-        else
-            [_selectSoundButton setEnabled:YES];
+        [_finishSoundPicker setEnabled:[_playSoundButton integerValue] == 1];
     }
-    
-    if (sender == _selectSoundButton)
-    {
-        NSSound *sound = [NSSound soundNamed:[[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"]];
-        [sound play];
-    }
-}
-
-- (void)tempFolderChanged:(id)sender
-{
-    
 }
 
 - (IBAction)openTempFolderInFinder:(id)sender
@@ -164,6 +144,19 @@
 - (void)pathChooserView:(STGPathChooserView *)view chosePath:(NSString *)path
 {
     [[NSUserDefaults standardUserDefaults] setObject:path forKey:@"tempFolder"];
+}
+
+#pragma mark Sound Picker Delegate
+
+- (void)soundPicker:(STGSoundPicker *)view choseSound:(NSString *)sound
+{
+    NSString *completionSound = [[NSUserDefaults standardUserDefaults] stringForKey:@"completionSound"];
+    if (![sound isEqualToString:completionSound])
+    {
+        [[NSSound soundNamed:sound] play];
+        
+        [self saveProperties];
+    }
 }
 
 @end

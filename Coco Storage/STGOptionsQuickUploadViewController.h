@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 #import "STGPathChooserView.h"
+#import "STGSoundPicker.h"
 
-@interface STGOptionsQuickUploadViewController : NSViewController <STGPathChooserViewDelegate>
+@interface STGOptionsQuickUploadViewController : NSViewController <STGPathChooserViewDelegate, STGSoundPickerDelegate>
 
 @property (nonatomic, retain) IBOutlet STGPathChooserView *tempFolderChooser;
 
@@ -18,7 +19,7 @@
 @property (nonatomic, retain) IBOutlet NSButton *keepAllScreenshotsButton;
 
 @property (nonatomic, retain) IBOutlet NSButton *playSoundButton;
-@property (nonatomic, retain) IBOutlet NSPopUpButton *selectSoundButton;
+@property (nonatomic, retain) IBOutlet STGSoundPicker *finishSoundPicker;
 @property (nonatomic, retain) IBOutlet NSButton *linkCopyToPasteboardButton;
 @property (nonatomic, retain) IBOutlet NSButton *openLinkInBrowserButton;
 @property (nonatomic, retain) IBOutlet NSButton *displayNotificationButton;
@@ -29,7 +30,6 @@
 
 - (IBAction)checkboxButtonClicked:(id)sender;
 
-- (IBAction)tempFolderChanged:(id)sender;
 - (IBAction)openTempFolderInFinder:(id)sender;
 
 @end

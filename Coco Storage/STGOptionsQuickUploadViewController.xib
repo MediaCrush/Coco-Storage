@@ -8,13 +8,13 @@
         <customObject id="-2" userLabel="File's Owner" customClass="STGOptionsQuickUploadViewController">
             <connections>
                 <outlet property="displayNotificationButton" destination="175" id="281"/>
+                <outlet property="finishSoundPicker" destination="dvm-E6-zNt" id="C6T-yQ-VyJ"/>
                 <outlet property="keepAllScreenshotsButton" destination="215" id="277"/>
                 <outlet property="keepFailedScreenshotsButton" destination="219" id="276"/>
                 <outlet property="linkCopyToPasteboardButton" destination="177" id="279"/>
                 <outlet property="openLinkInBrowserButton" destination="176" id="280"/>
                 <outlet property="playScreenshotSoundButton" destination="174" id="282"/>
                 <outlet property="playSoundButton" destination="179" id="278"/>
-                <outlet property="selectSoundButton" destination="178" id="283"/>
                 <outlet property="tempFolderChooser" destination="jva-Y9-lac" id="AAm-8q-SgH"/>
                 <outlet property="tempFolderPopUpButton" destination="jva-Y9-lac" id="OVa-yL-5fs"/>
                 <outlet property="view" destination="1" id="2"/>
@@ -182,79 +182,33 @@
                                     <action selector="checkboxButtonClicked:" target="-2" id="270"/>
                                 </connections>
                             </button>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="178">
-                                <rect key="frame" x="257" y="74" width="218" height="19"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="dvm-E6-zNt" customClass="STGSoundPicker">
+                                <rect key="frame" x="257" y="71" width="218" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="218" id="a2D-sp-kCe"/>
-                                </constraints>
-                                <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="195">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <menu key="menu" title="OtherViews" id="196">
-                                        <items>
-                                            <menuItem title="Basso" id="202">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Blow" id="210"/>
-                                            <menuItem title="Bottle" id="209"/>
-                                            <menuItem title="Frog" id="208"/>
-                                            <menuItem title="Funk" id="207">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Glass" id="206">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Hero" id="205">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Morse" id="204">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Ping" id="203">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Pop" id="201">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Purr" id="200">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Sosumi" id="199">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Submarine" id="198">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Tink" id="197">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
                                 <connections>
-                                    <action selector="checkboxButtonClicked:" target="-2" id="275"/>
+                                    <outlet property="delegate" destination="-2" id="JMM-H2-heG"/>
                                 </connections>
-                            </popUpButton>
+                            </customView>
                         </subviews>
                     </view>
                     <constraints>
+                        <constraint firstItem="dvm-E6-zNt" firstAttribute="leading" secondItem="173" secondAttribute="leading" constant="255" id="5jZ-P6-iw1"/>
                         <constraint firstItem="175" firstAttribute="trailing" secondItem="176" secondAttribute="trailing" id="9bp-pe-OZh"/>
                         <constraint firstItem="176" firstAttribute="trailing" secondItem="177" secondAttribute="trailing" id="ELk-9b-eRC"/>
+                        <constraint firstAttribute="bottom" secondItem="dvm-E6-zNt" secondAttribute="bottom" constant="68" id="Ish-63-p4d"/>
                         <constraint firstItem="179" firstAttribute="leading" secondItem="173" secondAttribute="leading" constant="16" id="KKY-OZ-zvc"/>
                         <constraint firstItem="179" firstAttribute="trailing" secondItem="177" secondAttribute="trailing" id="KqP-2D-cyI"/>
                         <constraint firstItem="177" firstAttribute="top" secondItem="179" secondAttribute="bottom" constant="10" id="Mrk-Iq-A2P"/>
-                        <constraint firstItem="178" firstAttribute="centerY" secondItem="179" secondAttribute="centerY" id="Ykh-YU-1WP"/>
-                        <constraint firstItem="178" firstAttribute="leading" secondItem="179" secondAttribute="trailing" constant="8" symbolic="YES" id="azn-Oi-BZS"/>
+                        <constraint firstItem="dvm-E6-zNt" firstAttribute="top" secondItem="173" secondAttribute="top" constant="25" id="Zwp-wK-1o3"/>
                         <constraint firstAttribute="bottom" secondItem="175" secondAttribute="bottom" constant="10" id="bsj-WH-UVG"/>
                         <constraint firstItem="175" firstAttribute="top" secondItem="176" secondAttribute="bottom" constant="6" symbolic="YES" id="d94-pP-dMT"/>
                         <constraint firstItem="176" firstAttribute="leading" secondItem="175" secondAttribute="leading" id="ibM-Dg-thX"/>
-                        <constraint firstItem="178" firstAttribute="top" secondItem="173" secondAttribute="top" constant="24" id="jIi-r8-Srz"/>
-                        <constraint firstAttribute="trailing" secondItem="178" secondAttribute="trailing" constant="16" id="lf4-dj-DXs"/>
+                        <constraint firstAttribute="trailing" secondItem="dvm-E6-zNt" secondAttribute="trailing" constant="16" id="lII-gJ-TjB"/>
                         <constraint firstAttribute="height" constant="114" id="niA-zN-Gat"/>
                         <constraint firstItem="176" firstAttribute="top" secondItem="177" secondAttribute="bottom" constant="6" symbolic="YES" id="ny2-g5-Afn"/>
                         <constraint firstItem="177" firstAttribute="leading" secondItem="176" secondAttribute="leading" id="pmR-Nh-LOc"/>
                         <constraint firstItem="179" firstAttribute="leading" secondItem="177" secondAttribute="leading" id="sd8-ts-NxC"/>
+                        <constraint firstItem="dvm-E6-zNt" firstAttribute="leading" secondItem="179" secondAttribute="trailing" constant="8" symbolic="YES" id="snt-46-F3C"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
