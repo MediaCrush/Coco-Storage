@@ -372,6 +372,12 @@ STGAppDelegate *sharedAppDelegate;
     [_optionsManager openPreferencesWindow];
 }
 
+- (void)openAboutWindow
+{
+    [_aboutWC showWindow:nil];
+    [NSApp  activateIgnoringOtherApps:YES];
+}
+
 - (IBAction)openWelcomeWindow:(id)sender
 {
     if ([[STGAPIConfiguration currentConfiguration] hasWelcomeWindow])
@@ -383,7 +389,7 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)openAboutWindow:(id)sender
 {
-    [_aboutWC showWindow:nil];
+    [self openAboutWindow];
 }
 
 #pragma mark - Shortcuts

@@ -150,6 +150,13 @@
                         <action selector="openPreferences:" target="-2" id="30"/>
                     </connections>
                 </menuItem>
+                <menuItem title="About" image="InfoTemplate" id="EkO-Qc-1H0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openAboutWindow:" target="-2" id="BuT-G0-kde"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="JXO-ua-OJy"/>
                 <menuItem title="Quit" id="12">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -173,6 +180,7 @@
         <image name="CameraTemplate" width="20" height="20"/>
         <image name="ClipboardTemplate" width="20" height="20"/>
         <image name="FileTemplate" width="20" height="20"/>
+        <image name="InfoTemplate" width="15" height="15"/>
         <image name="MovieCameraTemplate" width="20" height="20"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSFollowLinkFreestandingTemplate" width="10" height="10"/>

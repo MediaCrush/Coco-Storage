@@ -34,7 +34,6 @@
 @property (nonatomic, retain) STGOptionsShortcutsViewController *optionsShortcutsVC;
 @property (nonatomic, retain) STGOptionsQuickUploadViewController *optionsQuickUploadVC;
 @property (nonatomic, retain) STGOptionsCFSViewController *optionsCFSVC;
-@property (nonatomic, retain) STGOptionsAboutViewController *optionsAboutVC;
 
 + (void)registerDefaults:(NSMutableDictionary *)userDefaults;
 

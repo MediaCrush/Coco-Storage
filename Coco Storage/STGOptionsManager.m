@@ -12,7 +12,6 @@
 #import "STGOptionsShortcutsViewController.h"
 #import "STGOptionsQuickUploadViewController.h"
 #import "STGOptionsCFSViewController.h"
-#import "STGOptionsAboutViewController.h"
 
 #import "STGAPIConfiguration.h"
 
@@ -25,7 +24,6 @@
     [STGOptionsQuickUploadViewController registerStandardDefaults:userDefaults];
     if ([[STGAPIConfiguration currentConfiguration] hasCFS])
         [STGOptionsCFSViewController registerStandardDefaults:userDefaults];
-    [STGOptionsAboutViewController registerStandardDefaults:userDefaults];
 }
 
 - (instancetype)init
@@ -37,7 +35,6 @@
         [_optionsShortcutsVC setDelegate:self];
         [self setOptionsQuickUploadVC:[[STGOptionsQuickUploadViewController alloc] initWithNibName:@"STGOptionsQuickUploadViewController" bundle:nil]];
         [self setOptionsCFSVC:[[STGOptionsCFSViewController alloc] initWithNibName:@"STGOptionsCFSViewController" bundle:nil]];
-        [self setOptionsAboutVC:[[STGOptionsAboutViewController alloc] initWithNibName:@"STGOptionsAboutViewController" bundle:nil]];
         
         NSMutableArray *optionsArray = [[NSMutableArray alloc] init];
         [optionsArray addObject:_optionsGeneralVC];
@@ -45,7 +42,6 @@
         if ([[STGAPIConfiguration currentConfiguration] hasCFS])
             [optionsArray addObject:_optionsCFSVC];
         [optionsArray addObject:_optionsShortcutsVC];
-        [optionsArray addObject:_optionsAboutVC];
         [self setPrefsController:[[MASPreferencesWindowController alloc] initWithViewControllers:optionsArray title:@"Coco Storage Preferences"]];
     }
     return self;

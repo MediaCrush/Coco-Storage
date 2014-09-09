@@ -15,8 +15,6 @@
 		80068FE117272D9900DA1492 /* STGStorageConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FE017272D9900DA1492 /* STGStorageConnectionManager.m */; };
 		800BDF2519B7CE30009A6B04 /* STGServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 800BDF2419B7CE30009A6B04 /* STGServiceHandler.m */; };
 		8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328C172966CB006702B9 /* STGDataCaptureEntry.m */; };
-		801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */; };
-		801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */; };
 		8011CA3F174FE9860021249F /* STGStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8011CA3E174FE9860021249F /* STGStatusItemView.m */; };
 		8017CD2F17497203000889C5 /* STGCFSSyncCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017CD2E17497202000889C5 /* STGCFSSyncCheck.m */; };
 		801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA86E19AB468100A2F44F /* CameraTemplate.pdf */; };
@@ -94,6 +92,7 @@
 		809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */; };
 		80B9D48719BF038200E1E5B8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D48619BF038200E1E5B8 /* Credits.rtf */; };
 		80B9D48919BF048C00E1E5B8 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D48819BF048C00E1E5B8 /* Acknowledgments.rtf */; };
+		80B9D49B19BF19AB00E1E5B8 /* InfoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D49A19BF19AB00E1E5B8 /* InfoTemplate.pdf */; };
 		80BAE11119B46700003A2D12 /* STGUploadedEntrySimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */; };
 		80C1B86219AF3D9E00669A10 /* STGUploadedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86119AF3D9E00669A10 /* STGUploadedEntry.m */; };
 		80C1B86519AF55C700669A10 /* STGUploadedEntryRehosted.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C1B86419AF55C700669A10 /* STGUploadedEntryRehosted.m */; };
@@ -154,9 +153,6 @@
 		800BDF2419B7CE30009A6B04 /* STGServiceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGServiceHandler.m; sourceTree = "<group>"; };
 		8011328B172966CB006702B9 /* STGDataCaptureEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGDataCaptureEntry.h; sourceTree = "<group>"; };
 		8011328C172966CB006702B9 /* STGDataCaptureEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGDataCaptureEntry.m; sourceTree = "<group>"; };
-		8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGOptionsAboutViewController.h; sourceTree = "<group>"; };
-		8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsAboutViewController.m; sourceTree = "<group>"; };
-		801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsAboutViewController.xib; sourceTree = "<group>"; };
 		8011CA3D174FE9860021249F /* STGStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGStatusItemView.h; sourceTree = "<group>"; };
 		8011CA3E174FE9860021249F /* STGStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGStatusItemView.m; sourceTree = "<group>"; };
 		8017CD2D17497202000889C5 /* STGCFSSyncCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCFSSyncCheck.h; sourceTree = "<group>"; };
@@ -269,6 +265,7 @@
 		809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGJSONHelper.m; sourceTree = "<group>"; };
 		80B9D48619BF038200E1E5B8 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		80B9D48819BF048C00E1E5B8 /* Acknowledgments.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Acknowledgments.rtf; sourceTree = "<group>"; };
+		80B9D49A19BF19AB00E1E5B8 /* InfoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = InfoTemplate.pdf; sourceTree = "<group>"; };
 		80BAE10F19B46700003A2D12 /* STGUploadedEntrySimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntrySimple.h; sourceTree = "<group>"; };
 		80BAE11019B46700003A2D12 /* STGUploadedEntrySimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadedEntrySimple.m; sourceTree = "<group>"; };
 		80C1B86019AF3D9E00669A10 /* STGUploadedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadedEntry.h; sourceTree = "<group>"; };
@@ -573,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				80CC4F0B19B603F300554B26 /* Images.xcassets */,
+				80B9D49A19BF19AB00E1E5B8 /* InfoTemplate.pdf */,
 				803D7BB919ACF3FB00D0162E /* ClipboardTemplate.pdf */,
 				803D7BB719ACF3F400D0162E /* FileTemplate.pdf */,
 				801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */,
@@ -684,9 +682,6 @@
 				8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */,
 				80DE9D6B19B890F900C41E44 /* STGHotkeySelectView.h */,
 				80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */,
-				8011328E1729AC92006702B9 /* STGOptionsAboutViewController.h */,
-				8011328F1729AC92006702B9 /* STGOptionsAboutViewController.m */,
-				801132901729AC92006702B9 /* STGOptionsAboutViewController.xib */,
 				803C33B8172C7B6200E8CE3F /* STGOptionTextField.h */,
 				803C33B9172C7B6200E8CE3F /* STGOptionTextField.m */,
 			);
@@ -800,7 +795,6 @@
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
 				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
 				8029A4A11728427900F09884 /* MainMenu.xib in Resources */,
-				801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */,
 				80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */,
 				80DBC66C17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib in Resources */,
 				80DBC6761731D2C6000DEF72 /* STGStatusItemManager.xib in Resources */,
@@ -816,6 +810,7 @@
 				80485FE01747EFF400CB6226 /* CocoStorageLogoText.png in Resources */,
 				80369DD51847A27D00349068 /* STGQuickUploadWindowController.xib in Resources */,
 				80485FE61747F9B200CB6226 /* ButtonRecessed.png in Resources */,
+				80B9D49B19BF19AB00E1E5B8 /* InfoTemplate.pdf in Resources */,
 				80486004174802C000CB6226 /* CocoStorageStatusBarIcon.png in Resources */,
 				801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */,
 				80B9D48719BF038200E1E5B8 /* Credits.rtf in Resources */,
@@ -901,7 +896,6 @@
 				80D91A7219A1DB8E00A402D6 /* STGAPIConfigurationStub.m in Sources */,
 				80659848199565FE00EF0E34 /* STGAPIConfigurationStorage.m in Sources */,
 				8011328D172966CB006702B9 /* STGDataCaptureEntry.m in Sources */,
-				801132911729AC92006702B9 /* STGOptionsAboutViewController.m in Sources */,
 				807A667F172A97B200E0212C /* STGHotkeyHelper.m in Sources */,
 				807A6682172A98AD00E0212C /* STGHotkeyHelperEntry.m in Sources */,
 				80BAE11119B46700003A2D12 /* STGUploadedEntrySimple.m in Sources */,

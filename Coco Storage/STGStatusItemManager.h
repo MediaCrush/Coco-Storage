@@ -32,6 +32,7 @@
 -(void)deleteRecentFile:(STGUploadedEntry *)entry;
 -(void)cancelQueueFile:(int)index;
 -(void)openPreferences;
+-(void)openAboutWindow;
 
 -(void)stopRecording;
 -(void)cancelRecording;
@@ -90,6 +91,7 @@
 - (IBAction)openStorageAccount:(id)sender;
 - (IBAction)openMyFiles:(id)sender;
 - (IBAction)openPreferences:(id)sender;
+- (IBAction)openAboutWindow:(id)sender;
 - (IBAction)quit:(id)sender;
 
 - (IBAction)openCFSFolder:(id)sender;

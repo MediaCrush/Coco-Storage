@@ -449,6 +449,14 @@
     }
 }
 
+- (void)openAboutWindow:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(openAboutWindow)])
+    {
+        [_delegate openAboutWindow];
+    }
+}
+
 -(void)uploadEntries:(NSArray *)entries
 {
     if ([_delegate respondsToSelector:@selector(uploadEntries:)])
