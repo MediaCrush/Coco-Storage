@@ -6,27 +6,27 @@
 //  Copyright (c) 2014 Lukas Tenbrink. All rights reserved.
 //
 
-#import "STGFileChooserView.h"
+#import "STGPathChooserView.h"
 
-@interface STGFileChooserView ()
+@interface STGPathChooserView ()
 
 @property (nonatomic, retain) NSPopUpButton *popUpButton;
 @property (nonatomic, retain) NSMenuItem *selectedMenuItem;
 
 @end
 
-@implementation STGFileChooserPath
+@implementation STGPathChooserEntry
 
-+ (STGFileChooserPath *)filePathWithPath:(NSString *)path
++ (STGPathChooserEntry *)entryWithPath:(NSString *)path
 {
-    STGFileChooserPath *filePath = [[STGFileChooserPath alloc] init];
+    STGPathChooserEntry *filePath = [[STGPathChooserEntry alloc] init];
     [filePath setPath:path];
     return filePath;
 }
 
-+ (STGFileChooserPath *)filePathWithPath:(NSString *)path customTitle:(NSString *)title
++ (STGPathChooserEntry *)entryWithPath:(NSString *)path customTitle:(NSString *)title
 {
-    STGFileChooserPath *filePath = [[STGFileChooserPath alloc] init];
+    STGPathChooserEntry *filePath = [[STGPathChooserEntry alloc] init];
     [filePath setPath:path];
     [filePath setTitle:title];
     return filePath;
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation STGFileChooserView
+@implementation STGPathChooserView
 
 - (void)baseInit
 {
@@ -135,7 +135,7 @@
     for (id anObject in _paths)
     {
         BOOL isString = [anObject isKindOfClass:[NSString class]];
-        BOOL isPath = [anObject isKindOfClass:[STGFileChooserPath class]];
+        BOOL isPath = [anObject isKindOfClass:[STGPathChooserEntry class]];
 
         if (isString || isPath)
         {

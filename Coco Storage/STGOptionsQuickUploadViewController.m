@@ -30,7 +30,7 @@
 {
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [_tempFolderChooser setPaths:[NSArray arrayWithObjects:[STGFileChooserPath filePathWithPath:[[STGFileHelper getApplicationSupportDirectory] stringByAppendingString:@"/temp"] customTitle:@"Default"], [STGFileHelper getDownloadsDirectory], [STGFileHelper getDesktopDirectory], nil]];
+    [_tempFolderChooser setPaths:[NSArray arrayWithObjects:[STGPathChooserEntry entryWithPath:[[STGFileHelper getApplicationSupportDirectory] stringByAppendingString:@"/temp"] customTitle:@"Default"], [STGFileHelper getDownloadsDirectory], [STGFileHelper getDesktopDirectory], nil]];
     [_tempFolderChooser setSelectedPath:[[NSUserDefaults standardUserDefaults] stringForKey:@"tempFolder"]];
     
     [_keepFailedScreenshotsButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"keepFailedScreenshots"]];
@@ -161,7 +161,7 @@
 
 #pragma mark Path chooser Delegate
 
-- (void)pathChooserView:(STGFileChooserView *)view chosePath:(NSString *)path
+- (void)pathChooserView:(STGPathChooserView *)view chosePath:(NSString *)path
 {
     [[NSUserDefaults standardUserDefaults] setObject:path forKey:@"tempFolder"];
 }

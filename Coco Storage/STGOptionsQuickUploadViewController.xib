@@ -101,7 +101,7 @@
                                     <action selector="checkboxButtonClicked:" target="-2" id="274"/>
                                 </connections>
                             </button>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="jva-Y9-lac" customClass="STGFileChooserView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="jva-Y9-lac" customClass="STGPathChooserView">
                                 <rect key="frame" x="18" y="88" width="428" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>

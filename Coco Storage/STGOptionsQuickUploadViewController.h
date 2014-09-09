@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "STGFileChooserView.h"
+#import "STGPathChooserView.h"
 
-@interface STGOptionsQuickUploadViewController : NSViewController <STGFileChooserViewDelegate>
+@interface STGOptionsQuickUploadViewController : NSViewController <STGPathChooserViewDelegate>
 
-@property (nonatomic, retain) IBOutlet STGFileChooserView *tempFolderChooser;
+@property (nonatomic, retain) IBOutlet STGPathChooserView *tempFolderChooser;
 
 @property (nonatomic, retain) IBOutlet NSButton *keepFailedScreenshotsButton;
 @property (nonatomic, retain) IBOutlet NSButton *keepAllScreenshotsButton;
