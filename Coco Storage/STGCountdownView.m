@@ -47,7 +47,10 @@
     if ([_destinationDate timeIntervalSinceNow] > 0.0)
     {
         if (![_redrawTimer isValid])
-            [self setRedrawTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 / 60.0 target:self selector:@selector(redrawTimerFired:) userInfo:nil repeats:YES]];
+        {
+            [self setRedrawTimer:[NSTimer timerWithTimeInterval:1.0 / 60.0 target:self selector:@selector(redrawTimerFired:) userInfo:nil repeats:YES]];
+            [[NSRunLoop mainRunLoop] addTimer:_redrawTimer forMode:NSRunLoopCommonModes];
+        }
     }
     else
     {

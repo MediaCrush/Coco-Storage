@@ -138,7 +138,8 @@ STGAppDelegate *sharedAppDelegate;
     [_statusItemManager updatePauseDownloadItem];
     [self updateShortcuts];
     
-    [self setAssistiveDeviceTimer:[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(assistiveDeviceTimerFired:) userInfo:nil repeats:YES]];
+    [self setAssistiveDeviceTimer:[NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(assistiveDeviceTimerFired:) userInfo:nil repeats:YES]];
+    [[NSRunLoop mainRunLoop] addTimer:_assistiveDeviceTimer forMode:NSRunLoopCommonModes];
   
 //    [_packetSupportQueue addEntry:[STGPacketCreator cfsDeleteFilePacket:@"/foo2.png" link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
 //    [_packetUploadV2Queue addEntry:[STGPacketCreator cfsPostFilePacket:@"/foo9.png" fileURL:[NSURL fileURLWithPath:[[self getCFSFolder] stringByAppendingPathComponent:@"/foo2/foo2.png"]] link:[[STGAPIConfiguration standardConfiguration] cfsBaseLink] key:[self getApiKey]]];
@@ -773,7 +774,9 @@ STGAppDelegate *sharedAppDelegate;
 
         [_countdownWC showWindow:self];
         
-        [self setMovieCaptureTimer:[NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(movieCaptureTimerFired:) userInfo:movieCaptureWC repeats:NO]];
+        [self setMovieCaptureTimer:[NSTimer timerWithTimeInterval:delay target:self selector:@selector(movieCaptureTimerFired:) userInfo:movieCaptureWC repeats:NO]];
+        [[NSRunLoop mainRunLoop] addTimer:_movieCaptureTimer forMode:NSRunLoopCommonModes];
+        
         [_statusItemManager setMovieControlsVisible:YES];
     }
 }

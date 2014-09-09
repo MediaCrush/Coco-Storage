@@ -131,7 +131,8 @@
     if ([_delegate respondsToSelector:@selector(movieCaptureSessionDidBegin:)])
         [_delegate movieCaptureSessionDidBegin:self];
 
-    mTimer = [NSTimer scheduledTimerWithTimeInterval:_recordTime target:self selector:@selector(finishRecord:) userInfo:nil repeats:NO];
+    mTimer = [NSTimer timerWithTimeInterval:_recordTime target:self selector:@selector(finishRecord:) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:mTimer forMode:NSRunLoopCommonModes];
     
     return YES;
 }

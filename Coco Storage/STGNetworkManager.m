@@ -34,9 +34,11 @@
         [_packetSupportQueue setDelegate:self];
         
         [self setCfsSyncCheck:[[STGCFSSyncCheck alloc] init]];
-        [self setUploadTimer:[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(uploadTimerFired:) userInfo:nil repeats:YES]];
+        [self setUploadTimer:[NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(uploadTimerFired:) userInfo:nil repeats:YES]];
+        [[NSRunLoop mainRunLoop] addTimer:_uploadTimer forMode:NSRunLoopCommonModes];
 
-        [self setServerStatusTimer:[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(serverStatusTimerFired:) userInfo:nil repeats:YES]];
+        [self setServerStatusTimer:[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(serverStatusTimerFired:) userInfo:nil repeats:YES]];
+        [[NSRunLoop mainRunLoop] addTimer:_serverStatusTimer forMode:NSRunLoopCommonModes];
     }
     return self;
 }
