@@ -86,8 +86,6 @@
 		807A668B172AC79900E0212C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A668A172AC79900E0212C /* Security.framework */; };
 		807A668E172AD23900E0212C /* STGSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 807A668D172AD23900E0212C /* STGSystemHelper.m */; };
 		808A9A1917538EBC0058235D /* STGQuickUploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 808A9A1817538EBC0058235D /* STGQuickUploadView.m */; };
-		809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C0174D6C930016A391 /* License_Sparkle.txt */; };
-		809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809A10C2174D6D330016A391 /* License_MASPreferences.txt */; };
 		809A10C6174D6F5B0016A391 /* STGCFSSyncCheckEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */; };
 		809D1B0D176F69FD00F30E22 /* STGJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 809D1B0C176F69FD00F30E22 /* STGJSONHelper.m */; };
 		80B9D48719BF038200E1E5B8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80B9D48619BF038200E1E5B8 /* Credits.rtf */; };
@@ -257,8 +255,6 @@
 		807A668D172AD23900E0212C /* STGSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGSystemHelper.m; sourceTree = "<group>"; };
 		808A9A1717538EBC0058235D /* STGQuickUploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGQuickUploadView.h; sourceTree = "<group>"; };
 		808A9A1817538EBC0058235D /* STGQuickUploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGQuickUploadView.m; sourceTree = "<group>"; };
-		809A10C0174D6C930016A391 /* License_Sparkle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License_Sparkle.txt; sourceTree = "<group>"; };
-		809A10C2174D6D330016A391 /* License_MASPreferences.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License_MASPreferences.txt; sourceTree = "<group>"; };
 		809A10C4174D6F5B0016A391 /* STGCFSSyncCheckEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGCFSSyncCheckEntry.h; sourceTree = "<group>"; };
 		809A10C5174D6F5B0016A391 /* STGCFSSyncCheckEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGCFSSyncCheckEntry.m; sourceTree = "<group>"; };
 		809D1B0B176F69FD00F30E22 /* STGJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGJSONHelper.h; sourceTree = "<group>"; };
@@ -452,7 +448,6 @@
 		8029A48F172832BF00F09884 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				809A10BF174D6C880016A391 /* Licenses */,
 				80CC42611733C3AA0068476F /* Other */,
 				80CC42601733C3A30068476F /* Sounds */,
 				80CC425F1733C39D0068476F /* Images */,
@@ -544,15 +539,6 @@
 				8072D97B19AC930500A39A5F /* STGGifConverter.m */,
 			);
 			name = "Data-Capture";
-			sourceTree = "<group>";
-		};
-		809A10BF174D6C880016A391 /* Licenses */ = {
-			isa = PBXGroup;
-			children = (
-				809A10C0174D6C930016A391 /* License_Sparkle.txt */,
-				809A10C2174D6D330016A391 /* License_MASPreferences.txt */,
-			);
-			name = Licenses;
 			sourceTree = "<group>";
 		};
 		80B0A1801996C88A00A93C3B /* Hotkeys */ = {
@@ -835,8 +821,6 @@
 				8048602A174823A500CB6226 /* StatusBarIconUpdateOverlay.png in Resources */,
 				801CA87119AB46F600A2F44F /* MovieCameraTemplate.pdf in Resources */,
 				80EF761819AA63C00089975C /* dsa_pub.pem in Resources */,
-				809A10C1174D6C930016A391 /* License_Sparkle.txt in Resources */,
-				809A10C3174D6D330016A391 /* License_MASPreferences.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
