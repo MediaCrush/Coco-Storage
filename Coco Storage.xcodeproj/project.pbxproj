@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3337C8EDEDC141ABA49A93CA /* libPods-Coco Storage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 057F49A09FC94D69B631775A /* libPods-Coco Storage.a */; };
 		80068FC317272CA800DA1492 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80068FC217272CA800DA1492 /* Cocoa.framework */; };
 		80068FCD17272CA800DA1492 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80068FCB17272CA800DA1492 /* InfoPlist.strings */; };
 		80068FCF17272CA800DA1492 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80068FCE17272CA800DA1492 /* main.m */; };
@@ -22,7 +23,6 @@
 		801CA86F19AB468100A2F44F /* CameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA86E19AB468100A2F44F /* CameraTemplate.pdf */; };
 		801CA87119AB46F600A2F44F /* MovieCameraTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87019AB46F600A2F44F /* MovieCameraTemplate.pdf */; };
 		801CA87519AB47FA00A2F44F /* AlbumTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 801CA87419AB47FA00A2F44F /* AlbumTemplate.pdf */; };
-		801CA87919ABC74E00A2F44F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
 		801E29BD19AE4CC1000A4D0C /* STGUploadedEntryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E29BC19AE4CC1000A4D0C /* STGUploadedEntryFile.m */; };
 		801E29C019AE696A000A4D0C /* STGUploadedEntryAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E29BF19AE696A000A4D0C /* STGUploadedEntryAlbum.m */; };
 		80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80210E50172EC9920056C502 /* STGRecentFileView.xib */; };
@@ -35,8 +35,6 @@
 		8029A49E17283EF000F09884 /* STGOptionsShortcutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */; };
 		8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */; };
 		8029A4A11728427900F09884 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A4A01728427900F09884 /* MainMenu.xib */; };
-		8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */; };
-		8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */; };
 		8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8029A4BD172884AE00F09884 /* STGFileHelper.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated"; }; };
 		80369DD41847A27D00349068 /* STGQuickUploadWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80369DD21847A27D00349068 /* STGQuickUploadWindowController.m */; };
 		80369DD51847A27D00349068 /* STGQuickUploadWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80369DD31847A27D00349068 /* STGQuickUploadWindowController.xib */; };
@@ -112,7 +110,6 @@
 		80DE9D6D19B890F900C41E44 /* STGHotkeySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DE9D6C19B890F900C41E44 /* STGHotkeySelectView.m */; };
 		80E12CAB184A99E70093CA6C /* STGUploadTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */; };
 		80E12CAC184A99E70093CA6C /* STGUploadTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */; };
-		80EF761619AA5E540089975C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EF761519AA5E540089975C /* Sparkle.framework */; };
 		80EF761819AA63C00089975C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 80EF761719AA63C00089975C /* dsa_pub.pem */; };
 		80F7697519A0C3AE000DC74D /* STGMovieCaptureSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */; };
 		80F7697F19A0E77B000DC74D /* STGMovieCaptureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F7697D19A0E77B000DC74D /* STGMovieCaptureWindowController.m */; };
@@ -132,13 +129,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				801CA87919ABC74E00A2F44F /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		057F49A09FC94D69B631775A /* libPods-Coco Storage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Coco Storage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		335B9B845170497088F581E5 /* Pods-Coco Storage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coco Storage.xcconfig"; path = "Pods/Pods-Coco Storage.xcconfig"; sourceTree = "<group>"; };
 		80068FBF17272CA800DA1492 /* Coco Storage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coco Storage.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80068FC217272CA800DA1492 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80068FC517272CA800DA1492 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -185,10 +183,6 @@
 		8029A49C17283EEF00F09884 /* STGOptionsShortcutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGOptionsShortcutsViewController.m; sourceTree = "<group>"; };
 		8029A49D17283EEF00F09884 /* STGOptionsShortcutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGOptionsShortcutsViewController.xib; sourceTree = "<group>"; };
 		8029A4A01728427900F09884 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		8029A4B4172859C600F09884 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
-		8029A4B717285A1F00F09884 /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
-		8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
-		8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
 		8029A4BC172884AE00F09884 /* STGFileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGFileHelper.h; sourceTree = "<group>"; };
 		8029A4BD172884AE00F09884 /* STGFileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGFileHelper.m; sourceTree = "<group>"; };
 		80369DD11847A27D00349068 /* STGQuickUploadWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGQuickUploadWindowController.h; sourceTree = "<group>"; };
@@ -300,7 +294,6 @@
 		80E12CA8184A99E70093CA6C /* STGUploadTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGUploadTypeViewController.h; sourceTree = "<group>"; };
 		80E12CA9184A99E70093CA6C /* STGUploadTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGUploadTypeViewController.m; sourceTree = "<group>"; };
 		80E12CAA184A99E70093CA6C /* STGUploadTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STGUploadTypeViewController.xib; sourceTree = "<group>"; };
-		80EF761519AA5E540089975C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		80EF761719AA63C00089975C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		80F7697319A0C3AE000DC74D /* STGMovieCaptureSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGMovieCaptureSession.h; sourceTree = "<group>"; };
 		80F7697419A0C3AE000DC74D /* STGMovieCaptureSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGMovieCaptureSession.m; sourceTree = "<group>"; };
@@ -329,10 +322,10 @@
 				80F7698219A1207A000DC74D /* IOKit.framework in Frameworks */,
 				8060C347199FE174001282CF /* AVFoundation.framework in Frameworks */,
 				80D7F9C01741707500851DDB /* SystemConfiguration.framework in Frameworks */,
-				80EF761619AA5E540089975C /* Sparkle.framework in Frameworks */,
 				807A668B172AC79900E0212C /* Security.framework in Frameworks */,
 				807A6689172AC6DF00E0212C /* CoreServices.framework in Frameworks */,
 				80068FC317272CA800DA1492 /* Cocoa.framework in Frameworks */,
+				3337C8EDEDC141ABA49A93CA /* libPods-Coco Storage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +338,7 @@
 				80068FC817272CA800DA1492 /* Coco Storage */,
 				80068FC117272CA800DA1492 /* Frameworks */,
 				80068FC017272CA800DA1492 /* Products */,
+				335B9B845170497088F581E5 /* Pods-Coco Storage.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -361,7 +355,6 @@
 			children = (
 				8072D97F19ACA24600A39A5F /* CoreMedia.framework */,
 				8072D97D19AC9A8000A39A5F /* QTKit.framework */,
-				80EF761519AA5E540089975C /* Sparkle.framework */,
 				80D7F9BF1741707500851DDB /* SystemConfiguration.framework */,
 				807A668A172AC79900E0212C /* Security.framework */,
 				807A6688172AC6DF00E0212C /* CoreServices.framework */,
@@ -369,6 +362,7 @@
 				8060C346199FE174001282CF /* AVFoundation.framework */,
 				80068FC217272CA800DA1492 /* Cocoa.framework */,
 				80068FC417272CA800DA1492 /* Other Frameworks */,
+				057F49A09FC94D69B631775A /* libPods-Coco Storage.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -386,7 +380,6 @@
 		80068FC817272CA800DA1492 /* Coco Storage */ = {
 			isa = PBXGroup;
 			children = (
-				8029A4AA172858CA00F09884 /* MASPreferences */,
 				8029A48F172832BF00F09884 /* Resources */,
 				80068FD417272CA900DA1492 /* STGAppDelegate.h */,
 				80068FD517272CA900DA1492 /* STGAppDelegate.m */,
@@ -468,17 +461,6 @@
 				80CC425F1733C39D0068476F /* Images */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		8029A4AA172858CA00F09884 /* MASPreferences */ = {
-			isa = PBXGroup;
-			children = (
-				8029A4B4172859C600F09884 /* MASPreferencesViewController.h */,
-				8029A4B717285A1F00F09884 /* MASPreferencesWindowController.h */,
-				8029A4B817285A1F00F09884 /* MASPreferencesWindowController.m */,
-				8029A4BA17285A5800F09884 /* MASPreferencesWindow.xib */,
-			);
-			name = MASPreferences;
 			sourceTree = "<group>";
 		};
 		804C878D19A1FA34000957C6 /* Views */ = {
@@ -763,10 +745,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80068FDC17272CA900DA1492 /* Build configuration list for PBXNativeTarget "Coco Storage" */;
 			buildPhases = (
+				96D4AA9D7A764B99A758571A /* Check Pods Manifest.lock */,
 				80068FBB17272CA700DA1492 /* Sources */,
 				80068FBC17272CA700DA1492 /* Frameworks */,
 				80068FBD17272CA700DA1492 /* Resources */,
 				80120343173300690003BB23 /* CopyFiles */,
+				96345BCFE2244C4EB0DAEB7E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -818,7 +802,6 @@
 				8029A49A17283ECD00F09884 /* STGOptionsGeneralViewController.xib in Resources */,
 				8029A49F17283EF000F09884 /* STGOptionsShortcutsViewController.xib in Resources */,
 				8029A4A11728427900F09884 /* MainMenu.xib in Resources */,
-				8029A4BB17285A5800F09884 /* MASPreferencesWindow.xib in Resources */,
 				801132921729AC92006702B9 /* STGOptionsAboutViewController.xib in Resources */,
 				80210E51172EC9920056C502 /* STGRecentFileView.xib in Resources */,
 				80DBC66C17316241000DEF72 /* STGWelcomeWindowControllerStorage.xib in Resources */,
@@ -864,6 +847,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		96345BCFE2244C4EB0DAEB7E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Coco Storage-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96D4AA9D7A764B99A758571A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80068FBB17272CA700DA1492 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -878,7 +894,6 @@
 				8029A49917283ECD00F09884 /* STGOptionsGeneralViewController.m in Sources */,
 				8029A49E17283EF000F09884 /* STGOptionsShortcutsViewController.m in Sources */,
 				80F7698819A14B06000DC74D /* STGNetworkManager.m in Sources */,
-				8029A4B917285A1F00F09884 /* MASPreferencesWindowController.m in Sources */,
 				8029A4BE172884AF00F09884 /* STGFileHelper.m in Sources */,
 				8071453F18492A56007F1EA1 /* STGTypeChooserViewType.m in Sources */,
 				80F7698519A1379A000DC74D /* STGOptionsManager.m in Sources */,
@@ -1010,6 +1025,7 @@
 		};
 		80068FDD17272CA900DA1492 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 335B9B845170497088F581E5 /* Pods-Coco Storage.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1030,6 +1046,7 @@
 		};
 		80068FDE17272CA900DA1492 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 335B9B845170497088F581E5 /* Pods-Coco Storage.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;

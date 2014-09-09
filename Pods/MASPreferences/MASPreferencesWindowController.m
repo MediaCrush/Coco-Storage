@@ -26,7 +26,7 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 @synthesize viewControllers = _viewControllers;
 @synthesize selectedViewController = _selectedViewController;
 @synthesize title = _title;
-
+@synthesize toolbar = _toolbar;
 #pragma mark -
 
 - (id)initWithViewControllers:(NSArray *)viewControllers
@@ -38,10 +38,9 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 {
     if ((self = [super initWithWindowNibName:@"MASPreferencesWindow"]))
     {
-#if __has_feature(objc_arc)
-        _viewControllers = viewControllers;
-#else
-        _viewControllers = [viewControllers retain];
+		_viewControllers = [NSMutableArray arrayWithArray: viewControllers];
+#if !__has_feature(objc_arc)
+        _viewControllers = [_viewControllers retain];
 #endif
         _minimumViewRects = [[NSMutableDictionary alloc] init];
         _title = [title copy];
@@ -62,20 +61,27 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 #endif
 }
 
+- (void)addViewController: (NSViewController <MASPreferencesViewController> *) viewController
+{
+	[_viewControllers addObject: viewController];
+	[_toolbar insertItemWithItemIdentifier: [viewController identifier] atIndex: ([_viewControllers count] - 1)];
+	[_toolbar validateVisibleItems];
+}
+
 #pragma mark -
 
 - (void)windowDidLoad
 {
     if ([self.title length] > 0)
         [[self window] setTitle:self.title];
-    
+
     if ([self.viewControllers count])
         self.selectedViewController = [self viewControllerForIdentifier:[[NSUserDefaults standardUserDefaults] stringForKey:kMASPreferencesSelectedViewKey]] ?: [self firstViewController];
-    
+
     NSString *origin = [[NSUserDefaults standardUserDefaults] stringForKey:kMASPreferencesFrameTopLeftKey];
     if (origin)
         [self.window setFrameTopLeftPoint:NSPointFromString(origin)];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:)   name:NSWindowDidMoveNotification object:self.window];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self.window];
 }
@@ -84,7 +90,7 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
     for (id viewController in self.viewControllers)
         if ([viewController isKindOfClass:[NSViewController class]])
             return viewController;
-    
+
     return nil;
 }
 
@@ -137,8 +143,8 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 {
     NSArray *identifiers = self.toolbarItemIdentifiers;
     return identifiers;
-}
-
+}                   
+                   
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
 {
     NSArray *identifiers = self.toolbarItemIdentifiers;
@@ -213,7 +219,7 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 {
     if (_selectedViewController == controller)
         return;
-    
+
     if (_selectedViewController)
     {
         // Check if we can commit changes for old controller
@@ -222,7 +228,7 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
             [[self.window toolbar] setSelectedItemIdentifier:_selectedViewController.identifier];
             return;
         }
-        
+
 #if __has_feature(objc_arc)
         [self.window setContentView:[[NSView alloc] init]];
 #else
@@ -230,30 +236,30 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 #endif
         if ([_selectedViewController respondsToSelector:@selector(viewDidDisappear)])
             [_selectedViewController viewDidDisappear];
-        
+
 #if !__has_feature(objc_arc)
         [_selectedViewController release];
 #endif
         _selectedViewController = nil;
     }
-    
+
     if (!controller)
         return;
-    
+
     // Retrieve the new window tile from the controller view
     if ([self.title length] == 0)
     {
         NSString *label = controller.toolbarItemLabel;
         self.window.title = label;
     }
-    
+
     [[self.window toolbar] setSelectedItemIdentifier:controller.identifier];
-    
+
     // Record new selected controller in user defaults
     [[NSUserDefaults standardUserDefaults] setObject:controller.identifier forKey:kMASPreferencesSelectedViewKey];
     
     NSView *controllerView = controller.view;
-    
+
     // Retrieve current and minimum frame size for the view
     NSString *oldViewRectString = [[NSUserDefaults standardUserDefaults] stringForKey:PreferencesKeyForViewBounds(controller.identifier)];
     NSString *minViewRectString = [_minimumViewRects objectForKey:controller.identifier];
@@ -271,19 +277,20 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
     NSRect minViewRect = minViewRectString ? NSRectFromString(minViewRectString) : controllerView.bounds;
     oldViewRect.size.width  = NSWidth(oldViewRect)  < NSWidth(minViewRect)  || !sizableWidth  ? NSWidth(minViewRect)  : NSWidth(oldViewRect);
     oldViewRect.size.height = NSHeight(oldViewRect) < NSHeight(minViewRect) || !sizableHeight ? NSHeight(minViewRect) : NSHeight(oldViewRect);
-    
+
     [controllerView setFrame:oldViewRect];
-    
+
     // Calculate new window size and position
     NSRect oldFrame = [self.window frame];
     NSRect newFrame = [self.window frameRectForContentRect:oldViewRect];
     newFrame = NSOffsetRect(newFrame, NSMinX(oldFrame), NSMaxY(oldFrame) - NSMaxY(newFrame));
-    
+
     // Setup min/max sizes and show/hide resize indicator
     [self.window setContentMinSize:minViewRect.size];
     [self.window setContentMaxSize:NSMakeSize(sizableWidth ? CGFLOAT_MAX : NSWidth(oldViewRect), sizableHeight ? CGFLOAT_MAX : NSHeight(oldViewRect))];
     [self.window setShowsResizeIndicator:sizableWidth || sizableHeight];
-    
+    [[self.window standardWindowButton:NSWindowZoomButton] setEnabled:sizableWidth || sizableHeight];
+
     [self.window setFrame:newFrame display:YES animate:[self.window isVisible]];
     
 #if __has_feature(objc_arc)
@@ -305,7 +312,7 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
     
     // Insert view controller into responder chain
     [self patchResponderChain];
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName:kMASPreferencesWindowControllerDidChangeViewNotification object:self];
 }
 
@@ -331,10 +338,10 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 {
     NSUInteger selectedIndex = self.indexOfSelectedController;
     NSUInteger numberOfControllers = [_viewControllers count];
-    
+
     do { selectedIndex = (selectedIndex + 1) % numberOfControllers; }
     while ([_viewControllers objectAtIndex:selectedIndex] == [NSNull null]);
-    
+
     [self selectControllerAtIndex:selectedIndex];
 }
 
@@ -342,10 +349,10 @@ static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
 {
     NSUInteger selectedIndex = self.indexOfSelectedController;
     NSUInteger numberOfControllers = [_viewControllers count];
-    
+
     do { selectedIndex = (selectedIndex + numberOfControllers - 1) % numberOfControllers; }
     while ([_viewControllers objectAtIndex:selectedIndex] == [NSNull null]);
-    
+
     [self selectControllerAtIndex:selectedIndex];
 }
 
