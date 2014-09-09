@@ -28,6 +28,9 @@
 
 @property (nonatomic, retain) STGUploadTypeViewController *uploadTypeVC;
 
+- (BOOL)typeChooserViewOpen;
+- (void)closeTypeChooserView;
+
 - (void)displayForUploadTypes:(NSArray *)types;
 
 @end

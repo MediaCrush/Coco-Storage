@@ -487,7 +487,12 @@ STGAppDelegate *sharedAppDelegate;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"uploadClipboard"])
         {
-            if ([_statusItemManager captureClipboard])
+            if ([_statusItemManager typeChooserViewOpen])
+            {
+                [_statusItemManager closeTypeChooserView];
+                return nil;
+            }
+            else if ([_statusItemManager captureClipboard])
             {
                 return nil;
             }

@@ -20,10 +20,12 @@
 @property (nonatomic, retain) IBOutlet STGTypeChooserView *typeChooserView;
 @property (nonatomic, retain) IBOutlet NSPopover *popover;
 
+- (BOOL)isOpen;
+- (void)hide;
+
 - (void)setUploadTypes:(NSArray *)uploadTypes fromDragging:(BOOL)dragging;
 
 - (void)showRelativeToRect:(NSRect)referenceFrame ofView:(NSView *)view preferredEdge:(NSRectEdge)preferredEdge;
-- (void)hide;
 
 @end
 

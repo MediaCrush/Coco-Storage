@@ -32,6 +32,16 @@
     
 }
 
+- (BOOL)isOpen
+{
+    return [_popover isShown];
+}
+
+- (void)hide
+{
+    [_popover performClose:self];
+}
+
 - (void)setUploadTypes:(NSArray *)uploadTypes fromDragging:(BOOL)dragging
 {
     NSMutableArray *types = [[NSMutableArray alloc] initWithCapacity:[uploadTypes count]];
@@ -129,11 +139,6 @@
 - (void)showRelativeToRect:(NSRect)referenceFrame ofView:(NSView *)view preferredEdge:(NSRectEdge)preferredEdge
 {
     [[self popover] showRelativeToRect:referenceFrame ofView:view preferredEdge:preferredEdge];
-}
-
-- (void)hide
-{
-    [[self popover] performClose:self];
 }
 
 - (void)chooserView:(STGTypeChooserView *)view choseType:(STGTypeChooserViewType *)type

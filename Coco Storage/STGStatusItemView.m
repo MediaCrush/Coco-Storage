@@ -254,10 +254,20 @@
     return NO;
 }
 
+- (BOOL)typeChooserViewOpen
+{
+    return [_uploadTypeVC isOpen];
+}
+
+- (void)closeTypeChooserView
+{
+    [_uploadTypeVC hide];
+}
+
 - (void)displayForUploadTypes:(NSArray *)types
 {
-    [[self uploadTypeVC] setUploadTypes:types fromDragging:NO];
-    [[self uploadTypeVC] showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
+    [_uploadTypeVC setUploadTypes:types fromDragging:NO];
+    [_uploadTypeVC showRelativeToRect:[self bounds] ofView:self preferredEdge:CGRectMinYEdge];
 }
 
 - (void)uploadTypeViewController:(STGUploadTypeViewController *)viewController choseType:(STGUploadAction)action

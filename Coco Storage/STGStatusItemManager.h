@@ -80,6 +80,9 @@
 @property (nonatomic, retain) IBOutlet NSMenuItem *cfsLinkItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem *cfsSectionSeparatorItem;
 
+- (BOOL)typeChooserViewOpen;
+- (void)closeTypeChooserView;
+
 - (IBAction)captureArea:(id)sender;
 - (IBAction)captureFullScreen:(id)sender;
 - (IBAction)captureMovie:(id)sender;

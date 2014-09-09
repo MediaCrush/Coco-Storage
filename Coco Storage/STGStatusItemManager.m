@@ -299,6 +299,16 @@
     [_statusItemView setToolTip:[NSString stringWithFormat:@"Coco Storage - Server status: %@\nDrag and drop anything here to upload it!", tooltipString]];
 }
 
+- (BOOL)typeChooserViewOpen
+{
+    return [_statusItemView typeChooserViewOpen];
+}
+
+- (void)closeTypeChooserView
+{
+    [_statusItemView closeTypeChooserView];
+}
+
 - (IBAction)captureArea:(id)sender
 {
     if ([_delegate respondsToSelector:@selector(captureScreen:)])
