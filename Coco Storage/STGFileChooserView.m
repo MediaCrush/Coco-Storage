@@ -47,6 +47,8 @@
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_popUpButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     
+    [self registerForDraggedTypes:@[NSFilenamesPboardType, NSURLPboardType, NSPasteboardTypeString]];
+
     [self updatePopupButtonContents];
 }
 
@@ -184,6 +186,42 @@
     NSImage *image = [[NSWorkspace sharedWorkspace] iconForFile:path];
     [image setSize:NSMakeSize(16, 16)];
     return image;
+}
+
+- (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
+{
+    return [self directoryPathFromPasteboard:[sender draggingPasteboard]] ? NSDragOperationCopy : NSDragOperationNone;
+}
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender
+{
+    NSString *path = [self directoryPathFromPasteboard:[sender draggingPasteboard]];
+    
+    if (path)
+    {
+        [self setSelectedPath:path];
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (NSString *)directoryPathFromPasteboard:(NSPasteboard *)pasteboard
+{
+    NSArray *urls = [pasteboard readObjectsForClasses:@[[NSURL class]] options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES}];
+    if (urls && [urls count] > 0)
+    {
+        NSURL *url = [urls objectAtIndex:0];
+        NSString *path = [url path];
+        
+        BOOL isFolder;
+        BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isFolder];
+        
+        if (exists && isFolder)
+            return path;
+    }
+    
+    return nil;
 }
 
 @end
