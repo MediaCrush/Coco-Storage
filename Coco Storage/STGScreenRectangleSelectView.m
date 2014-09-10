@@ -124,7 +124,7 @@
 
 - (NSRect)currentWindowRect
 {
-    NSArray *array = (__bridge NSArray *)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+    NSArray *array = (NSArray *)CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID));
     NSPoint mousePoint = [NSEvent mouseLocation];
     
     NSRect highestRect = NSZeroRect;

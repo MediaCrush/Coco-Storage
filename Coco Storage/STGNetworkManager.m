@@ -148,12 +148,9 @@
 
 - (void)finishUploadingData:(STGPacketQueue *)queue entry:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse
 {
-    NSUInteger responseCode = 0;
     if ([urlResponse isKindOfClass:[NSHTTPURLResponse class]])
     {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) urlResponse;
-        
-        responseCode = [httpResponse statusCode];
         
         BOOL debugOutput = NO;
         
