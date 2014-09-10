@@ -251,12 +251,22 @@ STGAppDelegate *sharedAppDelegate;
 
 #pragma mark - Capturing
 
--(void)captureScreen:(BOOL)fullScreen;
+-(void)captureScreen:(BOOL)fullScreen
 {
     if ([_networkManager isAPIKeyValid:YES])
     {
         [STGDataCaptureManager startScreenCapture:fullScreen tempFolder:[self getTempFolder] silent:[[NSUserDefaults standardUserDefaults] integerForKey:@"playScreenshotSound"] == 0 delegate:self];
     }
+}
+
+-(void)captureScreenArea
+{
+    [self captureScreen:NO];
+}
+
+-(void)captureFullScreen
+{
+    [self captureScreen:YES];
 }
 
 - (void)captureMovie
@@ -451,52 +461,45 @@ STGAppDelegate *sharedAppDelegate;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFullScreen"])
         {
-            [self captureScreen:YES];
+            [self performSelectorOnMainThread:@selector(captureFullScreen) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureArea"])
         {
-            [self captureScreen:NO];
+            [self performSelectorOnMainThread:@selector(captureScreenArea) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFile"])
         {
-            [self captureFile];
+            [self performSelectorOnMainThread:@selector(captureFile) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"createAlbum"])
         {
-            [self createAlbum];
+            [self performSelectorOnMainThread:@selector(createAlbum) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"toggleRecording"])
         {
             if ([_networkManager isAPIKeyValid:YES] && (_currentMovieCapture == nil || ![_currentMovieCapture isRecording]))
-            {
                 [self performSelectorOnMainThread:@selector(startMovieCapture:) withObject:_captureMovieWC waitUntilDone:NO];
-            }
             else
-            {
                 [self performSelectorOnMainThread:@selector(stopRecording) withObject:nil waitUntilDone:NO];
-            }
             
             return nil;
         }
         else if ([[userInfo objectForKey:@"action"] isEqualToString:@"uploadClipboard"])
         {
             if ([_statusItemManager typeChooserViewOpen])
-            {
-                [_statusItemManager closeTypeChooserView];
-                return nil;
-            }
-            else if ([_statusItemManager captureClipboard])
-            {
-                return nil;
-            }
+                [_statusItemManager performSelectorOnMainThread:@selector(closeTypeChooserView) withObject:nil waitUntilDone:NO];
+            else
+                [_statusItemManager performSelectorOnMainThread:@selector(captureClipboard) withObject:nil waitUntilDone:NO];
+            
+            return nil;
         }
     }
     

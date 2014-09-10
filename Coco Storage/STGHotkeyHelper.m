@@ -95,13 +95,21 @@ CGEventRef copyOrModifyKeyboardEvent(CGEventTapProxy proxy, CGEventType type, CG
     {
         [self setMachPortWrapper:[[NSMachPort alloc] initWithMachPort:CFMachPortGetPort(_machPortRef) options:NSMachPortDeallocateNone]];
         
-        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-        [runLoop addPort:_machPortWrapper forMode:NSDefaultRunLoopMode];
+        [self performSelectorInBackground:@selector(addMachPortWrapperToRunLoop) withObject:nil];
         [self setFailed:NO];
         [self setSetUp:YES];
         
         return YES;
     }
+}
+
+- (void)addMachPortWrapperToRunLoop
+{
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    NSMachPort *machPortRef = _machPortWrapper;
+    [runLoop addPort:machPortRef forMode:NSDefaultRunLoopMode];
+    
+    while (_machPortWrapper == machPortRef && [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
 }
 
 - (void)unlinkFromSystem
