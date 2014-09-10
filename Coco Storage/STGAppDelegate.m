@@ -448,7 +448,9 @@ STGAppDelegate *sharedAppDelegate;
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"pauseUploads"])
     {
-        if ([[userInfo objectForKey:@"action"] isEqualToString:@"hotkeyChange"])
+        NSString *hotkeyAction = [userInfo objectForKey:@"action"];
+        
+        if ([hotkeyAction isEqualToString:@"hotkeyChange"])
         {
             NSEvent *hotkeyReturnEvent = [_optionsManager keyPressed:event];
             
@@ -459,31 +461,31 @@ STGAppDelegate *sharedAppDelegate;
             
             event = hotkeyReturnEvent;
         }
-        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFullScreen"])
+        else if ([hotkeyAction isEqualToString:@"captureFullScreen"])
         {
             [self performSelectorOnMainThread:@selector(captureFullScreen) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
-        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureArea"])
+        else if ([hotkeyAction isEqualToString:@"captureArea"])
         {
             [self performSelectorOnMainThread:@selector(captureScreenArea) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
-        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"captureFile"])
+        else if ([hotkeyAction isEqualToString:@"captureFile"])
         {
             [self performSelectorOnMainThread:@selector(captureFile) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
-        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"createAlbum"])
+        else if ([hotkeyAction isEqualToString:@"createAlbum"])
         {
             [self performSelectorOnMainThread:@selector(createAlbum) withObject:nil waitUntilDone:NO];
             
             return nil;
         }
-        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"toggleRecording"])
+        else if ([hotkeyAction isEqualToString:@"toggleRecording"])
         {
             if ([_networkManager isAPIKeyValid:YES] && (_currentMovieCapture == nil || ![_currentMovieCapture isRecording]))
                 [self performSelectorOnMainThread:@selector(startMovieCapture:) withObject:_captureMovieWC waitUntilDone:NO];
@@ -492,7 +494,7 @@ STGAppDelegate *sharedAppDelegate;
             
             return nil;
         }
-        else if ([[userInfo objectForKey:@"action"] isEqualToString:@"uploadClipboard"])
+        else if ([hotkeyAction isEqualToString:@"uploadClipboard"])
         {
             if ([_statusItemManager typeChooserViewOpen])
                 [_statusItemManager performSelectorOnMainThread:@selector(closeTypeChooserView) withObject:nil waitUntilDone:NO];
