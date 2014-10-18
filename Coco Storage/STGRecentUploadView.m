@@ -13,11 +13,10 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     if (_isHighlighted)
+    {
         [[NSColor selectedMenuItemColor] set];
-    else
-        [[NSColor whiteColor] set];
-    
-    [NSBezierPath fillRect:dirtyRect];
+        NSRectFill(dirtyRect);
+    }
 
     [super drawRect:dirtyRect];
 }
@@ -47,9 +46,7 @@
 -(void)updateTrackingAreas
 {
     if(_trackingArea)
-    {
         [self removeTrackingArea:_trackingArea];
-    }
     
     int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
     [self setTrackingArea:[[NSTrackingArea alloc] initWithRect:[self bounds] options:opts owner:self userInfo:nil]];
