@@ -58,16 +58,22 @@
 - (void)setIsHighlighted:(BOOL)isHighlighted
 {
     _isHighlighted = isHighlighted;
-    
+    [_titleTextField setBackgroundColor:[NSColor clearColor]];
+    [_titleTextField setDrawsBackground:NO];
+    [_subTitleTextField setBackgroundColor:[NSColor clearColor]];
+    [_subTitleTextField setDrawsBackground:NO];
+
     if (_isHighlighted)
     {
-        [(NSTextField *)[self viewWithTag:11] setTextColor:[NSColor highlightColor]];
-        [(NSTextField *)[self viewWithTag:12] setTextColor:[NSColor colorWithCalibratedRed:0.646445 green:0.867147 blue:1.0 alpha:1.0]];
+        [_titleTextField setTextColor:[NSColor highlightColor]];
+        [_subTitleTextField setTextColor:[NSColor colorWithCalibratedRed:0.646445 green:0.867147 blue:1.0 alpha:1.0]];
+        [[self layer] setBackgroundColor:CGColorCreateGenericRGB(0.95, 0.95, 0.95, 1)];
     }
     else
     {
-        [(NSTextField *)[self viewWithTag:11] setTextColor:[NSColor textColor]];
-        [(NSTextField *)[self viewWithTag:12] setTextColor:[NSColor colorWithCalibratedRed:0.389645 green:0.522673 blue:0.60275 alpha:1.0]];
+        [_titleTextField setTextColor:[NSColor textColor]];
+        [_subTitleTextField setTextColor:[NSColor colorWithCalibratedRed:0.389645 green:0.522673 blue:0.60275 alpha:1.0]];
+        [[self layer] setBackgroundColor:CGColorCreateGenericRGB(0.95, 0.9, 0.95, 1)];
     }
 }
 

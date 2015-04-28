@@ -13,7 +13,6 @@
 #import "STGUploadedEntry.h"
 #import "STGUploadedEntryFile.h"
 
-NSString * const kSTGAPIConfigurationKeyStub = @"kSTGAPIConfigurationKeyStub";
 STGAPIConfigurationStub *standardConfiguration;
 
 @implementation STGAPIConfigurationStub 
@@ -30,9 +29,9 @@ STGAPIConfigurationStub *standardConfiguration;
     return standardConfiguration;
 }
 
-+ (void)registerStandardConfiguration
+- (void)registerConfiguration:(NSString *)regID
 {
-    [STGAPIConfiguration registerConfiguration:[self standardConfiguration] withID:kSTGAPIConfigurationKeyStub];
+    [STGAPIConfiguration registerConfiguration:self withID:regID];
 }
 
 - (NSString *)apiHostName
@@ -134,7 +133,7 @@ STGAPIConfigurationStub *standardConfiguration;
     NSURL *destDirectoryURL = [NSURL URLWithString:[@"file://" stringByAppendingString:[self destinationDirectory]]];
     NSURL *destURL = [destDirectoryURL URLByAppendingPathComponent:[onlineID stringByAppendingString:[[entry fileURL] lastPathComponent]]];
 
-    STGUploadedEntryFile *fileEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyStub onlineID:onlineID onlineLink:destURL dataCaptureEntry:entry];
+    STGUploadedEntryFile *fileEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:onlineID onlineLink:destURL dataCaptureEntry:entry];
 
     NSError *error = nil;
     [[NSFileManager defaultManager] copyItemAtURL:[entry fileURL] toURL:destURL error:&error];

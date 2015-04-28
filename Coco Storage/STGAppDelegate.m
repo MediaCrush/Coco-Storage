@@ -45,6 +45,11 @@
 
 STGAppDelegate *sharedAppDelegate;
 
+NSString * const kSTGAPIConfigurationKeyMediacrush = @"kSTGAPIConfigurationKeyMediacrush";
+NSString * const kSTGAPIConfigurationKeyImgrush = @"kSTGAPIConfigurationKeyImgrush";
+NSString * const kSTGAPIConfigurationKeyStub = @"kSTGAPIConfigurationKeyStub";
+NSString * const kSTGAPIConfigurationKeyStorage = @"kSTGAPIConfigurationKeyStorage";
+
 @implementation STGAppDelegate
 
 #pragma mark - Initializer
@@ -65,16 +70,23 @@ STGAppDelegate *sharedAppDelegate;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [STGAPIConfigurationMediacrush registerStandardConfiguration];
-    [[STGAPIConfigurationMediacrush standardConfiguration] setDelegate:self];
+//    STGAPIConfigurationMediacrush *mediacrush = [[STGAPIConfigurationMediacrush alloc] initWithName:@"Mediacru.sh" url:@"mediacru.sh"];
+//    [mediacrush setDelegate:self];
+//    [mediacrush registerConfiguration:kSTGAPIConfigurationKeyMediacrush];
+
+    STGAPIConfigurationMediacrush *imgrush = [[STGAPIConfigurationMediacrush alloc] initWithName:@"Imgrush" url:@"imgrush.com"];
+    [imgrush setDelegate:self];
+    [imgrush registerConfiguration:kSTGAPIConfigurationKeyImgrush];
+
+    STGAPIConfigurationStorage *storage = [STGAPIConfigurationStorage standardConfiguration];
+    [storage setDelegate:self];
+    [storage registerConfiguration:kSTGAPIConfigurationKeyStorage];
     
-    [STGAPIConfigurationStorage registerStandardConfiguration];
-    [[STGAPIConfigurationStorage standardConfiguration] setDelegate:self];
+    STGAPIConfigurationStub *stub = [STGAPIConfigurationStub standardConfiguration];
+    [stub setDelegate:self];
+    [stub registerConfiguration:kSTGAPIConfigurationKeyStub];
     
-    [STGAPIConfigurationStub registerStandardConfiguration];
-    [[STGAPIConfigurationStub standardConfiguration] setDelegate:self];
-    
-    [STGAPIConfiguration setCurrentConfiguration:[STGAPIConfigurationMediacrush standardConfiguration]];
+    [STGAPIConfiguration setCurrentConfiguration:imgrush];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -92,7 +104,8 @@ STGAppDelegate *sharedAppDelegate;
     
     [self setNetworkManager:[[STGNetworkManager alloc] init]];
     [_networkManager setDelegate:self];
-    [[STGAPIConfigurationMediacrush standardConfiguration] setNetworkDelegate:_networkManager];
+//    [mediacrush setNetworkDelegate:_networkManager];
+    [imgrush setNetworkDelegate:_networkManager];
     [[STGAPIConfigurationStorage standardConfiguration] setNetworkDelegate:_networkManager];
     [[STGAPIConfigurationStub standardConfiguration] setNetworkDelegate:_networkManager];
     

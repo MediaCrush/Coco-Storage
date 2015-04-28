@@ -35,6 +35,8 @@
 @property (nonatomic, assign) id<STGAPIConfigurationDelegate> delegate;
 @property (nonatomic, assign) id<STGAPIConfigurationNetworkDelegate> networkDelegate;
 
+- (void)registerConfiguration:(NSString *)regID;
+
 - (NSString *)apiHostName;
 - (BOOL)hasAPIKeys;
 - (BOOL)hasCFS;

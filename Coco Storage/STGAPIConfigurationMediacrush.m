@@ -18,31 +18,33 @@
 #import "STGUploadedEntryAlbum.h"
 #import "STGUploadedEntryRehosted.h"
 
-NSString * const kSTGAPIConfigurationKeyMediacrush = @"kSTGAPIConfigurationKeyMediacrush";
-STGAPIConfigurationMediacrush *standardConfiguration;
-
 @implementation STGAPIConfigurationMediacrush
 
 @synthesize delegate = _delegate, networkDelegate = _networkDelegate;
 
-+ (STGAPIConfigurationMediacrush *)standardConfiguration
+- (id)initWithName:(NSString *)name url:(NSString *)baseUrl
 {
-    if (!standardConfiguration)
+    if (self = [super init])
     {
-        standardConfiguration = [[STGAPIConfigurationMediacrush alloc] init];
+        [self setName:name];
+        [self setBaseUrl:baseUrl];
     }
-    
-    return standardConfiguration;
+    return self;
 }
 
-+ (void)registerStandardConfiguration
+- (void)registerConfiguration:(NSString *)regID
 {
-    [STGAPIConfiguration registerConfiguration:[self standardConfiguration] withID:kSTGAPIConfigurationKeyMediacrush];
+    [STGAPIConfiguration registerConfiguration:self withID:regID];
 }
 
 - (NSString *)apiHostName
 {
-    return @"mediacru.sh";
+    return _baseUrl;
+}
+
+- (NSString *)httpsUrl
+{
+    return [@"https://" stringByAppendingString:_baseUrl];
 }
 
 - (BOOL)hasAPIKeys
@@ -62,12 +64,12 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 - (NSString *)accountLinkTitle
 {
-    return @"Mediacru.sh";
+    return _name;
 }
 
 - (void)openAccountLink
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://mediacru.sh"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[self httpsUrl]]];
 }
 
 - (NSString *)fileListLinkTitle
@@ -92,7 +94,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 - (NSString *)objectIDFromString:(NSString *)string
 {
-    NSRange linkRange = [string rangeOfString:@"mediacru.sh/"];
+    NSRange linkRange = [string rangeOfString:[_baseUrl stringByAppendingString:@"/"]];
     if (linkRange.location != NSNotFound)
     {
         NSString *startCut = [string substringFromIndex:linkRange.location + linkRange.length];
@@ -105,7 +107,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 
 - (BOOL)canReachServer
 {
-    return [STGNetworkHelper isWebsiteReachable:@"mediacru.sh"];
+    return [STGNetworkHelper isWebsiteReachable:_baseUrl];
 }
 
 - (void)handlePacket:(STGPacket *)entry fullResponse:(NSData *)response urlResponse:(NSURLResponse *)urlResponse
@@ -136,8 +138,8 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         
         if (uploadID)
         {
-            NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:uploadID onlineLink:[NSURL URLWithString:link] dataCaptureEntry:dataCaptureEntry];
+            NSString *link = [NSString stringWithFormat:@"%@/%@", [self httpsUrl], uploadID];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:uploadID onlineLink:[NSURL URLWithString:link] dataCaptureEntry:dataCaptureEntry];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -147,7 +149,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         }
         else
         {
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:nil onlineLink:nil dataCaptureEntry:dataCaptureEntry];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:nil onlineLink:nil dataCaptureEntry:dataCaptureEntry];
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
@@ -202,8 +204,8 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         
         if (uploadID)
         {
-            NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            STGUploadedEntryAlbum *uploadedEntry = [[STGUploadedEntryAlbum alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:uploadID onlineLink:[NSURL URLWithString:link] entries:entryIDs];
+            NSString *link = [NSString stringWithFormat:@"%@/%@", [self httpsUrl], uploadID];
+            STGUploadedEntryAlbum *uploadedEntry = [[STGUploadedEntryAlbum alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:uploadID onlineLink:[NSURL URLWithString:link] entries:entryIDs];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -219,8 +221,8 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         
         if (uploadID)
         {
-            NSString *link = [NSString stringWithFormat:@"https://mediacru.sh/%@", uploadID];
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:uploadID onlineLink:[NSURL URLWithString:link] originalLink:[NSURL URLWithString:originalLink]];
+            NSString *link = [NSString stringWithFormat:@"%@/%@", [self httpsUrl], uploadID];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:uploadID onlineLink:[NSURL URLWithString:link] originalLink:[NSURL URLWithString:originalLink]];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -230,7 +232,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
         }
         else
         {
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyMediacrush onlineID:nil onlineLink:nil originalLink:[NSURL URLWithString:originalLink]];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryRehosted alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:nil onlineLink:nil originalLink:[NSURL URLWithString:originalLink]];
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
@@ -261,7 +263,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 {
     if ([_networkDelegate respondsToSelector:@selector(updateAPIStatus:validKey:)])
     {
-        [_networkDelegate updateAPIStatus:[STGNetworkHelper isWebsiteReachable:@"mediacru.sh"] validKey:true];
+        [_networkDelegate updateAPIStatus:[STGNetworkHelper isWebsiteReachable:_baseUrl] validKey:true];
     }
 
     // No API status packet
@@ -282,7 +284,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
                                 nil] content:fileData];
         NSArray *requestParts = [NSArray arrayWithObject:contentPart];
         
-        NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://mediacru.sh/api/upload/url"] httpMethod:@"POST" contentParts:requestParts];
+        NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"%@/api/upload/url", [self httpsUrl]] httpMethod:@"POST" contentParts:requestParts];
         
         STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"rehostLink" userInfo:[NSMutableDictionary dictionaryWithObjectsAndKeys: entry, @"dataCaptureEntry", urlToFetchFrom, @"link", nil]];
         
@@ -298,7 +300,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
                                 nil] content:fileData];
         NSArray *requestParts = [NSArray arrayWithObject:contentPart];
         
-        NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://mediacru.sh/api/upload/file"] httpMethod:@"POST" contentParts:requestParts];
+        NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"%@/api/upload/file", [self httpsUrl]] httpMethod:@"POST" contentParts:requestParts];
         
         STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"uploadFile" userInfo:[NSMutableDictionary dictionaryWithObject:entry forKey:@"dataCaptureEntry"]];
         
@@ -309,7 +311,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
 - (void)sendFileDeletePacket:(STGPacketQueue *)packetQueue apiKey:(NSString *)apiKey entry:(STGUploadedEntry *)entry
 {
     NSString *entryID = [entry onlineID];
-    NSString *urlString = [NSString stringWithFormat:@"https://mediacru.sh/api/%@", entryID];
+    NSString *urlString = [NSString stringWithFormat:@"%@/api/%@", [self httpsUrl], entryID];
     
     NSURLRequest *request = [STGPacket defaultRequestWithUrl:urlString httpMethod:@"DELETE" fileName:entryID mainBodyData:[NSData data]];
     
@@ -328,7 +330,7 @@ STGAPIConfigurationMediacrush *standardConfiguration;
                             nil] content:[listString dataUsingEncoding:NSUTF8StringEncoding]];
     NSArray *requestParts = [NSArray arrayWithObject:contentPart];
     
-    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"https://mediacru.sh/api/album/create"] httpMethod:@"POST" contentParts:requestParts];
+    NSURLRequest *request = [STGPacket defaultRequestWithUrl:[NSString stringWithFormat:@"%@/api/album/create", [self httpsUrl]] httpMethod:@"POST" contentParts:requestParts];
     
     STGPacket *packet = [STGPacket genericPacketWithRequest:request packetType:@"createAlbum" userInfo:[NSMutableDictionary dictionaryWithObject:entries forKey:@"entryIDs"]];
     

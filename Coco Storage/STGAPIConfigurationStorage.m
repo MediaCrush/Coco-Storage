@@ -18,7 +18,6 @@
 
 #import "STGWelcomeWindowControllerStorage.h"
 
-NSString * const kSTGAPIConfigurationKeyStorage = @"kSTGAPIConfigurationKeyStorage";
 STGAPIConfigurationStorage *standardConfiguration;
 
 @implementation STGAPIConfigurationStorage
@@ -38,9 +37,9 @@ STGAPIConfigurationStorage *standardConfiguration;
     return standardConfiguration;
 }
 
-+ (void)registerStandardConfiguration
+- (void)registerConfiguration:(NSString *)regID
 {
-    [STGAPIConfiguration registerConfiguration:[self standardConfiguration] withID:kSTGAPIConfigurationKeyStorage];
+    [STGAPIConfiguration registerConfiguration:self withID:regID];
 }
 
 - (instancetype)init
@@ -174,7 +173,7 @@ STGAPIConfigurationStorage *standardConfiguration;
         if (uploadID)
         {
             NSString *link = [NSString stringWithFormat:@"http://stor.ag/e/%@", uploadID];
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyStorage onlineID:uploadID onlineLink:[NSURL URLWithString:link] dataCaptureEntry:dataCaptureEntry];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:uploadID onlineLink:[NSURL URLWithString:link] dataCaptureEntry:dataCaptureEntry];
             
             if ([_networkDelegate respondsToSelector:@selector(didUploadEntry:success:)])
                 [_networkDelegate didUploadEntry:uploadedEntry success:YES];
@@ -184,7 +183,7 @@ STGAPIConfigurationStorage *standardConfiguration;
         }
         else
         {
-            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:kSTGAPIConfigurationKeyStorage onlineID:nil onlineLink:nil dataCaptureEntry:dataCaptureEntry];
+            STGUploadedEntry *uploadedEntry = [[STGUploadedEntryFile alloc] initWithAPIConfigurationID:[STGAPIConfiguration idOfConfiguration:self] onlineID:nil onlineLink:nil dataCaptureEntry:dataCaptureEntry];
 
             NSLog(@"Upload file (error?). Response:\n%@\nStatus: %li (%@)", response, responseCode, [NSHTTPURLResponse localizedStringForStatusCode:responseCode]);
 

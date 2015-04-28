@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
@@ -75,6 +75,10 @@
                 <constraint firstItem="5" firstAttribute="top" secondItem="2" secondAttribute="top" constant="2" id="pac-80-HR5"/>
                 <constraint firstItem="5" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="2" id="wg0-Hf-Kg1"/>
             </constraints>
+            <connections>
+                <outlet property="subTitleTextField" destination="3" id="N0k-qD-byP"/>
+                <outlet property="titleTextField" destination="4" id="Y0L-l2-CbX"/>
+            </connections>
         </customView>
         <button id="jx1-rw-4gn">
             <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>

@@ -16,6 +16,9 @@
 
 @property (nonatomic, assign) id<STGRecentUploadDelegate> recentUploadDelegate;
 
+@property (nonatomic, retain) IBOutlet NSTextField *titleTextField;
+@property (nonatomic, retain) IBOutlet NSTextField *subTitleTextField;
+
 @property (nonatomic, retain) STGUploadedEntry *captureEntry;
 
 @property (nonatomic, retain) NSTrackingArea *trackingArea;
