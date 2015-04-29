@@ -10,15 +10,54 @@
 
 @implementation STGRecentUploadView
 
-- (void)drawRect:(NSRect)dirtyRect
+- (id)initWithFrame:(NSRect)frame
 {
-    if (_isHighlighted)
+    self = [super initWithFrame:frame];
+    
+    if (self)
     {
-        [[NSColor selectedMenuItemColor] set];
-        NSRectFill(dirtyRect);
+        [self setUp];
     }
+    
+    return self;
+}
 
-    [super drawRect:dirtyRect];
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    
+    if (self)
+    {
+        [self setUp];
+    }
+    
+    return self;
+}
+
+- (void)setUp
+{
+    CALayer *blurLayer = [CALayer layer];
+    [self setWantsLayer:YES];
+    [self setLayer:blurLayer];
+    
+    // Set up the default parameters
+    _blurRadius = 20;
+    _saturationFactor = 2.5;
+    [self setTintColor:[NSColor whiteColor]];
+    
+    // It's important to set the layer to mask to its bounds, otherwise the whole parent view
+    /// might get blurred
+    [self.layer setMasksToBounds:YES];
+    
+    // To apply CIFilters on OS X 10.9, we need to set the property accordingly:
+    if ([self respondsToSelector:@selector(setLayerUsesCoreImageFilters:)])
+        [self setLayerUsesCoreImageFilters:YES];
+    
+    // Set the layer to redraw itself once it's size is changed
+    [self.layer setNeedsDisplayOnBoundsChange:YES];
+    
+    // Initially create the filter instances
+    [self resetFilters];
 }
 
 -(void)mouseEntered:(NSEvent *)theEvent
@@ -58,23 +97,70 @@
 - (void)setIsHighlighted:(BOOL)isHighlighted
 {
     _isHighlighted = isHighlighted;
-    [_titleTextField setBackgroundColor:[NSColor clearColor]];
-    [_titleTextField setDrawsBackground:NO];
-    [_subTitleTextField setBackgroundColor:[NSColor clearColor]];
-    [_subTitleTextField setDrawsBackground:NO];
-
+    
     if (_isHighlighted)
     {
         [_titleTextField setTextColor:[NSColor highlightColor]];
-        [_subTitleTextField setTextColor:[NSColor colorWithCalibratedRed:0.646445 green:0.867147 blue:1.0 alpha:1.0]];
-        [[self layer] setBackgroundColor:CGColorCreateGenericRGB(0.95, 0.95, 0.95, 1)];
+        [_subTitleTextField setTextColor:[NSColor highlightColor]];
+        [self setTintColor:[NSColor selectedMenuItemColor]];
     }
     else
     {
-        [_titleTextField setTextColor:[NSColor textColor]];
-        [_subTitleTextField setTextColor:[NSColor colorWithCalibratedRed:0.389645 green:0.522673 blue:0.60275 alpha:1.0]];
-        [[self layer] setBackgroundColor:CGColorCreateGenericRGB(0.95, 0.9, 0.95, 1)];
+        [_titleTextField setTextColor:[NSColor labelColor]];
+        [_subTitleTextField setTextColor:[NSColor secondaryLabelColor]];
+        [self setTintColor:[NSColor clearColor]];
     }
+}
+
+- (void) setTintColor:(NSColor *)tintColor
+{
+    _tintColor = tintColor;
+    
+    // Since we need a CGColor reference, store it for the drawing of the layer.
+    if (_tintColor)
+    {
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+        [self.layer setBackgroundColor:_tintColor.CGColor];
+        [CATransaction commit];
+    }
+    
+    // Trigger a re-drawing of the layer
+    [self.layer setNeedsDisplay];
+}
+
+- (void)setBlurRadius:(float)blurRadius
+{
+    // Setting the blur radius requires a resetting of the filters
+    _blurRadius = blurRadius;
+    [self resetFilters];
+}
+
+- (void) setSaturationFactor:(float)saturationFactor
+{
+    // Setting the saturation factor also requires a resetting of the filters
+    _saturationFactor = saturationFactor;
+    [self resetFilters];
+}
+
+- (void)resetFilters
+{
+    // To get a higher color saturation, we create a ColorControls filter
+    _saturationFilter = [CIFilter filterWithName:@"CIColorControls"];
+    [_saturationFilter setDefaults];
+    [_saturationFilter setValue:[NSNumber numberWithFloat:_saturationFactor]
+                         forKey:@"inputSaturation"];
+    
+    // Next, we create the blur filter
+    _blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [_blurFilter setDefaults];
+    [_blurFilter setValue:[NSNumber numberWithFloat:_blurRadius] forKey:@"inputRadius"];
+    
+    // Now we apply the two filters as the layer's background filters
+    [self.layer setBackgroundFilters:@[_saturationFilter,_blurFilter]];
+    
+    // ... and trigger a refresh
+    [self.layer setNeedsDisplay];
 }
 
 @end

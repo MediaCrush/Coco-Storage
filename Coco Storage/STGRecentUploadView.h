@@ -7,12 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <QuartzCore/QuartzCore.h>
 
 @class STGUploadedEntry;
 
 @protocol STGRecentUploadDelegate;
 
 @interface STGRecentUploadView : NSView
+{
+    CIFilter *_blurFilter, *_saturationFilter;
+}
 
 @property (nonatomic, assign) id<STGRecentUploadDelegate> recentUploadDelegate;
 
@@ -23,6 +27,16 @@
 
 @property (nonatomic, retain) NSTrackingArea *trackingArea;
 @property (nonatomic, assign) BOOL isHighlighted;
+
+/** The layer will be tinted using the tint color. By default it is a 70% White Color */
+@property (strong,nonatomic) NSColor *tintColor;
+
+/** To get more vibrant colors, a filter to increase the saturation of the colors can be applied.
+ The default value is 2.5. */
+@property (assign,nonatomic) float saturationFactor;
+
+/** The blur radius defines the strength of the Gaussian Blur filter. The default value is 20.0. */
+@property (assign,nonatomic) float blurRadius;
 
 @end
 

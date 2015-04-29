@@ -70,9 +70,9 @@ NSString * const kSTGAPIConfigurationKeyStorage = @"kSTGAPIConfigurationKeyStora
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-//    STGAPIConfigurationMediacrush *mediacrush = [[STGAPIConfigurationMediacrush alloc] initWithName:@"Mediacru.sh" url:@"mediacru.sh"];
-//    [mediacrush setDelegate:self];
-//    [mediacrush registerConfiguration:kSTGAPIConfigurationKeyMediacrush];
+    STGAPIConfigurationMediacrush *mediacrush = [[STGAPIConfigurationMediacrush alloc] initWithName:@"Mediacru.sh" url:@"mediacru.sh"];
+    [mediacrush setDelegate:self];
+    [mediacrush registerConfiguration:kSTGAPIConfigurationKeyMediacrush];
 
     STGAPIConfigurationMediacrush *imgrush = [[STGAPIConfigurationMediacrush alloc] initWithName:@"Imgrush" url:@"imgrush.com"];
     [imgrush setDelegate:self];
@@ -104,7 +104,7 @@ NSString * const kSTGAPIConfigurationKeyStorage = @"kSTGAPIConfigurationKeyStora
     
     [self setNetworkManager:[[STGNetworkManager alloc] init]];
     [_networkManager setDelegate:self];
-//    [mediacrush setNetworkDelegate:_networkManager];
+    [mediacrush setNetworkDelegate:_networkManager];
     [imgrush setNetworkDelegate:_networkManager];
     [[STGAPIConfigurationStorage standardConfiguration] setNetworkDelegate:_networkManager];
     [[STGAPIConfigurationStub standardConfiguration] setNetworkDelegate:_networkManager];
