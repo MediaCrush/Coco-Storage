@@ -5,15 +5,24 @@
         <link>http://mediacrush.github.io/Coco-Storage/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
-		<item>
-		    <title>Version 1.4.3 (Small Feature Update)</title>
-		    <sparkle:releaseNotesLink>
-		        http://mediacrush.github.io/Coco-Storage/versions/1.4.3.html
-		    </sparkle:releaseNotesLink>
-		    <pubDate>Wed, 10 Sep 2014 15:55:02 +0100</pubDate>
-		    <enclosure url="http://mediacrush.github.io/Coco-Storage/versions/Coco%20Storage%201.4.3.app.zip" sparkle:version="1.4.3" length="1778096" type="application/octet-stream" sparkle:dsaSignature="MC0CFGoyoMMpOB0YIsvcP42Yd/MCBWuKAhUAt5TZv2oeyyr2f4QpFhuOJUPZr1U=" />
-		    <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
-		</item>
+        <item>
+            <title>Version 1.4.4 (Imgrush / Yosemite Update)</title>
+            <sparkle:releaseNotesLink>
+                http://mediacrush.github.io/Coco-Storage/versions/1.4.4.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Wed, 29 Apr 2015 13:51:58 +0100</pubDate>
+            <enclosure url="http://mediacrush.github.io/Coco-Storage/versions/Coco%20Storage%201.4.4.app.zip" sparkle:version="1.4.4" length="1778096" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCOSfNbiADExipzjGwdUpM+AFMbMQIUX7uQcbKzj1wPk7IYnNv7Nyalp8g=" />
+            <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+        </item>
+        <item>
+            <title>Version 1.4.3 (Small Feature Update)</title>
+            <sparkle:releaseNotesLink>
+                http://mediacrush.github.io/Coco-Storage/versions/1.4.3.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Wed, 10 Sep 2014 15:55:02 +0100</pubDate>
+            <enclosure url="http://mediacrush.github.io/Coco-Storage/versions/Coco%20Storage%201.4.3.app.zip" sparkle:version="1.4.3" length="1778096" type="application/octet-stream" sparkle:dsaSignature="MC0CFGoyoMMpOB0YIsvcP42Yd/MCBWuKAhUAt5TZv2oeyyr2f4QpFhuOJUPZr1U=" />
+            <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+        </item>
 		<item>
 		    <title>Version 1.4.2 (Small Feature Update)</title>
 		    <sparkle:releaseNotesLink>
